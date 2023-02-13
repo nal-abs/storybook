@@ -4,47 +4,46 @@ import Tab from '@mui/material/Tab';
 import TabPanel from '@mui/lab/TabPanel';
 import * as React from 'react';
 import TabContext from '@mui/lab/TabContext';
+import { map } from '@laufire/utils/collection';
 
-// const orientation = 'horizontal';
+const style = {
+	vertical: 'vertical-tab',
+};
 
-// const prop = {
-// 	color: 'secondary',
-// 	variant: 'scrollable',
+// const variants = {
+// 	scrollable: {
+// 		scrollButtons: 'auto',
+// 		allowScrollButtonsMobile: true,
+// 	},
 // };
 
 const Tabs = (context) => {
-	const { actions, config: { TabItems }, prop:
-	{ orientation, color, variant }} = context;
+	const { actions, prop:
+	{ color, data, ...args }} = context;
 
 	return (
 		<TabList
 			onChange={ (evt, index) => actions.selectedTab(index) }
-			orientation={ orientation }
+			{ ...args }
 			textColor={ color }
 			indicatorColor={ color }
-			variant={ variant }
-			scrollButtons="auto"
-			allowScrollButtonsMobile={ true }
 		>
-			{TabItems.map((ele, i) =>
+			{map(data, (ele, i) =>
 				<Tab key={ i } label={ ele.label } value={ ele.label }/>)}
 		</TabList>);
 };
 
 const DisplayTab = (context) => {
-	const { state: { value }, config: { TabItems },
-		prop: { orientation }} = context;
-	const style = orientation !== undefined
-		? 'vertical-tab'
-		: 'horizontal-tab';
+	const { state: { value },
+		prop: { orientation, data }} = context;
 
 	return (
-		<Box className={ style }>
+		<Box className={ style[orientation] }>
 			<TabContext value={ value }>
 				<Box>
 					<Tabs { ...context }/>
 				</Box>
-				{TabItems.map((item, i) =>
+				{map(data, (item, i) =>
 					<TabPanel key={ i } value={ item.label }>
 						{item.component}</TabPanel>)}
 			</TabContext>
