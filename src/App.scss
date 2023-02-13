@@ -5,3 +5,11 @@
 
 	}
 }
+.vertical-tab{
+	display: flex;
+	flex-direction: row;
+}
+.horizontal-tab{
+	display: flex;
+	flex-direction: column;
+}

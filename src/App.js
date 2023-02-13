@@ -6,8 +6,6 @@ const App = (context) =>
 	<div className="App" role="App">
 		<DisplayTab { ...{ ...context,
 			prop: {
-				orientation: 'vertical',
-				color: 'primary', variant: 'scrollable',
 			}} }
 		/>
 	</div>;

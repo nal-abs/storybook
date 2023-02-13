@@ -34,12 +34,12 @@ const Tabs = (context) => {
 const DisplayTab = (context) => {
 	const { state: { value }, config: { TabItems },
 		prop: { orientation }} = context;
-	const style = orientation === 'vertical'
-		? { flexDirection: 'row' }
-		: { flexDirection: 'column' };
+	const style = orientation !== undefined
+		? 'vertical-tab'
+		: 'horizontal-tab';
 
 	return (
-		<Box sx={ { ...style, display: 'flex' } }>
+		<Box className={ style }>
 			<TabContext value={ value }>
 				<Box>
 					<Tabs { ...context }/>
