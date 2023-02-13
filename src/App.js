@@ -1,9 +1,15 @@
 import { React } from 'react';
 import './App.scss';
+import DisplayTab from './components /DisplayTab';
 
-const App = () =>
+const App = (context) =>
 	<div className="App" role="App">
-		Ready to start.
+		<DisplayTab { ...{ ...context,
+			prop: {
+				orientation: 'vertical',
+				color: 'primary', variant: 'scrollable',
+			}} }
+		/>
 	</div>;
 
 export default App;
