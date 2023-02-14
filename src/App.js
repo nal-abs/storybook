@@ -1,5 +1,6 @@
 import { React } from 'react';
 import './App.scss';
+import DisplayMenu from './components /DisplayMenu';
 import DisplayTab from './components /DisplayTab';
 
 const App = (context) => {
@@ -14,6 +15,11 @@ const App = (context) => {
 				data: TabItems,
 			},
 		} }
+		/>
+		<DisplayMenu { ...{ ...context,
+			trigger: {
+				children: {	text: 'Menu' },
+			}} }
 		/>
 	</div>;
 };
