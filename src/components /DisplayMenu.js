@@ -2,15 +2,26 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { Box } from '@mui/material';
+import { Box, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import Check from '@mui/icons-material/Check';
 
-const MenuItems = ['Inbox', 'Drafts', 'Starred', 'Junk'];
+const MenuItems = [
+	{ text: 'Inbox',
+		icon: <Check/>,
+		typography: 5 },
+	{ text: 'Drafts' },
+	{ text: 'Starred' },
+	{ text: 'Junk' },
+];
 
 const DisplayMenuItems = ({ handleClose }) => MenuItems.map((item, i) =>
 	<MenuItem
 		key={ i }
 		onClick={ handleClose }
-	>{item}</MenuItem>);
+		sx={ { width: '200px' } }
+	> <ListItemIcon>{item.icon}</ListItemIcon>
+		<ListItemText>{item.text}</ListItemText>
+		<Typography>{item.typography}</Typography></MenuItem>);
 
 const DisplayMenu = ({ trigger }) => {
 	const [anchorEl, setAnchorEl] = React.useState(null);

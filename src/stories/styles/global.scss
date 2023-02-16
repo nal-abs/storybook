@@ -419,3 +419,8 @@ $highlight-color: #EA4842;
 .fontsize {
   font-size: medium;
 }
+
+.vertical-tab{
+	display: flex;
+	flex-direction: row;
+}
