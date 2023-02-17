@@ -22,7 +22,7 @@ const style = {
 
 const Tabs = (context) => {
 	const { prop:
-	{ color, data, ...args }} = context;
+	{ color, data, ...args }, selectedTab } = context;
 
 	return (
 		<TabList
@@ -35,20 +35,21 @@ const Tabs = (context) => {
 					key={ i }
 					label={ ele.label }
 					value={ ele.label }
-					onClick={ () => context.actions.selectedTab(ele.label) }
+					onClick={ () => selectedTab(ele.label) }
 				/>)}
 		</TabList>);
 };
 
 const DisplayTab = ({ context }) => {
-	const { state: { value },
-		prop: { orientation, data }} = context;
+	const { prop: { orientation, data }} = context;
+
+	const [value, selectedTab] = React.useState('TodoPane');
 
 	return (
 		<Box className={ style[orientation] }>
 			<TabContext value={ value }>
 				<Box>
-					<Tabs { ...{ ...context, value } }/>
+					<Tabs { ...{ ...context, value, selectedTab } }/>
 				</Box>
 				{map(data, (item, i) =>
 					<TabPanel key={ i } value={ item.label }>
