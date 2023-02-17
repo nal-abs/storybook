@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import DisplayTab from './DisplayTab';
 
@@ -6,14 +7,16 @@ export default {
 	component: DisplayTab,
 };
 
-const Template = (args) => <DisplayTab { ...args }/>;
-
-export const displayTab = Template.bind({});
+export const displayTab = (args) => <DisplayTab { ...args }/>;
 
 displayTab.args = {
 	context: {
 		state: {
 			value: 'TodoPane',
+		},
+		actions: {
+			selectedTab: (evt) =>
+				console.log(evt),
 		},
 		prop: {
 			orientation: 'vertical',
