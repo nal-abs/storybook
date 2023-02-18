@@ -1,27 +1,11 @@
 import { React } from 'react';
 import './App.scss';
-import DisplayMenu from './components /DisplayMenu';
-import DisplayTab from './components /DisplayTab';
+import TabExample from './components /TabsExample';
 
-const App = (context) => {
-	const { config: { TabItems }} = context;
+const App = (context) =>
 
-	return <div className="App" role="App">
-		<DisplayTab { ...{
-			...context,
-			prop: {
-				orientation: 'vertical',
-				color: 'secondary', variant: 'scrollable',
-				data: TabItems,
-			},
-		} }
-		/>
-		<DisplayMenu { ...{ ...context,
-			trigger: {
-				children: {	text: 'Menu' },
-			}} }
-		/>
+	<div className="App" role="App">
+		<TabExample { ...context }/>
 	</div>;
-};
 
 export default App;

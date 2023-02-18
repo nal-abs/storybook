@@ -1,5 +1,5 @@
 const seed = {
-	value: 'TodoPane',
+	tab: 'TodoPane',
 	open: null,
 };
 
