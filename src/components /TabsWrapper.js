@@ -1,7 +1,7 @@
 import Tabs from '../stories/Tabs';
 import * as React from 'react';
 
-const TabExample = (context) =>
+const TabWrapper = (context) =>
 	<Tabs { ...{ ...context,
 		prop: {
 			orientation: 'vertical',
@@ -19,4 +19,4 @@ const TabExample = (context) =>
 		}} }
 	/>;
 
-export default TabExample;
+export default TabWrapper;

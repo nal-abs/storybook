@@ -1,11 +1,13 @@
 import { React } from 'react';
 import './App.scss';
-import TabExample from './components /TabsExample';
+import ButtonWrapper from './components /ButtonWrapper';
+import TabWrapper from './components /TabsWrapper';
 
 const App = (context) =>
 
 	<div className="App" role="App">
-		<TabExample { ...context }/>
+		<TabWrapper { ...context }/>
+		<ButtonWrapper { ...context }/>
 	</div>;
 
 export default App;
