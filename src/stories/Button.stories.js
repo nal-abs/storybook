@@ -13,7 +13,7 @@ export const button = Template.bind({});
 
 button.args = {
 	prop: {
-		label: 'HI',
+		children: 'HI',
 		variant: 'contained',
 		size: 'large',
 		color: 'success',
