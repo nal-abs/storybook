@@ -1,20 +1,31 @@
-import { Button } from '@mui/material';
-import { React } from 'react';
+/* eslint-disable no-console */
 import PropTypes from 'prop-types';
-import AddIcon from '@mui/icons-material/Add';
+import { Button as MuiButton } from '@mui/material';
+import * as React from 'react';
+import * as Icons from '@mui/icons-material';
 
-const AddButton = () =>
-	<Button
-		role="AddButton"
-	>
-		<AddIcon
-			color="primary"
-			sx={ { '&:hover': { color: 'error.main' }} }
-		/>
-	</Button>;
+const Icon = ({ prop: { startIcon, endIcon }}) => {
+	const StartIcon = Icons[startIcon];
+	const EndIcon = Icons[endIcon];
 
-export default AddButton;
+	return {
+		startIcon: startIcon ? <StartIcon/> : '',
+		endIcon: endIcon ? <EndIcon/> : '',
+	};
+};
 
-AddButton.propTypes = {
+const Button = (context) => {
+	const { prop: { label, ...args }} = context;
+
+	return (
+		<MuiButton
+			{ ...{ ...args, ...Icon(context) } }
+			onClick={ () => console.log('clicked') }
+		>{label}</MuiButton>);
+};
+
+export default Button;
+
+Button.propTypes = {
 	context: PropTypes.object,
 };

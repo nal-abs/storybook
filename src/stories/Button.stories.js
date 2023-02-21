@@ -1,23 +1,29 @@
 /* eslint-disable no-console */
 import React from 'react';
-import MuiButton from './MuiButton';
+import Button from './Button';
 
 export default {
-	title: 'Atoms/MuiButton',
-	component: MuiButton,
+	title: 'stories/button',
+	component: Button,
 };
 
-const Template = (args) => <MuiButton { ...args }/>;
+const Template = (args) => <Button { ...args }/>;
 
-export const muiButton = Template.bind({});
+export const button = Template.bind({});
 
-muiButton.args = {
-	context: {
-		actions: {
-			addTodo: () => console.log('hello'),
-		},
-		state: {
-			input: 'hi',
-		},
+button.args = {
+	prop: {
+		label: 'HI',
+		variant: 'contained',
+		size: 'large',
+		color: 'success',
+		disabled: false,
+		disableElevation: true,
+		startIcon: 'Delete',
+		fullWidth: false,
+		href: 'https://mui.com/material-ui/react-button/',
+		disableFocusRipple: true,
+		disableRipple: false,
+		sx: { border: '10px solid black' },
 	},
 };
