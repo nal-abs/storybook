@@ -11,7 +11,7 @@ const Template = (args) => <Typography { ...args }/>;
 export const typography = Template.bind({});
 
 typography.args = {
-	prop: {
+	props: {
 		children:
 				`If true, the text will not wrap, but instead will truncate with a text overflow ellipsis.
 				Note that text overflow can only happen with block or inline-block level

@@ -6,7 +6,7 @@ import { Box, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import * as Icons from '@mui/icons-material';
 
-const DisplayMenuItems = ({ handleClose, prop: { data }}) =>
+const DisplayMenuItems = ({ handleClose, props: { data }}) =>
 	data.map(({ icon, typography, text }, i) => {
 		const Icon = Icons[icon];
 		const IconF = () => (icon ? <Icon/> : '');
@@ -21,7 +21,7 @@ const DisplayMenuItems = ({ handleClose, prop: { data }}) =>
 				<Typography>{typography}</Typography></MenuItem>);
 	});
 
-const DisplayMenu = ({ trigger, prop }) => {
+const DisplayMenu = ({ trigger, props }) => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event) => {
@@ -39,7 +39,7 @@ const DisplayMenu = ({ trigger, prop }) => {
 				anchorEl={ anchorEl }
 				open={ Boolean(open) }
 				onClose={ handleClose }
-			><DisplayMenuItems { ...{ prop, handleClose } }/></Menu></Box>
+			><DisplayMenuItems { ...{ props, handleClose } }/></Menu></Box>
 	);
 };
 
@@ -47,5 +47,5 @@ export default DisplayMenu;
 
 DisplayMenu.prototype = {
 	trigger: PropTypes.object,
-	prop: PropTypes.object,
+	props: PropTypes.object,
 };

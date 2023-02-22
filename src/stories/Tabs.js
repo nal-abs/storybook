@@ -15,7 +15,7 @@ const style = {
 
 const DisplayTabs = (context) => {
 	const {
-		prop: { color, data, ...args },
+		props: { color, data, ...args },
 		selectValue,
 	} = context;
 
@@ -36,7 +36,7 @@ const DisplayTabs = (context) => {
 };
 
 const Tabs = (context) => {
-	const { prop: { orientation, data }, state: { tab }} = peek(context);
+	const { props: { orientation, data }, state: { tab }} = peek(context);
 
 	const [value, selectValue] = useState(tab);
 

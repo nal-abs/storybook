@@ -3,7 +3,7 @@ import * as React from 'react';
 
 const TabWrapper = (context) =>
 	<Tabs { ...{ ...context,
-		prop: {
+		props: {
 			orientation: 'vertical',
 			color: 'secondary', variant: 'scrollable',
 			data: [

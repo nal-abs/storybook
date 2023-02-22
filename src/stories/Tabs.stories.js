@@ -1,4 +1,6 @@
 import React from 'react';
+import context from '../../src/core/context';
+import Button from './Button';
 import Tabs from './Tabs';
 
 export default {
@@ -13,13 +15,16 @@ tabs.args = {
 		tab: 'TodoPane',
 	},
 	actions: {},
-	prop: {
+	props: {
 		orientation: 'vertical',
 		color: 'secondary', variant: 'scrollable',
 		data: [
 			{
 				label: 'TodoPane',
-				component: 'item1',
+				component:
+	<Button { ...{ ...context,
+		props: { children: 'Hi', variant: 'contained' }} }
+	/>,
 			},
 			{
 				label: 'TaskPane',

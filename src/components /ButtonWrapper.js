@@ -3,7 +3,7 @@ import Button from './Button';
 
 const ButtonWrapper = (context) =>
 	<Button { ...{ ...context,
-		prop: {
+		props: {
 			children: 'HI',
 			variant: 'contained',
 			size: 'large',

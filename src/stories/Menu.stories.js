@@ -16,7 +16,7 @@ menu.args = {
 			text: 'Click me!',
 		},
 	},
-	prop: {
+	props: {
 		data: [
 			{ text: 'Inbox',
 				icon: 'Check',

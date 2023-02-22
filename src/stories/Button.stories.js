@@ -12,7 +12,7 @@ const Template = (args) => <Button { ...args }/>;
 export const button = Template.bind({});
 
 button.args = {
-	prop: {
+	props: {
 		children: 'HI',
 		variant: 'contained',
 		size: 'large',
