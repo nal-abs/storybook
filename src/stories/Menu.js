@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import * as Icons from '@mui/icons-material';
 
 const DisplayMenuItems = ({ handleClose, props: { data }}) =>
-	data.map(({ icon, typography, text }, i) => {
+	data.map(({ icon, typography, children }, i) => {
 		const Icon = Icons[icon];
 		const IconF = () => (icon ? <Icon/> : '');
 
@@ -17,7 +17,7 @@ const DisplayMenuItems = ({ handleClose, props: { data }}) =>
 				onClick={ handleClose }
 				sx={ { width: '200px' } }
 			><ListItemIcon><IconF/></ListItemIcon>
-				<ListItemText>{text}</ListItemText>
+				<ListItemText>{children}</ListItemText>
 				<Typography>{typography}</Typography></MenuItem>);
 	});
 

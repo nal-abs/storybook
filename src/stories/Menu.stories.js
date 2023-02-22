@@ -18,12 +18,12 @@ menu.args = {
 	},
 	props: {
 		data: [
-			{ text: 'Inbox',
+			{ children: 'Inbox',
 				icon: 'Check',
 				typography: 5 },
-			{ text: 'Drafts' },
-			{ text: 'Starred' },
-			{ text: 'Junk' },
+			{ children: 'Drafts' },
+			{ children: 'Starred' },
+			{ children: 'Junk' },
 		],
 	},
 };

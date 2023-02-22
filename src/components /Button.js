@@ -14,11 +14,11 @@ const Icon = ({ props: { startIcon, endIcon }}) => {
 };
 
 const Button = (context) => {
-	const { props: { args }} = context;
+	const { props: { children, ...args }} = context;
 
 	return (
 		<MuiButton
-			{ ...{ ...args, ...Icon(context) } }
+			{ ...{ children, args, ...Icon(context) } }
 			onClick={ () => console.log('clicked') }
 		/>);
 };
