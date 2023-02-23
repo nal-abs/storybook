@@ -1,13 +1,17 @@
+import DirectionManager from '../services/DirectionManager';
+
 const actions = {
 	selectedTab: (context) => ({
 		value: context.data,
 	}),
-	openMenu: (context) => ({
-		open: context.data,
+	setDirection: (context) => ({
+		open: DirectionManager.setDirection(context),
+		anchor: context.data,
 	}),
-	handleClose: () => ({
-		open: null,
+	closeDrawer: (context) => ({
+		open: DirectionManager.closeDrawer(context),
 	}),
+
 };
 
 export default actions;
