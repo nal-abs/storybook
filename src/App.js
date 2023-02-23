@@ -12,7 +12,10 @@ const App = (context) =>
 		<Drawer { ...{ ...context,
 			props: {
 				direction: 'right',
-				lists: ['Inbox', 'starred'],
+				lists: [
+					{ text: 'Inbox', icon: 'Add', typography: 5 },
+					{ text: 'starred', icon: 'Delete', typography: 3 },
+				],
 			}} }
 		/>
 	</div>;
