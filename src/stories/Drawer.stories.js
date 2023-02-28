@@ -11,11 +11,9 @@ const Template = (args) => <Drawer { ...args }/>;
 export const drawer = Template.bind({});
 
 drawer.args = {
-	props: {
-		direction: 'right',
-		lists: [
-			{ text: 'Inbox', icon: 'Add', typography: 5 },
-			{ text: 'starred', icon: 'Delete', typography: 3 },
-		],
-	},
+	direction: 'right',
+	lists: [
+		{ text: 'Inbox', icon: 'Add', typography: 5 },
+		{ text: 'starred', icon: 'Delete', typography: 3 },
+	],
 };

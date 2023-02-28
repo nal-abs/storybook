@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import * as Icons from '@mui/icons-material';
 import PropTypes from 'prop-types';
 
-const DisplayList = ({ props: { direction, lists },
+const DisplayList = ({ direction, lists,
 	anchor, setAnchor }) =>
 	<Box onClick={ () => setAnchor({ ...anchor, [direction]: false }) }>
 		<List>
@@ -29,7 +29,7 @@ const DisplayList = ({ props: { direction, lists },
 		</List></Box>;
 
 const Drawer = (context) => {
-	const { props: { direction }, props } = context;
+	const { direction, lists } = context;
 	const [anchor, setAnchor] = useState({
 		left: false,
 		right: false,
@@ -46,7 +46,7 @@ const Drawer = (context) => {
 			open={ anchor[direction] }
 			onClose={ () => setAnchor({ ...anchor, [direction]: false }) }
 		>
-			<DisplayList { ...{ props, anchor, setAnchor } }/>
+			<DisplayList { ...{ direction, lists, anchor, setAnchor } }/>
 		</MuiDrawer></Box>;
 };
 
@@ -54,6 +54,5 @@ export default Drawer;
 
 Drawer.prototype = {
 	context: PropTypes.object,
-	props: PropTypes.object,
 	trigger: PropTypes.object,
 };

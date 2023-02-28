@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Typography as Text } from '@mui/material';
 
 const Typography = (context) => {
-	const { props: { ...args }} = context;
+	const { ...args } = context;
 
 	return <Text { ...args }/>;
 };

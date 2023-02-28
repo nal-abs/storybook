@@ -16,14 +16,12 @@ menu.args = {
 			text: 'Click me!',
 		},
 	},
-	props: {
-		data: [
-			{ children: 'Inbox',
-				icon: 'Check',
-				typography: 5 },
-			{ children: 'Drafts' },
-			{ children: 'Starred' },
-			{ children: 'Junk' },
-		],
-	},
+	data: [
+		{ children: 'Inbox',
+			icon: 'Check',
+			typography: 5 },
+		{ children: 'Drafts' },
+		{ children: 'Starred' },
+		{ children: 'Junk' },
+	],
 };
