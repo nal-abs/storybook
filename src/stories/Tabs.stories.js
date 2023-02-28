@@ -15,21 +15,19 @@ tabs.args = {
 		tab: 'TodoPane',
 	},
 	actions: {},
-	props: {
-		orientation: 'vertical',
-		color: 'secondary', variant: 'scrollable',
-		data: [
-			{
-				label: 'TodoPane',
-				component:
+	orientation: 'vertical',
+	color: 'secondary', variant: 'scrollable',
+	data: [
+		{
+			label: 'TodoPane',
+			component:
 	<Button { ...{ ...context,
-		props: { children: 'Hi', variant: 'contained' }} }
+		children: 'Hi', variant: 'contained' } }
 	/>,
-			},
-			{
-				label: 'TaskPane',
-				component: 'item2',
-			},
-		],
-	},
+		},
+		{
+			label: 'TaskPane',
+			component: 'item2',
+		},
+	],
 };

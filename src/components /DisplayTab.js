@@ -18,8 +18,8 @@ const style = {
 // };
 
 const Tabs = (context) => {
-	const { actions, props:
-	{ color, data, ...args }} = context;
+	const { actions,
+		color, data, ...args } = context;
 
 	return (
 		<TabList
@@ -35,7 +35,7 @@ const Tabs = (context) => {
 
 const DisplayTab = (context) => {
 	const { state: { value },
-		props: { orientation, data }} = context;
+		orientation, data } = context;
 
 	return (
 		<Box className={ style[orientation] }>

@@ -4,7 +4,7 @@ import { Button as MuiButton } from '@mui/material';
 import * as React from 'react';
 import * as Icons from '@mui/icons-material';
 
-const Icon = ({ props: { startIcon, endIcon }}) => {
+const Icon = ({ startIcon, endIcon }) => {
 	const StartIcon = Icons[startIcon];
 	const EndIcon = Icons[endIcon];
 
@@ -15,7 +15,7 @@ const Icon = ({ props: { startIcon, endIcon }}) => {
 };
 
 const Button = (context) => {
-	const { props: { ...args }} = context;
+	const { ...args } = context;
 
 	return (
 		<MuiButton
