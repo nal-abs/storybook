@@ -6,7 +6,7 @@ import { Box, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import * as Icons from '@mui/icons-material';
 
-const DisplayMenuItems = ({ handleClose, data }) =>
+const DisplayMenuItems = ({ handleClose, data, sx }) =>
 	data.map(({ icon, typography, children }, i) => {
 		const Icon = Icons[icon];
 		const IconF = () => (icon ? <Icon/> : '');
@@ -15,13 +15,13 @@ const DisplayMenuItems = ({ handleClose, data }) =>
 			<MenuItem
 				key={ i }
 				onClick={ handleClose }
-				sx={ { width: '200px' } }
+				sx={ sx }
 			><ListItemIcon><IconF/></ListItemIcon>
 				<ListItemText>{children}</ListItemText>
 				<Typography>{typography}</Typography></MenuItem>);
 	});
 
-const DisplayMenu = ({ trigger, data }) => {
+const DisplayMenu = ({ trigger, data, sx }) => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event) => {
@@ -39,7 +39,7 @@ const DisplayMenu = ({ trigger, data }) => {
 				anchorEl={ anchorEl }
 				open={ Boolean(open) }
 				onClose={ handleClose }
-			><DisplayMenuItems { ...{ data, handleClose } }/></Menu></Box>
+			><DisplayMenuItems { ...{ data, handleClose, sx } }/></Menu></Box>
 	);
 };
 

@@ -24,4 +24,13 @@ menu.args = {
 		{ children: 'Starred' },
 		{ children: 'Junk' },
 	],
+	sx: {
+		'width': '200px',
+		'&:active': {
+			color: 'primary.main',
+		},
+		'&:hover': {
+			backgroundColor: '#e3f2fd',
+		},
+	},
 };
