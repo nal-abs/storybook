@@ -1,11 +1,11 @@
 import { React } from 'react';
 import './App.scss';
-import PersistentDrawerLeft from './components /DrawerComp';
+import TabWrapper from './components /TabsWrapper';
 
 const App = () =>
 
 	<div className="App" role="App">
-		<PersistentDrawerLeft/>
+		<TabWrapper/>
 	</div>;
 
 export default App;

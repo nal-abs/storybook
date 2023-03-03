@@ -40,25 +40,23 @@ const DisplayTabs = (context) => {
 					key={ i }
 					label={ ele.label }
 					{ ...Icon(ele) }
-					value={ ele.label }
-					onClick={ () => selectValue(ele.label) }
+					value={ i }
+					onClick={ () => selectValue(i) }
 				/>)}
 		</TabList>);
 };
 
 const Tabs = (context) => {
-	const { orientation, data, state: { tab }} = peek(context);
+	const { orientation, data } = peek(context);
 
-	const [value, selectValue] = useState(tab);
+	const [value, selectValue] = useState('0');
 
 	return (
 		<Box className={ style[orientation] }>
 			<TabContext value={ value }>
-				<Box>
-					<DisplayTabs { ...{ ...context, value, selectValue } }/>
-				</Box>
+				<DisplayTabs { ...{ ...context, value, selectValue } }/>
 				{map(data, (item, key) =>
-					<TabPanel key={ key } value={ item.label }>
+					<TabPanel key={ key } value={ key }>
 						{item.component}</TabPanel>)}
 			</TabContext>
 		</Box>
