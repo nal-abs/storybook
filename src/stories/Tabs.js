@@ -57,7 +57,7 @@ const Tabs = (context) => {
 				<DisplayTabs { ...{ ...context, value, selectValue } }/>
 				{map(data, (item, key) =>
 					<TabPanel key={ key } value={ key }>
-						{item.component}</TabPanel>)}
+						{item.content}</TabPanel>)}
 			</TabContext>
 		</Box>
 	);

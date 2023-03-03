@@ -11,16 +11,12 @@ export default {
 export const tabs = (args) => <Tabs { ...args }/>;
 
 tabs.args = {
-	state: {
-		tab: 'TodoPane',
-	},
-	actions: {},
 	orientation: 'vertical',
 	color: 'secondary', variant: 'scrollable',
 	data: [
 		{
 			label: 'TodoPane',
-			component:
+			content:
 	<Button { ...{ ...context,
 		children: 'Hi', variant: 'contained' } }
 	/>,
@@ -28,7 +24,9 @@ tabs.args = {
 		},
 		{
 			label: 'TaskPane',
-			component: 'item2',
+			content: 'item2',
 		},
 	],
+	fullWidth: true,
+	centered: true,
 };
