@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import Box from '@mui/material/Box';
 import TabList from '@mui/lab/TabList';
 import Tab from '@mui/material/Tab';
@@ -8,9 +9,18 @@ import TabContext from '@mui/lab/TabContext';
 import { map } from '@laufire/utils/collection';
 import { useState } from 'react';
 import { peek } from '@laufire/utils/debug';
+import * as Icons from '@mui/icons-material';
 
 const style = {
 	vertical: 'vertical-tab',
+};
+
+const Icon = ({ icon }) => {
+	const TabIcon = Icons[icon];
+
+	return {
+		icon: TabIcon ? <TabIcon/> : '',
+	};
 };
 
 const DisplayTabs = (context) => {
@@ -29,6 +39,7 @@ const DisplayTabs = (context) => {
 				<Tab
 					key={ i }
 					label={ ele.label }
+					{ ...Icon(ele) }
 					value={ ele.label }
 					onClick={ () => selectValue(ele.label) }
 				/>)}

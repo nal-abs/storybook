@@ -24,6 +24,7 @@ tabs.args = {
 	<Button { ...{ ...context,
 		children: 'Hi', variant: 'contained' } }
 	/>,
+			icon: 'Favorite',
 		},
 		{
 			label: 'TaskPane',
