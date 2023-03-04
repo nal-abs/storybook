@@ -10,16 +10,10 @@ import { map } from '@laufire/utils/collection';
 import { useState } from 'react';
 import { peek } from '@laufire/utils/debug';
 import * as Icons from '@mui/icons-material';
-import Button from './Button';
-import CheckBox from './CheckBox';
+import Component from './Component';
 
 const style = {
 	vertical: 'vertical-tab',
-};
-
-const component = {
-	Button,
-	CheckBox,
 };
 
 const Icon = ({ icon }) => {
@@ -30,7 +24,7 @@ const Icon = ({ icon }) => {
 	};
 };
 
-const DisplayTabs = (context) => {
+const Tabs = (context) => {
 	const {
 		color, data,
 		selectValue, ...args
@@ -53,16 +47,16 @@ const DisplayTabs = (context) => {
 		</TabList>);
 };
 
-const Tabs = (context) => {
+const TabsFrame = (context) => {
 	const { orientation, content, data } = peek(context);
-	const Content = component[content];
+	const Content = Component[content];
 
 	const [value, selectValue] = useState('0');
 
 	return (
 		<Box className={ style[orientation] }>
 			<TabContext value={ value }>
-				<DisplayTabs { ...{ ...context, value, selectValue } }/>
+				<Tabs { ...{ ...context, value, selectValue } }/>
 				{map(data, (item, key) =>
 					<TabPanel key={ key } value={ key }>
 						<Content/></TabPanel>)}
@@ -71,8 +65,8 @@ const Tabs = (context) => {
 	);
 };
 
-export default Tabs;
+export default TabsFrame;
 
-Tabs.propTypes = {
+TabsFrame.propTypes = {
 	context: PropTypes.object,
 };
