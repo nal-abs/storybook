@@ -15,13 +15,13 @@ const Icon = ({ startIcon, endIcon }) => {
 };
 
 const Button = (context) => {
-	const { ...args } = context;
+	const { children = 'Button', ...args } = context;
 
 	return (
 		<MuiButton
 			{ ...{ ...args, ...Icon(context) } }
 			onClick={ () => console.log('clicked') }
-		/>);
+		>{children}</MuiButton>);
 };
 
 export default Button;

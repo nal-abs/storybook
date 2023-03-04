@@ -1,11 +1,18 @@
 import React from 'react';
-import context from '../../src/core/context';
-import Button from './Button';
 import Tabs from './Tabs';
 
 export default {
 	title: 'stories/Tab',
 	component: Tabs,
+	argTypes: {
+		content: {
+			control: {
+				type: 'select',
+			},
+			options: ['Button', 'CheckBox'],
+		},
+	},
+
 };
 
 export const tabs = (args) => <Tabs { ...args }/>;
@@ -16,17 +23,15 @@ tabs.args = {
 	data: [
 		{
 			label: 'TodoPane',
-			content:
-	<Button { ...{ ...context,
-		children: 'Hi', variant: 'contained' } }
-	/>,
+			content: 'Button',
 			icon: 'Favorite',
 		},
 		{
 			label: 'TaskPane',
-			content: 'item2',
+			content: 'CheckBox',
 		},
 	],
 	fullWidth: true,
 	centered: true,
+	content: 'Button',
 };
