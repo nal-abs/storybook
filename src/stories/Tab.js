@@ -10,7 +10,7 @@ import { map } from '@laufire/utils/collection';
 import { useState } from 'react';
 import { peek } from '@laufire/utils/debug';
 import * as Icons from '@mui/icons-material';
-import Component from './Component';
+import Components from './Components';
 
 const style = {
 	vertical: 'vertical-tab',
@@ -49,7 +49,6 @@ const Tabs = (context) => {
 
 const Tab = (context) => {
 	const { orientation, content, data } = peek(context);
-	const Content = Component[content];
 
 	const [value, selectValue] = useState('0');
 
@@ -57,9 +56,12 @@ const Tab = (context) => {
 		<Box className={ style[orientation] }>
 			<TabContext value={ value }>
 				<Tabs { ...{ ...context, value, selectValue } }/>
-				{map(data, (item, key) =>
-					<TabPanel key={ key } value={ key }>
-						<Content/></TabPanel>)}
+				{map(data, (item, key) => {
+					const Children = Components[content[item.label]];
+
+					return <TabPanel key={ key } value={ key }>
+						<Children/></TabPanel>;
+				})}
 			</TabContext>
 		</Box>
 	);

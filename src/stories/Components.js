@@ -5,7 +5,7 @@ import Typography from './Typography';
 import Tab from './Tab';
 import Drawer from './Drawer';
 
-const Component = {
+const Components = {
 	Button,
 	CheckBox,
 	Menu,
@@ -14,4 +14,4 @@ const Component = {
 	Drawer,
 };
 
-export default Component;
+export default Components;
