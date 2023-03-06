@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import Box from '@mui/material/Box';
 import TabList from '@mui/lab/TabList';
-import Tab from '@mui/material/Tab';
+import { Tab as MuiTab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -37,7 +37,7 @@ const Tabs = (context) => {
 			indicatorColor={ color }
 		>
 			{map(data, (ele, i) =>
-				<Tab
+				<MuiTab
 					key={ i }
 					label={ ele.label }
 					{ ...Icon(ele) }
@@ -47,7 +47,7 @@ const Tabs = (context) => {
 		</TabList>);
 };
 
-const TabsFrame = (context) => {
+const Tab = (context) => {
 	const { orientation, content, data } = peek(context);
 	const Content = Component[content];
 
@@ -65,8 +65,8 @@ const TabsFrame = (context) => {
 	);
 };
 
-export default TabsFrame;
+export default Tab;
 
-TabsFrame.propTypes = {
+Tab.propTypes = {
 	context: PropTypes.object,
 };

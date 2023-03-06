@@ -1,9 +1,9 @@
 import React from 'react';
-import Tabs from './Tabs';
+import Tab from './Tab';
 
 export default {
 	title: 'stories/Tab',
-	component: Tabs,
+	component: Tab,
 	argTypes: {
 		content: {
 			control: {
@@ -15,9 +15,9 @@ export default {
 
 };
 
-export const tabs = (args) => <Tabs { ...args }/>;
+export const tab = (args) => <Tab { ...args }/>;
 
-tabs.args = {
+tab.args = {
 	orientation: 'vertical',
 	color: 'secondary', variant: 'scrollable',
 	data: [
