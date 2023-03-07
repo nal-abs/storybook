@@ -48,12 +48,12 @@ const Tabs = (context) => {
 };
 
 const Tab = (context) => {
-	const { orientation, content, data } = peek(context);
+	const { orientation, content, data, dir } = peek(context);
 
 	const [value, selectValue] = useState('0');
 
 	return (
-		<Box className={ style[orientation] }>
+		<Box dir={ dir } className={ style[orientation] }>
 			<TabContext value={ value }>
 				<Tabs { ...{ ...context, value, selectValue } }/>
 				{map(data, (item, key) => {

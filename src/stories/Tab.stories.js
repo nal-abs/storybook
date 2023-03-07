@@ -26,4 +26,5 @@ TabStories.args = {
 		TodoPane: 'Button',
 		TaskPane: 'CheckBox',
 	},
+	dir: 'rtl',
 };
