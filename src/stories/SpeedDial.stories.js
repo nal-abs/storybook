@@ -37,7 +37,7 @@ export const SpeedDialStories = Template.bind({});
 SpeedDialStories.args = {
 	trigger: {
 		children: {
-			text: 'Add',
+			text: 'SpeedDialIcon',
 		},
 	},
 	data: [
@@ -45,5 +45,5 @@ SpeedDialStories.args = {
 		{ icon: 'Print', children: 'Print' },
 		{ icon: 'Share', children: 'Share' },
 	],
-	openIcon: 'Delete',
+	icon: 'Delete',
 };

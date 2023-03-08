@@ -1,16 +1,17 @@
+/* eslint-disable max-lines-per-function */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { SpeedDial as MuiSpeedDial } from '@mui/material';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import * as Icons from '@mui/icons-material';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 
-const IconF = (action) => {
-	const Icon = Icons[action.icon];
+const IconF = (ele) => {
+	const Icon = Icons[ele.icon];
 
 	return {
 		icon: Icon && <Icon/>,
-		tooltipTitle: action.name,
+		tooltipTitle: ele.children,
 	};
 };
 
@@ -21,22 +22,24 @@ const openIcon = (icon) => {
 };
 
 const SpeedDial = (args) => {
-	const { actions, direction, hidden, icon,
+	const { data, hidden, direction, icon,
 		...rest } = args;
+	const [value, setValue] = React.useState('');
 
 	return <Box>
 		<MuiSpeedDial
 			ariaLabel="SpeedDial basic example"
-			icon={ <SpeedDialIcon { ...openIcon(icon) }/> }
 			hidden={ hidden }
 			direction={ direction }
+			icon={ <SpeedDialIcon { ...openIcon(icon) }/> }
 		>
-			{actions.map((action, i) =>
+			{data.map((ele, i) =>
 				<SpeedDialAction
 					key={ i }
-					{ ...{ ...IconF(action), ...rest } }
+					{ ...{ ...IconF(ele), ...rest } }
+					onClick={ () => setValue(ele.children) }
 				/>)}
-		</MuiSpeedDial>
+		</MuiSpeedDial><Box>{value}</Box>
 	</Box>;
 }
 	;
