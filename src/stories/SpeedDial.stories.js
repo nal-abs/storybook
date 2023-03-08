@@ -22,6 +22,11 @@ export default {
 				'top-end',
 				'top-start',
 				'top']		},
+		hidden: {
+			type: Boolean,
+			options: [true, false],
+		},
+		tooltipOpen: { type: Boolean, options: [true, false] },
 	},
 };
 
@@ -30,12 +35,15 @@ const Template = (args) => <SpeedDial { ...args }/>;
 export const SpeedDialStories = Template.bind({});
 
 SpeedDialStories.args = {
-	actions: [
-		{ icon: 'Save', name: 'Save' },
-		{ icon: 'Print', name: 'Print' },
-		{ icon: 'Share', name: 'Share' },
+	trigger: {
+		children: {
+			text: 'Add',
+		},
+	},
+	data: [
+		{ icon: 'Save', children: 'Save' },
+		{ icon: 'Print', children: 'Print' },
+		{ icon: 'Share', children: 'Share' },
 	],
-	hidden: true,
-	tooltipOpen: true,
-	icon: 'Delete',
+	openIcon: 'Delete',
 };
