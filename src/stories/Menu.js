@@ -26,7 +26,9 @@ const DisplayMenuItems = ({ data, sx, setContent }) =>
 			</Box>);
 	});
 
-const DisplayMenu = ({ trigger, data, sx }) => {
+const DisplayMenu = (args) => {
+	const { trigger, transformHorizontal,
+		transformVertical, vertical, horizontal, data, sx } = args;
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [content, setContent] = useState('');
 	const open = Boolean(anchorEl);
@@ -46,9 +48,17 @@ const DisplayMenu = ({ trigger, data, sx }) => {
 				anchorEl={ anchorEl }
 				open={ Boolean(open) }
 				onClose={ handleClose }
+				anchorOrigin={ {
+					vertical,
+					horizontal,
+				} }
+				transformOrigin={ {
+					vertical: transformVertical,
+					horizontal: transformHorizontal,
+				} }
 			><DisplayMenuItems { ...{ data, sx, setContent } }/>
 			</Menu>
-			{ content !== '' && <Content { ...{ content } }/> }
+			{ content && <Content { ...{ content } }/> }
 		</Box>
 	);
 };

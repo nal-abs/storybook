@@ -33,4 +33,8 @@ menu.args = {
 			backgroundColor: '#e3f2fd',
 		},
 	},
+	vertical: 'top',
+	horizontal: 'right',
+	transformVertical: 'top',
+	transformHorizontal: 'left',
 };
