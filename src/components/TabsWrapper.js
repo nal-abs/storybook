@@ -1,4 +1,4 @@
-import Tabs from '../stories/Tabs';
+import Tabs from '../stories/Tab';
 import * as React from 'react';
 
 const TabWrapper = (context) =>
