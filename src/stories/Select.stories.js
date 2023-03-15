@@ -9,7 +9,7 @@ export default {
 export const SelectStories = (args) => <Select { ...args }/>;
 
 SelectStories.args = {
-	lists: ['Ten', 'Twenty', 'Thirty'],
+	options: ['Ten', 'Twenty', 'Thirty'],
 	label: 'Number',
 	variant: 'standard',
 	fullWidth: true,

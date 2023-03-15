@@ -5,7 +5,7 @@ import { FormControl, FormHelperText, InputLabel,
 import * as React from 'react';
 
 const SelectBox = ({ autoWidth, size, multiple,
-	label, lists }) => {
+	label, options }) => {
 	const [value, setValue] = React.useState([]);
 
 	const handleChange = (event) => {
@@ -21,8 +21,8 @@ const SelectBox = ({ autoWidth, size, multiple,
 			size={ size }
 			multiple={ multiple }
 		>
-			{map(lists, (list, index) =>
-				<MenuItem key={ index } value={ list }>{list}</MenuItem>)}
+			{map(options, (option, index) =>
+				<MenuItem key={ index } value={ option }>{option}</MenuItem>)}
 		</MuiSelect>);
 };
 
