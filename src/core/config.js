@@ -9,19 +9,59 @@ const config = {
 			component: 'item2',
 		},
 	],
-	data: {
+	journals: {
 		properties: {
-			age: {
-				title: 'Age',
-				type: 'number',
+			date: {
+				type: 'string',
+				format: 'date',
+				title: 'Date',
 			},
-			id: {
-				title: 'Id',
+			credit: {
+				type: 'string',
+				title: 'Credit',
+			},
+			debit: {
+				type: 'string',
+				title: 'Debit',
+			},
+			amount: {
 				type: 'number',
+				title: 'Amount',
+			},
+			document: {
+				type: 'string',
+				title: 'Document',
+			},
+			notes: {
+				type: 'string',
+				title: 'Notes',
 			},
 		},
 	},
-
+	ledgers: {
+		properties: {
+			ledger: {
+				type: 'string',
+				title: 'Ledger',
+			},
+			type: {
+				type: 'string',
+				title: 'Type',
+			},
+			accountType: {
+				type: 'string',
+				title: 'AccountType',
+			},
+			balances: {
+				type: 'number',
+				title: 'Balances',
+			},
+			notes: {
+				type: 'string',
+				title: 'Notes',
+			},
+		},
+	},
 };
 
 export default config;

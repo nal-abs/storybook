@@ -4,10 +4,18 @@ import DataGrid from './components/DataGrid';
 import GetColumns from './components/GetColumns';
 
 const App = (context) => {
-	const { config: { data: { properties }}} = context;
+	const { config,
+		state: { journals, ledgers }} = context;
 
 	return <div className="App" role="App">
-		<DataGrid { ...{ ...context, columns: GetColumns(properties) } }/>
+		<DataGrid { ...{ ...context,
+			columns: GetColumns(config.journals.properties),
+			rows: journals } }
+		/>
+		<DataGrid { ...{ ...context,
+			columns: GetColumns(config.ledgers.properties),
+			rows: ledgers } }
+		/>
 	</div>;
 };
 

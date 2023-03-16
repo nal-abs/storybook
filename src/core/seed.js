@@ -7,10 +7,43 @@ const seed = {
 		top: false,
 	},
 	anchor: 'left',
-	rows: [
-		{ id: 1, age: 25 },
-		{ id: 2, age: 27 },
-		{ id: 3, age: 30 },
+	journals: [
+		{
+			id: 1,
+			date: 'Jul-22-2022',
+			credit: 'Equity share capital',
+			debit: 'ABS HDFC',
+			amount: '50,000',
+			document: '1',
+			notes: '-',
+		},
+		{
+			id: 2,
+			date: 'Sep-24-2022',
+			credit: 'ABS HDFC',
+			debit: 'uber',
+			amount: '249',
+			document: 'S11669701',
+			notes: '-',
+		},
+	],
+	ledgers: [
+		{
+			id: 1,
+			ledger: 'ABS HDFC',
+			type: 'Asset',
+			accountType: 'Real',
+			balances: '79453.3',
+			notes: '-',
+		},
+		{
+			id: 2,
+			ledger: 'Adayar Anandha bhavan',
+			type: 'Liability',
+			accountType: 'Personal',
+			balances: '',
+			notes: '-',
+		},
 	],
 };
 
