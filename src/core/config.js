@@ -9,6 +9,19 @@ const config = {
 			component: 'item2',
 		},
 	],
+	data: {
+		properties: {
+			age: {
+				title: 'Age',
+				type: 'number',
+			},
+			id: {
+				title: 'Id',
+				type: 'number',
+			},
+		},
+	},
+
 };
 
 export default config;
