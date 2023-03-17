@@ -6,7 +6,7 @@ const DataType = {
 		valueGetter: ({ value }) => value && new Date(value) }),
 };
 
-const GetColumns = (data) => values(map(data, (ele, key) => {
+const getColumns = ({ properties }) => values(map(properties, (ele, key) => {
 	const { format } = ele;
 
 	return {
@@ -19,4 +19,4 @@ const GetColumns = (data) => values(map(data, (ele, key) => {
 	};
 }));
 
-export default GetColumns;
+export default getColumns;
