@@ -1,5 +1,5 @@
-import { Fragment } from "react/cjs/react.production.min";
+// import { Fragment } from 'react/cjs/react.production.min';
 
-const Location = ()=>{}
- 
- export default Location;
+const Location = () => {};
+
+export default Location;

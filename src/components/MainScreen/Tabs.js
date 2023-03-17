@@ -1,5 +1,5 @@
-import { Fragment } from "react/cjs/react.production.min";
+// import { Fragment } from 'react/cjs/react.production.min';
 
-const Tabs = ()=> {}
+const Tabs = () => {};
 
 export default Tabs;

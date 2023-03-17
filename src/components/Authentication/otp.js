@@ -1,3 +1,3 @@
-const OTP =()=> {};
+const Otp = () => {};
 
-export default OTP;
+export default Otp;

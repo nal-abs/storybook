@@ -1,3 +1,3 @@
-const Captcha = ()=>{};
+const Captcha = () => {};
 
 export default Captcha;

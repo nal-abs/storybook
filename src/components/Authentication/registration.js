@@ -1,3 +1,3 @@
-const Registration =()=> {};
+const Registration = () => {};
 
 export default Registration;

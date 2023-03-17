@@ -1,4 +1,5 @@
-import { Fragment } from "react/cjs/react.production.min";
+// import { Fragment } from 'react/cjs/react.production.min';
 
-const SearchBar = ()=> {}
- export default SearchBar;
+const SearchBar = () => {};
+
+export default SearchBar;

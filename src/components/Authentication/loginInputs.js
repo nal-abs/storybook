@@ -1,3 +1,3 @@
-const LoginInputs = ()=> {};
+const LoginInputs = () => {};
 
 export default LoginInputs;

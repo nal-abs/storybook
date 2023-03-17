@@ -1,3 +1,3 @@
-const LoginProviders = ()=>{};
+const LoginProviders = () => {};
 
 export default LoginProviders;
