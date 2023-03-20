@@ -1,4 +1,5 @@
 const config = {
+	milliseconds: 8000,
 	TabItems: [
 		{
 			label: 'TodoPane',

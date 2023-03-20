@@ -1,4 +1,5 @@
 const seed = {
+	loading: false,
 	tab: 'TodoPane',
 	open: {
 		left: false,

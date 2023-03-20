@@ -6,28 +6,17 @@
 	button {
 		color: black;
 	}
-	.text{
-		position: absolute;
-		top:50vh;
-		left:50vw;
-		transform: translate(-50%,-50%);
-		height:auto;
-		width: auto;
-	}
-	.splash{
-		position:absolute;
+	.splashScreen{
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		width: 100vw;
 		height: 100vh;
-		background-color: black;
 
 	}
 	.image{
-		position: absolute;
-		top:50vh;
-		left:50vw;
-		transform: translate(-50%,-50%);
-		height:auto;
-		width: auto;
+		height:250px;
+		width: 250px;
 		animation: fadeIn 4s ease-in-out;
 }
 @keyframes fadeIn {
@@ -58,8 +47,6 @@
 	}
 }
 }
-
-
 
 .vertical-tab{
 	display: flex;

@@ -11,7 +11,12 @@ const actions = {
 	closeDrawer: (context) => ({
 		open: DirectionManager.closeDrawer(context),
 	}),
-
+	setLoading: () => ({
+		loading: true,
+	}),
+	endLoading: () => ({
+		loading: false,
+	}),
 };
 
 export default actions;
