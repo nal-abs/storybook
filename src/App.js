@@ -28,9 +28,17 @@ const App = (context) => {
 							alt="image"
 						/>
 					</SplashScreen>
-					:	<DataGrid		{ ...{ ...context,
-						data: { collection: 'journals' }}	}
-					  />
+					:		<DataGrid { ...{
+						...context,
+						data: {
+							collection: 'journals',
+						},
+						style: {
+							width: '100%',
+							height: 300,
+						},
+					} }
+					   />
 			}
 		</div>
 	);

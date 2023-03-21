@@ -1,14 +1,16 @@
+/* eslint-disable no-magic-numbers */
 import * as React from 'react';
 import { DataGrid as MuxDataGrid } from '@mui/x-data-grid';
 import getColumns from './getColumns';
 
 const DataGrid = (context) => {
-	const { data: { collection }, state, config } = context;
+	const { data: { collection }, state, style } = context;
 
-	return <div style={ { height: 300, width: '100%' } }>
+	return <div style={ style }>
 		<MuxDataGrid
 			rows={ state[collection] }
-			columns={ getColumns(config[collection]) }
+			columns={ getColumns(context) }
+			hideFooterPagination={ true }
 		/>
 	</div>;
 };

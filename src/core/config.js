@@ -37,6 +37,11 @@ const config = {
 				type: 'string',
 				title: 'Notes',
 			},
+			actions: {
+				type: 'actions',
+				format: 'actions',
+				actions: 'Notes',
+			},
 		},
 	},
 	ledgers: {
