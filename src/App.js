@@ -3,9 +3,9 @@
 import { React, useEffect } from 'react';
 import './App.scss';
 import DataGrid from './components/Datagrid';
-import SplashScreen from './components/SplashScreen';
 import SplashScreenManager from './services/SplashScreenManager';
 import image from '../src/assets/splash_icon/splash_icon.png';
+import SplashScreen from './stories/SplashScreen';
 
 const App = (context) => {
 	const { state: { loading }, actions } = context;
@@ -19,7 +19,9 @@ const App = (context) => {
 		<div className="App" role="App">
 			{
 				loading
-					? <SplashScreen backgroundColor="black">
+					? <SplashScreen { ...{ ...context,
+						 backgroundColor: 'black' } }
+						 >
 						<img
 							className="image fade-in"
 							src={ image }
