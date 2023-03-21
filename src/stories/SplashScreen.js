@@ -3,7 +3,7 @@ import { Container as MuiContainer } from '@mui/material';
 import * as React from 'react';
 
 const SplashScreen = (context) => {
-	const { backgroundColor = 'black', children = 'HELLO', ...args } = context;
+	const { backgroundColor, textColor, children, ...args } = context;
 
 	return (
 		<MuiContainer
@@ -15,8 +15,8 @@ const SplashScreen = (context) => {
 				justifyContent: 'center',
 				alignItems: 'center',
 				height: '100vh',
-				bgcolor: { backgroundColor },
-				color: 'white',
+				bgcolor: backgroundColor,
+				color: textColor,
 			} }
 		>
 			{children}

@@ -10,4 +10,7 @@ const Template = (args) => <SplashScreen { ...args }/>;
 
 export const muiSplash = Template.bind({});
 
-muiSplash.args = {};
+muiSplash.args = {
+	textColor: 'white',
+	backgroundColor: 'black',
+};
