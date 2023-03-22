@@ -4,7 +4,7 @@ import Tab from '../../stories/Tab';
 
 const TabWrapper = (context) =>
 	<Tab { ...{ ...context,
-		orientation: 'vertical',
+		orientation: 'horizontal',
 		color: 'secondary', variant: 'scrollable',
 		data: [
 			{

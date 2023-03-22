@@ -60,7 +60,11 @@ const Tab = (context) => {
 
 					return <TabPanel key={ key } value={ key }>
 						<Children { ... { ...context,
-							data: content[item.label].data } }
+							data: content[item.label].data,
+							style: {
+								width: '100%',
+								height: 300,
+							}} }
 						/>
 					</TabPanel>;
 				})}

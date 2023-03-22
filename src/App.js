@@ -1,5 +1,3 @@
-/* eslint-disable max-lines-per-function */
-/* eslint-disable no-mixed-spaces-and-tabs */
 import { React } from 'react';
 import './App.scss';
 import TabWrapper from './components/Datagrid/TabWrapper';
