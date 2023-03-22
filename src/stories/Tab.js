@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import TabContext from '@mui/lab/TabContext';
 import { map } from '@laufire/utils/collection';
 import { useState } from 'react';
-import { peek } from '@laufire/utils/debug';
 import * as Icons from '@mui/icons-material';
 import Components from './Components';
 
@@ -27,12 +26,12 @@ const Icon = ({ icon }) => {
 const Tabs = (context) => {
 	const {
 		color, data,
-		selectValue, ...args
+		selectValue, orientation,
 	} = context;
 
 	return (
 		<TabList
-			{ ...args }
+			orientation={ orientation }
 			textColor={ color }
 			indicatorColor={ color }
 		>
@@ -48,7 +47,7 @@ const Tabs = (context) => {
 };
 
 const Tab = (context) => {
-	const { orientation, content, data, dir } = peek(context);
+	const { orientation, content, data, dir } = context;
 
 	const [value, selectValue] = useState('0');
 
@@ -57,10 +56,13 @@ const Tab = (context) => {
 			<TabContext value={ value }>
 				<Tabs { ...{ ...context, value, selectValue } }/>
 				{map(data, (item, key) => {
-					const Children = Components[content[item.label]];
+					const Children = Components[content[item.label].component];
 
 					return <TabPanel key={ key } value={ key }>
-						<Children/></TabPanel>;
+						<Children { ... { ...context,
+							data: content[item.label].data } }
+						/>
+					</TabPanel>;
 				})}
 			</TabContext>
 		</Box>

@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import * as Icons from '@mui/icons-material';
 import { useState } from 'react';
 import Content from './Content';
-import { peek } from '@laufire/utils/debug';
 
 const DisplayMenuItems = ({ data, sx, setContent }) =>
 	data.map(({ icon, typography, children }, i) => {
@@ -39,7 +38,6 @@ const DisplayMenu = (args) => {
 		setAnchorEl(null);
 	};
 
-	peek(content);
 	return (
 		<Box>
 			<Button onClick={ handleClick	}>
