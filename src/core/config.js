@@ -37,6 +37,10 @@ const config = {
 				type: 'string',
 				title: 'Notes',
 			},
+			name: {
+				type: 'string',
+				enum: ['India', 'Africa', 'US'],
+			},
 			actions: {
 				type: 'actions',
 				format: 'actions',

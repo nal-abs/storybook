@@ -17,6 +17,7 @@ const seed = {
 			amount: '50,000',
 			document: '1',
 			notes: '-',
+			name: 'nachu',
 		},
 		{
 			id: 2,
@@ -26,6 +27,7 @@ const seed = {
 			amount: '249',
 			document: 'S11669701',
 			notes: '-',
+			name: 'thaila',
 		},
 	],
 	ledgers: [

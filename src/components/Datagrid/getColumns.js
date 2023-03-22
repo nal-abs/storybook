@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { map } from '@laufire/utils/collection';
 import { values } from '@laufire/utils/lib';
 import { Delete, Save } from '@mui/icons-material';
@@ -31,7 +32,12 @@ const getColumns = (context) => {
 	const data = config[collection];
 
 	return values(map(data.properties, (ele, key) => {
-		const { format } = ele;
+		const { format, type } = ele;
+		const parameter = format || type;
+		const singleSelect = ele.enum && {
+			type: 'singleSelect',
+			valueOptions: ele.enum,
+		};
 
 		return {
 			...ele,
@@ -39,8 +45,9 @@ const getColumns = (context) => {
 			field: key,
 			editable: true,
 			width: 120,
-			...DataType[format] && DataType[format]({ ...context,
-				data: format }),
+			...singleSelect,
+			...DataType[parameter] && DataType[parameter]({ ...context,
+				data: parameter }),
 		};
 	}));
 };
