@@ -20,11 +20,17 @@ TabStories.args = {
 			label: 'TaskPane',
 		},
 	],
-	// fullWidth: true,
-	// centered: true,
+	fullWidth: true,
+	centered: true,
 	content: {
-		TodoPane: 'Button',
-		TaskPane: 'CheckBox',
+		TodoPane: { component: 'Button',
+			data: {
+				collection: 'journals',
+			}},
+		TaskPane: { component: 'CheckBox',
+			data: {
+				collection: 'ledgers',
+			}},
 	},
 	dir: 'rtl',
 };

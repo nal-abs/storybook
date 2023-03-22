@@ -56,11 +56,12 @@ const Tab = (context) => {
 			<TabContext value={ value }>
 				<Tabs { ...{ ...context, value, selectValue } }/>
 				{map(data, (item, key) => {
-					const Children = Components[content[item.label].component];
+					const config = content[item.label];
+					const Child = Components[config.component];
 
 					return <TabPanel key={ key } value={ key }>
-						<Children { ... { ...context,
-							data: content[item.label].data,
+						<Child { ... { ...context,
+							data: config.data,
 							style: {
 								width: '100%',
 								height: 300,
