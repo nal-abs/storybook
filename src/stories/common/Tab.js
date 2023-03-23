@@ -21,11 +21,10 @@ const Icon = ({ icon }) => {
 		icon: TabIcon ? <TabIcon/> : '',
 	};
 };
-
 const Tabs = (context) => {
 	const {
 		color, data,
-		selectValue, orientation,
+		selectValue, orientation, selectedStyle,
 	} = context;
 
 	return (
@@ -37,8 +36,8 @@ const Tabs = (context) => {
 			{map(data, (ele, i) =>
 				<MuiTab
 					key={ i }
-					label={ ele.label }
-					{ ...Icon(ele) }
+					{ ...selectedStyle.text && { label: ele.label } }
+					{ ...selectedStyle.icon && { ...Icon(ele) } }
 					value={ i }
 					onClick={ () => selectValue(i) }
 				/>)}</TabList>);
