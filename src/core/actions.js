@@ -1,4 +1,3 @@
-import { peek } from '@laufire/utils/debug';
 import DirectionManager from '../services/DirectionManager';
 
 const actions = {
@@ -24,7 +23,7 @@ const actions = {
 	updateRow: ({ data, state: { journals }}) => ({
 		journals: journals.map((journal) => (journal.id !== data.id
 			? journal
-			: { ...journal, ...peek(data.row) })),
+			: { ...journal, ...data.row })),
 	}),
 
 };

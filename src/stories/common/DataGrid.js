@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataGrid as MuxDataGrid } from '@mui/x-data-grid';
-import getColumns from './getColumns';
+import getColumns from '../../components/Datagrid/getColumns';
 
 const DataGrid = (context) => {
 	const { data: { collection }, state, style } = context;

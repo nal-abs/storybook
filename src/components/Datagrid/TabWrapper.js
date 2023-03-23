@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import * as React from 'react';
-import Tab from '../../stories/Tab';
+import Tab from '../../stories/common/Tab';
 
 const TabWrapper = (context) =>
 	<Tab { ...{ ...context,

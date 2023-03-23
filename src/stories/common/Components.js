@@ -4,7 +4,7 @@ import Menu from './Menu';
 import Typography from './Typography';
 import Tab from './Tab';
 import Drawer from './Drawer';
-import DataGrid from '../components/Datagrid';
+import DataGrid from './DataGrid';
 
 const Components = {
 	Button,
