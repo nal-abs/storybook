@@ -1,11 +1,12 @@
-/* eslint-disable no-console */
 import { React } from 'react';
 import './App.scss';
-import TabWrapper from './components/Datagrid/TabWrapper';
+import Journal from './components/Datagrid/Journal';
 
 const App = (context) =>
 	<div className="App" role="App">
-		<TabWrapper { ...context }/>
+		<Journal { ...{ ...context,
+			data: { collection: 'journals' }} }
+		/>
 	</div>;
 
 export default App;

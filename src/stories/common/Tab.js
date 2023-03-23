@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import Box from '@mui/material/Box';
 import TabList from '@mui/lab/TabList';
 import { Tab as MuiTab } from '@mui/material';
@@ -42,8 +41,7 @@ const Tabs = (context) => {
 					{ ...Icon(ele) }
 					value={ i }
 					onClick={ () => selectValue(i) }
-				/>)}
-		</TabList>);
+				/>)}</TabList>);
 };
 
 const Tab = (context) => {
@@ -60,13 +58,7 @@ const Tab = (context) => {
 					const Child = Components[config.component];
 
 					return <TabPanel key={ key } value={ key }>
-						<Child { ... { ...context,
-							data: config.data,
-							style: {
-								width: '100%',
-								height: 300,
-							}} }
-						/>
+						<Child/>
 					</TabPanel>;
 				})}
 			</TabContext>
