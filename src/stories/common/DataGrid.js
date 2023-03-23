@@ -2,10 +2,10 @@ import * as React from 'react';
 import { DataGrid as MuxDataGrid } from '@mui/x-data-grid';
 import getColumns from './DataGrid/getColumn';
 
-const DataGrid = ({ values, columns, style }) =>
+const DataGrid = ({ value, columns, style }) =>
 	<div style={ style }>
 		<MuxDataGrid
-			rows={ values }
+			rows={ value }
 			columns={ getColumns(columns) }
 			hideFooterPagination={ true }
 		/>

@@ -1,6 +1,6 @@
 import { React } from 'react';
 import './App.scss';
-import Journal from './components/Datagrid/Journal';
+import Journal from './components/Journal';
 
 const App = (context) =>
 	<div className="App" role="App">

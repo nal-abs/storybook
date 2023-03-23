@@ -1,12 +1,12 @@
 /* eslint-disable max-lines-per-function */
-import DataGrid from '../../stories/common/DataGrid';
 import React from 'react';
+import DataGrid from '../stories/common/DataGrid';
 
 const Journal = (context) => {
 	const { data: { collection }, config, state } = context;
 
 	return (
-		<DataGrid { ...{ values: state[collection],
+		<DataGrid { ...{ value: state[collection],
 			columns: {
 				width: 100,
 				editable: true,
