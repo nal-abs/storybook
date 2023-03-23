@@ -1,5 +1,5 @@
 import React from 'react';
-import Drawer from './Drawer';
+import Drawer from '../stories/common/Drawer';
 
 export default {
 	title: 'stories/Drawer',

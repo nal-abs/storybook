@@ -1,5 +1,5 @@
 import React from 'react';
-import ActionSet from './ActionSet';
+import ActionSet from '../stories/common/ActionSet';
 
 export default {
 	title: 'stories/ActionSet',
@@ -55,5 +55,9 @@ ActionSetStories.args = {
 			backgroundColor: '#e3f2fd',
 		},
 	},
+	vertical: 'top',
+	horizontal: 'right',
+	transformVertical: 'top',
+	transformHorizontal: 'left',
 
 };

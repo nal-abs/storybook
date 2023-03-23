@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import Input from './Input';
+import Input from '../stories/common/Input';
 
 export default {
 	title: 'stories/Input',

@@ -1,5 +1,5 @@
 import React from 'react';
-import AdditionalCharge from './AdditionalCharge';
+import AdditionalCharge from '../stories/common/AdditionalCharge';
 
 export default {
 	title: 'Atoms/AdditionalCharge',

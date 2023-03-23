@@ -1,5 +1,5 @@
 import React from 'react';
-import Menu from './Menu';
+import Menu from '../stories/common/Menu';
 
 export default {
 	title: 'stories/Menu',

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import SplashScreen from './SplashScreen';
 import SplashImage from '../stories/examples/SplashImage';
 import SplashText from '../stories/examples/SplashText';
+import SplashScreen from '../stories/common/SplashScreen';
+
 export default {
 	title: 'stories/SplashScreen',
 	component: SplashScreen,

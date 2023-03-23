@@ -1,5 +1,5 @@
 import React from 'react';
-import SpeedDial from './SpeedDial';
+import SpeedDial from '../stories/common/SpeedDial';
 
 export default {
 	title: 'stories/SpeedDial',

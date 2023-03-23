@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import CheckBox from './CheckBox';
+import CheckBox from '../stories/common/CheckBox';
 
 export default {
 	title: 'stories/CheckBox',

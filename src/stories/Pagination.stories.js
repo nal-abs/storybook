@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Pagination from './Pagination';
+import Pagination from '../stories/common/Pagination';
 
 export default {
 	title: 'stories/Pagination',

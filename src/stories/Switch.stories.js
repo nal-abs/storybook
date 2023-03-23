@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Switch from './Switch';
+import Switch from '../stories/common/Switch';
 
 export default {
 	title: 'stories/muiSwitch',

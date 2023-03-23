@@ -1,4 +1,4 @@
-import Typography from './Typography';
+import Typography from '../stories/common/Typography';
 import * as React from 'react';
 
 export default {

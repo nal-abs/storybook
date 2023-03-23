@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import Button from './Button';
+import Button from '../stories/common/Button';
 
 export default {
 	title: 'stories/button',
