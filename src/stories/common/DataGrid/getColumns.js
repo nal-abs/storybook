@@ -13,16 +13,17 @@ const DataType = {
 		getActions: (params) => {
 			const { actions = {}} = props;
 
-			return values(map(actions, (ele) => {
-				const Icon = Icons[ele.icon];
+			return actions.map(({ icon, action }) => {
+				const Icon = Icons[icon];
 
 				return (
 					<GridActionsCellItem
 						key={ params.id }
 						icon={ <Icon/> }
-						label={ ele.icon }
+						label={ icon }
+						onClick={ () => action(params) }
 					/>);
-			}));
+			});
 		},
 	}),
 };
