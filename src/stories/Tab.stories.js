@@ -37,27 +37,18 @@ export const TabStories = ({ style, ...rest }) => {
 TabStories.args = {
 	orientation: 'vertical',
 	color: 'secondary', variant: 'scrollable',
-	data: [
-		{
-			label: 'TodoPane',
-			icon: 'Favorite',
-		},
-		{
-			label: 'TaskPane',
-			icon: 'Star',
-		},
-	],
 	fullWidth: true,
 	centered: true,
 	content: {
-		TodoPane: { component: 'Button',
-			data: {
-				collection: 'journals',
-			}},
-		TaskPane: { component: 'CheckBox',
-			data: {
-				collection: 'ledgers',
-			}},
+		TodoPane: {
+			component: 'Button',
+			icon: 'Favorite',
+		},
+		TaskPane: {
+			component: 'CheckBox',
+			icon: 'Star',
+		},
 	},
+	value: 'TodoPane',
 	dir: 'rtl',
 };
