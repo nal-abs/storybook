@@ -8,31 +8,13 @@ export default {
 		style: {
 			control: {
 				type: 'select',
-				options: ['iconOnly', 'textOnly', 'iconText'],
+				options: ['iconOnly', 'textOnly', 'iconAndText'],
 			},
 		},
 	},
 };
-const styles = {
-	iconOnly: {
-		icon: true,
-		text: false,
-	},
-	textOnly: {
-		icon: false,
-		text: true,
-	},
-	iconText: {
-		icon: true,
-		text: true,
-	},
-};
 
-export const TabStories = ({ style, ...rest }) => {
-	const selectedStyle = styles[style];
-
-	return <Tab { ...{ ...rest, selectedStyle } }/>;
-};
+export const TabStories = (args) => <Tab { ...args }/>;
 
 TabStories.args = {
 	orientation: 'vertical',
@@ -40,15 +22,18 @@ TabStories.args = {
 	fullWidth: true,
 	centered: true,
 	content: {
-		TodoPane: {
+		todoPane: {
+			label: 'TodoPane',
 			component: 'Button',
 			icon: 'Favorite',
 		},
-		TaskPane: {
+		taskPane: {
+			label: 'TaskPane',
 			component: 'CheckBox',
 			icon: 'Star',
 		},
 	},
-	value: 'TodoPane',
+	style: 'iconAndText',
+	value: 'todoPane',
 	dir: 'rtl',
 };

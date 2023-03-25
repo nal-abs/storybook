@@ -11,60 +11,75 @@ import { useState } from 'react';
 import * as Icons from '@mui/icons-material';
 import Components from './Components';
 
-const style = {
+const tabStyle = {
 	vertical: 'vertical-tab',
 };
-const hasLabel = (selectedStyle, label) =>
-	selectedStyle.text && { label };
+const styles = {
+	iconOnly: {
+		icon: true,
+		text: false,
+	},
+	textOnly: {
+		icon: false,
+		text: true,
+	},
+	iconAndText: {
+		icon: true,
+		text: true,
+	},
+};
 
-const hasIcon = (selectedStyle, icon) => {
+const getLabel = (style, { label }) =>
+	style.text && { label };
+
+const getIcon = (style, { icon }) => {
 	const TabIcon = Icons[icon];
 
-	return selectedStyle.icon && TabIcon
+	return style.icon && TabIcon
 		? { icon: <TabIcon/> }
 		: '';
 } ;
-const onchange = (value) => ({
+
+const onChange = (value) => ({
 	evt: {
 		target: {
 			value,
 		},
 	},
 });
-const Tabs = (context) => {
-	const {
-		color, content,
-		selectValue, orientation, selectedStyle,
-	} = context;
 
-	return (
-		<TabList
-			orientation={ orientation }
-			textColor={ color }
-			indicatorColor={ color }
-		>
-			{values(map(content, (ele, tab) =>
-				<MuiTab
-					key={ tab }
-					{ ...hasLabel(selectedStyle, tab) }
-					{ ...hasIcon(selectedStyle, ele.icon) }
-					value={ tab }
-					onClick={ () => {
-						selectValue(tab);
-						onchange(tab);
-					} }
-				/>))}</TabList>);
-};
+const TabButtons = ({
+	color, content,
+	onClick, orientation, style,
+}) =>
+	<TabList
+		orientation={ orientation }
+		textColor={ color }
+		indicatorColor={ color }
+	>
+		{values(map(content, (item, tabKey) =>
+			<MuiTab
+				key={ tabKey }
+				{ ...getLabel(styles[style], item) }
+				{ ...getIcon(styles[style], item) }
+				value={ tabKey }
+				onClick={ () => onClick(tabKey) }
+			/>))}
+	</TabList>;
 
 const Tab = (context) => {
 	const { orientation, content, dir, value: initialValue } = context;
 
 	const [value, selectValue] = useState(initialValue);
+	const onClick = (tabKey) => {
+		selectValue(tabKey);
+		onChange(tabKey);
+	};
 
 	return (
-		<Box dir={ dir } className={ style[orientation] }>
+		<Box dir={ dir } className={ tabStyle[orientation] }>
 			<TabContext value={ value }>
-				<Tabs { ...{ ...context, value, selectValue } }/>
+				<TabButtons { ...{ ...context, value, onClick } }/>
 				{values(map(content, (item, key) => {
 					const config = item;
 					const Child = Components[config.component];
