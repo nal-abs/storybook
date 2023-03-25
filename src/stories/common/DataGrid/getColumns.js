@@ -4,6 +4,16 @@ import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import * as React from 'react';
 
+const Actions = {
+	editRow: (rows, value) =>
+		rows.map((row) => (row.id !== value.id
+			? row
+			: { ...row, ...value.row })),
+
+	deleteRow: (rows, value) => rows.filter((row) => row.id !== value.id),
+
+};
+
 const DataType = {
 	date: ({ data }) => ({ type: data,
 		minWidth: 100,
@@ -11,7 +21,7 @@ const DataType = {
 	actions: (props) => ({
 		type: props.data,
 		getActions: (params) => {
-			const { actions = {}} = props;
+			const { columns: { actions = {}}, rows, setRows } = props;
 
 			return actions.map(({ icon, action }) => {
 				const Icon = Icons[icon];
@@ -21,7 +31,8 @@ const DataType = {
 						key={ params.id }
 						icon={ <Icon/> }
 						label={ icon }
-						onClick={ () => action(params) }
+						onClick={ () =>
+							setRows(Actions[action](rows, params)) }
 					/>);
 			});
 		},
@@ -34,7 +45,7 @@ const singleSelect = (ele) => ele.enum && {
 };
 
 const getColumns = (props) => {
-	const { data, editable, width } = props;
+	const { columns: { data, editable, width }} = props;
 
 	return values(map(data.properties, (ele, key) => {
 		const { format, type } = ele;

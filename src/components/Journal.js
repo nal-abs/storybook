@@ -3,17 +3,7 @@ import React from 'react';
 import DataGrid from '../stories/common/DataGrid';
 
 const Journal = (context) => {
-	const { data: { collection }, config, state, actions } = context;
-	const editRow = (item) => actions.updateRow({
-		rows: state[collection],
-		value: item,
-		name: collection,
-	});
-	const deleteRow = (item) => actions.deleteRow({
-		rows: state[collection],
-		value: item,
-		name: collection,
-	});
+	const { data: { collection }, config, state } = context;
 
 	return (
 		<DataGrid { ...{
@@ -25,11 +15,11 @@ const Journal = (context) => {
 				actions: [
 					{
 						icon: 'Edit',
-						action: editRow,
+						action: 'editRow',
 					},
 					{
 						icon: 'Delete',
-						action: deleteRow,
+						action: 'deleteRow',
 					},
 				],
 			},
