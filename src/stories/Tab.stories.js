@@ -44,6 +44,7 @@ TabStories.args = {
 		},
 		{
 			label: 'TaskPane',
+			icon: 'Star',
 		},
 	],
 	fullWidth: true,

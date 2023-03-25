@@ -13,14 +13,17 @@ import Components from './Components';
 const style = {
 	vertical: 'vertical-tab',
 };
+const hasLabel = (selectedStyle, label) =>
+	selectedStyle.text && { label };
 
-const Icon = ({ icon }) => {
+const hasIcon = (selectedStyle, icon) => {
 	const TabIcon = Icons[icon];
 
-	return {
-		icon: TabIcon ? <TabIcon/> : '',
-	};
-};
+	return selectedStyle.icon && TabIcon
+		? { icon: <TabIcon/> }
+		: '';
+} ;
+
 const Tabs = (context) => {
 	const {
 		color, data,
@@ -36,8 +39,8 @@ const Tabs = (context) => {
 			{map(data, (ele, i) =>
 				<MuiTab
 					key={ i }
-					{ ...selectedStyle.text && { label: ele.label } }
-					{ ...selectedStyle.icon && { ...Icon(ele) } }
+					{ ...hasLabel(selectedStyle, ele.label) }
+					{ ...hasIcon(selectedStyle, ele.icon) }
 					value={ i }
 					onClick={ () => selectValue(i) }
 				/>)}</TabList>);
