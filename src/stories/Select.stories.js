@@ -20,4 +20,6 @@ SelectStories.args = {
 	disabled: false,
 	error: false,
 	multiple: false,
+	sx: { width: 300 },
+	disableUnderline: false,
 };

@@ -41,6 +41,14 @@ const config = {
 				type: 'string',
 				enum: ['India', 'Africa', 'US'],
 			},
+			countries: {
+				type: 'array',
+				uniqueItems: true,
+				items: {
+					type: 'string',
+					enum: ['India', 'Africa', 'US'],
+				},
+			},
 			actions: {
 				type: 'actions',
 				format: 'actions',

@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
 import { map } from '@laufire/utils/collection';
 import { values } from '@laufire/utils/lib';
 import * as Icons from '@mui/icons-material';
+import Select from '../Select';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import * as React from 'react';
 
@@ -46,7 +46,19 @@ const DataType = {
 			});
 		},
 	}),
-
+	array: ({ data }) => ({
+		type: 'actions',
+		renderCell: () =>
+			<Select { ...{
+				options: data.items.enum,
+				multiple: true,
+				sx: { width: '150px' },
+				disableUnderline: true,
+				variant: 'standard',
+			} }
+			/>,
+		minWidth: 200,
+	}),
 };
 
 const singleSelect = (ele) => ele.enum && {

@@ -5,7 +5,7 @@ import { FormControl, FormHelperText, InputLabel,
 import * as React from 'react';
 
 const SelectBox = ({ autoWidth, size, multiple,
-	label, options }) => {
+	label, options, disableUnderline }) => {
 	const [value, setValue] = React.useState([]);
 
 	const handleChange = (event) => {
@@ -20,6 +20,7 @@ const SelectBox = ({ autoWidth, size, multiple,
 			autoWidth={ autoWidth }
 			size={ size }
 			multiple={ multiple }
+			disableUnderline={ disableUnderline }
 		>
 			{map(options, (option, index) =>
 				<MenuItem key={ index } value={ option }>{option}</MenuItem>)}
@@ -27,9 +28,9 @@ const SelectBox = ({ autoWidth, size, multiple,
 };
 
 const Select = (context) => {
-	const { helperText, label, ...rest } = context;
+	const { helperText, label, sx, variant } = context;
 
-	return <FormControl { ...rest }>
+	return <FormControl sx={ sx } variant={ variant }>
 		<InputLabel>{label}</InputLabel>
 		<SelectBox { ...context }/>
 		<FormHelperText>{helperText}</FormHelperText>
