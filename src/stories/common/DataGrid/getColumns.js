@@ -5,6 +5,24 @@ import Select from '../Select';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import * as React from 'react';
 
+const MultiSelect = ({ params, data }) => {
+	const [value, newValue] = React.useState(params.row.countries);
+
+	return (
+		<Select { ...{
+			options: data.items.enum,
+			multiple: true,
+			sx: { width: '150px' },
+			disableUnderline: true,
+			variant: 'standard',
+			onChange: (event) => newValue({
+				...params.row, countries: event.target.value,
+			}),
+			value: value,
+		} }
+		/>);
+};
+
 const Actions = {
 	editRow: (rows, value) =>
 		rows.map((row) => (row.id !== value.id
@@ -48,15 +66,7 @@ const DataType = {
 	}),
 	array: ({ data }) => ({
 		type: 'actions',
-		renderCell: () =>
-			<Select { ...{
-				options: data.items.enum,
-				multiple: true,
-				sx: { width: '150px' },
-				disableUnderline: true,
-				variant: 'standard',
-			} }
-			/>,
+		renderCell: (params) => <MultiSelect { ...{ params, data } }/>,
 		minWidth: 200,
 	}),
 };

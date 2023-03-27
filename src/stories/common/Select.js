@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { map } from '@laufire/utils/collection';
 import { FormControl, FormHelperText, InputLabel,
 	MenuItem,
@@ -5,18 +6,26 @@ import { FormControl, FormHelperText, InputLabel,
 import * as React from 'react';
 
 const SelectBox = ({ autoWidth, size, multiple,
-	label, options, disableUnderline }) => {
+	label, options, disableUnderline, onChange = (x) => x }) => {
 	const [value, setValue] = React.useState([]);
 
 	const handleChange = (event) => {
 		setValue(event.target.value);
 	};
+	const transform = (event) => ({
+		target: {
+			value: event.target.value,
+		},
+	});
 
 	return (
 		<MuiSelect
 			value={ value }
 			label={ label }
-			onChange={ handleChange }
+			onChange={ (evt) => {
+				handleChange(evt);
+				onChange(transform(evt));
+			} }
 			autoWidth={ autoWidth }
 			size={ size }
 			multiple={ multiple }
