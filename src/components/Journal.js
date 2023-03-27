@@ -9,7 +9,7 @@ const Journal = (context) => {
 		<DataGrid { ...{
 			value: state[collection],
 			columns: {
-				width: 100,
+				width: 80,
 				editable: true,
 				data: config[collection],
 				actions: [

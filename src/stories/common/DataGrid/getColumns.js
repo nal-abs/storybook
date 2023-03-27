@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 import { map } from '@laufire/utils/collection';
-import { peek } from '@laufire/utils/debug';
 import { values } from '@laufire/utils/lib';
 import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
@@ -14,11 +14,9 @@ const Actions = {
 	deleteRow: (rows, value) => rows.filter((row) => row.id !== value.id),
 };
 
-const onChange = (params) => ({
-	event: {
-		target: {
-			value: params.row,
-		},
+const transformEVent = (params) => ({
+	target: {
+		value: params.row,
 	},
 });
 
@@ -29,7 +27,7 @@ const DataType = {
 	actions: (props) => ({
 		type: props.data,
 		getActions: (params) => {
-			const { columns: { actions = {}}, rows, setRows } = props;
+			const { columns: { actions = {}}, rows, setRows, onChange } = props;
 
 			return actions.map(({ icon, action }) => {
 				const Icon = Icons[icon];
@@ -41,12 +39,13 @@ const DataType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							peek(onChange(params));
+							onChange(transformEVent(params));
 						} }
 					/>);
 			});
 		},
 	}),
+
 };
 
 const singleSelect = (ele) => ele.enum && {
