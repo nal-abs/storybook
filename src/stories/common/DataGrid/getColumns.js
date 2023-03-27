@@ -1,4 +1,5 @@
 import { map } from '@laufire/utils/collection';
+import { peek } from '@laufire/utils/debug';
 import { values } from '@laufire/utils/lib';
 import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
@@ -11,8 +12,15 @@ const Actions = {
 			: { ...row, ...value.row })),
 
 	deleteRow: (rows, value) => rows.filter((row) => row.id !== value.id),
-
 };
+
+const onChange = (params) => ({
+	event: {
+		target: {
+			value: params.row,
+		},
+	},
+});
 
 const DataType = {
 	date: ({ data }) => ({ type: data,
@@ -31,8 +39,10 @@ const DataType = {
 						key={ params.id }
 						icon={ <Icon/> }
 						label={ icon }
-						onClick={ () =>
-							setRows(Actions[action](rows, params)) }
+						onClick={ () => {
+							setRows(Actions[action](rows, params));
+							peek(onChange(params));
+						} }
 					/>);
 			});
 		},
