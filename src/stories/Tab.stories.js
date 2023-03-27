@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import Tab from '../stories/common/Tab';
 
@@ -9,6 +10,12 @@ export default {
 			control: {
 				type: 'select',
 				options: ['iconOnly', 'textOnly', 'iconAndText'],
+			},
+		},
+		orientation: {
+			control: {
+				type: 'select',
+				options: ['vertical', 'horizontal'],
 			},
 		},
 	},

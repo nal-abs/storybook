@@ -1,10 +1,12 @@
+/* eslint-disable no-console */
 import Tabs from '../stories/Tab';
 import * as React from 'react';
 
 const TabWrapper = (context) =>
 	<Tabs { ...{ ...context,
 		orientation: 'vertical',
-		color: 'secondary', variant: 'scrollable',
+		color: 'secondary',
+		variant: 'scrollable',
 		data: [
 			{
 				label: 'TodoPane',

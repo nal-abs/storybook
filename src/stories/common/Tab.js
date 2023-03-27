@@ -4,7 +4,6 @@ import TabList from '@mui/lab/TabList';
 import { Tab as MuiTab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import TabContext from '@mui/lab/TabContext';
 import { map, values } from '@laufire/utils/collection';
 import { useState } from 'react';
@@ -13,7 +12,9 @@ import Components from './Components';
 
 const tabStyle = {
 	vertical: 'vertical-tab',
+	horizontal: 'horizontal-tab',
 };
+
 const styles = {
 	iconOnly: {
 		icon: true,
@@ -40,11 +41,9 @@ const getIcon = (style, { icon }) => {
 		: '';
 } ;
 
-const onChange = (value) => ({
-	evt: {
-		target: {
-			value,
-		},
+const transformEvent = (value) => ({
+	target: {
+		value,
 	},
 });
 
@@ -64,22 +63,24 @@ const TabButtons = ({
 				{ ...getIcon(styles[style], item) }
 				value={ tabKey }
 				onClick={ () => onClick(tabKey) }
+
 			/>))}
 	</TabList>;
 
-const Tab = (context) => {
-	const { orientation, content, dir, value: initialValue } = context;
+const Tab = (props) => {
+	const { orientation, content, dir,
+		value: initialValue, onChange = (x) => x } = props;
 
 	const [value, selectValue] = useState(initialValue);
 	const onClick = (tabKey) => {
 		selectValue(tabKey);
-		onChange(tabKey);
+		onChange(transformEvent(tabKey));
 	};
 
 	return (
 		<Box dir={ dir } className={ tabStyle[orientation] }>
 			<TabContext value={ value }>
-				<TabButtons { ...{ ...context, value, onClick } }/>
+				<TabButtons { ...{ ...props, value, onClick } }/>
 				{values(map(content, (item, key) => {
 					const config = item;
 					const Child = Components[config.component];
@@ -94,7 +95,3 @@ const Tab = (context) => {
 };
 
 export default Tab;
-
-Tab.propTypes = {
-	context: PropTypes.object,
-};
