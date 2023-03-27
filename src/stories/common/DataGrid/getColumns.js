@@ -14,20 +14,21 @@ const Actions = {
 	deleteRow: (rows, value) => rows.filter((row) => row.id !== value.id),
 };
 
-const transformEVent = (params) => ({
+const transformEvent = (params) => ({
 	target: {
 		value: params.row,
 	},
 });
 
 const DataType = {
-	date: ({ data }) => ({ type: data,
+	date: ({ type }) => ({ type: type,
 		minWidth: 100,
 		valueGetter: ({ value }) => value && new Date(value) }),
 	actions: (props) => ({
-		type: props.data,
+		type: props.type,
 		getActions: (params) => {
-			const { columns: { actions = {}}, rows, setRows, onChange } = props;
+			const { columns: { actions = {}}, rows, setRows,
+				onChange } = props;
 
 			return actions.map(({ icon, action }) => {
 				const Icon = Icons[icon];
@@ -39,7 +40,7 @@ const DataType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							onChange(transformEVent(params));
+							onChange(transformEvent(params));
 						} }
 					/>);
 			});
@@ -68,7 +69,7 @@ const getColumns = (props) => {
 			width: width,
 			...singleSelect(ele),
 			...DataType[parameter] && DataType[parameter]({ ...props,
-				data: parameter }),
+				type: parameter, data: ele }),
 		};
 	}));
 };
