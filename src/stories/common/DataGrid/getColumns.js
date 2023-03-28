@@ -1,23 +1,39 @@
-import { map } from '@laufire/utils/collection';
+import { map, pick } from '@laufire/utils/collection';
 import { values } from '@laufire/utils/lib';
 import * as Icons from '@mui/icons-material';
 import Select from '../Select';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import * as React from 'react';
 
+const dataFormat = {
+	enum: (props) => ({
+		enum: props.data.items.enum,
+	}),
+	oneOf: (props) => {
+		const array = props.data.items.oneOf;
+
+		return {
+			enum: pick(array, 'title'),
+		};
+	},
+};
+
 const MultiSelect = ({ params, data }) => {
-	const [value, newValue] = React.useState(params.row.countries);
+	const [value, setValue] = React.useState(params.field);
 
 	return (
 		<Select { ...{
-			options: data.items.enum,
+			options: data.enum,
 			multiple: true,
 			sx: { width: '150px' },
 			disableUnderline: true,
 			variant: 'standard',
-			onChange: (event) => newValue({
-				...params.row, countries: event.target.value,
-			}),
+			onChange: (event) => {
+				const newValue = event.target.value;
+
+				params.row[params.field] = newValue;
+				return setValue(newValue);
+			},
 			value: value,
 		} }
 		/>);
@@ -64,9 +80,12 @@ const DataType = {
 			});
 		},
 	}),
-	array: ({ data }) => ({
-		type: 'actions',
-		renderCell: (params) => <MultiSelect { ...{ params, data } }/>,
+	array: (props) => ({
+		type: 'string',
+		renderCell: (params) =>
+			<MultiSelect { ...{ params: params,
+				data: dataFormat.enum(props) } }
+			/>,
 		minWidth: 200,
 	}),
 };
