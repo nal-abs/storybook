@@ -30,15 +30,14 @@ const styles = {
 	},
 };
 
-const getLabel = (style, { label }) =>
-	style.text && { label };
+const getLabel = (tabButton, { label }) =>
+	tabButton.text && { label };
 
-const getIcon = (style, { icon }) => {
+const getIcon = (tabButton, { icon }) => {
 	const TabIcon = Icons[icon];
+	const hasIcon = tabButton.icon && TabIcon;
 
-	return style.icon && TabIcon
-		? { icon: <TabIcon/> }
-		: '';
+	return hasIcon && { icon: <TabIcon/> };
 } ;
 
 const transformEvent = (value) => ({
