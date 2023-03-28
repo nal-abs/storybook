@@ -41,12 +41,30 @@ const config = {
 				type: 'string',
 				enum: ['India', 'Africa', 'US'],
 			},
-			countries: {
-				type: 'array',
+			countries: { type: 'array',
 				uniqueItems: true,
 				items: {
 					type: 'string',
 					enum: ['India', 'Africa', 'US'],
+				}},
+			oneOf: {
+				type: 'array',
+				uniqueItems: true,
+				items: {
+					oneOf: [
+						{
+							const: 'US',
+							title: 'US',
+						},
+						{
+							const: 'India',
+							title: 'India',
+						},
+						{
+							const: 'china',
+							title: 'China',
+						},
+					],
 				},
 			},
 			actions: {

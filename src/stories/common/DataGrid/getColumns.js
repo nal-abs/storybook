@@ -82,10 +82,18 @@ const DataType = {
 	}),
 	array: (props) => ({
 		type: 'string',
-		renderCell: (params) =>
-			<MultiSelect { ...{ params: params,
-				data: dataFormat.enum(props) } }
-			/>,
+		renderCell: (params) => {
+			const	{ data: { items }} = props;
+
+			const multiSelectType = items.enum ? 'enum' : 'oneOf';
+
+			return (
+				<MultiSelect { ...{
+					params: params,
+					data: dataFormat[multiSelectType](props),
+				} }
+				/>);
+		},
 		minWidth: 200,
 	}),
 };
