@@ -32,7 +32,6 @@ const seed = {
 			country: 'India',
 			oneOf: [],
 			countries: [],
-
 		},
 	],
 	ledgers: [

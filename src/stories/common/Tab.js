@@ -85,7 +85,7 @@ const Tab = (props) => {
 					const Child = Components[config.component];
 
 					return <TabPanel key={ key } value={ key }>
-						<Child/>
+						<Child { ...config.props }/>
 					</TabPanel>;
 				}))}
 			</TabContext>

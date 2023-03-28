@@ -5,6 +5,8 @@ import Typography from './Typography';
 import Tab from './Tab';
 import Drawer from './Drawer';
 import DataGrid from './DataGrid';
+import Journal from '../../components/Journal';
+import Ledger from '../../components/Ledger';
 
 const Components = {
 	Button,
@@ -14,6 +16,9 @@ const Components = {
 	Tab,
 	Drawer,
 	DataGrid,
+	Journal,
+	Ledger,
+
 };
 
 export default Components;

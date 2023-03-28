@@ -1,13 +1,31 @@
+/* eslint-disable max-lines-per-function */
 import { React } from 'react';
 import './App.scss';
-import Journal from './components/Journal';
 import VideoPlayer from './components/VideoPlayer';
+import Tab from '../src/stories/common/Tab';
 
 const App = (context) => <div className="App" role="App">
-	<Journal { ...{
-		...context,
-		data: { collection: 'journals' },
-	} }
+	<Tab { ...{ ...context,
+		content: {
+			Journal: {
+				label: 'Journal',
+				component: 'Journal',
+				props: { ...{
+					...context,
+					data: { collection: 'journals' },
+				}},
+			},
+			Ledger: {
+				label: 'Ledger',
+				component: 'Ledger',
+				props: { ...{
+					...context,
+					data: { collection: 'ledgers' },
+				}},
+			},
+		},
+		value: 'Journal',
+		style: 'textOnly' } }
 	/>
 	<VideoPlayer { ...{ ...context, url: 'https://youtu.be/D-rHu8vxrHI' } }/>
 </div>;
