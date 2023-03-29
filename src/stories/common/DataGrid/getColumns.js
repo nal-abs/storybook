@@ -94,6 +94,11 @@ const DataType = {
 		},
 		minWidth: 200,
 	}),
+	dateTime: () => ({
+		type: 'dateTime',
+		minWidth: 100,
+		valueGetter: ({ value }) => value && new Date(value),
+	}),
 };
 
 const singleSelect = (ele) => ele.enum && {
@@ -101,12 +106,17 @@ const singleSelect = (ele) => ele.enum && {
 	valueOptions: ele.enum,
 };
 
+const Format = {
+	'date-time': 'dateTime',
+	'date': 'date',
+};
+
 const getColumns = (props) => {
 	const { columns: { data, editable, width }} = props;
 
 	return values(map(data.properties, (ele, key) => {
 		const { format, type } = ele;
-		const parameter = format || type;
+		const parameter = Format[format] || type;
 
 		return {
 			...ele,

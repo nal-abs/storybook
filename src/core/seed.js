@@ -42,8 +42,7 @@ const seed = {
 			accountType: 'Real',
 			balances: '79453.3',
 			notes: '-',
-		},
-		{
+		},		{
 			id: 2,
 			ledger: 'Adayar Anandha bhavan',
 			type: 'Liability',

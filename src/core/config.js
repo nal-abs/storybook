@@ -70,7 +70,7 @@ const config = {
 			actions: {
 				type: 'actions',
 				format: 'actions',
-				actions: 'Notes',
+				title: 'Actions',
 			},
 		},
 	},
@@ -95,6 +95,20 @@ const config = {
 			notes: {
 				type: 'string',
 				title: 'Notes',
+			},
+			isActive: {
+				type: 'boolean',
+				title: 'IsActive',
+			},
+			dateTime: {
+				type: 'string',
+				format: 'date-time',
+				title: 'DateTime',
+			},
+			actions: {
+				type: 'actions',
+				format: 'actions',
+				title: 'Actions',
 			},
 		},
 	},
