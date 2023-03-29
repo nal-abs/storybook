@@ -28,9 +28,7 @@ const MultiSelect = ({ params, data }) => {
 			sx: { width: '150px' },
 			disableUnderline: true,
 			variant: 'standard',
-			onChange: (event) => {
-				const newValue = event.target.value;
-
+			onChange: ({ target: { value: newValue }}) => {
 				params.row[params.field] = newValue;
 				return setValue(newValue);
 			},

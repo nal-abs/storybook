@@ -6,7 +6,7 @@ import Tab from '../src/stories/common/Tab';
 
 const App = (context) => <div className="App" role="App">
 	<Tab { ...{ ...context,
-		content: {
+		contents: {
 			Journal: {
 				label: 'Journal',
 				component: 'Journal',

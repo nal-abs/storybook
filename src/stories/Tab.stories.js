@@ -28,7 +28,7 @@ TabStories.args = {
 	color: 'secondary', variant: 'scrollable',
 	fullWidth: true,
 	centered: true,
-	content: {
+	contents: {
 		todoPane: {
 			label: 'TodoPane',
 			component: 'Button',

@@ -47,7 +47,7 @@ const transformEvent = (value) => ({
 });
 
 const TabButtons = ({
-	color, content,
+	color, contents,
 	onClick, orientation, style,
 }) =>
 	<TabList
@@ -55,11 +55,11 @@ const TabButtons = ({
 		textColor={ color }
 		indicatorColor={ color }
 	>
-		{values(map(content, (item, tabKey) =>
+		{values(map(contents, (content, tabKey) =>
 			<MuiTab
 				key={ tabKey }
-				{ ...getLabel(styles[style], item) }
-				{ ...getIcon(styles[style], item) }
+				{ ...getLabel(styles[style], content) }
+				{ ...getIcon(styles[style], content) }
 				value={ tabKey }
 				onClick={ () => onClick(tabKey) }
 
@@ -67,7 +67,7 @@ const TabButtons = ({
 	</TabList>;
 
 const Tab = (props) => {
-	const { orientation, content, dir,
+	const { orientation, contents, dir,
 		value: initialValue, onChange = (x) => x } = props;
 
 	const [value, selectValue] = useState(initialValue);
@@ -80,12 +80,11 @@ const Tab = (props) => {
 		<Box dir={ dir } className={ tabStyle[orientation] }>
 			<TabContext value={ value }>
 				<TabButtons { ...{ ...props, value, onClick } }/>
-				{values(map(content, (item, key) => {
-					const config = item;
-					const Child = Components[config.component];
+				{values(map(contents, (content, key) => {
+					const Child = Components[content.component];
 
 					return <TabPanel key={ key } value={ key }>
-						<Child { ...config.props }/>
+						<Child { ...content.props }/>
 					</TabPanel>;
 				}))}
 			</TabContext>
