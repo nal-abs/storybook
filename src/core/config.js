@@ -69,7 +69,6 @@ const config = {
 			},
 			actions: {
 				type: 'actions',
-				format: 'actions',
 				title: 'Actions',
 			},
 		},
@@ -105,9 +104,13 @@ const config = {
 				format: 'date-time',
 				title: 'DateTime',
 			},
+			time: {
+				type: 'string',
+				format: 'time',
+				title: 'Time',
+			},
 			actions: {
 				type: 'actions',
-				format: 'actions',
 				title: 'Actions',
 			},
 		},

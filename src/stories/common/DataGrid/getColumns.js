@@ -1,9 +1,11 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+import { useState, React } from 'react';
 import { map, pick } from '@laufire/utils/collection';
 import { values } from '@laufire/utils/lib';
 import * as Icons from '@mui/icons-material';
 import Select from '../Select';
 import { GridActionsCellItem } from '@mui/x-data-grid';
-import * as React from 'react';
+import TimePicker from '../../../components/TimePicker';
 
 const dataFormat = {
 	enum: (props) => ({
@@ -19,7 +21,7 @@ const dataFormat = {
 };
 
 const MultiSelect = ({ params, data }) => {
-	const [value, setValue] = React.useState(params.field);
+	const [value, setValue] = useState(params.field);
 
 	return (
 		<Select { ...{
@@ -79,7 +81,6 @@ const DataType = {
 		},
 	}),
 	array: (props) => ({
-		type: 'string',
 		renderCell: (params) => {
 			const	{ data: { items }} = props;
 
@@ -99,6 +100,11 @@ const DataType = {
 		minWidth: 100,
 		valueGetter: ({ value }) => value && new Date(value),
 	}),
+	time: () => ({
+		minWidth: 150,
+		renderCell: (cellValue) => <TimePicker { ...cellValue }/>,
+		editable: false,
+	}),
 };
 
 const singleSelect = (ele) => ele.enum && {
@@ -109,6 +115,7 @@ const singleSelect = (ele) => ele.enum && {
 const Format = {
 	'date-time': 'dateTime',
 	'date': 'date',
+	'time': 'time',
 };
 
 const getColumns = (props) => {

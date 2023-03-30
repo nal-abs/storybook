@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 const seed = {
 	loading: false,
 	tab: 'TodoPane',
@@ -42,13 +44,15 @@ const seed = {
 			accountType: 'Real',
 			balances: '79453.3',
 			notes: '-',
-		},		{
+		},
+		{
 			id: 2,
 			ledger: 'Adayar Anandha bhavan',
 			type: 'Liability',
 			accountType: 'Personal',
 			balances: '',
 			notes: '-',
+			time: dayjs('2022-04-17T03:30'),
 		},
 	],
 };
