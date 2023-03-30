@@ -1,9 +1,11 @@
+/* eslint-disable max-lines-per-function */
 import { DesktopTimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useState, React } from 'react';
 
-const TimePicker = ({ value, onChange = (x) => x }) => {
+const TimePicker = (context) => {
+	const { params: { value }, onChange = (x) => x }	= context;
 	const [time, setTime] = useState(null);
 
 	const handleChange = (event) => {
@@ -22,8 +24,7 @@ const TimePicker = ({ value, onChange = (x) => x }) => {
 				handleChange(event);
 				onChange(transform(event));
 			} }
-		/>
-	</LocalizationProvider>;
+		/></LocalizationProvider>;
 };
 
 export default TimePicker;

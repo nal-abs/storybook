@@ -38,6 +38,20 @@ const MultiSelect = ({ params, data }) => {
 		} }
 		/>);
 };
+const TimeField = (params) => {
+	const { row, field } = params;
+	const [value, setValue] = useState(field);
+
+	return <TimePicker { ...{
+		params: params,
+		onChange: ({ target: { value: newValue }}) => {
+			row[field] = newValue;
+			return setValue(newValue);
+		},
+		value: value,
+	} }
+	       />;
+};
 
 const Actions = {
 	editRow: (rows, value) =>
@@ -60,9 +74,9 @@ const DataType = {
 		valueGetter: ({ value }) => value && new Date(value) }),
 	actions: (props) => ({
 		type: props.type,
+		editable: false,
 		getActions: (params) => {
-			const { columns: { actions = {}}, rows, setRows,
-				onChange } = props;
+			const { columns: { actions = {}}, rows, setRows, onChange } = props;
 
 			return actions.map(({ icon, action }) => {
 				const Icon = Icons[icon];
@@ -102,7 +116,7 @@ const DataType = {
 	}),
 	time: () => ({
 		minWidth: 150,
-		renderCell: (cellValue) => <TimePicker { ...cellValue }/>,
+		renderCell: (params) => <TimeField { ...params }/>,
 		editable: false,
 	}),
 };

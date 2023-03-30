@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-
 const seed = {
 	loading: false,
 	tab: 'TodoPane',
@@ -45,7 +44,8 @@ const seed = {
 			balances: '79453.3',
 			notes: '-',
 			isActive: false,
-			dateTime: dayjs('9/24/2022 13:30'),
+			time: '',
+			dateTime: '9/24/2022 12:30',
 		},
 		{
 			id: 2,
@@ -54,7 +54,7 @@ const seed = {
 			accountType: 'Personal',
 			balances: '',
 			notes: '-',
-			time: dayjs('2022-04-17T03:30'),
+			time: dayjs('9/24/2022 13:30'),
 			isActive: true,
 		},
 	],
