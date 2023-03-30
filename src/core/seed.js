@@ -44,6 +44,8 @@ const seed = {
 			accountType: 'Real',
 			balances: '79453.3',
 			notes: '-',
+			isActive: false,
+			dateTime: dayjs('9/24/2022 13:30'),
 		},
 		{
 			id: 2,
@@ -53,6 +55,7 @@ const seed = {
 			balances: '',
 			notes: '-',
 			time: dayjs('2022-04-17T03:30'),
+			isActive: true,
 		},
 	],
 };

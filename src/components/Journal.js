@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
-import DataGrid from '../stories/common/DataGrid';
+import DataGrid from '../stories/common/DataGrid/index';
 
 const Journal = (context) => {
 	const { data: { collection }, config, state } = context;

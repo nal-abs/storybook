@@ -5,7 +5,7 @@ import { values } from '@laufire/utils/lib';
 import * as Icons from '@mui/icons-material';
 import Select from '../Select';
 import { GridActionsCellItem } from '@mui/x-data-grid';
-import TimePicker from '../../../components/TimePicker';
+import TimePicker from '../TimePicker';
 
 const dataFormat = {
 	enum: (props) => ({
