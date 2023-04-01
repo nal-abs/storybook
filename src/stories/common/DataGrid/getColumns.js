@@ -1,11 +1,11 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import { useState, React } from 'react';
+import { React } from 'react';
 import { map, pick } from '@laufire/utils/collection';
 import { values } from '@laufire/utils/lib';
 import * as Icons from '@mui/icons-material';
-import Select from '../Select';
 import { GridActionsCellItem } from '@mui/x-data-grid';
-import TimePicker from '../TimePicker';
+import TimeField from './TimeField';
+import MultiSelect from './MultiSelect';
 
 const dataFormat = {
 	enum: (props) => ({
@@ -18,39 +18,6 @@ const dataFormat = {
 			enum: pick(array, 'title'),
 		};
 	},
-};
-
-const MultiSelect = ({ params, data }) => {
-	const [value, setValue] = useState(params.field);
-
-	return (
-		<Select { ...{
-			options: data.enum,
-			multiple: true,
-			sx: { width: '150px' },
-			disableUnderline: true,
-			variant: 'standard',
-			onChange: ({ target: { value: newValue }}) => {
-				params.row[params.field] = newValue;
-				return setValue(newValue);
-			},
-			value: value,
-		} }
-		/>);
-};
-const TimeField = (params) => {
-	const { row, field, value: initialValue } = params;
-	const [value, setValue] = useState(initialValue);
-
-	return <TimePicker { ...{
-		params: params,
-		onChange: ({ target: { value: newValue }}) => {
-			row[field] = newValue;
-			return setValue(newValue);
-		},
-		value: value,
-	} }
-	       />;
 };
 
 const Actions = {

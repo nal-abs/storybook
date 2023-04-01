@@ -11,7 +11,8 @@ const transform = (event) => ({
 });
 
 const TimePicker = (context) => {
-	const { params: { value }, onChange = (x) => x }	= context;
+	const { params: { value }, variant, disableUnderline,
+		onChange = (x) => x }	= context;
 	const initialTime = value ? dayjs(`1/1/2022 ${ value }`) : null;
 	const [time, setTime] = useState(initialTime);
 	const handleTime = (event) => {
@@ -25,8 +26,8 @@ const TimePicker = (context) => {
 				handleTime(event);
 				return onChange(transform(event));
 			} }
-			slotProps={ { textField: { variant: 'standard',
-				InputProps: { disableUnderline: true }}} }
+			slotProps={ { textField: { variant: variant,
+				InputProps: { disableUnderline }}} }
 		/></LocalizationProvider>;
 };
 
