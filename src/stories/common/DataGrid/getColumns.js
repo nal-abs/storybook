@@ -39,8 +39,8 @@ const MultiSelect = ({ params, data }) => {
 		/>);
 };
 const TimeField = (params) => {
-	const { row, field } = params;
-	const [value, setValue] = useState(field);
+	const { row, field, value: initialValue } = params;
+	const [value, setValue] = useState(initialValue);
 
 	return <TimePicker { ...{
 		params: params,
