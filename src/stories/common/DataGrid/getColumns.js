@@ -29,16 +29,21 @@ const Actions = {
 	deleteRow: (rows, value) => rows.filter((row) => row.id !== value.id),
 };
 
-const transformEvent = (params) => ({
-	target: {
-		value: params.row,
-	},
-});
+const transformEvent = (params) => {
+	const { row } = params;
+
+	return {
+		target: {
+			value: row,
+		},
+	};
+};
 
 const DataType = {
 	date: ({ type }) => ({ type: type,
 		minWidth: 100,
-		valueGetter: ({ value }) => value && new Date(value) }),
+		valueGetter: ({ value }) =>
+		 value && new Date(value) }),
 	actions: (props) => ({
 		type: props.type,
 		editable: false,

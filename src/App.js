@@ -1,7 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import { React } from 'react';
 import './App.scss';
-import VideoPlayer from './components/VideoPlayer';
 import Tab from '../src/stories/common/Tab';
 
 const App = (context) => <div className="App" role="App">
@@ -27,7 +26,6 @@ const App = (context) => <div className="App" role="App">
 		value: 'Journal',
 		style: 'textOnly' } }
 	/>
-	<VideoPlayer { ...{ ...context, url: 'https://youtu.be/D-rHu8vxrHI' } }/>
 </div>;
 
 export default App;
