@@ -1,4 +1,3 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
 import { React } from 'react';
 import { map, pick } from '@laufire/utils/collection';
 import { values } from '@laufire/utils/lib';
@@ -6,8 +5,9 @@ import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
+import dayjs from 'dayjs';
 
-const dataFormat = {
+const dataFormatter = {
 	enum: (props) => ({
 		enum: props.data.items.enum,
 	}),
@@ -40,10 +40,13 @@ const transformEvent = (params) => {
 };
 
 const DataType = {
-	date: ({ type }) => ({ type: type,
+	date: ({ type, field }) => ({
+		type: type,
 		minWidth: 100,
-		valueGetter: ({ value }) =>
-		 value && new Date(value) }),
+		valueGetter: ({ value }) => value && new Date(value),
+		valueSetter: (params) => ({ ...params.row,
+			[field]: dayjs(params.value).format('YYYY-MM-DD') }),
+	}),
 	actions: (props) => ({
 		type: props.type,
 		editable: false,
@@ -75,16 +78,18 @@ const DataType = {
 			return (
 				<MultiSelect { ...{
 					params: params,
-					data: dataFormat[multiSelectType](props),
+					data: dataFormatter[multiSelectType](props),
 				} }
 				/>);
 		},
 		minWidth: 200,
 	}),
-	dateTime: () => ({
+	dateTime: ({ field }) => ({
 		type: 'dateTime',
 		minWidth: 100,
 		valueGetter: ({ value }) => value && new Date(value),
+		valueSetter: (params) => ({ ...params.row,
+			[field]: params.value.toJSON() }),
 	}),
 	time: () => ({
 		minWidth: 150,
@@ -119,7 +124,7 @@ const getColumns = (props) => {
 			width: width,
 			...singleSelect(ele),
 			...DataType[parameter] && DataType[parameter]({ ...props,
-				type: parameter, data: ele }),
+				type: parameter, data: ele, field: key }),
 		};
 	}));
 };
