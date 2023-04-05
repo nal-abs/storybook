@@ -6,19 +6,23 @@ import validateInteger from './validateInteger';
 const handleInteger = (
 	event, schema, prev
 ) => {
-	const value = Number(event.target.value);
+	const { target: { value }} = event;
 
-	return validateInteger(value, schema) ? value : prev;
+	return validateInteger(value, schema) ? Number(value) : prev;
 };
+
+const initialValue = (value) =>
+	(Number.isInteger(value) ? value : parseInt(value, 10));
 
 const IntegerTextField = (params) => {
 	const { props: { data: schema }, value, field, row } = params;
 
-	const [integerValue, setValue] = useState(value);
+	const [integerValue, setValue] = useState(initialValue(value));
 
 	return (
 		<Input { ...{
 			variant: 'standard',
+			type: 'number',
 			value: integerValue,
 			onChange: (event) => {
 				setValue((prev) => {
@@ -33,6 +37,11 @@ const IntegerTextField = (params) => {
 			InputProps: { ...{
 				disableUnderline: true,
 			}},
+			inputProps: {
+				min: 15,
+				max: 250,
+				step: 2,
+			},
 		} }
 		/>
 	);

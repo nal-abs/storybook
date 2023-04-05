@@ -7,7 +7,6 @@ import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
 import dayjs from 'dayjs';
 import IntegerTextField from './IntegerTextField';
-import { peek } from '@laufire/utils/debug';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -65,7 +64,7 @@ const DataType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							peek(onChange(transformEvent(params)));
+							onChange(transformEvent(params));
 						} }
 					/>);
 			});
