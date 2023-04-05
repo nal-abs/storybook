@@ -6,9 +6,9 @@ import validateInteger from './validateInteger';
 const handleInteger = (
 	event, schema, prev
 ) => {
-	const { target: { value }} = event;
+	const value = Number(event.target.value);
 
-	return validateInteger(value, schema) ? Number(value) : prev;
+	return validateInteger(value, schema) ? value : prev;
 };
 
 const initialValue = (value) =>
