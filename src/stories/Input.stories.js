@@ -34,4 +34,5 @@ input.args = {
 		position: 'start',
 	},
 	AdornmentPosition: 'start',
+	value: 1,
 };
