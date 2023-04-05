@@ -4,11 +4,14 @@ import Input from '../Input';
 import validateInteger from './validateInteger';
 
 const handleInteger = (
-	event, schema, prev
+	{ target: { value }}, schema, prev
 ) => {
-	const value = Number(event.target.value);
+	const NumberValue = value === '' ? '' : Number(value);
 
-	return validateInteger(value, schema) ? value : prev;
+	return validateInteger(NumberValue, schema)
+	|| value === ''
+		? NumberValue
+		: prev;
 };
 
 const initialValue = (value) =>
@@ -16,7 +19,7 @@ const initialValue = (value) =>
 
 const IntegerTextField = (params) => {
 	const { props: { data: schema }, value, field, row } = params;
-
+	const { maximum, minimum, multipleOf } = schema;
 	const [integerValue, setValue] = useState(initialValue(value));
 
 	return (
@@ -38,9 +41,9 @@ const IntegerTextField = (params) => {
 				disableUnderline: true,
 			}},
 			inputProps: {
-				min: 15,
-				max: 250,
-				step: 2,
+				min: minimum,
+				max: maximum,
+				step: multipleOf,
 			},
 		} }
 		/>

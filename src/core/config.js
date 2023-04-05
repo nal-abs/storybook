@@ -112,6 +112,9 @@ const config = {
 			integer: {
 				type: 'integer',
 				title: 'Integer',
+				maximum: 50,
+				minimum: -50,
+				multipleOf: 1,
 			},
 			actions: {
 				type: 'actions',
