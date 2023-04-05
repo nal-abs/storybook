@@ -1,12 +1,20 @@
+/* eslint-disable max-lines-per-function */
 import { InputAdornment, TextField } from '@mui/material';
 import * as React from 'react';
 import * as Icons from '@mui/icons-material';
-// import PropTypes from 'prop-types';
+
+const transform = (event) => ({
+	target: {
+		value: event.target.value,
+	},
+});
 
 const Input = (context) => {
-	const { inputs, AdornmentPosition, multiline, ...args } = context;
+	const { inputs = { icon: '', text: '', position: 'start' }, multiline,
+		AdornmentPosition = 'start', value, onChange = (x) => x,
+		...args } = context;
+
 	const Icon = Icons[inputs.icon];
-	const MultilineProps = multiline && { ...multiline, multiline: true };
 
 	const InputProps = {
 		[`${ AdornmentPosition }Adornment`]:
@@ -14,8 +22,26 @@ const Input = (context) => {
 		{	inputs.icon ? <Icon/> : inputs.text}
 	</InputAdornment>,
 	};
+	const MultilineProps = multiline && { ...multiline, multiline: true };
 
-	return <TextField { ...{ InputProps, ...MultilineProps, ...args } }/>;
+	const [initialValue, setValue] = React.useState(value);
+
+	const handleChange = (event) => {
+		setValue(event.target.value);
+	};
+
+	return (
+		<TextField
+			{ ...{
+				InputProps,
+				...MultilineProps, ...args,
+			} }
+			value={ initialValue }
+			onChange={ (evt) => {
+				handleChange(evt, setValue);
+				onChange(transform(evt));
+			} }
+		/>);
 };
 
 export default Input;
