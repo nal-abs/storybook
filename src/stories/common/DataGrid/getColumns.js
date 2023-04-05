@@ -6,6 +6,8 @@ import { GridActionsCellItem } from '@mui/x-data-grid';
 import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
 import dayjs from 'dayjs';
+import IntegerTextField from './IntegerTextField';
+import { peek } from '@laufire/utils/debug';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -63,7 +65,7 @@ const DataType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							onChange(transformEvent(params));
+							peek(onChange(transformEvent(params)));
 						} }
 					/>);
 			});
@@ -94,6 +96,14 @@ const DataType = {
 	time: () => ({
 		minWidth: 150,
 		renderCell: (params) => <TimeField { ...params }/>,
+		editable: false,
+	}),
+	integer: (props) => ({
+		type: 'number',
+		renderCell: (params) =>
+			<IntegerTextField
+				{ ...{ ...params, props } }
+			/>,
 		editable: false,
 	}),
 };

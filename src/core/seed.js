@@ -45,6 +45,7 @@ const seed = {
 			isActive: false,
 			time: '',
 			dateTime: '9/24/2022 12:30',
+			integer: 5,
 		},
 		{
 			id: 2,
@@ -55,6 +56,7 @@ const seed = {
 			notes: '-',
 			time: '13:30:00',
 			isActive: true,
+			integer: 5.85,
 		},
 	],
 };

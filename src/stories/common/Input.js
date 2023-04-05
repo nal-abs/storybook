@@ -24,21 +24,14 @@ const Input = (context) => {
 	};
 	const MultilineProps = multiline && { ...multiline, multiline: true };
 
-	const [initialValue, setValue] = React.useState(value);
-
-	const handleChange = (event) => {
-		setValue(event.target.value);
-	};
-
 	return (
 		<TextField
 			{ ...{
 				InputProps,
 				...MultilineProps, ...args,
 			} }
-			value={ initialValue }
+			value={ value }
 			onChange={ (evt) => {
-				handleChange(evt, setValue);
 				onChange(transform(evt));
 			} }
 		/>);

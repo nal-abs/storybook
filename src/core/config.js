@@ -109,6 +109,10 @@ const config = {
 				format: 'time',
 				title: 'Time',
 			},
+			integer: {
+				type: 'integer',
+				title: 'Integer',
+			},
 			actions: {
 				type: 'actions',
 				title: 'Actions',
