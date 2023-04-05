@@ -26,7 +26,7 @@ const IntegerTextField = (params) => {
 		<Input { ...{
 			variant: 'standard',
 			type: 'number',
-			value: integerValue,
+			value: integerValue.toString(),
 			onChange: (event) => {
 				setValue((prev) => {
 					const newValue = handleInteger(
