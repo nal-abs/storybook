@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable max-lines-per-function */
-import { peek } from '@laufire/utils/debug';
 import { useState, React } from 'react';
 import Input from '../Input';
 import validateInteger from './validateInteger';
@@ -23,10 +21,14 @@ const IntegerTextField = (params) => {
 			variant: 'standard',
 			value: integerValue,
 			onChange: (event) => {
-				row[field] = integerValue;
-				setValue((prev) => handleInteger(
-					event, schema, prev
-				));
+				setValue((prev) => {
+					const newValue = handleInteger(
+						event, schema, prev
+					);
+
+					row[field] = newValue;
+					return newValue;
+				});
 			},
 			InputProps: { ...{
 				disableUnderline: true,
