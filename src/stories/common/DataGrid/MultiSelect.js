@@ -2,7 +2,7 @@ import { useState, React } from 'react';
 import Select from '../Select';
 
 const MultiSelect = ({ params, data }) => {
-	const [value, setValue] = useState(params.field);
+	const [value, setValue] = useState([]);
 
 	return (
 		<Select { ...{

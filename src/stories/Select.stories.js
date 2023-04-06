@@ -22,4 +22,5 @@ SelectStories.args = {
 	multiple: false,
 	sx: { width: 300 },
 	disableUnderline: false,
+	value: [],
 };

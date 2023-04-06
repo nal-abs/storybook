@@ -1,39 +1,39 @@
-/* eslint-disable max-lines-per-function */
-import { map } from '@laufire/utils/collection';
+import { map, omit } from '@laufire/utils/collection';
 import { FormControl, FormHelperText, InputLabel,
 	MenuItem,
 	Select as MuiSelect } from '@mui/material';
 import * as React from 'react';
 
-const SelectBox = ({ autoWidth, size, multiple,
-	label, options, disableUnderline, onChange = (x) => x }) => {
-	const [value, setValue] = React.useState([]);
+const MenuList = (options) =>
+	map(options, (option, index) =>
+		<MenuItem key={ index } value={ option }>{option}</MenuItem>);
+
+const transform = (event) => ({
+	target: {
+		value: event.target.value,
+	},
+});
+
+const SelectBox = (context) => {
+	const { options, onChange = (x) => x, value, ...rest }
+	= omit(context, { something: 'helperText' });
+	const [state, setState] = React.useState(value);
 
 	const handleChange = (event) => {
-		setValue(event.target.value);
+		setState(event.target.value);
 	};
-	const transform = (event) => ({
-		target: {
-			value: event.target.value,
-		},
-	});
 
 	return (
 		<MuiSelect
-			value={ value }
-			label={ label }
-			onChange={ (evt) => {
-				handleChange(evt);
-				onChange(transform(evt));
+			{ ...{
+				value: state,
+				onChange: (evt) => {
+					handleChange(evt);
+					onChange(transform(evt));
+				},
+				...rest,
 			} }
-			autoWidth={ autoWidth }
-			size={ size }
-			multiple={ multiple }
-			disableUnderline={ disableUnderline }
-		>
-			{map(options, (option, index) =>
-				<MenuItem key={ index } value={ option }>{option}</MenuItem>)}
-		</MuiSelect>);
+		>{MenuList(options)}</MuiSelect>);
 };
 
 const Select = (context) => {
