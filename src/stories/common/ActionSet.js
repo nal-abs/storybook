@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Menu from './Menu';
+import Menu from './Menu/index.js';
 import SpeedDial from './SpeedDial';
 
 const Navigation = {
