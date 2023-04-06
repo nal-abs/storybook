@@ -15,6 +15,48 @@ const VideoPlayer = ({ url, pip, playing, controls,
 	onChange = nothing, value: initialValue, ...args }) => {
 	const [value, setValue] = useState(initialValue);
 
+	const handleOnReadyStart = (status) => {
+		setValue(status);
+		onChange(transformEvent({ ...value, ...status }));
+	};
+
+	const handleOnPlayPause = (status) => {
+		setValue(status);
+		onChange(transformEvent({ ...value, playing: !value.playing }));
+	};
+
+	const handleOnProgress = (state) => {
+		setValue({ progress: state });
+		onChange(transformEvent({ ...value, progress: state }));
+	};
+
+	const handleOnSeek = () => {
+		const seconds = value.progress.playedSeconds;
+
+		setValue({ played: seconds });
+		onChange(transformEvent({ ...value, played: seconds }));
+	};
+
+	const handleOnDuration = (duration) => {
+		setValue({ duration });
+		onChange(transformEvent({ ...value, duration }));
+	};
+
+	const handlePlayBackRateChange = (speed) => {
+		setValue({ playbackRate: parseFloat(speed) });
+		onChange(transformEvent({ ...value, playbackRate: parseFloat(speed) }));
+	};
+
+	const handleOnEnd = () => {
+		setValue({ playing: loop });
+		onChange(transformEvent({ ...value, playing: loop }));
+	};
+
+	const handleOnEnableDisablePip = (status) => {
+		setValue(status);
+		onChange(transformEvent({ ...value, ...status }));
+	};
+
 	return (
 		<ReactPlayer
 			{ ...args }
@@ -27,55 +69,17 @@ const VideoPlayer = ({ url, pip, playing, controls,
 			playbackRate={ playbackRate }
 			volume={ volume }
 			muted={ muted }
-			onReady={ () => {
-				setValue({ ready: 'ready' });
-				onChange(transformEvent({ ...value, ready: 'ready' }));
-			} }
-			onStart={ () => {
-				setValue({ start: 'start' });
-				onChange(transformEvent({ ...value, start: 'start' }));
-			} }
-			onPlay={ () => {
-				setValue({ playing: true });
-				onChange(transformEvent({ ...value,
-					playing: !value.playing }));
-			} }
-			onProgress={ ({ target }) => {
-				setValue({ played: parseFloat(target.value) });
-				onChange(transformEvent({
-					played: parseFloat(target.value),
-				}));
-			} }
-			onSeek={ ({ target }) => {
-				setValue({ played: parseFloat(target.value) });
-				onChange(transformEvent({ ...value,
-					played: parseFloat(target.value) }));
-			} }
-			onPause={ () => {
-				setValue({ playing: false });
-				onChange(transformEvent({ ...value,
-					playing: !value.playing }));
-			} }
-			onDuration={ (duration) => {
-				setValue({ duration });
-				onChange(transformEvent({ ...value, duration }));
-			} }
-			onPlaybackRateChange={ (speed) => {
-				setValue({ playbackRate: parseFloat(speed) });
-				onChange(transformEvent({ ...value,
-					playbackRate: parseFloat(speed) }));
-			} }
-			onEnded={ () => {
-				setValue({ playing: value.loop });
-			} }
-			onEnablePIP={ () => {
-				setValue({ pip: true });
-				onChange(transformEvent({ ...value, pip: true }));
-			} }
-			onDisablePIP={ () => {
-				setValue({ pip: false });
-				onChange(transformEvent({ ...value, pip: false }));
-			} }
+			onReady={ () => handleOnReadyStart({ ready: 'ready' }) }
+			onStart={ () => handleOnReadyStart({ start: 'start' }) }
+			onPlay={ () => handleOnPlayPause({ playing: true }) }
+			onProgress={ (state) => handleOnProgress(state) }
+			onSeek={ () => handleOnSeek() }
+			onPause={ () => handleOnPlayPause({ playing: false }) }
+			onDuration={ (duration) => handleOnDuration(duration) }
+			onPlaybackRateChange={ (speed) => handlePlayBackRateChange(speed) }
+			onEnded={ () => handleOnEnd() }
+			onEnablePIP={ () => handleOnEnableDisablePip({ pip: true }) }
+			onDisablePIP={ () => handleOnEnableDisablePip({ pip: false }) }
 		/>
 	);
 };
