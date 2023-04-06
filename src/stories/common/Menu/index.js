@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 import MuiMenu from './MuiMenu';
 import Content from '../Content';
+import Button from '../Button';
 
 const Menu = (args) => {
 	const { trigger: { children: { text }}} = args;
@@ -18,13 +18,15 @@ const Menu = (args) => {
 	};
 
 	return <Box>
-		<Button onClick={ handleClick }>
-			{text}</Button>
+		<Button { ...{
+			children: text,
+			onClick: handleClick,
+		} }
+		/>
 		<MuiMenu { ...{ args, handleClose, setContent, anchorEl } }/>
 		{content && <Content { ...{ content } }/>}
 	</Box>;
-}
-	;
+};
 
 export default Menu;
 

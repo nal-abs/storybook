@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import { Pagination as MuiPagination } from '@mui/material';
 
