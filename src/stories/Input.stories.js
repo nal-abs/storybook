@@ -17,7 +17,7 @@ input.args = {
 	required: true,
 	disabled: false,
 	type: 'password',
-	helperText: 'some important message',
+	helperText: 'Some important message',
 	error: false,
 	multiline: {
 		rows: 5,

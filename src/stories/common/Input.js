@@ -10,9 +10,11 @@ const transform = (event) => ({
 });
 
 const Input = (context) => {
-	const { inputs = { icon: '', text: '', position: 'start' }, multiline,
+	const {
+		inputs = { icon: '', text: '', position: 'start' }, multiline,
 		AdornmentPosition = 'start', value, onChange = (x) => x,
-		...args } = context;
+		...args
+	} = context;
 
 	const Icon = Icons[inputs.icon];
 

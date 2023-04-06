@@ -6,7 +6,7 @@ import { GridActionsCellItem } from '@mui/x-data-grid';
 import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
 import dayjs from 'dayjs';
-import IntegerTextField from './IntegerTextField';
+import IntegerTextField from './IntegerTextField/index';
 
 const dataFormatter = {
 	enum: (props) => ({
