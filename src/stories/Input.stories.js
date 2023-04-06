@@ -28,11 +28,15 @@ input.args = {
 	select: false,
 	margin: 'none',
 	size: 'small',
-	inputs: {
-		icon: '',
-		text: '',
-		position: 'start',
+	adornments: {
+		start: {
+			text: '',
+			icon: 'Delete',
+		},
+		end: {
+			text: 'kg',
+			icon: '',
+		},
 	},
-	AdornmentPosition: 'start',
 	value: 1,
 };
