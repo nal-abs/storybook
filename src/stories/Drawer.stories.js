@@ -1,5 +1,5 @@
 import React from 'react';
-import Drawer from '../stories/common/Drawer';
+import Drawer from './common/Drawer/index';
 
 export default {
 	title: 'stories/Drawer',
@@ -8,9 +8,9 @@ export default {
 
 const Template = (args) => <Drawer { ...args }/>;
 
-export const drawer = Template.bind({});
+export const DrawerStory = Template.bind({});
 
-drawer.args = {
+DrawerStory.args = {
 	direction: 'right',
 	lists: [
 		{ text: 'Inbox', icon: 'Add', typography: 5 },
