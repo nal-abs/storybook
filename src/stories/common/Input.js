@@ -20,7 +20,7 @@ const InputAdornment = (cur, key) => {
 	);
 };
 
-const InputProps = (adornments) => reduce(
+const inputProps = (adornments) => reduce(
 	adornments, (
 		acc, cur, key
 	) => ({
@@ -40,7 +40,7 @@ const Input = (context) => {
 	return (
 		<TextField
 			{ ...{
-				InputProps: InputProps(adornments),
+				InputProps: inputProps(adornments),
 				...MultilineProps,
 				...args,
 				onChange: (evt) => {

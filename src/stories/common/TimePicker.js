@@ -15,15 +15,12 @@ const TimePicker = (context) => {
 		onChange = (x) => x }	= context;
 	const initialTime = value ? dayjs(`1/1/2022 ${ value }`) : null;
 	const [time, setTime] = useState(initialTime);
-	const handleTime = (event) => {
-		setTime(event);
-	};
 
 	return <LocalizationProvider dateAdapter={ AdapterDayjs }>
 		<DesktopTimePicker
 			value={ time }
 			onChange={ (event) => {
-				handleTime(event);
+				setTime(event);
 				return onChange(transform(event));
 			} }
 			slotProps={ { textField: { variant: variant,
