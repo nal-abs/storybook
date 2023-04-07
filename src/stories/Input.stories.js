@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import Input from '../stories/common/Input';
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import PropTypes from 'prop-types';
 import { Switch as MuiSwitch } from '@mui/material';
 import * as React from 'react';
