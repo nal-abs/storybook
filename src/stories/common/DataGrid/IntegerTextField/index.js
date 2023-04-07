@@ -1,15 +1,14 @@
 import { useState, React } from 'react';
-import IntegerValidation from '../../../../services/DataGrid/IntegerValidation';
 import Input from '../../Input';
-import props from './Props';
+import integerInputProps from './integerInputProps';
 
 const IntegerTextField = (params) => {
 	const { value } = params;
 	const [integerValue, setValue]
-	= useState(IntegerValidation.initialValue(value));
+	= useState(parseInt(value, 10));
 
 	return (
-		<Input { ...props({ params, integerValue, setValue }) }/>
+		<Input { ...integerInputProps({ params, integerValue, setValue }) }/>
 	);
 };
 

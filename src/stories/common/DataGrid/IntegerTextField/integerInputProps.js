@@ -1,6 +1,6 @@
-import IntegerValidation from '../../../../services/DataGrid/IntegerValidation';
+import IntegerValidator from '../IntegerValidator';
 
-const props = ({ params, integerValue, setValue }) => {
+const integerInputProps = ({ params, integerValue, setValue }) => {
 	const { props: { data: schema }, field, row } = params;
 	const { maximum, minimum, multipleOf } = schema;
 
@@ -9,7 +9,7 @@ const props = ({ params, integerValue, setValue }) => {
 		type: 'number',
 		value: integerValue.toString(),
 		onChange: (event) => {
-			IntegerValidation.handleChange(
+			IntegerValidator.updateInteger(
 				setValue, event, schema, row, field
 			);
 		},
@@ -22,4 +22,4 @@ const props = ({ params, integerValue, setValue }) => {
 	};
 };
 
-export default props;
+export default integerInputProps;

@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 
-const validateInteger = (value, schema) => {
+const isInteger = (value, schema) => {
 	const ajv = new Ajv();
 	const validate = ajv.compile(schema);
 
@@ -9,4 +9,4 @@ const validateInteger = (value, schema) => {
 	return valid;
 };
 
-export default validateInteger;
+export default isInteger;
