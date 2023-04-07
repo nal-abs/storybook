@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
 import React from 'react';
-import Tab from '../stories/common/Tab';
+import Tab from './common/Tab/index';
 
 export default {
 	title: 'stories/Tab',

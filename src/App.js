@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { React } from 'react';
 import './App.scss';
-import Tab from '../src/stories/common/Tab';
+import Tab from '../src/stories/common/Tab/index';
 
 const App = (context) => <div className="App" role="App">
 	<Tab { ...{ ...context,
