@@ -8,22 +8,18 @@ const Icon = ({ startIcon, endIcon }) => {
 	const EndIcon = Icons[endIcon];
 
 	return {
-		startIcon: startIcon ? <StartIcon/> : '',
-		endIcon: endIcon ? <EndIcon/> : '',
+		startIcon: startIcon && <StartIcon/>,
+		endIcon: endIcon && <EndIcon/>,
 	};
 };
 
-const Button = (context) => {
-	const { children = 'Button', ...args } = context;
-
-	return (
-		<MuiButton
-			{ ...{ ...args, ...Icon(context) } }
-		>{children}</MuiButton>);
-};
+const Button = ({ children = 'Button', ...rest }) =>
+	<MuiButton { ...{ ...rest, ...Icon(rest) } }>
+		{children}
+	</MuiButton>;
 
 export default Button;
 
 Button.propTypes = {
-	context: PropTypes.object,
+	children: PropTypes.node.isRequired,
 };
