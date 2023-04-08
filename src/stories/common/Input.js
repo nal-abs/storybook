@@ -3,12 +3,6 @@ import * as React from 'react';
 import * as Icons from '@mui/icons-material';
 import { reduce } from '@laufire/utils/collection';
 
-const transform = (event) => ({
-	target: {
-		value: event.target.value,
-	},
-});
-
 const InputAdornment = (cur, key) => {
 	const { text, icon } = cur;
 	const Icon = Icons[icon];
@@ -44,7 +38,7 @@ const Input = (context) => {
 				...MultilineProps,
 				...args,
 				onChange: (evt) => {
-					onChange(transform(evt));
+					onChange(evt);
 				},
 			} }
 

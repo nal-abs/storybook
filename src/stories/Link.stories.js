@@ -6,10 +6,6 @@ export default {
 	title: 'Components/Link',
 	component: Link,
 	argTypes: {
-		children: {
-			control: 'text',
-			defaultValue: 'Example Link',
-		},
 		color: {
 			control: 'select',
 			options: [
@@ -20,25 +16,14 @@ export default {
 				'success',
 				'warning',
 			],
-			defaultValue: 'primary',
-		},
-		component: {
-			control: 'text',
-			defaultValue: 'a',
-		},
-		sx: {
-			control: 'object',
-			defaultValue: {},
 		},
 		underline: {
 			control: 'select',
 			options: ['always', 'hover', 'none'],
-			defaultValue: 'none',
 		},
 		target: {
 			control: 'select',
 			options: ['_blank', '_parent', '_self', '_top'],
-			defaultValue: '_blank',
 		},
 		variant: {
 			control: 'select',
@@ -58,7 +43,6 @@ export default {
 				'subtitle1',
 				'subtitle2',
 			],
-			defaultValue: 'body1',
 		},
 	},
 };
@@ -69,6 +53,9 @@ export const Default = Template.bind({});
 
 Default.args = {
 	href: 'https://mui.com/material-ui/react-link/',
+	children: 'hi',
+	component: '',
+	sx: {},
 };
 
 export const CustomLink = Template.bind({});

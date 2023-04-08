@@ -1,23 +1,15 @@
-import { map, omit } from '@laufire/utils/collection';
+import { map } from '@laufire/utils/collection';
 import { FormControl, FormHelperText, InputLabel,
-	MenuItem,
-	Select as MuiSelect } from '@mui/material';
-import * as React from 'react';
-
-const transform = (event) => ({
-	target: {
-		value: event.target.value,
-	},
-});
+	MenuItem, Select as MuiSelect } from '@mui/material';
+import { useState, React } from 'react';
 
 const MenuList = (options) =>
 	map(options, (option, index) =>
 		<MenuItem key={ index } value={ option }>{option}</MenuItem>);
 
 const DropDown = (context) => {
-	const { options, onChange = (x) => x, value, ...rest }
-	= omit(context, { something: 'helperText' });
-	const [state, setState] = React.useState(value);
+	const { options, onChange = (x) => x, value, ...rest } = context;
+	const [state, setState] = useState(value);
 
 	return (
 		<MuiSelect
@@ -25,19 +17,21 @@ const DropDown = (context) => {
 				value: state,
 				onChange: (evt) => {
 					setState(evt.target.value);
-					onChange(transform(evt));
+					onChange(evt);
 				},
 				...rest,
 			} }
-		>{MenuList(options)}</MuiSelect>);
+		>
+			{MenuList(options)}
+		</MuiSelect>);
 };
 
 const Select = (context) => {
-	const { helperText, label, sx, variant } = context;
+	const { helperText, label, sx, variant, ...rest } = context;
 
 	return <FormControl sx={ sx } variant={ variant }>
 		<InputLabel>{label}</InputLabel>
-		<DropDown { ...context }/>
+		<DropDown { ...rest }/>
 		<FormHelperText>{helperText}</FormHelperText>
 	</FormControl>;
 };
