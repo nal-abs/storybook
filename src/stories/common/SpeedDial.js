@@ -4,7 +4,6 @@ import { SpeedDial as MuiSpeedDial } from '@mui/material';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import * as Icons from '@mui/icons-material';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import { peek } from '@laufire/utils/debug';
 
 const itemIcon = (ele) => {
 	const Icon = Icons[ele.icon];
@@ -30,7 +29,7 @@ const MuiSpeedDialAction = ({ setValue, data, ...rest }) =>
 		/>);
 
 const SpeedDial = (args) => {
-	const { hidden, direction, icon, data, ...rest } = peek(args);
+	const { hidden, direction, icon, data, ...rest } = args;
 	const [value, setValue] = React.useState('');
 
 	return (

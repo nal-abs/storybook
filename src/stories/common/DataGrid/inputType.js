@@ -3,9 +3,9 @@ import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
-import dayjs from 'dayjs';
 import IntegerTextField from './IntegerTextField';
 import { pick } from '@laufire/utils/collection';
+import DateField from './DateField';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -40,12 +40,10 @@ const transformEvent = (params) => {
 };
 
 const inputType = {
-	date: ({ type, field }) => ({
-		type: type,
-		minWidth: 100,
-		valueGetter: ({ value }) => value && new Date(value),
-		valueSetter: (params) => ({ ...params.row,
-			[field]: dayjs(params.value).format('YYYY-MM-DD') }),
+	date: () => ({
+		minWidth: 200,
+		renderCell: (params) => <DateField { ...params }/>,
+		editable: false,
 	}),
 	actions: (props) => ({
 		type: props.type,
