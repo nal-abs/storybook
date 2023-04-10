@@ -1,6 +1,21 @@
-/* eslint-disable max-lines-per-function */
 import React from 'react';
 import DataGrid from '../stories/common/DataGrid/index';
+
+const actions = [
+	{
+		icon: 'Edit',
+		action: 'editRow',
+	},
+	{
+		icon: 'Delete',
+		action: 'deleteRow',
+	},
+];
+
+const style = {
+	width: '100%',
+	height: 300,
+};
 
 const Journal = (context) => {
 	const { data: { collection }, config, state } = context;
@@ -12,21 +27,9 @@ const Journal = (context) => {
 				width: 80,
 				editable: true,
 				data: config[collection],
-				actions: [
-					{
-						icon: 'Edit',
-						action: 'editRow',
-					},
-					{
-						icon: 'Delete',
-						action: 'deleteRow',
-					},
-				],
+				actions: actions,
 			},
-			style: {
-				width: '100%',
-				height: 300,
-			},
+			style: style,
 		} }
 		/>);
 };

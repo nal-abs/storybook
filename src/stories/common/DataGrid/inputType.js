@@ -88,8 +88,10 @@ const inputType = {
 		type: 'dateTime',
 		minWidth: 100,
 		valueGetter: ({ value }) => value && new Date(value),
-		valueSetter: (params) => ({ ...params.row,
-			[field]: params.value.toJSON() }),
+		valueSetter: (params) => ({
+			...params.row,
+			[field]: params.value.toJSON(),
+		}),
 	}),
 	time: () => ({
 		minWidth: 150,

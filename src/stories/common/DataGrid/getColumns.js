@@ -6,7 +6,7 @@ const singleSelect = (ele) => ele.enum && {
 	valueOptions: ele.enum,
 };
 
-const Format = {
+const formatList = {
 	'date-time': 'dateTime',
 	'date': 'date',
 	'time': 'time',
@@ -17,7 +17,7 @@ const getColumns = (props) => {
 
 	return values(map(data.properties, (ele, key) => {
 		const { format, type } = ele;
-		const parameter = Format[format] || type;
+		const parameter = formatList[format] || type;
 
 		return {
 			...ele,

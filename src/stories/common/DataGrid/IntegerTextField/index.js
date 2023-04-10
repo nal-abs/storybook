@@ -1,27 +1,29 @@
 import { useState, React } from 'react';
 import Input from '../../Input';
 import transformSchema from './transformSchema';
-import isInteger from '../isInteger';
+import Ajv from 'ajv';
 
-const updateInteger = ({ setValue, event, params }) => {
-	const { row, field, props: { data: schema }} = params;
-	const { target: { value }} = event;
-	const number = value === '' ? value : Number(value);
+const isInteger = (value, schema) => {
+	const ajv = new Ajv();
+	const validate = ajv.compile(schema);
 
-	setValue((prev) => {
-		const validInteger = isInteger(number, schema) || !value
-			? number
-			: prev;
+	const valid = validate(value);
 
-		row[field] = validInteger;
-		return validInteger;
-	});
+	return valid;
 };
 
-const IntegerTextField = (params) => {
-	const { props: { data: schema }, value } = params;
-	const [integerValue, setValue]
-	= useState(parseInt(value, 10));
+const getValidInteger = ({ event: { target: { value }}, schema, prev }) => {
+	const convertedValue = value === '' ? value : Number(value);
+
+	const validInteger = isInteger(convertedValue, schema) || !value
+		? convertedValue
+		: prev;
+
+	return validInteger;
+};
+
+const IntegerTextField = ({ props: { data: schema }, value, row, field }) => {
+	const [integerValue, setIntegerValue]	= useState(parseInt(value, 10));
 
 	return (
 		<Input { ...{
@@ -29,7 +31,12 @@ const IntegerTextField = (params) => {
 			type: 'number',
 			value: integerValue.toString(),
 			onChange: (event) => {
-				updateInteger({ setValue, event, params });
+				setIntegerValue((prev) => {
+					const newValue = getValidInteger({ event, schema, prev });
+
+					row[field] = newValue;
+					return newValue;
+				});
 			},
 			InputProps: { disableUnderline: true },
 			inputProps: transformSchema(schema),
