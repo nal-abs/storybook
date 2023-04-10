@@ -40,9 +40,9 @@ const transformEvent = (params) => {
 };
 
 const inputType = {
-	date: () => ({
+	date: (props) => ({
 		minWidth: 200,
-		renderCell: (params) => <DateField { ...params }/>,
+		renderCell: (params) => <DateField { ...{ ...params, props } }/>,
 		editable: false,
 	}),
 	actions: (props) => ({
