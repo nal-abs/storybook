@@ -13,7 +13,6 @@ const transform = (event) => ({
 const DatePicker = (context) => {
 	const { value, onChange = (x) => x,
 		data: { formatMaximum, formatMinimum }}	= context;
-
 	const [date, setDate] = useState(value);
 
 	return <LocalizationProvider dateAdapter={ AdapterDayjs }>
@@ -26,6 +25,7 @@ const DatePicker = (context) => {
 				setDate(event);
 				return onChange(transform(event));
 			} }
+			sx={ { '& fieldset': { border: 'none' }} }
 		/>
 	</LocalizationProvider>;
 };
