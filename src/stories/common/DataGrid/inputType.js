@@ -6,7 +6,6 @@ import MultiSelect from './MultiSelect';
 import IntegerTextField from './IntegerTextField';
 import { pick } from '@laufire/utils/collection';
 import DateTextField from './DateTextField';
-import { peek } from '@laufire/utils/debug';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -62,7 +61,7 @@ const inputType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							peek(onChange(transformEvent(params)));
+							onChange(transformEvent(params));
 						} }
 					/>);
 			});

@@ -1,8 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-lines-per-function */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable no-console */
-import { peek } from '@laufire/utils/debug';
 import { TextField } from '@mui/material';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
@@ -19,25 +14,24 @@ const isDateValid = (value, schema) => {
 
 	return valid;
 };
+const limits = ({ formatMinimum, formatMaximum }) => ({
+	min: formatMinimum,
+	max: formatMaximum,
+});
+const error = (date, data) => (isDateValid(date, data)
+	? { helperText: ' ' }
+	: { error: true,
+		helperText: 'Incorrect entry!' });
 
 const DateTextField = (context) => {
-	const { params: { value, row, field }, data,
-		data: { formatMaximum, formatMinimum }} = context;
+	const { params: { value, row, field }, data } = context;
 
 	const [date, setDate] = useState(dayjs(value).format('YYYY-MM-DD'));
-
-	const error = isDateValid(date, data)
-		? { helperText: ' ' }
-		: { error: true,
-			helperText: 'Incorrect entry!' };
 
 	return (
 		<TextField { ...{
 			type: 'date',
-			inputProps: {
-				min: formatMinimum,
-				max: formatMaximum,
-			},
+			inputProps: limits(data),
 			onChange: (evt) => {
 				row[field] = evt.target.value;
 				setDate(evt.target.value);
@@ -45,7 +39,7 @@ const DateTextField = (context) => {
 			variant: 'standard',
 			value: date,
 			InputProps: { disableUnderline: true },
-			...error,
+			...error(date, data),
 		} }
 		/>);
 };
