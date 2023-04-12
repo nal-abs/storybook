@@ -5,7 +5,8 @@ import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
 import IntegerTextField from './IntegerTextField';
 import { pick } from '@laufire/utils/collection';
-import DateField from './DateField';
+import DateTextField from './DateTextField';
+import { peek } from '@laufire/utils/debug';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -42,7 +43,7 @@ const transformEvent = (params) => {
 const inputType = {
 	date: (props) => ({
 		minWidth: 200,
-		renderCell: (params) => <DateField { ...{ ...params, props } }/>,
+		renderCell: (params) => <DateTextField { ...{ params, ...props } }/>,
 		editable: false,
 	}),
 	actions: (props) => ({
@@ -61,7 +62,7 @@ const inputType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							onChange(transformEvent(params));
+							peek(onChange(transformEvent(params)));
 						} }
 					/>);
 			});
