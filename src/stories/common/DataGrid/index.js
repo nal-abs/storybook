@@ -13,6 +13,7 @@ const DataGrid = ({ value, columns, style, onChange = (x) => x }) => {
 				columns, rows, setRows, onChange,
 			}}) }
 			hideFooterPagination={ true }
+			rowHeight={ 80 }
 		/>
 	</div>;
 };

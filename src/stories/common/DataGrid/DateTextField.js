@@ -18,10 +18,9 @@ const limits = ({ formatMinimum, formatMaximum }) => ({
 	min: formatMinimum,
 	max: formatMaximum,
 });
-const error = (date, data) => (isDateValid(date, data)
-	? { helperText: ' ' }
-	: { error: true,
-		helperText: 'Incorrect entry!' });
+const error = (date, data) => !isDateValid(date, data)
+	&& { error: true,
+		helperText: 'Incorrect entry!' };
 
 const DateTextField = (context) => {
 	const { params: { value, row, field }, data } = context;

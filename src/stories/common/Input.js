@@ -24,11 +24,9 @@ const inputProps = (adornments) => reduce(
 );
 
 const Input = (context) => {
-	const {
-		adornments = {}, multiline, onChange = (x) => x,
-		...args
-	} = context;
-
+	const { adornments = {}, multiline, onChange = (x) => x, value,
+		...args } = context;
+	const [number, setNumber] = React.useState(value);
 	const MultilineProps = multiline && { ...multiline, multiline: true };
 
 	return (
@@ -37,11 +35,12 @@ const Input = (context) => {
 				InputProps: inputProps(adornments),
 				...MultilineProps,
 				...args,
+				value: number,
 				onChange: (evt) => {
 					onChange(evt);
+					setNumber(evt.target.value);
 				},
 			} }
-
 		/>);
 };
 

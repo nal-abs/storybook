@@ -30,6 +30,9 @@ const config = {
 			amount: {
 				type: 'number',
 				title: 'Amount',
+				minimum: 0,
+				maximum: 10,
+				multipleOf: 0.2,
 			},
 			document: {
 				type: 'string',
