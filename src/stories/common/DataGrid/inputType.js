@@ -3,9 +3,10 @@ import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
-import IntegerTextField from './IntegerTextField';
 import { pick } from '@laufire/utils/collection';
 import DateTextField from './DateTextField';
+import NumberTextField from './NumberTextField';
+import IntegerTextField from './IntegerTextField/index';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -102,6 +103,12 @@ const inputType = {
 			<IntegerTextField
 				{ ...{ ...params, props } }
 			/>,
+		editable: false,
+	}),
+	number: (props) => ({
+		type: 'number',
+		width: 150,
+		renderCell: (params) => <NumberTextField { ...{ ...params, props } }/>,
 		editable: false,
 	}),
 };
