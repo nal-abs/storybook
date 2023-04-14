@@ -28,6 +28,7 @@ const Input = (context) => {
 		...args } = context;
 	const [number, setNumber] = React.useState(value);
 	const MultilineProps = multiline && { ...multiline, multiline: true };
+	const state = number === '' ? number : Number(number).toString();
 
 	return (
 		<TextField
@@ -35,7 +36,7 @@ const Input = (context) => {
 				InputProps: inputProps(adornments),
 				...MultilineProps,
 				...args,
-				value: number,
+				value: state,
 				onChange: (evt) => {
 					onChange(evt);
 					setNumber(evt.target.value);

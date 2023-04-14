@@ -16,10 +16,12 @@ const NumberTextField = (context) => {
 			type: 'number',
 			value: numberValue,
 			onChange: ({ target: { value: number }}) => {
-				setClassName(numberValidator(schema, number));
+				const convertedNumber = Number(number);
+
+				setClassName(numberValidator(schema, convertedNumber));
 				return setValue((prev) => {
-					const newValue = numberValidator(schema, number)
-						? number
+					const newValue = numberValidator(schema, convertedNumber)
+						? convertedNumber
 						: prev;
 
 					row[field] = newValue;

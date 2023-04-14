@@ -5,22 +5,17 @@ import transformSchema from './transformSchema';
 import Ajv from 'ajv';
 
 const isInteger = (value, schema) => {
-	const convertedValue = value === '' ? value : Number(value);
 	const ajv = new Ajv();
 	const validate = ajv.compile(schema);
 
-	const valid = validate(convertedValue);
+	const valid = validate(value);
 
 	return valid;
 };
 
-const errorMessage = (error) => !error
-	&& { error: true,
-		helperText: 'Incorrect entry!' };
-
-const getValidInteger = ({ event: { target: { value }}, schema, prev }) => {
-	const validInteger = isInteger(value, schema) || !value
-		? value
+const getValidInteger = ({ convertedValue, schema, prev }) => {
+	const validInteger = isInteger(convertedValue, schema) || !convertedValue
+		? convertedValue
 		: prev;
 
 	return validInteger;
@@ -28,17 +23,21 @@ const getValidInteger = ({ event: { target: { value }}, schema, prev }) => {
 
 const IntegerTextField = ({ props: { data: schema }, value, row, field }) => {
 	const [integerValue, setIntegerValue]	= useState(value);
-	const [error, setError] = useState(isInteger(value, schema));
+	const [className, setClassName] = useState(isInteger(value, schema));
 
 	return (
 		<Input { ...{
+			className: className ? '' : 'error',
 			variant: 'standard',
 			type: 'number',
-			value: integerValue.toString(),
+			value: integerValue,
 			onChange: (event) => {
-				setError(isInteger(value, schema));
+				const convertedValue = Number(event.target.value);
+
+				setClassName(isInteger(convertedValue, schema));
 				setIntegerValue((prev) => {
-					const newValue = getValidInteger({ event, schema, prev });
+					const newValue = getValidInteger({ convertedValue,
+						schema, prev });
 
 					row[field] = newValue;
 					return newValue;
@@ -46,7 +45,6 @@ const IntegerTextField = ({ props: { data: schema }, value, row, field }) => {
 			},
 			InputProps: { disableUnderline: true },
 			inputProps: transformSchema(schema),
-			...errorMessage(error),
 		} }
 		/>
 	);

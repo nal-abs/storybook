@@ -48,10 +48,6 @@ validator.addKeyword({
 	validate: multipleValidator,
 });
 
-const numberValidator = (schema, value) => {
-	const newValue = Number(value);
-
-	return validator.validate(schema, newValue);
-};
+const numberValidator = (schema, value) => validator.validate(schema, value);
 
 export default numberValidator;
