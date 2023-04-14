@@ -7,6 +7,7 @@ import { pick } from '@laufire/utils/collection';
 import DateTextField from './DateTextField';
 import NumberTextField from './NumberTextField';
 import IntegerTextField from './IntegerTextField/index';
+import numberValidator from './numberValidator';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -105,12 +106,19 @@ const inputType = {
 			/>,
 		editable: false,
 	}),
-	number: (props) => ({
-		type: 'number',
-		width: 150,
-		renderCell: (params) => <NumberTextField { ...{ ...params, props } }/>,
-		editable: false,
-	}),
+	number: (props) => {
+		const { data } = props;
+
+		return {
+			type: 'number',
+			width: 150,
+			renderCell: (params) =>
+				<NumberTextField { ...{ ...params, props } }/>,
+			editable: false,
+			cellClassName: (params) =>
+				!numberValidator(data, params.value) && 'error',
+		};
+	},
 };
 
 export default inputType;
