@@ -9,11 +9,7 @@ const DataGrid = ({ value, columns, style, onChange = (x) => x }) => {
 
 	return (
 		<Box
-			sx={ { ...style,
-				'& .error': {
-					backgroundColor: '#BC544B',
-					color: '#1a3e72',
-				}} }
+			sx={ { ...style } }
 		>
 			<MuxDataGrid
 				rows={ rows }
