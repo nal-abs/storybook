@@ -10,39 +10,24 @@ export default {
 	component: VideoPlayer,
 };
 
-const Template = (args) => <VideoPlayer { ...args }/>;
+const Template = ({ ...value }) =>
+	<VideoPlayer { ... value }/>;
 
 export const videoPlayer = Template.bind({});
 
 videoPlayer.args = {
 	url: url,
-	pip: false,
+	status: undefined,
 	playing: false,
 	loop: false,
 	controls: true,
 	light: false,
 	volume: 0,
 	muted: false,
+	pip: false,
+	played: 0,
+	loaded: 0,
+	duration: 0,
 	playbackRate: 1.0,
-	value: {
-		url: url,
-		pip: false,
-		ready: '',
-		start: '',
-		playing: true,
-		controls: false,
-		light: false,
-		volume: 0.8,
-		muted: false,
-		progress: {
-			played: 0,
-			loaded: 0,
-			playedSeconds: 0,
-			loadedSeconds: 0,
-		},
-		duration: 0,
-		playbackRate: 1.0,
-		loop: false,
-	},
 	onChange: ({ target }) => console.log(target.value),
 };
