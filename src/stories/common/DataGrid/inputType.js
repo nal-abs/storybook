@@ -5,8 +5,9 @@ import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
 import DateTextField from './DateTextField';
-import NumberTextField from './NumberTextField';
-import IntegerTextField from './IntegerTextField/index';
+import validateInteger from './TextField/validateInteger';
+import validateNumber from './TextField/validateNumber';
+import TextField from './TextField';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -19,6 +20,11 @@ const dataFormatter = {
 			enum: pick(array, 'title'),
 		};
 	},
+};
+
+const validate = {
+	integer: validateInteger,
+	number: validateNumber,
 };
 
 const Actions = {
@@ -97,21 +103,33 @@ const inputType = {
 		renderCell: (params) => <TimeField { ...params }/>,
 		editable: false,
 	}),
-	integer: (props) => ({
-		type: 'number',
-		renderCell: (params) =>
-			<IntegerTextField
-				{ ...{ ...params, props } }
-			/>,
-		editable: false,
-	}),
-	number: (props) => ({
-		type: 'number',
-		width: 150,
-		renderCell: (params) =>
-			<NumberTextField { ...{ ...params, props } }/>,
-		editable: false,
-	}),
+	integer: (props) => {
+		const { type, data } = props;
+
+		return {
+			type: 'number',
+			renderCell: (params) =>
+				<TextField
+					{ ...{ ...params, schema: data,
+						validate: validate[type] } }
+				/>,
+			editable: false,
+		};
+	},
+	number: (props) => {
+		const { type, data } = props;
+
+		return {
+			type: 'number',
+			width: 150,
+			renderCell: (params) =>
+				<TextField { ...{ ...params,
+					schema: data,
+					validate: validate[type] } }
+				/>,
+			editable: false,
+		};
+	},
 };
 
 export default inputType;

@@ -1,14 +1,13 @@
 /* eslint-disable max-lines-per-function */
 import { useState, React } from 'react';
-import Input from '../Input';
-import transformSchema from './IntegerTextField/transformSchema';
-import validateNumber from './validateNumber';
+import transformSchema from './transformSchema';
+import Input from '../../Input';
 
-const NumberTextField = (context) => {
-	const { props: { data: schema }, value: initialValue,
-		row, field } = context;
+const TextField = (context) => {
+	const { schema, value: initialValue,
+		row, field, validate } = context;
 	const [state, setState]	= useState(initialValue);
-	const [status, setStatus] = useState(validateNumber(schema, initialValue));
+	const [status, setStatus] = useState(validate(schema, initialValue));
 
 	return (
 		<Input { ...{
@@ -19,9 +18,9 @@ const NumberTextField = (context) => {
 			onChange: ({ target: { value }}) => {
 				const number = Number(value);
 
-				setStatus(validateNumber(schema, number));
+				setStatus(validate(schema, number));
 				return setState((prev) => {
-					const newValue = validateNumber(schema, number)
+					const newValue = validate(schema, number)
 						? number
 						: prev;
 
@@ -35,4 +34,4 @@ const NumberTextField = (context) => {
 	);
 };
 
-export default NumberTextField;
+export default TextField;
