@@ -2,30 +2,30 @@
 import { useState, React } from 'react';
 import Input from '../Input';
 import transformSchema from './IntegerTextField/transformSchema';
-import numberValidator from './numberValidator';
+import validateNumber from './validateNumber';
 
 const NumberTextField = (context) => {
-	const { props: { data: schema }, value, row, field } = context;
-	const [numberValue, setValue]	= useState(value);
-	const [className, setClassName] = useState(numberValidator(schema, value));
+	const { props: { data: schema }, value: initialValue,
+		row, field } = context;
+	const [state, setState]	= useState(initialValue);
+	const [status, setStatus] = useState(validateNumber(schema, initialValue));
 
 	return (
 		<Input { ...{
-			className: className ? '' : 'error',
+			className: status ? '' : 'error',
 			variant: 'standard',
 			type: 'number',
-			value: numberValue,
-			onChange: ({ target: { value: number }}) => {
-				const convertedNumber = Number(number);
+			value: state,
+			onChange: ({ target: { value }}) => {
+				const number = Number(value);
 
-				setClassName(numberValidator(schema, convertedNumber));
-				return setValue((prev) => {
-					const newValue = numberValidator(schema, convertedNumber)
-						? convertedNumber
+				setStatus(validateNumber(schema, number));
+				return setState((prev) => {
+					const newValue = validateNumber(schema, number)
+						? number
 						: prev;
 
 					row[field] = newValue;
-					return newValue;
 				});
 			},
 			InputProps: { disableUnderline: true },

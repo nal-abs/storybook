@@ -24,22 +24,22 @@ const inputProps = (adornments) => reduce(
 );
 
 const Input = (context) => {
-	const { adornments = {}, multiline, onChange = (x) => x, value,
-		...args } = context;
-	const [number, setNumber] = React.useState(value);
+	const { adornments = {}, multiline, onChange = (x) => x, type: fieldType,
+		value: initialValue, ...args } = context;
+	const [state, setState] = React.useState(initialValue);
 	const MultilineProps = multiline && { ...multiline, multiline: true };
-	const state = number === '' ? number : Number(number).toString();
 
 	return (
 		<TextField
 			{ ...{
+				type: fieldType,
 				InputProps: inputProps(adornments),
 				...MultilineProps,
 				...args,
 				value: state,
 				onChange: (evt) => {
 					onChange(evt);
-					setNumber(evt.target.value);
+					setState(evt.target.value);
 				},
 			} }
 		/>);

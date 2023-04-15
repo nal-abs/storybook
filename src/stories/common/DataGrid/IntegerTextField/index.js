@@ -2,42 +2,27 @@
 import { useState, React } from 'react';
 import Input from '../../Input';
 import transformSchema from './transformSchema';
-import Ajv from 'ajv';
+import validateInteger from '../validateInteger';
 
-const isInteger = (value, schema) => {
-	const ajv = new Ajv();
-	const validate = ajv.compile(schema);
-
-	const valid = validate(value);
-
-	return valid;
-};
-
-const getValidInteger = ({ convertedValue, schema, prev }) => {
-	const validInteger = isInteger(convertedValue, schema) || !convertedValue
-		? convertedValue
-		: prev;
-
-	return validInteger;
-};
-
-const IntegerTextField = ({ props: { data: schema }, value, row, field }) => {
-	const [integerValue, setIntegerValue]	= useState(value);
-	const [className, setClassName] = useState(isInteger(value, schema));
+const IntegerTextField = ({ props: { data: schema },
+	value: initialValue, row, field }) => {
+	const [state, setState]	= useState(initialValue);
+	const [status, setStatus] = useState(validateInteger(initialValue, schema));
 
 	return (
 		<Input { ...{
-			className: className ? '' : 'error',
+			className: status ? '' : 'error',
 			variant: 'standard',
 			type: 'number',
-			value: integerValue,
+			value: state,
 			onChange: (event) => {
-				const convertedValue = Number(event.target.value);
+				const number = Number(event.target.value);
 
-				setClassName(isInteger(convertedValue, schema));
-				setIntegerValue((prev) => {
-					const newValue = getValidInteger({ convertedValue,
-						schema, prev });
+				setStatus(validateInteger(number, schema));
+				setState((prev) => {
+					const newValue = validateInteger(number, schema)
+						? number
+						: prev;
 
 					row[field] = newValue;
 					return newValue;
