@@ -4,8 +4,7 @@ import transformSchema from './transformSchema';
 import Input from '../../Input';
 
 const TextField = (context) => {
-	const { schema, value: initialValue,
-		row, field, validate } = context;
+	const { schema, value: initialValue, row, field, validate } = context;
 	const [state, setState]	= useState(initialValue);
 	const [status, setStatus] = useState(validate(schema, initialValue));
 
@@ -19,12 +18,9 @@ const TextField = (context) => {
 				const number = Number(value);
 
 				setStatus(validate(schema, number));
-				return setState((prev) => {
-					const newValue = validate(schema, number)
-						? number
-						: prev;
-
-					row[field] = newValue;
+				validate(schema, number) && setState(() => {
+					row[field] = number;
+					return number;
 				});
 			},
 			InputProps: { disableUnderline: true },

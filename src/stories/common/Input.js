@@ -24,7 +24,7 @@ const inputProps = (adornments) => reduce(
 );
 
 const Input = (context) => {
-	const { adornments = {}, multiline, onChange = (x) => x, type: fieldType,
+	const { adornments = {}, multiline, onChange = (x) => x,
 		value: initialValue, ...args } = context;
 	const [state, setState] = React.useState(initialValue);
 	const MultilineProps = multiline && { ...multiline, multiline: true };
@@ -32,7 +32,6 @@ const Input = (context) => {
 	return (
 		<TextField
 			{ ...{
-				type: fieldType,
 				InputProps: inputProps(adornments),
 				...MultilineProps,
 				...args,
