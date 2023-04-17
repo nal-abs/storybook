@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import Ajv from 'ajv';
 
 const validator = new Ajv();
@@ -6,40 +5,35 @@ const validator = new Ajv();
 const ten = 10;
 const decimalLength = 2;
 
-const getFractionPoint = (number) => {
-	let fractionPoints = 0;
-	let num = number;
+const decimal = (number) => {
+	const decimalParts = number.toString().split('.');
 
-	if(isNaN(num))
-		return fractionPoints;
-
-	if(typeof num !== 'number')
-		num = Number(num);
-
-	const decimalParts = num.toString().split('.');
-
-	if(decimalParts.length === decimalLength)
-		fractionPoints += decimalParts[1].length;
-
-	return fractionPoints;
+	return decimalParts.length === decimalLength
+		? decimalParts[1].length
+		: 0;
 };
 
-const multipleValidator = (schemaNum, testNum) => {
-	if(schemaNum === 0 || !(typeof testNum === 'number' && isFinite(testNum)))
-		return false;
+const getFractionPoint = (number) =>
+	(isNaN(number) ? 0 : decimal(number));
 
+const hasReminder = (schemaNum, testNum) => {
 	const testNumDecimals = getFractionPoint(testNum);
 	const schemaNumDecimals = getFractionPoint(schemaNum);
 
 	const maxDecimalNum = Math.max(testNumDecimals, schemaNumDecimals);
 	const multiplier = Math.pow(ten, maxDecimalNum);
 
-	if(Math.round(testNum * multiplier)
-	% Math.round(schemaNum * multiplier) !== 0)
-		return false;
-
-	return true;
+	return Math.round(testNum * multiplier)
+% Math.round(schemaNum * multiplier) !== 0;
 };
+
+const isTypeNumber = (schemaNum, testNum) => schemaNum === 0
+|| !(typeof testNum === 'number' && isFinite(testNum));
+
+const multipleValidator = (schemaNum, testNum) =>
+	(isTypeNumber(schemaNum, testNum)
+		? false
+		: !hasReminder(schemaNum, testNum));
 
 validator.removeKeyword('multipleOf');
 validator.addKeyword({
