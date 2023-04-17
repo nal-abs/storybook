@@ -4,10 +4,11 @@ import { GridActionsCellItem } from '@mui/x-data-grid';
 import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
-import DateTextField from './DateTextField';
 import validateInteger from './TextField/validateInteger';
 import validateNumber from './TextField/validateNumber';
 import TextField from './TextField';
+import DateField from './DateField';
+import { peek } from '@laufire/utils/debug';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -49,7 +50,7 @@ const transformEvent = (params) => {
 const inputType = {
 	date: (props) => ({
 		minWidth: 200,
-		renderCell: (params) => <DateTextField { ...{ params, ...props } }/>,
+		renderCell: (params) => <DateField { ...{ params, props } }/>,
 		editable: false,
 	}),
 	actions: (props) => ({
@@ -68,7 +69,7 @@ const inputType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							onChange(transformEvent(params));
+							peek(onChange(transformEvent(params)));
 						} }
 					/>);
 			});

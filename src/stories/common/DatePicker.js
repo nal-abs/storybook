@@ -6,13 +6,13 @@ import dayjs from 'dayjs';
 
 const transform = (event) => ({
 	target: {
-		value: event.$d.toDateString(),
+		value: event,
 	},
 });
 
 const DatePicker = (context) => {
 	const { value, onChange = (x) => x,
-		data: { formatMaximum, formatMinimum }}	= context;
+		data: { formatMaximum, formatMinimum }, ...rest }	= context;
 	const [date, setDate] = useState(value);
 
 	return <LocalizationProvider dateAdapter={ AdapterDayjs }>
@@ -26,6 +26,7 @@ const DatePicker = (context) => {
 				return onChange(transform(event));
 			} }
 			sx={ { '& fieldset': { border: 'none' }} }
+			{ ...rest }
 		/>
 	</LocalizationProvider>;
 };
