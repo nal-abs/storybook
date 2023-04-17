@@ -24,8 +24,7 @@ const updateRow = (newValue, { row, field }) => {
 };
 
 const DateField = (context) => {
-	const { params: { value }, params,
-		props: { data }} = context;
+	const { params: { value }, params, props: { data }} = context;
 	const [date, setDate] = useState({ date: dayjs(value),
 		isValid: isDateValid(dayjs(value), data) });
 

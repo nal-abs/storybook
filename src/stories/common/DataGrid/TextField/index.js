@@ -1,29 +1,35 @@
-/* eslint-disable max-lines-per-function */
 import { useState, React } from 'react';
 import transformSchema from './transformSchema';
 import Input from '../../Input';
 
+const updateRow = (value, { row, field }) => {
+	row[field] = value;
+	return { value };
+};
+
+const props = {
+	variant: 'standard',
+	type: 'number',
+	InputProps: { disableUnderline: true },
+};
+
 const TextField = (context) => {
-	const { schema, value: initialValue, row, field, validate } = context;
-	const [state, setState]	= useState(initialValue);
-	const [status, setStatus] = useState(validate(schema, initialValue));
+	const { schema, value: initialValue, validate } = context;
+	const [state, setState]	= useState({ value: initialValue,
+		isValid: validate(schema, initialValue) });
 
 	return (
 		<Input { ...{
-			className: status ? '' : 'error',
-			variant: 'standard',
-			type: 'number',
-			value: state,
+			className: state.isValid ? '' : 'error',
+			...props,
+			value: state.value,
 			onChange: ({ target: { value }}) => {
 				const number = Number(value);
+				const isValid = validate(schema, number);
 
-				setStatus(validate(schema, number));
-				validate(schema, number) && setState(() => {
-					row[field] = number;
-					return number;
-				});
+				setState({ ...state, isValid,
+					...isValid && updateRow(number, context) });
 			},
-			InputProps: { disableUnderline: true },
 			inputProps: transformSchema(schema),
 		} }
 		/>

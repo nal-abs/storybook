@@ -8,7 +8,6 @@ import validateInteger from './TextField/validateInteger';
 import validateNumber from './TextField/validateNumber';
 import TextField from './TextField';
 import DateField from './DateField';
-import { peek } from '@laufire/utils/debug';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -69,7 +68,7 @@ const inputType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							peek(onChange(transformEvent(params)));
+							onChange(transformEvent(params));
 						} }
 					/>);
 			});
