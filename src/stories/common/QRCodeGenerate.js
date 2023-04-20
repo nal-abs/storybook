@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
 
-const GenerateQRCode = (args) => {
+const QRCodeGenerate = (args) => {
 	const [qrCode, setQRCode] = useState('');
 	const [error, setError] = useState('');
 
@@ -24,4 +24,4 @@ const GenerateQRCode = (args) => {
 	);
 };
 
-export default GenerateQRCode;
+export default QRCodeGenerate;

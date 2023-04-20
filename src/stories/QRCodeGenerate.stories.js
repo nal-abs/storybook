@@ -1,9 +1,9 @@
 import React from 'react';
-import GenerateQRCode from './common/GenerateQRCode';
+import QRCodeGenerate from './common/QRCodeGenerate';
 
 export default {
 	title: 'Components/QRCode',
-	component: GenerateQRCode,
+	component: QRCodeGenerate,
 	argTypes: {
 		text: {
 			type: 'string',
@@ -34,7 +34,7 @@ export default {
 };
 
 const Template = ({ text, dark, light, ...options }) =>
-	<GenerateQRCode { ...{
+	<QRCodeGenerate { ...{
 		text: text, options: { ...options, color: { dark, light }},
 	} }
 	/>;

@@ -1,9 +1,9 @@
 import React from 'react';
-import ScanQRCode from './common/ScanQRCode';
+import QRCodeScan from './common/QRCodeScan';
 
 export default {
 	title: 'Components/QRCode',
-	component: ScanQRCode,
+	component: QRCodeScan,
 	argTypes: {
 		facingMode: {
 			type: 'select',
@@ -13,7 +13,7 @@ export default {
 };
 
 const Template = ({ facingMode, ...args }) =>
-	<ScanQRCode { ...{ ...args, constraints: { facingMode }} }/>;
+	<QRCodeScan { ...{ ...args, constraints: { facingMode }} }/>;
 
 export const ScanQR = Template.bind({});
 

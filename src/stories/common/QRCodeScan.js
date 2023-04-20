@@ -7,7 +7,7 @@ const setResult = (result, error) => ({
 	qrData: result?.text || error?.message,
 });
 
-const ScanQRCode = (args) => {
+const QRCodeScan = (args) => {
 	const [{ qrData, isScanning }, setQrData] = useState({
 		qrData: '', isScanning: false,
 	});
@@ -30,4 +30,4 @@ const ScanQRCode = (args) => {
 		</div>);
 };
 
-export default ScanQRCode;
+export default QRCodeScan;
