@@ -2,30 +2,46 @@ import React, { useState } from 'react';
 import Button from './Button';
 import { QrReader } from 'react-qr-reader';
 
-const setResult = (result, error) => ({
-	inScanning: false,
-	qrData: result?.text || error?.message,
-});
+const ScanQRButton = ({ setState, state: { isScanning }, onChange }) =>
+	<Button { ...{
+		onClick: () => {
+			onChange({ target: { value: '' }});
+			setState({ data: '', isScanning: !isScanning });
+		},
+	} }
+	>
+		{isScanning ? 'stop scan' : 'start scan'}
+	</Button>;
 
-const QRCodeScan = (args) => {
-	const [{ qrData, isScanning }, setQrData] = useState({
-		qrData: '', isScanning: false,
+const ScanQrReader = ({ setState, onChange, ...args }) => {
+	const getResult = (result, error) => ({
+		inScanning: false,
+		qrData: result?.text || error?.message,
 	});
 
 	return (
-		<div>
-			<Button { ...{
-				onClick: () => {
-					setQrData({ data: '', isScanning: !isScanning });
-				},
+		<QrReader
+			{ ...{ ...args } }
+			onResult={ (...data) => {
+				const result = getResult(...data);
+
+				onChange({ target: { value: result }});
+				setState(result);
 			} }
-			>{ isScanning ? 'stop scan' : 'start scan' }</Button>
-			{ isScanning
-				&& <QrReader
-					{ ...{ ...args } }
-					onResult={ (...data) => setQrData(setResult(...data)) }
-				// eslint-disable-next-line no-mixed-spaces-and-tabs
-				   />}
+		/>);
+};
+
+const QRCodeScan = (args) => {
+	const [state, setState] = useState({
+		qrData: '', isScanning: false,
+	});
+	const { isScanning, qrData } = state;
+	const context = { ...args, setState, state };
+
+	return (
+		<div>
+			<ScanQRButton { ...{ ...context } }/>
+			{ isScanning && <ScanQrReader { ...{ ...context } }/>}
 			<div>{ qrData }</div>
 		</div>);
 };
