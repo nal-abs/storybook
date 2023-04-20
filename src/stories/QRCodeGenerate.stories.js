@@ -1,5 +1,6 @@
 import React from 'react';
 import QRCodeGenerate from './common/QRCodeGenerate';
+import { peek } from '@laufire/utils/debug';
 
 export default {
 	title: 'Components/QRCode',
@@ -33,9 +34,10 @@ export default {
 	},
 };
 
-const Template = ({ text, dark, light, ...options }) =>
+const Template = ({ dark, light, onChange, ...value }) =>
 	<QRCodeGenerate { ...{
-		text: text, options: { ...options, color: { dark, light }},
+		value: { ...value, color: { dark, light }},
+		onChange: onChange,
 	} }
 	/>;
 
@@ -46,4 +48,5 @@ GenerateQR.args = {
 	errorCorrectionLevel: 'M',
 	margin: 8,
 	scale: 6,
+	onChange: (evt) => peek(evt),
 };
