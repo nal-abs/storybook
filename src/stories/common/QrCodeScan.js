@@ -18,8 +18,9 @@ const ScanQRButton = ({ setState, state, onChange }) =>
 		{state.isScanning ? 'stop scan' : 'start scan'}
 	</Button>;
 
-const ScanQrReader = ({ setState, onChange, ...args }) => {
+const ScanQrReader = ({ setState, state, onChange, ...args }) => {
 	const getResult = (result, error) => ({
+		...state,
 		...result && { isScanning: false, data: result },
 		error,
 	});
