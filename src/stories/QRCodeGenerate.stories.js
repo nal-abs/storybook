@@ -1,52 +1,54 @@
 import React from 'react';
-import QRCodeGenerate from './common/QRCodeGenerate';
+import QRCodeGenerator from './common/QRCodeGenerate';
 import { peek } from '@laufire/utils/debug';
 
 export default {
 	title: 'Components/QRCode',
-	component: QRCodeGenerate,
+	component: QRCodeGenerator,
 	argTypes: {
-		text: {
+		value: {
 			type: 'string',
 		},
-		version: {
+		style: {
+			type: 'object',
+		},
+		size: {
 			type: 'number',
 		},
-		margin: {
-			type: 'number',
+		includeMargin: {
+			type: 'boolean',
 		},
-		scale: {
-			type: 'number',
-		},
-		maskPattern: {
-			type: 'number',
-		},
-		dark: {
+		bgColor: {
 			control: 'color',
 		},
-		light: {
+		fgColor: {
 			control: 'color',
 		},
-		errorCorrectionLevel: {
+		level: {
 			type: 'select',
-			options: ['low', 'medium', 'quartile', 'high'],
+			options: ['L', 'M', 'Q', 'H'],
+		},
+		renderAs: {
+			type: 'select',
+			options: ['canvas', 'svg'],
+		},
+		imageSettings: {
+			type: 'object',
 		},
 	},
 };
 
-const Template = ({ dark, light, onChange, ...value }) =>
-	<QRCodeGenerate { ...{
-		value: { ...value, color: { dark, light }},
-		onChange: onChange,
+const Template = ({ onChange, value, ...args }) =>
+	<QRCodeGenerator { ...{
+		value,
+		onChange,
+		...args,
 	} }
 	/>;
 
 export const GenerateQR = Template.bind({});
 
 GenerateQR.args = {
-	version: 3,
-	errorCorrectionLevel: 'M',
-	margin: 8,
-	scale: 6,
-	onChange: (evt) => peek(evt),
+	value: 'hello',
+	onClick: peek,
 };
