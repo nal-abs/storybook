@@ -20,9 +20,8 @@ const ScanQRButton = ({ setState, state, onChange }) =>
 
 const ScanQrReader = ({ setState, onChange, ...args }) => {
 	const getResult = (result, error) => ({
-		isScanning: false,
-		data: result?.text,
-		error: error?.message,
+		...result && { isScanning: false, data: result },
+		error,
 	});
 
 	return (
@@ -38,9 +37,7 @@ const ScanQrReader = ({ setState, onChange, ...args }) => {
 };
 
 const QRCodeScan = ({ onChange = nothing, ...args }) => {
-	const [state, setState] = useState({
-		data: '', isScanning: false, error: '',
-	});
+	const [state, setState] = useState({ isScanning: false });
 	const { isScanning } = state;
 	const context = { ...args, setState, state, onChange };
 
