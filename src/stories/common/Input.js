@@ -25,7 +25,7 @@ const inputProps = (adornments) => reduce(
 
 const Input = (context) => {
 	const { adornments = {}, multiline, onChange = (x) => x,
-		value: initialValue, ...args } = context;
+		value: initialValue = '', ...args } = context;
 	const [state, setState] = React.useState(initialValue);
 	const MultilineProps = multiline && { ...multiline, multiline: true };
 
