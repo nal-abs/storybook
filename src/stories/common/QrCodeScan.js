@@ -36,7 +36,7 @@ const ScanQrReader = ({ setState, onChange, ...args }) => {
 		/>);
 };
 
-const QRCodeScan = ({ onChange = nothing, ...args }) => {
+const QrCodeScan = ({ onChange = nothing, ...args }) => {
 	const [state, setState] = useState({ isScanning: false });
 	const { isScanning } = state;
 	const context = { ...args, setState, state, onChange };
@@ -48,4 +48,4 @@ const QRCodeScan = ({ onChange = nothing, ...args }) => {
 		</div>);
 };
 
-export default QRCodeScan;
+export default QrCodeScan;

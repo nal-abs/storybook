@@ -1,10 +1,10 @@
 import React from 'react';
-import QRCodeScan from './common/QRCodeScan';
 import { peek } from '@laufire/utils/debug';
+import QrCodeScan from './common/QrCodeScan';
 
 export default {
 	title: 'Components/QRCode',
-	component: QRCodeScan,
+	component: QrCodeScan,
 	argTypes: {
 		facingMode: {
 			type: 'select',
@@ -14,7 +14,7 @@ export default {
 };
 
 const Template = ({ facingMode, ...args }) =>
-	<QRCodeScan { ...{ ...args, constraints: { facingMode }} }/>;
+	<QrCodeScan { ...{ ...args, constraints: { facingMode }} }/>;
 
 export const ScanQR = Template.bind({});
 

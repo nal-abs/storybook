@@ -1,10 +1,10 @@
 import React from 'react';
-import QRCodeGenerator from './common/QRCodeGenerate';
 import { peek } from '@laufire/utils/debug';
+import QrCodeGenerator from './common/QrCodeGenerate';
 
 export default {
 	title: 'Components/QRCode',
-	component: QRCodeGenerator,
+	component: QrCodeGenerator,
 	argTypes: {
 		value: {
 			type: 'string',
@@ -39,7 +39,7 @@ export default {
 };
 
 const Template = ({ onChange, value, ...args }) =>
-	<QRCodeGenerator { ...{
+	<QrCodeGenerator { ...{
 		value,
 		onChange,
 		...args,
