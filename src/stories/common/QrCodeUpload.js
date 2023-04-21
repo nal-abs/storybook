@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import QrManager from '../../services/QrManager';
 import { Box } from '@mui/material';
 import Input from './Input';
-import { nothing } from '@laufire/utils/predicates';
+import { identity } from '@laufire/utils/fn';
 
 const setImageData = async (context) => {
-	const { setState, onChange = nothing } = context;
+	const { setState, onChange = identity } = context;
 	const result = await QrManager.getImageData(context);
 
 	setState((preState) => {
@@ -26,13 +26,14 @@ const QrCodeUpload = (context) => {
 		setImageData({ ...context, setState, state });
 	}, [state.file]);
 
+	const { value } = context;
+
 	return (
 		<Box>
 			<Input
 				{ ...{
 					type: 'file',
-					variant: 'standard',
-					...context,
+					...value,
 					onChange: (evt) => {
 						setState({ ...state, file: evt.target.files[0] });
 					},

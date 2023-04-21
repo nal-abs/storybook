@@ -1,7 +1,7 @@
 import QrScanner from 'qr-scanner';
 
 const QrManager = {
-	getImageData: async (state) => {
+	getImageData: async ({ state }) => {
 		const result = state.file && await QrScanner.scanImage(state.file,
 			{ returnDetailedScanResult: false })
 			.catch((error) => ({ error }));
