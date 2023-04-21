@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import { QrReader } from 'react-qr-reader';
+import { nothing } from '@laufire/utils/predicates';
 
-const ScanQRButton = ({ setState, state: { isScanning }, onChange }) =>
+const ScanQRButton = ({ setState, state, onChange }) =>
 	<Button { ...{
 		onClick: () => {
-			onChange({ target: { value: '' }});
-			setState({ data: '', isScanning: !isScanning });
+			const result = {
+				isScanning: !state.isScanning,
+			};
+
+			setState(result);
+			onChange({ target: { value: { ...state, ...result }}});
 		},
 	} }
 	>
-		{isScanning ? 'stop scan' : 'start scan'}
+		{state.isScanning ? 'stop scan' : 'start scan'}
 	</Button>;
 
 const ScanQrReader = ({ setState, onChange, ...args }) => {
 	const getResult = (result, error) => ({
-		inScanning: false,
-		qrData: result?.text || error?.message,
+		isScanning: false,
+		data: result?.text,
+		error: error?.message,
 	});
 
 	return (
@@ -31,18 +37,17 @@ const ScanQrReader = ({ setState, onChange, ...args }) => {
 		/>);
 };
 
-const QRCodeScan = (args) => {
+const QRCodeScan = ({ onChange = nothing, ...args }) => {
 	const [state, setState] = useState({
-		qrData: '', isScanning: false,
+		data: '', isScanning: false, error: '',
 	});
-	const { isScanning, qrData } = state;
-	const context = { ...args, setState, state };
+	const { isScanning } = state;
+	const context = { ...args, setState, state, onChange };
 
 	return (
 		<div>
 			<ScanQRButton { ...{ ...context } }/>
 			{ isScanning && <ScanQrReader { ...{ ...context } }/>}
-			<div>{ qrData }</div>
 		</div>);
 };
 
