@@ -20,6 +20,7 @@
     "dayjs": "^1.11.7",
     "qr-scanner": "^1.4.2",
     "qrcode": "^1.5.1",
+    "qrcode.react": "^3.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-player": "^2.12.0",
