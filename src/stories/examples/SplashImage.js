@@ -1,7 +1,7 @@
 import { React } from 'react';
-import image from '../../assets/splash_icon/Splash_rotate.gif';
+import image from '../../assets/splash_icon/splash_icon.png';
 
 const SplashImage = () =>
-	<img src={ image }/>;
+	<img className="image" src={ image }/>;
 
 export default SplashImage;

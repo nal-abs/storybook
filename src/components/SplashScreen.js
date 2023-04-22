@@ -3,7 +3,6 @@ import { React } from 'react';
 
 const SplashScreen = ({ backgroundColor, children }) =>
 	<Paper
-		className="splashScreen"
 		sx={ {
 			bgcolor: backgroundColor,
 		} }
