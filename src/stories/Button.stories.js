@@ -1,10 +1,12 @@
 import React from 'react';
 import Button from '../stories/common/Button';
 
-export default {
+const component = {
 	title: 'stories/button',
 	component: Button,
 };
+
+export default component;
 
 const Template = (args) => <Button { ...args }/>;
 
