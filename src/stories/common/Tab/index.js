@@ -2,17 +2,12 @@ import * as React from 'react';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import TabContext from './TabContext';
+import buildEvent from '../buildEvent';
 
 const tabStyle = {
 	vertical: 'vertical-tab',
 	horizontal: 'horizontal-tab',
 };
-
-const transformEvent = (value) => ({
-	target: {
-		value,
-	},
-});
 
 const Tab = (props) => {
 	const { orientation, dir,
@@ -21,7 +16,7 @@ const Tab = (props) => {
 	const [value, selectValue] = useState(initialValue);
 	const onClick = (tabKey) => {
 		selectValue(tabKey);
-		onChange(transformEvent(tabKey));
+		onChange(buildEvent(tabKey));
 	};
 
 	return (

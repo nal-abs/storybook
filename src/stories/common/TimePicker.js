@@ -3,25 +3,20 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import { React, useState } from 'react';
-
-const transform = (event) => ({
-	target: {
-		value: event,
-	},
-});
+import buildEvent from './buildEvent';
 
 const TimePicker = (context) => {
-	const { params: { value }, variant, disableUnderline,
+	const { params: { value: initialValue }, variant, disableUnderline,
 		onChange = (x) => x }	= context;
-	const initialTime = value ? dayjs(`1/1/2022 ${ value }`) : null;
+	const initialTime = initialValue ? dayjs(`1/1/2022 ${ initialValue }`) : null;
 	const [time, setTime] = useState(initialTime);
 
 	return <LocalizationProvider dateAdapter={ AdapterDayjs }>
 		<DesktopTimePicker
 			value={ time }
-			onChange={ (event) => {
-				setTime(event);
-				return onChange(transform(event));
+			onChange={ (value) => {
+				setTime(value);
+				return onChange(buildEvent(value));
 			} }
 			slotProps={ { textField: { variant: variant,
 				InputProps: { disableUnderline }}} }

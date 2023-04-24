@@ -3,17 +3,12 @@ import { DesktopDatePicker as MuiDatePicker,
 	LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-
-const transform = (event) => ({
-	target: {
-		value: event,
-	},
-});
+import buildEvent from './buildEvent';
 
 const DatePicker = (context) => {
-	const { value, onChange = (x) => x,
+	const { value: initialDate, onChange = (x) => x,
 		data: { formatMaximum, formatMinimum }, ...rest }	= context;
-	const [date, setDate] = useState(value);
+	const [date, setDate] = useState(initialDate);
 
 	return <LocalizationProvider dateAdapter={ AdapterDayjs }>
 		<MuiDatePicker
@@ -21,9 +16,9 @@ const DatePicker = (context) => {
 			minDate={ dayjs(formatMinimum) }
 			maxDate={ dayjs(formatMaximum) }
 			value={ date }
-			onChange={ (event) => {
-				setDate(event);
-				return onChange(transform(event));
+			onChange={ (value) => {
+				setDate(value);
+				return onChange(buildEvent(value));
 			} }
 			sx={ { '& fieldset': { border: 'none' }} }
 			{ ...rest }

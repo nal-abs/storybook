@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import { React, useState } from 'react';
 import validateInteger from './validateInteger';
 import { nothing } from '@laufire/utils/fn';
-import buildEvent from '../buildEvent';
+import buildEvent from '../../buildEvent';
 
 const regExp = /^(?:[0-]|-?([1-9]+[0-9]*)?)$/;
 

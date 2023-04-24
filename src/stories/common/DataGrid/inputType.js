@@ -7,7 +7,8 @@ import { pick } from '@laufire/utils/collection';
 import DateField from './DateField';
 import IntegerTextField from './Number/IntegerTextField';
 import DecimalTextField from './Number/DecimalTextField';
-import buildEvent from './buildEvent';
+import { peek } from '@laufire/utils/debug';
+import buildEvent from '../buildEvent';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -53,7 +54,7 @@ const inputType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							onChange(buildEvent(params));
+							peek(onChange(buildEvent(params.row)));
 						} }
 					/>);
 			});

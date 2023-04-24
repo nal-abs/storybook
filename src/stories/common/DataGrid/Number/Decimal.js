@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import validateNumber from './validateNumber';
 import { TextField } from '@mui/material';
-import buildEvent from '../buildEvent';
+import buildEvent from '../../buildEvent';
 
 const regExp = /^-?(?:0|[1-9]\d*)?(?:\.?|\.\d*)$/;
 
