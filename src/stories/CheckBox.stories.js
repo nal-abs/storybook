@@ -1,16 +1,18 @@
 import React from 'react';
-import CheckBox from '../stories/common/CheckBox';
+import MuiCheckBox from '../stories/common/CheckBox';
 
-export default {
-	title: 'stories/CheckBox',
-	component: CheckBox,
+const component = {
+	title: 'Inputs/CheckBox',
+	component: MuiCheckBox,
 };
 
-const Template = (args) => <CheckBox { ...args }/>;
+export default component;
 
-export const checkbox = Template.bind({});
+const Template = (args) => <MuiCheckBox { ...args }/>;
 
-checkbox.args = {
+export const CheckBox = Template.bind({});
+
+CheckBox.args = {
 	checked: true,
 	color: 'success',
 	defaultChecked: true,

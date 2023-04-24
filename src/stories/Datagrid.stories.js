@@ -1,21 +1,23 @@
 import React from 'react';
-import DataGrid from '../stories/common/DataGrid/index';
+import MuiDataGrid from '../stories/common/DataGrid/index';
 
-export default {
-	title: 'stories/Datagrid',
-	component: DataGrid,
+const component = {
+	title: 'Display/DataGrid',
+	component: MuiDataGrid,
 };
 
-export const DatagridStories = (args) => <DataGrid { ...args }/>;
+export default component;
 
-DatagridStories.args = {
+export const DataGrid = (args) => <MuiDataGrid { ...args }/>;
+
+DataGrid.args = {
 	value: [
 		{
 			id: 1,
 			date: 'Jul-22-2022',
 			credit: 'Equity share capital',
 			debit: 'ABS HDFC',
-			amount: '50,000',
+			amount: 50000,
 			document: '1',
 			notes: '-',
 			country: 'US',
@@ -27,7 +29,7 @@ DatagridStories.args = {
 			date: 'Sep-24-2022',
 			credit: 'ABS HDFC',
 			debit: 'uber',
-			amount: '249',
+			amount: 249,
 			document: 'S11669701',
 			notes: '-',
 			country: 'India',

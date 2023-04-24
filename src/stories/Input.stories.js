@@ -1,16 +1,18 @@
 import React from 'react';
-import Input from '../stories/common/Input';
+import MuiInput from '../stories/common/Input';
 
-export default {
-	title: 'stories/Input',
-	component: Input,
+const component = {
+	title: 'Inputs/Input',
+	component: MuiInput,
 };
 
-const Template = (args) => <Input { ...args }/>;
+export default component;
 
-export const input = Template.bind({});
+const Template = (args) => <MuiInput { ...args }/>;
 
-input.args = {
+export const Input = Template.bind({});
+
+Input.args = {
 	variant: 'filled',
 	label: 'Required',
 	required: true,

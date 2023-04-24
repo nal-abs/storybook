@@ -1,16 +1,18 @@
 import React from 'react';
-import IconButton from './common/IconButton';
+import MuiIconButton from './common/IconButton';
 
-export default {
-	title: 'stories/IconButton',
-	component: IconButton,
+const component = {
+	title: 'Inputs/IconButton',
+	component: MuiIconButton,
 };
 
-const Template = (args) => <IconButton { ...args }/>;
+export default component;
 
-export const IconButtonStory = Template.bind({});
+const Template = (args) => <MuiIconButton { ...args }/>;
 
-IconButtonStory.args = {
+export const IconButton = Template.bind({});
+
+IconButton.args = {
 	icon: 'Menu',
 	size: 'large',
 	color: 'success',

@@ -1,15 +1,16 @@
 import React from 'react';
-import ActionSet from '../stories/common/ActionSet';
+import MuiActionSet from '../stories/common/ActionSet';
 
-export default {
-	title: 'stories/ActionSet',
-	component: ActionSet,
+const component = {
+	title: 'Navigation/ActionSet',
+	component: MuiActionSet,
 	argTypes: {
 		direction: {
 			type: 'select',
 			options: ['up', 'down', 'left', 'right'],
 		},
-		tooltipPlacement: { type: 'select',
+		tooltipPlacement: {
+			type: 'select',
 			options: ['bottom-end',
 				'bottom-start',
 				'bottom',
@@ -21,7 +22,8 @@ export default {
 				'right',
 				'top-end',
 				'top-start',
-				'top']		},
+				'top'],
+		},
 		hidden: {
 			type: Boolean,
 			options: [true, false],
@@ -30,11 +32,13 @@ export default {
 	},
 };
 
-const Template = (args) => <ActionSet { ...args }/>;
+export default component;
 
-export const ActionSetStories = Template.bind({});
+const Template = (args) => <MuiActionSet { ...args }/>;
 
-ActionSetStories.args = {
+export const ActionSet = Template.bind({});
+
+ActionSet.args = {
 	type: 'menu',
 	trigger: {
 		children: {

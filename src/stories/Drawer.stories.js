@@ -1,16 +1,18 @@
 import React from 'react';
-import Drawer from './common/Drawer/index';
+import MuiDrawer from './common/Drawer/index';
 
-export default {
-	title: 'stories/Drawer',
-	component: Drawer,
+const component = {
+	title: 'Navigation/Drawer',
+	component: MuiDrawer,
 };
 
-const Template = (args) => <Drawer { ...args }/>;
+export default component;
 
-export const DrawerStory = Template.bind({});
+const Template = (args) => <MuiDrawer { ...args }/>;
 
-DrawerStory.args = {
+export const Drawer = Template.bind({});
+
+Drawer.args = {
 	direction: 'right',
 	lists: [
 		{ text: 'Inbox', icon: 'Add', typography: 5 },

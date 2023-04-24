@@ -1,18 +1,18 @@
 import React from 'react';
-import Button from '../stories/common/Button';
+import MuiButton from '../stories/common/Button';
 
 const component = {
-	title: 'stories/button',
-	component: Button,
+	title: 'Inputs/Button',
+	component: MuiButton,
 };
 
 export default component;
 
-const Template = (args) => <Button { ...args }/>;
+const Template = (args) => <MuiButton { ...args }/>;
 
-export const button = Template.bind({});
+export const Button = Template.bind({});
 
-button.args = {
+Button.args = {
 	children: 'HI',
 	variant: 'contained',
 	size: 'large',
