@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { React } from 'react';
 import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
