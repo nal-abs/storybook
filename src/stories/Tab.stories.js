@@ -1,9 +1,9 @@
 import React from 'react';
-import Tab from './common/Tab/index';
+import MuiTab from './common/Tab/index';
 
-export default {
-	title: 'stories/Tab',
-	component: Tab,
+const component = {
+	title: 'Navigation/Tab',
+	component: MuiTab,
 	argTypes: {
 		style: {
 			control: {
@@ -20,9 +20,11 @@ export default {
 	},
 };
 
-export const TabStories = (args) => <Tab { ...args }/>;
+export default component;
 
-TabStories.args = {
+export const Tab = (args) => <MuiTab { ...args }/>;
+
+Tab.args = {
 	orientation: 'vertical',
 	color: 'secondary', variant: 'scrollable',
 	fullWidth: true,

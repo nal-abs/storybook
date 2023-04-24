@@ -1,16 +1,18 @@
 import * as React from 'react';
-import Pagination from '../stories/common/Pagination';
+import MuiPagination from '../stories/common/Pagination';
 
-export default {
-	title: 'stories/Pagination',
-	component: Pagination,
+const component = {
+	title: 'Navigation/Pagination',
+	component: MuiPagination,
 };
 
-const Template = (args) => <Pagination { ...args }/>;
+export default component;
 
-export const PaginationStories = Template.bind({});
+const Template = (args) => <MuiPagination { ...args }/>;
 
-PaginationStories.args = {
+export const Pagination = Template.bind({});
+
+Pagination.args = {
 	count: 5,
 	color: 'secondary',
 	disabled: false,

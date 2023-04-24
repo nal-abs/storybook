@@ -1,16 +1,18 @@
-import Typography from '../stories/common/Typography';
+import MuiTypography from '../stories/common/Typography';
 import * as React from 'react';
 
-export default {
-	title: 'stories/Typography',
-	component: Typography,
+const component = {
+	title: 'Display/Typography',
+	component: MuiTypography,
 };
 
-const Template = (args) => <Typography { ...args }/>;
+export default component;
 
-export const typography = Template.bind({});
+const Template = (args) => <MuiTypography { ...args }/>;
 
-typography.args = {
+export const Typography = Template.bind({});
+
+Typography.args = {
 	children:
 				`If true, the text will not wrap, but instead will truncate with a text overflow ellipsis.
 				Note that text overflow can only happen with block or inline-block level

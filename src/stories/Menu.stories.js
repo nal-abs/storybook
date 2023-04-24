@@ -1,16 +1,18 @@
 import React from 'react';
-import Menu from './common/Menu/index';
+import MuiMenu from './common/Menu/index';
 
-export default {
-	title: 'stories/Menu',
-	component: Menu,
+const component = {
+	title: 'Navigation/Menu',
+	component: MuiMenu,
 };
 
-const Template = (args) => <Menu { ...args }/>;
+export default component;
 
-export const menu = Template.bind({});
+const Template = (args) => <MuiMenu { ...args }/>;
 
-menu.args = {
+export const Menu = Template.bind({});
+
+Menu.args = {
 	trigger: {
 		children: {
 			text: 'Click me!',

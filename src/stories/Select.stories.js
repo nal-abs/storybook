@@ -1,14 +1,16 @@
 import React from 'react';
-import Select from '../stories/common/Select';
+import MuiSelect from '../stories/common/Select';
 
-export default {
-	title: 'stories/DropDown',
-	component: Select,
+const component = {
+	title: 'Inputs/Select',
+	component: MuiSelect,
 };
 
-export const SelectStories = (args) => <Select { ...args }/>;
+export default component;
 
-SelectStories.args = {
+export const Select = (args) => <MuiSelect { ...args }/>;
+
+Select.args = {
 	options: ['Ten', 'Twenty', 'Thirty'],
 	label: 'Number',
 	variant: 'standard',

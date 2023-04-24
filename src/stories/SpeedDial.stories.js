@@ -1,15 +1,16 @@
 import React from 'react';
-import SpeedDial from '../stories/common/SpeedDial';
+import MuiSpeedDial from '../stories/common/SpeedDial';
 
-export default {
-	title: 'stories/SpeedDial',
-	component: SpeedDial,
+const component = {
+	title: 'Navigation/SpeedDial',
+	component: MuiSpeedDial,
 	argTypes: {
 		direction: {
 			type: 'select',
 			options: ['up', 'down', 'left', 'right'],
 		},
-		tooltipPlacement: { type: 'select',
+		tooltipPlacement: {
+			type: 'select',
 			options: ['bottom-end',
 				'bottom-start',
 				'bottom',
@@ -21,7 +22,8 @@ export default {
 				'right',
 				'top-end',
 				'top-start',
-				'top']		},
+				'top'],
+		},
 		hidden: {
 			type: Boolean,
 			options: [true, false],
@@ -30,11 +32,13 @@ export default {
 	},
 };
 
-const Template = (args) => <SpeedDial { ...args }/>;
+export default component;
 
-export const SpeedDialStories = Template.bind({});
+const Template = (args) => <MuiSpeedDial { ...args }/>;
 
-SpeedDialStories.args = {
+export const SpeedDial = Template.bind({});
+
+SpeedDial.args = {
 	trigger: {
 		children: {
 			text: 'SpeedDialIcon',
