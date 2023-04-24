@@ -6,6 +6,8 @@ import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
 import DateField from './DateField';
 import IntegerTextField from './Number/IntegerTextField';
+import DecimalTextField from './Number/DecimalTextField';
+import buildEvent from './buildEvent';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -27,16 +29,6 @@ const Actions = {
 			: { ...row, ...value.row })),
 
 	deleteRow: (rows, value) => rows.filter((row) => row.id !== value.id),
-};
-
-const transformEvent = (params) => {
-	const { row } = params;
-
-	return {
-		target: {
-			value: row,
-		},
-	};
 };
 
 const inputType = {
@@ -61,7 +53,7 @@ const inputType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							onChange(transformEvent(params));
+							onChange(buildEvent(params));
 						} }
 					/>);
 			});
@@ -108,7 +100,7 @@ const inputType = {
 		type: 'number',
 		width: 150,
 		renderCell: (params) =>
-			<IntegerTextField { ...{ ...params,
+			<DecimalTextField { ...{ ...params,
 				schema: data } }
 			/>,
 		editable: false,
