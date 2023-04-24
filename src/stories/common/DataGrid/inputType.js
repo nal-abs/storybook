@@ -7,7 +7,6 @@ import { pick } from '@laufire/utils/collection';
 import DateField from './DateField';
 import IntegerTextField from './Number/IntegerTextField';
 import DecimalTextField from './Number/DecimalTextField';
-import { peek } from '@laufire/utils/debug';
 import buildEvent from '../buildEvent';
 
 const dataFormatter = {
@@ -54,7 +53,7 @@ const inputType = {
 						label={ icon }
 						onClick={ () => {
 							setRows(Actions[action](rows, params));
-							peek(onChange(buildEvent(params.row)));
+							onChange(buildEvent(params.row));
 						} }
 					/>);
 			});
