@@ -18,7 +18,7 @@ const getTabProp = (context) => ({ ...context,
 	value: 'Journal',
 	style: 'textOnly' });
 
-const App = (context) => <div className="App" role="App">
+const App = (context) => <div className="App">
 	<Tab { ...getTabProp(context) }/>
 </div>;
 
