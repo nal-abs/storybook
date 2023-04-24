@@ -46,6 +46,8 @@ DataGrid.args = {
 					type: 'string',
 					format: 'date',
 					title: 'Date',
+					formatMinimum: '2013-11-17',
+					formatMaximum: '2023-06-06',
 				},
 				credit: {
 					type: 'string',
