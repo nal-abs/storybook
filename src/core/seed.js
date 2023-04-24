@@ -44,7 +44,7 @@ const seed = {
 			notes: '-',
 			isActive: false,
 			time: '',
-			dateTime: '9/24/2022 12:30',
+			dateTime: '2018-06-12 19:30:55',
 			integer: 5,
 		},
 		{

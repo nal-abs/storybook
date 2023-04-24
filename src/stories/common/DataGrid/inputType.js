@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { React } from 'react';
 import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
@@ -8,6 +9,7 @@ import DateField from './DateField';
 import IntegerTextField from './Number/IntegerTextField';
 import DecimalTextField from './Number/DecimalTextField';
 import buildEvent from '../buildEvent';
+import DateTimeTextField from './DateTimeTextField';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -74,14 +76,11 @@ const inputType = {
 		},
 		minWidth: 200,
 	}),
-	dateTime: ({ field }) => ({
-		type: 'dateTime',
-		minWidth: 100,
-		valueGetter: ({ value }) => value && new Date(value),
-		valueSetter: (params) => ({
-			...params.row,
-			[field]: params.value.toJSON(),
-		}),
+	dateTime: ({ data }) => ({
+		minWidth: 200,
+		renderCell: (params) =>
+			<DateTimeTextField { ...{ ...params, schema: data } }/>,
+		editable: false,
 	}),
 	time: () => ({
 		minWidth: 150,

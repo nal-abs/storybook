@@ -108,6 +108,8 @@ const config = {
 				type: 'string',
 				format: 'date-time',
 				title: 'DateTime',
+				formatMinimum: '2000-10-06T22:22:55',
+				formatMaximum: '2014-11-16T21:25:33',
 			},
 			time: {
 				type: 'string',
