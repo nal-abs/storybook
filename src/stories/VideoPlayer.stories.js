@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import VideoPlayer from '../stories/common/VideoPlayer';
 import video from '../../src/assets/video.mp4';
+import { peek } from '@laufire/utils/debug';
 
 const url = video ;
 
@@ -10,24 +10,23 @@ export default {
 	component: VideoPlayer,
 };
 
-const Template = ({ ...value }) =>
-	<VideoPlayer { ... value }/>;
+const Template = ({ onChange, ...value }) =>
+	<VideoPlayer { ...{ onChange, value } }/>;
 
 export const videoPlayer = Template.bind({});
 
 videoPlayer.args = {
-	url: url,
-	status: undefined,
-	playing: false,
+	url: 'https://youtu.be/w7ejDZ8SWv8',
+	status: 'unknown',
+	mode: 'light',
 	loop: false,
 	controls: true,
-	light: false,
-	volume: 0,
+	volume: 0.5,
 	muted: false,
 	pip: false,
 	played: 0,
 	loaded: 0,
 	duration: 0,
 	playbackRate: 1.0,
-	onChange: ({ target }) => console.log(target.value),
+	onChange: ({ target }) => peek(target.value),
 };

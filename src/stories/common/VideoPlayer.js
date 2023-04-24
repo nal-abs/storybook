@@ -1,4 +1,5 @@
-/* eslint-disable max-lines-per-function */
+import { map, omit, values } from '@laufire/utils/collection';
+import { peek } from '@laufire/utils/debug';
 import { nothing } from '@laufire/utils/fn';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player/lazy';
@@ -8,35 +9,53 @@ const buildEvent = (value) => ({
 		value,
 	},
 });
-// Lazy load the YouTube player
-const VideoPlayer = ({ onChange = nothing,
-	...args }) => {
-	const [value, setValue] = useState(args);
 
-	const handleEvent = (state) => {
-		setValue({ ...value, ...state });
-		onChange(buildEvent(value));
+const data = {
+				onReady:{ status: 'ready' },
+				onStart: { status: 'playing' },
+				onPlay: { status: 'playing' },
+				onPause: { status: 'paused' },
+				onBuffer: { status: 'buffering' },
+				onBufferEnd:{ status: 'playing' },
+				onError: { status: 'error' },
+				onEnded: { status: 'ended' },
+				onClickPreview:{ mode: 'full' },
+				onEnablePIP: { pip: true },
+				onDisablePIP: { pip: false },
+}
+
+const VideoPlayer = ({ onChange = nothing, value: initialValue }) => {
+	const { mode, status, ...rest } = initialValue;
+	const playerProps = omit(rest, { played: 'played', loaded: 'loaded' });
+	const light = mode === 'light';
+	const playing = status === 'playing';
+	const [value, setValue] = useState(initialValue);
+
+	const patchValue = (data) => {
+		const newValue = { ...value, ...data };
+
+		setValue(newValue);
+		onChange(buildEvent(newValue));
 	};
+	const playerEvents = map(data,(value,key) => ()=>patchValue(value));
 
 	return (
 		<ReactPlayer
-			{ ...args }
-			onReady={ () => handleEvent({ status: 'ready' }) }
-			onStart={ () => handleEvent({ status: 'playing' }) }
-			onPlay={ () => handleEvent({ status: 'playing' }) }
-			onProgress={ (state) => handleEvent({
-				played: state.playedSeconds,
-				loaded: state.loadedSeconds,
-				status: 'playing',
-			}) }
-			onSeek={ () => handleEvent({ played: value.played }) }
-			onPause={ () => handleEvent({ status: 'paused' }) }
-			onDuration={ (duration) => handleEvent({ duration }) }
-			onPlaybackRateChange={ (speed) =>
-				handleEvent({ playbackRate: parseFloat(speed) }) }
-			onEnded={ () => handleEvent({ status: 'ended' }) }
-			onEnablePIP={ () => handleEvent({ pip: true }) }
-			onDisablePIP={ () => handleEvent({ pip: false }) }
+			{ ...{
+				...playerProps,
+				light: light,
+				playing: playing,
+				...playerEvents,
+				onSeek: () => patchValue({ played: value.played }),
+				onProgress: (state) => patchValue({
+					played: state.playedSeconds,
+					loaded: state.loadedSeconds,
+				}),
+				onDuration: (duration) => patchValue({ duration }),
+				onPlaybackRateChange: (speed) =>
+					patchValue({ playbackRate: parseFloat(speed) }),
+
+			} }
 		/>
 	);
 };
