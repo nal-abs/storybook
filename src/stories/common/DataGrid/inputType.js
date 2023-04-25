@@ -36,8 +36,8 @@ const Actions = {
 const inputType = {
 	date: (props) => ({
 		minWidth: 200,
-		renderCell: (params) => <DateField { ...{ params, props } }/>,
 		editable: false,
+		renderCell: (params) => <DateField { ...{ params, props } }/>,
 	}),
 	actions: (props) => ({
 		type: props.type,
@@ -62,6 +62,7 @@ const inputType = {
 		},
 	}),
 	array: (props) => ({
+		minWidth: 200,
 		renderCell: (params) => {
 			const	{ data: { items }} = props;
 
@@ -74,44 +75,35 @@ const inputType = {
 				} }
 				/>);
 		},
-		minWidth: 200,
 	}),
 	dateTime: ({ data }) => ({
 		minWidth: 200,
+		editable: false,
 		renderCell: (params) =>
 			<DateTimeTextField { ...{ ...params, schema: data } }/>,
-		editable: false,
 	}),
 	time: () => ({
 		minWidth: 150,
-		renderCell: (params) => <TimeField { ...params }/>,
 		editable: false,
+		renderCell: (params) => <TimeField { ...params }/>,
 	}),
 	integer: ({ data }) => ({
-		type: 'number',
-		renderCell: (params) =>
-			<IntegerTextField
-				{ ...{ ...params, schema: data } }
-			/>,
 		editable: false,
+		renderCell: (params) =>
+			<IntegerTextField { ...{ ...params, schema: data } }/>,
 	}),
 	number: ({ data }) => ({
-		type: 'number',
 		width: 150,
-		renderCell: (params) =>
-			<DecimalTextField { ...{ ...params,
-				schema: data } }
-			/>,
 		editable: false,
+		renderCell: (params) =>
+			<DecimalTextField { ...{ ...params,	schema: data } }/>,
 	}),
 	phoneNo: ({ data }) => ({
 		type: 'string',
 		width: 150,
-		renderCell: (params) =>
-			<PhoneNoTextField { ...{ ...params,
-				schema: data } }
-			/>,
 		editable: false,
+		renderCell: (params) =>
+			<PhoneNoTextField { ...{ ...params, schema: data } }/>,
 	}),
 };
 

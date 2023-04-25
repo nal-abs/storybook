@@ -6,11 +6,12 @@ import validatePhoneNumber from './validatePhoneNumber';
 
 const PhoneNo = (context) => {
 	const {
-		value: initialValue,
+		value: initialValue = '',
 		onChange = nothing,
-		schema, ...rest
+		schema,
+		...rest
 	} = context;
-	const [userInput, setUserInput] = useState(initialValue || '');
+	const [userInput, setUserInput] = useState(initialValue);
 
 	return (
 		<TextField { ...{

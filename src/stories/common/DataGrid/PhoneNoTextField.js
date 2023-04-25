@@ -10,12 +10,12 @@ const PhoneNoTextField = (context) => {
 			variant: 'standard',
 			InputProps: { disableUnderline: true },
 			value: phoneNo,
+			schema: schema,
 			onChange: ({ target: { value }}) => {
 				row[field] = value;
 
 				return setPhoneNo(value);
 			},
-			schema: schema,
 		} }
 		/>);
 };
