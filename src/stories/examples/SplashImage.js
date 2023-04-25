@@ -1,7 +1,11 @@
 import { React } from 'react';
-import image from '../../assets/splash_icon/splash_icon.png';
+import image from '../../assets/splash_icon/Splash_rotate.gif';
 
 const SplashImage = () =>
-	<img className="image" src={ image }/>;
+	<img
+		alt="SplashScreen"
+		src={ image }
+		style={ { width: '90vw' } }
+	/>;
 
 export default SplashImage;

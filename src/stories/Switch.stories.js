@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Switch from '../stories/common/Switch';
 
-export default {
-	title: 'stories/muiSwitch',
+const component = {
+	title: 'stories/Switch',
 	component: Switch,
 };
+
+export default component;
 
 const Template = (args) => <Switch { ...args }/>;
 

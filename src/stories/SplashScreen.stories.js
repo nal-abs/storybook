@@ -3,7 +3,7 @@ import SplashImage from '../stories/examples/SplashImage';
 import SplashText from '../stories/examples/SplashText';
 import SplashScreen from '../stories/common/SplashScreen';
 
-export default {
+const component = {
 	title: 'stories/SplashScreen',
 	component: SplashScreen,
 	argTypes: {
@@ -15,6 +15,8 @@ export default {
 		},
 	},
 };
+
+export default component;
 
 const childComponents = {
 	SplashImage,
