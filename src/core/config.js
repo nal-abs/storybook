@@ -129,6 +129,32 @@ const config = {
 			},
 		},
 	},
+	columns: [
+		{
+			Header: 'Name',
+			accessor: 'name',
+		},
+		{
+			Header: 'Age',
+			accessor: 'age',
+		},
+		{
+			Header: 'Email',
+			accessor: 'email',
+		},
+	],
+	rows: [
+		{
+			name: 'John Doe',
+			age: 32,
+			email: 'john.doe@example.com',
+		},
+		{
+			name: 'Jane Smith',
+			age: 25,
+			email: 'jane.smith@example.com',
+		},
+	],
 };
 
 export default config;
