@@ -1,14 +1,15 @@
 import * as React from 'react';
 import VideoPlayer from '../stories/common/VideoPlayer';
-import video from '../../src/assets/video.mp4';
+// import video from '../../src/assets/video.mp4';
 import { peek } from '@laufire/utils/debug';
 
-const url = video ;
-
-export default {
+const url = 'https://youtu.be/w7ejDZ8SWv8' ;
+const component = {
 	title: 'stories/videoPlayer',
 	component: VideoPlayer,
 };
+
+export default component;
 
 const Template = ({ onChange, ...value }) =>
 	<VideoPlayer { ...{ onChange, value } }/>;
@@ -16,7 +17,7 @@ const Template = ({ onChange, ...value }) =>
 export const videoPlayer = Template.bind({});
 
 videoPlayer.args = {
-	url: 'https://youtu.be/w7ejDZ8SWv8',
+	url: url,
 	status: 'unknown',
 	mode: 'light',
 	loop: false,

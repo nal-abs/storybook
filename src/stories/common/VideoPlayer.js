@@ -1,5 +1,5 @@
-import { map, omit, values } from '@laufire/utils/collection';
-import { peek } from '@laufire/utils/debug';
+/* eslint-disable max-lines-per-function */
+import { map, omit } from '@laufire/utils/collection';
 import { nothing } from '@laufire/utils/fn';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player/lazy';
@@ -10,21 +10,24 @@ const buildEvent = (value) => ({
 	},
 });
 
-const data = {
-				onReady:{ status: 'ready' },
-				onStart: { status: 'playing' },
-				onPlay: { status: 'playing' },
-				onPause: { status: 'paused' },
-				onBuffer: { status: 'buffering' },
-				onBufferEnd:{ status: 'playing' },
-				onError: { status: 'error' },
-				onEnded: { status: 'ended' },
-				onClickPreview:{ mode: 'full' },
-				onEnablePIP: { pip: true },
-				onDisablePIP: { pip: false },
-}
+const events = {
+	onReady: { status: 'ready' },
+	onStart: { status: 'playing' },
+	onPlay: { status: 'playing' },
+	onPause: { status: 'paused' },
+	onBuffer: { status: 'buffering' },
+	onBufferEnd: { status: 'playing' },
+	onError: { status: 'error' },
+	onEnded: { status: 'ended' },
+	onClickPreview: { mode: 'full' },
+	onEnablePIP: { pip: true },
+	onDisablePIP: { pip: false },
+};
 
-const VideoPlayer = ({ onChange = nothing, value: initialValue }) => {
+const VideoPlayer = ({
+	onChange = nothing,
+	value: initialValue,
+}) => {
 	const { mode, status, ...rest } = initialValue;
 	const playerProps = omit(rest, { played: 'played', loaded: 'loaded' });
 	const light = mode === 'light';
@@ -37,7 +40,8 @@ const VideoPlayer = ({ onChange = nothing, value: initialValue }) => {
 		setValue(newValue);
 		onChange(buildEvent(newValue));
 	};
-	const playerEvents = map(data,(value,key) => ()=>patchValue(value));
+	const playerEvents = map(events, (eventData) =>
+		() => patchValue(eventData));
 
 	return (
 		<ReactPlayer
