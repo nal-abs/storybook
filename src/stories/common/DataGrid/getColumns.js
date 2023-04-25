@@ -10,6 +10,7 @@ const formatList = {
 	'date-time': 'dateTime',
 	'date': 'date',
 	'time': 'time',
+	'phoneNo': 'phoneNo',
 };
 
 const getColumns = (props) => {

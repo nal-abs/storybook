@@ -123,6 +123,11 @@ const config = {
 				minimum: -50,
 				multipleOf: 1,
 			},
+			phoneNo: {
+				type: 'string',
+				format: 'phoneNo',
+				title: 'phoneNo',
+			},
 			actions: {
 				type: 'actions',
 				title: 'Actions',

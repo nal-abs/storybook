@@ -46,6 +46,7 @@ const seed = {
 			time: '',
 			dateTime: '2018-06-12 19:30:55',
 			integer: 5,
+			phoneNo: '1234567890',
 		},
 		{
 			id: 2,
