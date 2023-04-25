@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 
-const validatePhoneNumber = (schema, value) => {
+const validate = (schema, value) => {
 	const pattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
 
 	const ajv = new Ajv();
@@ -14,4 +14,4 @@ const validatePhoneNumber = (schema, value) => {
 	return valid;
 };
 
-export default validatePhoneNumber;
+export default validate;

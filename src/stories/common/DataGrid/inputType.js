@@ -9,7 +9,7 @@ import IntegerTextField from './Number/IntegerTextField';
 import DecimalTextField from './Number/DecimalTextField';
 import buildEvent from '../buildEvent';
 import DateTimeTextField from './DateTimeTextField';
-import PhoneNoTextField from './PhoneNoTextField';
+import PhoneNoInput from './PhoneNo';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -103,7 +103,7 @@ const inputType = {
 		width: 150,
 		editable: false,
 		renderCell: (params) =>
-			<PhoneNoTextField { ...{ ...params, schema: data } }/>,
+			<PhoneNoInput { ...{ ...params, schema: data } }/>,
 	}),
 };
 

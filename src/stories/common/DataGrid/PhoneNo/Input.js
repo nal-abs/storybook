@@ -1,10 +1,10 @@
 import { TextField } from '@mui/material';
 import { React, useState } from 'react';
 import { nothing } from '@laufire/utils/fn';
-import buildEvent from '../buildEvent';
-import validatePhoneNumber from './validatePhoneNumber';
+import validate from './validate';
+import buildEvent from '../../buildEvent';
 
-const PhoneNo = (context) => {
+const Input = (context) => {
 	const {
 		value: initialValue = '',
 		onChange = nothing,
@@ -18,7 +18,7 @@ const PhoneNo = (context) => {
 			value: userInput,
 			onChange: ({ target: { value }}) => {
 				setUserInput(value);
-				validatePhoneNumber(schema, value)
+				validate(schema, value)
 				&& onChange(buildEvent(value));
 			},
 			...rest,
@@ -26,4 +26,4 @@ const PhoneNo = (context) => {
 		/>);
 };
 
-export default PhoneNo;
+export default Input;
