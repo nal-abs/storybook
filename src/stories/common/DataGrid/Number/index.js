@@ -1,29 +1,29 @@
 import { useState, React } from 'react';
-import Decimal from './Decimal';
 import transformSchema from '../transformSchema';
+import Input from './Input';
 
 const props = {
 	variant: 'standard',
 	InputProps: { disableUnderline: true },
 };
 
-const DecimalTextField = (context) => {
+const DecimalInput = (context) => {
 	const { schema, value: initialValue, row, field } = context;
-	const [state, setState]	= useState(initialValue);
+	const [value, setState]	= useState(initialValue);
 
 	return (
-		<Decimal { ...{
+		<Input { ...{
 			...props,
-			value: state,
-			onChange: ({ target: { value }}) => {
-				row[field] = value;
-				setState(value);
-			},
+			value: value,
 			schema: schema,
 			inputProps: transformSchema(schema),
+			onChange: ({ target: { value: newValue }}) => {
+				row[field] = newValue;
+				setState(newValue);
+			},
 		} }
 		/>
 	);
 };
 
-export default DecimalTextField;
+export default DecimalInput;

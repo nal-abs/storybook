@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import validateNumber from './validateNumber';
+import validate from './validate';
 import { TextField } from '@mui/material';
 import buildEvent from '../../buildEvent';
 
@@ -11,11 +11,11 @@ const handleValidInput = (
 	const integer = Number(value);
 
 	setUserInput(value);
-	validateNumber(schema, integer)
+	validate(schema, integer)
 		&& onChange(buildEvent(integer));
 };
 
-const Decimal = (context) => {
+const Input = (context) => {
 	const {
 		value: initialValue,
 		onChange = (x) => x,
@@ -38,4 +38,4 @@ const Decimal = (context) => {
 		/>);
 };
 
-export default Decimal;
+export default Input;
