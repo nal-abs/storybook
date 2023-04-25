@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
 import Decimal from './Decimal';
-import transformSchema from './transformSchema';
+import transformSchema from '../transformSchema';
 
 const props = {
 	variant: 'standard',

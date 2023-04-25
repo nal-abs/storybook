@@ -1,8 +1,8 @@
 import { TextField } from '@mui/material';
 import { React, useState } from 'react';
-import validateInteger from './validateInteger';
 import { nothing } from '@laufire/utils/fn';
 import buildEvent from '../../buildEvent';
+import validate from './validate';
 
 const regExp = /^(?:[0-]|-?([1-9]+[0-9]*)?)$/;
 
@@ -12,15 +12,15 @@ const handleValidInput = (
 	const integer = Number(value);
 
 	setUserInput(value);
-	validateInteger(schema, integer)
+	validate(schema, integer)
 		&& onChange(buildEvent(integer));
 };
 
-const Integer = (context) => {
+const Input = (context) => {
 	const {
-		value: initialValue,
+		value: initialValue, schema,
 		onChange = nothing,
-		schema, ...rest
+		...rest
 	} = context;
 	const [userInput, setUserInput] = useState(initialValue);
 
@@ -39,4 +39,4 @@ const Integer = (context) => {
 		/>);
 };
 
-export default Integer;
+export default Input;

@@ -5,11 +5,11 @@ import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
 import DateField from './DateField';
-import IntegerTextField from './Number/IntegerTextField';
 import DecimalTextField from './Number/DecimalTextField';
 import buildEvent from '../buildEvent';
 import DateTimeTextField from './DateTimeTextField';
 import PhoneNoInput from './PhoneNo';
+import IntegerInput from './Integer';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -90,7 +90,7 @@ const inputType = {
 	integer: ({ data }) => ({
 		editable: false,
 		renderCell: (params) =>
-			<IntegerTextField { ...{ ...params, schema: data } }/>,
+			<IntegerInput { ...{ ...params, schema: data } }/>,
 	}),
 	number: ({ data }) => ({
 		width: 150,
