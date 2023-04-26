@@ -6,10 +6,10 @@ import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
 import DateField from './DateField';
 import buildEvent from '../buildEvent';
-import DateTimeTextField from './DateTimeTextField';
 import PhoneNoInput from './PhoneNo';
 import IntegerInput from './Integer';
 import DecimalInput from './Number';
+import DateTimeInput from './DateTime';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -80,7 +80,7 @@ const inputType = {
 		minWidth: 200,
 		editable: false,
 		renderCell: (params) =>
-			<DateTimeTextField { ...{ ...params, schema: data } }/>,
+			<DateTimeInput { ...{ ...params, schema: data } }/>,
 	}),
 	time: () => ({
 		minWidth: 150,
