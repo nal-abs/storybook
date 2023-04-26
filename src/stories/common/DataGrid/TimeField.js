@@ -9,7 +9,7 @@ const TimeField = (params) => {
 		<TimePicker { ...{
 			params: params,
 			onChange: ({ target: { value: newValue }}) => {
-				row[field] = `${ newValue.$d.toLocaleTimeString() }.000Z`;
+				row[field] = `${ newValue.$d.toLocaleTimeString() }`;
 				return setValue(newValue);
 			},
 			value: value,

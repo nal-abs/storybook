@@ -115,6 +115,8 @@ const config = {
 				type: 'string',
 				format: 'time',
 				title: 'Time',
+				formatMaximum: '22:30:00',
+				formatMinimum: '10:00:00',
 			},
 			integer: {
 				type: 'integer',

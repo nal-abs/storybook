@@ -1,7 +1,6 @@
 import { React } from 'react';
 import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
-import TimeField from './TimeField';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
 import DateField from './DateField';
@@ -10,6 +9,7 @@ import PhoneNoInput from './PhoneNo';
 import IntegerInput from './Integer';
 import DecimalInput from './Number';
 import DateTimeInput from './DateTime';
+import TimeInput from './Time';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -82,10 +82,10 @@ const inputType = {
 		renderCell: (params) =>
 			<DateTimeInput { ...{ ...params, schema: data } }/>,
 	}),
-	time: () => ({
+	time: ({ data }) => ({
 		minWidth: 150,
 		editable: false,
-		renderCell: (params) => <TimeField { ...params }/>,
+		renderCell: (params) => <TimeInput { ...{ ...params, schema: data } }/>,
 	}),
 	integer: ({ data }) => ({
 		editable: false,
