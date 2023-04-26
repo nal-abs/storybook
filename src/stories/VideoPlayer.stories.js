@@ -1,9 +1,8 @@
 import * as React from 'react';
 import VideoPlayer from '../stories/common/VideoPlayer';
-// import video from '../../src/assets/video.mp4';
-import { peek } from '@laufire/utils/debug';
+import video from '../../src/assets/video.mp4';
 
-const url = 'https://youtu.be/w7ejDZ8SWv8' ;
+const url = video;
 const component = {
 	title: 'stories/videoPlayer',
 	component: VideoPlayer,
@@ -11,8 +10,8 @@ const component = {
 
 export default component;
 
-const Template = ({ onChange, ...value }) =>
-	<VideoPlayer { ...{ onChange, value } }/>;
+const Template = ({ ...value }) =>
+	<VideoPlayer { ...{ value } }/>;
 
 export const videoPlayer = Template.bind({});
 
@@ -29,5 +28,4 @@ videoPlayer.args = {
 	loaded: 0,
 	duration: 0,
 	playbackRate: 1.0,
-	onChange: ({ target }) => peek(target.value),
 };

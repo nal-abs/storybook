@@ -3,12 +3,7 @@ import { map, omit } from '@laufire/utils/collection';
 import { nothing } from '@laufire/utils/fn';
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player/lazy';
-
-const buildEvent = (value) => ({
-	target: {
-		value,
-	},
-});
+import buildEvent from './buildEvent';
 
 const events = {
 	onReady: { status: 'ready' },
