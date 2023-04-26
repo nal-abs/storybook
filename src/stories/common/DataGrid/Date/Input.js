@@ -5,14 +5,13 @@ import { nothing } from '@laufire/utils/fn';
 import validate from './validate';
 import buildEvent from '../../buildEvent';
 import dayjs from 'dayjs';
-import { peek } from '@laufire/utils/debug';
 
 const Input = (context) => {
 	const {
 		value: initialValue,
 		onChange = nothing,
 		schema, ...rest
-	} = peek(context);
+	} = context;
 	const [userInput, setUserInput] = useState(initialValue);
 
 	return (

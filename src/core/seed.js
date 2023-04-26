@@ -57,7 +57,7 @@ const seed = {
 			notes: '-',
 			time: '01:30:20',
 			isActive: true,
-			integer: 5.85,
+			integer: 10,
 		},
 	],
 };
