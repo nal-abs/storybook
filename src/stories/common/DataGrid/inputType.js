@@ -3,13 +3,13 @@ import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
-import DateField from './DateField';
 import buildEvent from '../buildEvent';
 import PhoneNoInput from './PhoneNo';
 import IntegerInput from './Integer';
 import DecimalInput from './Number';
 import DateTimeInput from './DateTime';
 import TimeInput from './Time';
+import DateInput from './Date';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -34,10 +34,10 @@ const Actions = {
 };
 
 const inputType = {
-	date: (props) => ({
+	date: ({ data }) => ({
 		minWidth: 200,
 		editable: false,
-		renderCell: (params) => <DateField { ...{ params, props } }/>,
+		renderCell: (params) => <DateInput { ...{ ...params, schema: data } }/>,
 	}),
 	actions: (props) => ({
 		type: props.type,
