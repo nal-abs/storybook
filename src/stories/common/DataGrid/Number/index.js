@@ -9,7 +9,7 @@ const props = {
 
 const DecimalInput = (context) => {
 	const { schema, value: initialValue, row, field } = context;
-	const [value, setState]	= useState(initialValue);
+	const [value, setValue]	= useState(initialValue);
 
 	return (
 		<Input { ...{
@@ -19,7 +19,7 @@ const DecimalInput = (context) => {
 			inputProps: transformSchema(schema),
 			onChange: ({ target: { value: newValue }}) => {
 				row[field] = newValue;
-				setState(newValue);
+				setValue(newValue);
 			},
 		} }
 		/>

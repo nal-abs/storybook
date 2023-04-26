@@ -14,19 +14,20 @@ const props = {
 };
 
 const DateInput = (context) => {
-	const { value, row, field, schema } = context;
+	const { value: initialValue, row, field, schema } = context;
 
-	const [date, setDate] = useState(dayjs(value).format('YYYY-MM-DD'));
+	const [value, setValue] = useState(dayjs(initialValue)
+		.format('YYYY-MM-DD'));
 
 	return (
 		<Input { ...{
 			...props,
-			value: date,
+			value: value,
 			inputProps: limits(schema),
 			schema: schema,
-			onChange: (evt) => {
-				row[field] = evt.target.value;
-				setDate(evt.target.value);
+			onChange: ({ target: { value: newValue }}) => {
+				row[field] = newValue;
+				setValue(newValue);
 			},
 		} }
 		/>);
