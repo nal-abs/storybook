@@ -1,12 +1,13 @@
-import { identity } from '@laufire/utils/fn';
+import { identity, nothing } from '@laufire/utils/fn';
 import { React, useState } from 'react';
 
 const variant = 'standard';
 const InputProps = { disableUnderline: true };
 
-const genInput = ({ input: InputComponent, inputProps, type,
+const genInput = ({ Component,
+	buildInputProps = nothing, type,
 	updateRow = identity }) => {
-	const Component = (context) => {
+	const Input = (context) => {
 		const { value: initialValue, schema, row, field } = context;
 		const [value, setValue] = useState(initialValue);
 
@@ -16,12 +17,12 @@ const genInput = ({ input: InputComponent, inputProps, type,
 			return setValue(newValue);
 		};
 		const props = { value, variant, InputProps, schema, onChange };
-		const extendedProps = inputProps && { inputProps: inputProps(schema) };
+		const extendedProps = { inputProps: buildInputProps(schema) };
 
-		return <InputComponent { ...{ ...props, ...extendedProps, type } }/>;
+		return <Component { ...{ ...props, ...extendedProps, type } }/>;
 	};
 
-	return Component;
+	return Input;
 };
 
 export default genInput;

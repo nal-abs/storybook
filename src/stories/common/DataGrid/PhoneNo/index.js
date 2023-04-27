@@ -1,8 +1,6 @@
-import Input from './Input';
+import Component from './Input';
 import genInput from '../genInput';
 
-const PhoneNoInput = genInput({
-	input: Input,
-});
+const PhoneNo = genInput({ Component });
 
-export default PhoneNoInput;
+export default PhoneNo;

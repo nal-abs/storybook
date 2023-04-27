@@ -1,4 +1,4 @@
-const transformSchema = (schema) => {
+const buildInputProp = (schema) => {
 	const { maximum, minimum, multipleOf } = schema;
 
 	return {
@@ -8,4 +8,4 @@ const transformSchema = (schema) => {
 	};
 };
 
-export default transformSchema;
+export default buildInputProp;

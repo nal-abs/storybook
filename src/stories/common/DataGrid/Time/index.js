@@ -1,9 +1,9 @@
-import Input from './Input';
+import Component from './Input';
 import genInput from '../genInput';
 
-const TimeInput = genInput({
+const Time = genInput({
 	type: 'time',
-	input: Input,
+	Component: Component,
 });
 
-export default TimeInput;
+export default Time;

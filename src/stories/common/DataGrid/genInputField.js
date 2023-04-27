@@ -23,8 +23,10 @@ const genInputField = ({ validate, isInputValid = identity,
 	transformValue = identity }) => {
 	const Component = ({ value = '', onChange = nothing, schema, ...rest }) => {
 		const [userInput, setUserInput] = useState(value);
-		const props = { setUserInput, validate,
-			transformValue, schema, onChange, userInput };
+		const props = {
+			setUserInput, validate,
+			transformValue, schema, onChange, userInput,
+		};
 
 		return (
 			<TextField { ...{

@@ -1,10 +1,10 @@
-import Input from './Input';
-import transformSchema from '../transformSchema';
+import Component from './Input';
+import buildInputProp from '../buildInputProp';
 import genInput from '../genInput';
 
-const IntegerInput = genInput({
-	input: Input,
-	inputProps: transformSchema,
+const Integer = genInput({
+	Component,
+	buildInputProp,
 });
 
-export default IntegerInput;
+export default Integer;

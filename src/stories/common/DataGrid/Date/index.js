@@ -1,15 +1,15 @@
-import Input from './Input';
+import Component from './Input';
 import genInput from '../genInput';
 
-const limits = ({ formatMinimum, formatMaximum }) => ({
+const buildInputProp = ({ formatMinimum, formatMaximum }) => ({
 	min: formatMinimum,
 	max: formatMaximum,
 });
 
-const DateInput = genInput({
-	input: Input,
-	inputProps: limits,
+const Date = genInput({
+	Component: Component,
+	buildInputProp: buildInputProp,
 	type: 'date',
 });
 
-export default DateInput;
+export default Date;

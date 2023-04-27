@@ -1,10 +1,10 @@
 import genInput from '../genInput';
-import transformSchema from '../transformSchema';
-import Input from './Input';
+import Component from './Input';
+import buildInputProp from '../buildInputProp';
 
-const DecimalInput = genInput({
-	input: Input,
-	inputProps: transformSchema,
+const Number = genInput({
+	Component,
+	buildInputProp,
 });
 
-export default DecimalInput;
+export default Number;

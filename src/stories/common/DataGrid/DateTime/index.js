@@ -1,16 +1,16 @@
-import Input from './Input';
+import Component from './Input';
 import genInput from '../genInput';
 
-const limits = ({ formatMinimum, formatMaximum }) => ({
+const buildInputProp = ({ formatMinimum, formatMaximum }) => ({
 	min: formatMinimum,
 	max: formatMaximum,
 });
 
-const DateTimeInput = genInput({
+const DateTime = genInput({
 	type: 'datetime-local',
-	input: Input,
-	inputProps: limits,
+	Component: Component,
+	buildInputProp: buildInputProp,
 	updateRow: (newValue) => `${ newValue }.000Z`,
 });
 
-export default DateTimeInput;
+export default DateTime;

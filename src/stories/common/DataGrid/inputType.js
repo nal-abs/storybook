@@ -4,12 +4,12 @@ import { GridActionsCellItem } from '@mui/x-data-grid';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
 import buildEvent from '../buildEvent';
-import PhoneNoInput from './PhoneNo';
-import IntegerInput from './Integer';
-import DecimalInput from './Number';
-import DateTimeInput from './DateTime';
-import TimeInput from './Time';
-import DateInput from './Date';
+import PhoneNo from './PhoneNo';
+import Integer from './Integer';
+import Number from './Number';
+import DateTime from './DateTime';
+import Time from './Time';
+import Date from './Date';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -37,7 +37,7 @@ const inputType = {
 	date: ({ data }) => ({
 		minWidth: 200,
 		editable: false,
-		renderCell: (params) => <DateInput { ...{ ...params, schema: data } }/>,
+		renderCell: (params) => <Date { ...{ ...params, schema: data } }/>,
 	}),
 	actions: (props) => ({
 		type: props.type,
@@ -80,30 +80,30 @@ const inputType = {
 		minWidth: 200,
 		editable: false,
 		renderCell: (params) =>
-			<DateTimeInput { ...{ ...params, schema: data } }/>,
+			<DateTime { ...{ ...params, schema: data } }/>,
 	}),
 	time: ({ data }) => ({
 		minWidth: 150,
 		editable: false,
-		renderCell: (params) => <TimeInput { ...{ ...params, schema: data } }/>,
+		renderCell: (params) => <Time { ...{ ...params, schema: data } }/>,
 	}),
 	integer: ({ data }) => ({
 		editable: false,
 		renderCell: (params) =>
-			<IntegerInput { ...{ ...params, schema: data } }/>,
+			<Integer { ...{ ...params, schema: data } }/>,
 	}),
 	number: ({ data }) => ({
 		width: 150,
 		editable: false,
 		renderCell: (params) =>
-			<DecimalInput { ...{ ...params,	schema: data } }/>,
+			<Number { ...{ ...params,	schema: data } }/>,
 	}),
 	phoneNo: ({ data }) => ({
 		type: 'string',
 		width: 150,
 		editable: false,
 		renderCell: (params) =>
-			<PhoneNoInput { ...{ ...params, schema: data } }/>,
+			<PhoneNo { ...{ ...params, schema: data } }/>,
 	}),
 };
 
