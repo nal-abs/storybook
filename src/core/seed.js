@@ -11,7 +11,7 @@ const seed = {
 	journals: [
 		{
 			id: 1,
-			date: 'Jul-22-2022',
+			date: '2022-07-07',
 			credit: 'Equity share capital',
 			debit: 'ABS HDFC',
 			amount: 50000,
@@ -23,7 +23,7 @@ const seed = {
 		},
 		{
 			id: 2,
-			date: 'Sep-24-2022',
+			date: '2022-09-24',
 			credit: 'ABS HDFC',
 			debit: 'uber',
 			amount: 249,
@@ -43,7 +43,7 @@ const seed = {
 			balances: 79453.3,
 			notes: '-',
 			isActive: false,
-			dateTime: '2018-06-12 19:30:55',
+			dateTime: '2018-06-12T19:30:55',
 			integer: 5,
 			phoneNo: '1234567890',
 			time: '13:30:00',

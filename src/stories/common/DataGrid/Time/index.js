@@ -1,27 +1,9 @@
-import { React, useState } from 'react';
 import Input from './Input';
+import genInput from '../genInput';
 
-const props = {
-	InputProps: { disableUnderline: true },
+const TimeInput = genInput({
 	type: 'time',
-	variant: 'standard',
-};
-const TimeInput = (context) => {
-	const { value: initialValue = '', row, field, schema } = context;
-	const [value, setValue] = useState(initialValue);
-
-	return (
-		<Input { ...{
-			...props,
-			value: value,
-			schema: schema,
-			onChange: ({ target: { value: newValue }}) => {
-				row[field] = newValue;
-
-				return setValue(newValue);
-			},
-		} }
-		/>);
-};
+	input: Input,
+});
 
 export default TimeInput;
