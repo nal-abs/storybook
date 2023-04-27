@@ -1,5 +1,6 @@
+/* eslint-disable id-match */
 /* eslint-disable react/jsx-key */
-import { React, useMemo } from 'react';
+import { React, useMemo, useState } from 'react';
 import { useTable, useBlockLayout, useResizeColumns } from 'react-table';
 import {
 	Table as MuiTable,
@@ -8,35 +9,30 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow,
-	Paper,
 	Box,
+	Paper,
 } from '@mui/material';
+import HeaderCell from './HeaderCell';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-const ReSizer = ({ column }) => {
-	const { isResizing, getResizerProps } = column;
+const Header = (context) => {
+	const { props: { headerGroups }} = context;
 
-	return (
-		<div
-			{ ...getResizerProps() }
-			className={ `resizer ${ isResizing ? 'isResizing' : '' }` }
-		/>
-	);
+	return headerGroups.map((headerGroup) =>
+		<TableRow { ...headerGroup.getHeaderGroupProps() }>
+			{headerGroup.headers.map((column, index) =>
+				<HeaderCell
+					key={ index }
+					{ ...{ ...context, data: { column, index }} }
+				/>)}
+		</TableRow>);
 };
 
-const Header = ({ headerGroups }) =>
-	headerGroups.map((headerGroup) =>
-		<TableRow { ...headerGroup.getHeaderGroupProps() }>
-			{headerGroup.headers.map((column) =>
-				<TableCell key={ column.getHeaderProps().key }>
-					<Box { ...column.getHeaderProps() }>
-						{column.render('Header')}
-					</Box>
-					<ReSizer column={ column }/>
-				</TableCell>)}
-		</TableRow>);
+const Body = (context) => {
+	const { props: { rows, prepareRow }} = context;
 
-const Body = ({ rows, prepareRow }) =>
-	rows.map((row) => {
+	return rows.map((row) => {
 		prepareRow(row);
 		return (
 			<TableRow { ...row.getRowProps() }>
@@ -49,42 +45,42 @@ const Body = ({ rows, prepareRow }) =>
 			</TableRow>
 		);
 	});
+};
 
-const Table = (props) => {
-	const { getTableProps, getTableBodyProps } = props;
+const Table = (context) => {
+	const { props: { getTableProps, getTableBodyProps }} = context;
 
 	return <MuiTable { ...getTableProps() } stickyHeader={ true }>
 		<TableHead>
-			<Header { ...props }/>
+			<Header { ...context }/>
 		</TableHead>
 		<TableBody { ...getTableBodyProps() }>
-			<Body { ...props }/>
+			<Body { ...context }/>
 		</TableBody>
 	</MuiTable>;
 };
 
-const DataGrid = (context) => {
-	const { config } = context;
-	const data = useMemo(() => config.rows, []);
-
+const DataGrid = (args) => {
+	const { config } = args;
+	const rows = useMemo(() => config.rows, []);
 	const columns = useMemo(() => config.columns, []);
-
-	const defaultColumn = useMemo(() => ({
-		minWidth: 30, width: 150, maxWidth: 400,
-	}),
-	[]);
+	const [state, setState] = useState({ columns, rows });
 
 	const { resetResizing, ...props } = useTable(
-		{ columns, data, defaultColumn },
+		{ columns: state.columns, data: state.rows },
 		useBlockLayout,
 		useResizeColumns
 	);
 
+	const context = { ...args, state, setState };
+
 	return (
-		<TableContainer component={ Paper }>
-			<Table { ...props }/>
-			<button onClick={ resetResizing }>Reset Resizing</button>
-		</TableContainer>
+		<DndProvider backend={ HTML5Backend }>
+			<TableContainer component={ Paper }>
+				<Table { ...{ ...context, props } }/>
+				<button onClick={ resetResizing }>Reset Resizing</button>
+			</TableContainer>
+		</DndProvider>
 	);
 };
 
