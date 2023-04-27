@@ -8,29 +8,26 @@ const regExp = /^-?(?:0|[1-9]\d*)?(?:\.?|\.\d*)$/;
 const handleValidInput = (
 	setUserInput, value, schema, onChange
 ) => {
-	const integer = Number(value);
+	const number = Number(value);
 
 	setUserInput(value);
-	validate(schema, integer)
-		&& onChange(buildEvent(integer));
+	validate(number, schema)
+		&& onChange(buildEvent(number));
 };
 
 const Input = (context) => {
-	const {
-		value: initialValue,
-		onChange = (x) => x,
-		schema, ...rest
-	} = context;
-	const [userInput, setUserInput] = useState(initialValue);
+	const { value = '', onChange = (x) => x, schema, ...rest } = context;
+	const [userInput, setUserInput] = useState(value);
 
 	return (
 		<TextField { ...{
+			className: validate(userInput, schema) ? '' : 'error',
 			value: userInput,
-			onChange: ({ target: { value }}) => {
-				const isInputValid = regExp.test(value);
+			onChange: ({ target: { value: newValue }}) => {
+				const isInputValid = regExp.test(newValue);
 
 				return isInputValid && handleValidInput(
-					setUserInput, value, schema, onChange
+					setUserInput, newValue, schema, onChange
 				);
 			},
 			...rest,

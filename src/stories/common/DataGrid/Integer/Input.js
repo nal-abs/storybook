@@ -12,26 +12,23 @@ const handleValidInput = (
 	const integer = Number(value);
 
 	setUserInput(value);
-	validate(schema, integer)
+	validate(integer, schema)
 		&& onChange(buildEvent(integer));
 };
 
 const Input = (context) => {
-	const {
-		value: initialValue, schema,
-		onChange = nothing,
-		...rest
-	} = context;
-	const [userInput, setUserInput] = useState(initialValue);
+	const { value = '', schema, onChange = nothing, ...rest } = context;
+	const [userInput, setUserInput] = useState(value);
 
 	return (
 		<TextField { ...{
+			className: validate(userInput, schema) ? '' : 'error',
 			value: userInput,
-			onChange: ({ target: { value }}) => {
-				const isInputValid = regExp.test(value);
+			onChange: ({ target: { value: newValue }}) => {
+				const isInputValid = regExp.test(newValue);
 
 				return isInputValid && handleValidInput(
-					setUserInput, value, schema, onChange
+					setUserInput, newValue, schema, onChange
 				);
 			},
 			...rest,

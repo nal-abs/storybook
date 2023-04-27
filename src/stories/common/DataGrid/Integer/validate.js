@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 
-const validateInteger = (schema, value) => {
+const validateInteger = (value, schema) => {
 	const ajv = new Ajv();
 	const validate = ajv.compile(schema);
 

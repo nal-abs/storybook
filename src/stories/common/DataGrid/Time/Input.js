@@ -7,18 +7,18 @@ import validate from './validate';
 import dayjs from 'dayjs';
 
 const Input = ({
-	value: initialValue, schema,
+	value = '', schema,
 	onChange = nothing,
 	...rest
 }) => {
-	const [userInput, setUserInput] = useState(initialValue);
+	const [userInput, setUserInput] = useState(value);
 
 	return (
 		<TextField { ...{
 			className: validate(userInput, schema) ? '' : 'error',
 			value: userInput,
-			onChange: ({ target: { value }}) => {
-				const timeFormat = dayjs(`1/1/2000 ${ value }`).format('hh:mm:ss');
+			onChange: ({ target: { value: newValue }}) => {
+				const timeFormat = dayjs(`1/1/2000 ${ newValue }`).format('hh:mm:ss');
 
 				setUserInput(timeFormat);
 				validate(timeFormat, schema)

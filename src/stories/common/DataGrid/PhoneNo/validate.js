@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 
-const validate = (schema, value) => {
+const validate = (value, schema) => {
 	const pattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
 
 	const ajv = new Ajv();

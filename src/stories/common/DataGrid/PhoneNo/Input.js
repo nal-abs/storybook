@@ -5,21 +5,17 @@ import validate from './validate';
 import buildEvent from '../../buildEvent';
 
 const Input = (context) => {
-	const {
-		value: initialValue = '',
-		onChange = nothing,
-		schema,
-		...rest
-	} = context;
-	const [userInput, setUserInput] = useState(initialValue);
+	const { value = '', onChange = nothing, schema, ...rest } = context;
+	const [userInput, setUserInput] = useState(value);
 
 	return (
 		<TextField { ...{
+			className: validate(userInput, schema) ? '' : 'error',
 			value: userInput,
-			onChange: ({ target: { value }}) => {
-				setUserInput(value);
-				validate(schema, value)
-				&& onChange(buildEvent(value));
+			onChange: ({ target: { value: newValue }}) => {
+				setUserInput(newValue);
+				validate(newValue, schema)
+				&& onChange(buildEvent(newValue));
 			},
 			...rest,
 		} }
