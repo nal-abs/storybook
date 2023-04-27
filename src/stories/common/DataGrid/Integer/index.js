@@ -1,11 +1,10 @@
-import genInput from '../genInput';
+import Input from './Input';
 import transformSchema from '../transformSchema';
+import genInput from '../genInput';
 
-const IntegerInput = (context) => genInput(context)({
-	extendedProps: {
-		inputProps: transformSchema(context.schema),
-	},
-	transform: (newValue) => newValue,
+const IntegerInput = genInput({
+	input: Input,
+	inputProps: transformSchema,
 });
 
 export default IntegerInput;
