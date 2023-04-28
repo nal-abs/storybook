@@ -155,6 +155,10 @@ const config = {
 			email: 'jane.smith@example.com',
 		},
 	],
+	itemTypes: {
+		column: 'column',
+		row: 'row',
+	},
 };
 
 export default config;

@@ -1,16 +1,9 @@
-import { React, useRef } from 'react';
+import { Fragment, React, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Box, TableCell } from '@mui/material';
-import update from 'immutability-helper';
-import ReactTableColumnMover from '../../helper/ReactTableColumnMover';
+import ReactTableReorder from '../../helper/ReactTableReorder';
 
-const style = {
-	cursor: 'move',
-};
-
-const ItemTypes = 'column';
-
-const ReSizer = ({ column }) => {
+const ReSizer = ({ data: { column }}) => {
 	const { isResizing, getResizerProps } = column;
 
 	return (
@@ -21,72 +14,39 @@ const ReSizer = ({ column }) => {
 	);
 };
 
-const moveColumn = ({ setState, data: { dragIndex, hoverIndex }}) => {
-	setState((prevCards) => ({
-		...prevCards,
-		columns: update(prevCards.columns, {
-			$splice: [
-				[dragIndex, 1],
-				[hoverIndex, 0, prevCards.columns[dragIndex]],
-			],
-		}),
-	}));
-};
+const Cell = (context) => {
+	const { data: { column }, dropRef } = context;
 
-const getHover = (context) => {
-	const { data: { item, ref, index }} = context;
-	const dragIndex = item.index;
-	const hoverIndex = index;
-
-	const shouldMoveColumn = ref.current
-	&& ReactTableColumnMover.isMoveColumn(context);
-
-	shouldMoveColumn
-	&& moveColumn({ ...context, data: { dragIndex, hoverIndex }});
-
-	item.index = hoverIndex;
-};
-
-const getDrag = (index) => ({
-	type: ItemTypes,
-	item: () => ({ id: index + 1, index: index }),
-	collect: (monitor) => ({
-		isDragging: monitor.isDragging(),
-	}),
-});
-
-const getDrop = (context) => {
-	const { data: { ref, index }} = context;
-
-	return {
-		accept: ItemTypes,
-		collect: (monitor) => ({
-			handlerId: monitor.getHandlerId(),
-		}),
-		hover: (item, monitor) => getHover({ ...context,
-			data: { item, monitor, ref, index }}),
-	};
+	return <Fragment>
+		<Box { ...{
+			className: 'drag',
+			ref: dropRef,
+		} }
+		>
+			{column.render('Header')}
+		</Box>
+		<ReSizer { ...{ ...context } }/>
+	</Fragment>;
 };
 
 const HeaderCell = (context) => {
-	const { data: { index, column }} = context;
-	const ref = useRef(null);
-	const [{ handlerId }, drop] = useDrop(getDrop({ ...context,
-		data: { ref, index }}));
-	const [{ isDragging }, drag] = useDrag(getDrag(index));
+	const { data: { column }} = context;
+	const dropRef = useRef();
+	const position = 'column';
+
+	const [, drop] = useDrop(ReactTableReorder
+		.getDrop({ ...context, ref: dropRef, position: position }));
+	const [{ isDragging }, drag] = useDrag(ReactTableReorder
+		.getDrag({ ...context, position }));
 	const opacity = isDragging ? 0 : 1;
 
-	drag(drop(ref));
+	drag(drop(dropRef));
+
+	const { style } = column.getHeaderProps();
 
 	return (
-		<TableCell
-			style={ { ...style, opacity } }
-			data-handler-id={ handlerId }
-		>
-			<Box ref={ ref } { ...column.getHeaderProps() }>
-				{column.render('Header')}
-			</Box>
-			<ReSizer column={ column }/>
+		<TableCell { ...{ style: { ...style, opacity }} }>
+			<Cell { ...{ ...context, dropRef } }/>
 		</TableCell>
 	);
 };
