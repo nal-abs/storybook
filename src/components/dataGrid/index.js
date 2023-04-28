@@ -1,26 +1,26 @@
-/* eslint-disable id-match */
-/* eslint-disable react/jsx-key */
-import { React, useMemo, useState } from 'react';
+import { React, useState } from 'react';
 import { useTable, useBlockLayout, useResizeColumns } from 'react-table';
 import {
 	Table as MuiTable,
 	TableBody,
-	TableCell,
 	TableContainer,
 	TableHead,
 	TableRow,
-	Box,
-	Paper,
+	TableCell,
 } from '@mui/material';
-import HeaderCell from './HeaderCell';
+import DragHandleIcon from '@mui/icons-material/DragHandle';
 import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { HTML5Backend as HTMLBackend } from 'react-dnd-html5-backend';
+import HeaderCell from './HeaderCell';
+import BodyRow from './BodyRow';
 
 const Header = (context) => {
 	const { props: { headerGroups }} = context;
 
 	return headerGroups.map((headerGroup) =>
+		// eslint-disable-next-line react/jsx-key
 		<TableRow { ...headerGroup.getHeaderGroupProps() }>
+			<TableCell><DragHandleIcon style={ { opacity: 0 } }/></TableCell>
 			{headerGroup.headers.map((column, index) =>
 				<HeaderCell
 					key={ index }
@@ -32,19 +32,8 @@ const Header = (context) => {
 const Body = (context) => {
 	const { props: { rows, prepareRow }} = context;
 
-	return rows.map((row) => {
-		prepareRow(row);
-		return (
-			<TableRow { ...row.getRowProps() }>
-				{row.cells.map((cell) =>
-					<TableCell key={ cell.getCellProps().key }>
-						<Box { ...cell.getCellProps() }>
-							{cell.render('Cell')}
-						</Box>
-					</TableCell>)}
-			</TableRow>
-		);
-	});
+	return rows.map((row, index) => prepareRow(row)
+	|| <BodyRow key={ index } { ...{ ...context, data: { row, index }} }/>);
 };
 
 const Table = (context) => {
@@ -61,11 +50,8 @@ const Table = (context) => {
 };
 
 const DataGrid = (args) => {
-	const { config } = args;
-	const rows = useMemo(() => config.rows, []);
-	const columns = useMemo(() => config.columns, []);
+	const { config: { columns, rows }} = args;
 	const [state, setState] = useState({ columns, rows });
-
 	const { resetResizing, ...props } = useTable(
 		{ columns: state.columns, data: state.rows },
 		useBlockLayout,
@@ -75,8 +61,8 @@ const DataGrid = (args) => {
 	const context = { ...args, state, setState };
 
 	return (
-		<DndProvider backend={ HTML5Backend }>
-			<TableContainer component={ Paper }>
+		<DndProvider backend={ HTMLBackend }>
+			<TableContainer>
 				<Table { ...{ ...context, props } }/>
 				<button onClick={ resetResizing }>Reset Resizing</button>
 			</TableContainer>
