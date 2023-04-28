@@ -17,9 +17,11 @@ import BodyRow from './BodyRow';
 const Header = (context) => {
 	const { props: { headerGroups }} = context;
 
-	return headerGroups.map((headerGroup) =>
-		// eslint-disable-next-line react/jsx-key
-		<TableRow { ...headerGroup.getHeaderGroupProps() }>
+	return headerGroups.map((headerGroup, key) =>
+		<TableRow
+			key={ key }
+			{ ...headerGroup.getHeaderGroupProps() }
+		>
 			<TableCell><DragHandleIcon style={ { opacity: 0 } }/></TableCell>
 			{headerGroup.headers.map((column, index) =>
 				<HeaderCell
