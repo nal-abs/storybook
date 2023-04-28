@@ -4,12 +4,7 @@ import { GridActionsCellItem } from '@mui/x-data-grid';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
 import buildEvent from '../buildEvent';
-import PhoneNo from './PhoneNo';
-import Integer from './Integer';
-import Number from './Number';
-import DateTime from './DateTime';
-import Time from './Time';
-import Date from './Date';
+import Input from './genInput';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -37,7 +32,7 @@ const inputType = {
 	date: ({ data }) => ({
 		minWidth: 200,
 		editable: false,
-		renderCell: (params) => <Date { ...{ ...params, schema: data } }/>,
+		renderCell: (params) => <Input { ...{ ...params, schema: data } }/>,
 	}),
 	actions: (props) => ({
 		type: props.type,
@@ -80,30 +75,30 @@ const inputType = {
 		minWidth: 200,
 		editable: false,
 		renderCell: (params) =>
-			<DateTime { ...{ ...params, schema: data } }/>,
+			<Input { ...{ ...params, schema: data } }/>,
 	}),
 	time: ({ data }) => ({
 		minWidth: 150,
 		editable: false,
-		renderCell: (params) => <Time { ...{ ...params, schema: data } }/>,
+		renderCell: (params) => <Input { ...{ ...params, schema: data } }/>,
 	}),
 	integer: ({ data }) => ({
 		editable: false,
 		renderCell: (params) =>
-			<Integer { ...{ ...params, schema: data } }/>,
+			<Input { ...{ ...params, schema: data } }/>,
 	}),
 	number: ({ data }) => ({
 		width: 150,
 		editable: false,
 		renderCell: (params) =>
-			<Number { ...{ ...params,	schema: data } }/>,
+			<Input { ...{ ...params,	schema: data } }/>,
 	}),
 	phoneNo: ({ data }) => ({
 		type: 'string',
 		width: 150,
 		editable: false,
 		renderCell: (params) =>
-			<PhoneNo { ...{ ...params, schema: data } }/>,
+			<Input { ...{ ...params, schema: data } }/>,
 	}),
 };
 
