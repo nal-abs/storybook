@@ -17,7 +17,7 @@ const genInput = ({ Component,
 			return setValue(newValue);
 		};
 		const props = { value, variant, InputProps, schema, onChange };
-		const extendedProps = { inputProps: buildInputProps(schema) };
+		const extendedProps = { inputProps: buildInputProps(context) };
 
 		return <Component { ...{ ...props, ...extendedProps, type } }/>;
 	};
