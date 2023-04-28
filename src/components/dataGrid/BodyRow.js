@@ -51,7 +51,7 @@ const getDrag = (index) => ({
 	}),
 });
 
-const Cell = ({ data: { row }, ref }) =>
+const Cell = ({ data: { row }, dragRef: ref }) =>
 	<Fragment>
 		<TableCell { ...{ ref } }>
 			<DragHandleIcon className="rowDrag"/>
@@ -79,7 +79,7 @@ const BodyRow = (context) => {
 
 	return (
 		<TableRow { ...{
-			ref: { dropRef },
+			ref: dropRef,
 			style: { opacity, ...row.getRowProps().style },
 		} }
 		>
