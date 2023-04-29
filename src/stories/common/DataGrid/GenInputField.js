@@ -1,9 +1,8 @@
-/* eslint-disable max-lines-per-function */
 import { TextField } from '@mui/material';
 import { React, useState } from 'react';
 import { identity, nothing } from '@laufire/utils/fn';
 import buildEvent from '../buildEvent';
-import validate from './Validate';
+import validateType from './Validate';
 import transformValue from './transformValue';
 import isInputValid from './isInputValid';
 import inputProps from './inputProps';
@@ -18,19 +17,18 @@ const formatMap = {
 };
 
 const handleValidInput = (props, newValue) => {
-	const { setUserInput, schema, parameter, onChange } = props;
-	const transform = transformValue[parameter] || identity;
+	const { setUserInput, context: { schema, onChange = nothing },
+		transform, validate } = props;
 
 	setUserInput(newValue);
-	validate[parameter](transform(newValue), schema)
+	validate(transform(newValue), schema)
 			&& onChange(buildEvent(transform(newValue)));
 };
 
 const getClassName = (props) => {
-	const { schema, parameter, userInput } = props;
-	const transform = transformValue[parameter] || identity;
+	const { context: { schema }, userInput, transform, validate } = props;
 
-	return validate[parameter](transform(userInput), schema)
+	return validate(transform(userInput), schema)
 		? ''
 		: 'error';
 };
@@ -40,28 +38,30 @@ const TextFieldProps = {
 	InputProps: { disableUnderline: true },
 };
 
-const GenInputField = (context) => {
-	const { value = '', onChange = nothing, schema } = context;
-	const { format, type } = schema;
-	const parameter = format || type;
+const handleChange = (props) => ({ target: { value: newValue }}) => {
+	const { context: { component }} = props;
+	const inputValid = isInputValid[component] || identity;
 
+	return inputValid(newValue)
+			&& handleValidInput(props, newValue);
+};
+
+const GenInputField = (context) => {
+	const { value = '', component } = context;
 	const [userInput, setUserInput] = useState(value);
-	const props = { setUserInput, schema, parameter, onChange, userInput };
-	const buildInputProps = inputProps[parameter] || nothing;
+	const transform = transformValue[component] || identity;
+	const validate = validateType[component] || identity;
+	const props = { setUserInput, userInput, transform, validate, context };
+	const buildInputProps = inputProps[component] || nothing;
 	const extendedProps = { inputProps: buildInputProps(context) };
 
 	return (
 		<TextField { ...{
 			...TextFieldProps,
-			type: formatMap[parameter],
+			type: formatMap[component],
 			className: getClassName(props),
 			value: userInput,
-			onChange: ({ target: { value: newValue }}) => {
-				const inputValid = isInputValid[format] || identity;
-
-				return inputValid(newValue)
-				&& handleValidInput(props, newValue);
-			},
+			onChange: handleChange(props),
 			...extendedProps,
 		} }
 		/>);

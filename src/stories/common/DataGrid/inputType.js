@@ -4,7 +4,7 @@ import { GridActionsCellItem } from '@mui/x-data-grid';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
 import buildEvent from '../buildEvent';
-import Input from './genInput';
+import Input from './GenInput';
 
 const dataFormatter = {
 	enum: (props) => ({

@@ -6,17 +6,17 @@ import { identity } from '@laufire/utils/fn';
 const Input = (context) => {
 	const { value: initialValue, row, field,
 		schema: { format, type }} = context;
-	const parameter = format || type;
+	const component = format || type;
 	const [value, setValue] = useState(initialValue);
 
 	const onChange = ({ target: { value: newValue }}) => {
-		const update = updateRow[parameter] || identity;
+		const update = updateRow[component] || identity;
 
 		row[field] = update(newValue);
 
 		return setValue(newValue);
 	};
-	const props = { value, onChange };
+	const props = { value, onChange, component };
 
 	return <GenInputField { ...{ ...props, ...context } }/>;
 };

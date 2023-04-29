@@ -1,5 +1,6 @@
 import { map, values } from '@laufire/utils/collection';
 import inputType from './inputType';
+import { nothing } from '@laufire/utils/fn';
 
 const singleSelect = (ele) => ele.enum && {
 	type: 'singleSelect',
@@ -18,7 +19,8 @@ const getColumns = (props) => {
 
 	return values(map(data.properties, (ele, key) => {
 		const { format, type } = ele;
-		const parameter = formatMap[format] || type;
+		const component = formatMap[format] || type;
+		const getColumnProps = inputType[component] || nothing;
 
 		return {
 			...ele,
@@ -27,8 +29,8 @@ const getColumns = (props) => {
 			editable: editable,
 			width: width,
 			...singleSelect(ele),
-			...inputType[parameter] && inputType[parameter]({ ...props,
-				type: parameter, data: ele, field: key }),
+			...getColumnProps({ ...props,
+				type: component, data: ele, field: key }),
 		};
 	}));
 };
