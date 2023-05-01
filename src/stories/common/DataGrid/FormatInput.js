@@ -46,7 +46,7 @@ const handleChange = (props) => ({ target: { value: newValue }}) => {
 			&& handleValidInput(props, newValue);
 };
 
-const GenInputField = (context) => {
+const FormatInput = (context) => {
 	const { value = '', component } = context;
 	const [userInput, setUserInput] = useState(value);
 	const transform = transformValue[component] || identity;
@@ -67,4 +67,4 @@ const GenInputField = (context) => {
 		/>);
 };
 
-export default GenInputField;
+export default FormatInput;

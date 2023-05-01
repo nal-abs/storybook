@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
-import GenInputField from './GenInputField';
+import FormatInput from './FormatInput';
 import updateRow from './updateRow';
 import { identity } from '@laufire/utils/fn';
 
-const Input = (context) => {
+const FieldInput = (context) => {
 	const { value: initialValue, row, field,
 		schema: { format, type }} = context;
 	const component = format || type;
@@ -18,7 +18,7 @@ const Input = (context) => {
 	};
 	const props = { value, onChange, component };
 
-	return <GenInputField { ...{ ...props, ...context } }/>;
+	return <FormatInput { ...{ ...props, ...context } }/>;
 };
 
-export default Input;
+export default FieldInput;
