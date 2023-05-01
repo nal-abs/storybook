@@ -1,5 +1,8 @@
 import { React, useState } from 'react';
-import { useTable, useBlockLayout, useResizeColumns } from 'react-table';
+import {
+	useTable, useBlockLayout,
+	useResizeColumns, useSortBy,
+} from 'react-table';
 import {
 	Table as MuiTable,
 	TableBody,
@@ -57,7 +60,8 @@ const DataGrid = (args) => {
 	const { resetResizing, ...props } = useTable(
 		{ columns: state.columns, data: state.rows },
 		useBlockLayout,
-		useResizeColumns
+		useResizeColumns,
+		useSortBy
 	);
 
 	const context = { ...args, state, setState };

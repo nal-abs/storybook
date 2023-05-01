@@ -1,7 +1,9 @@
-import { Fragment, React, useRef } from 'react';
+import { React, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Box, TableCell } from '@mui/material';
 import ReactTableReorder from '../../helper/ReactTableReorder';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 const ReSizer = ({ data: { column }}) => {
 	const { isResizing, getResizerProps } = column;
@@ -14,23 +16,29 @@ const ReSizer = ({ data: { column }}) => {
 	);
 };
 
+const Sort = ({ data: { column }}) => (column.isSorted
+	? column.isSortedDesc
+		? <ArrowDownwardIcon/>
+		: <ArrowUpwardIcon/>
+	: '');
+
 const Cell = (context) => {
 	const { data: { column }, dropRef } = context;
+	const { style, ...prop } = column
+		.getHeaderProps(column.getSortByToggleProps());
 
-	return <Fragment>
-		<Box { ...{
-			className: 'drag',
-			ref: dropRef,
-		} }
-		>
+	return <Box { ...{ sx: { ...style, display: 'flex' }, ...prop } }>
+		<Box { ...{ className: 'drag', ref: dropRef } }>
 			{column.render('Header')}
 		</Box>
+		<Box>
+			<Sort { ...{ ...context } }/>
+		</Box>
 		<ReSizer { ...{ ...context } }/>
-	</Fragment>;
+	</Box>;
 };
 
 const HeaderCell = (context) => {
-	const { data: { column }} = context;
 	const dropRef = useRef();
 	const position = 'column';
 
@@ -42,10 +50,8 @@ const HeaderCell = (context) => {
 
 	drag(drop(dropRef));
 
-	const { style } = column.getHeaderProps();
-
 	return (
-		<TableCell { ...{ style: { ...style, opacity }} }>
+		<TableCell { ...{ style: { opacity }} }>
 			<Cell { ...{ ...context, dropRef } }/>
 		</TableCell>
 	);
