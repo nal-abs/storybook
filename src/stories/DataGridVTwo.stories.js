@@ -1,16 +1,16 @@
 import { React } from 'react';
-import ReactTable from './common/reactTable';
+import DataTable from './common/dataGridVTwo';
 import config from '../core/config';
 import seed from '../core/seed';
 
 const component = {
-	title: 'Display/Table',
-	component: ReactTable,
+	title: 'Display',
+	component: DataTable,
 };
 
 export default component;
 
-const Template = (args) => <ReactTable { ...args }/>;
+const Template = (args) => <DataTable { ...args }/>;
 
 const actions = [
 	{
@@ -23,9 +23,9 @@ const actions = [
 	},
 ];
 
-export const Table = Template.bind({});
+export const DataGridVTwo = Template.bind({});
 
-Table.args = {
+DataGridVTwo.args = {
 	value: seed.ledgers,
 	schema: config.ledgers.properties,
 	actions: actions,

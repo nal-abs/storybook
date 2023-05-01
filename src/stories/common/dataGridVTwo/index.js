@@ -55,7 +55,7 @@ const Table = (context) => {
 	</MuiTable>;
 };
 
-const ReactTable = (args) => {
+const DataGridVTwo = (args) => {
 	const { value: rows } = args;
 	const columns = dataTable.getColumns(args);
 
@@ -79,4 +79,4 @@ const ReactTable = (args) => {
 	);
 };
 
-export default ReactTable;
+export default DataGridVTwo;
