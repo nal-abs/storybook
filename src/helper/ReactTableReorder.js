@@ -1,5 +1,10 @@
 import update from 'immutability-helper';
 
+const itemTypes = {
+	column: 'column',
+	row: 'row',
+};
+
 const ReactTableReorder = {
 	shouldSwap: (isAboveMiddle, isDragBeforeHover) =>
 		(isAboveMiddle && isDragBeforeHover)
@@ -49,7 +54,7 @@ const ReactTableReorder = {
 	},
 
 	getDrop: (context) => {
-		const { data, config: { itemTypes }, position } = context;
+		const { data, position } = context;
 
 		return {
 			accept: itemTypes[position],
@@ -59,7 +64,7 @@ const ReactTableReorder = {
 	},
 
 	getDrag: (context) => {
-		const { data: { index }, position, config: { itemTypes }} = context;
+		const { data: { index }, position } = context;
 
 		return {
 			type: itemTypes[position],

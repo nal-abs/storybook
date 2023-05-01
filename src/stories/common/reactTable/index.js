@@ -16,6 +16,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend as HTMLBackend } from 'react-dnd-html5-backend';
 import HeaderCell from './HeaderCell';
 import BodyRow from './BodyRow';
+import dataTable from '../../../helper/dataTable';
 
 const Header = (context) => {
 	const { props: { headerGroups }} = context;
@@ -55,7 +56,9 @@ const Table = (context) => {
 };
 
 const ReactTable = (args) => {
-	const { config: { columns, rows }} = args;
+	const { value: rows } = args;
+	const columns = dataTable.getColumns(args);
+
 	const [state, setState] = useState({ columns, rows });
 	const { resetResizing, ...props } = useTable(
 		{ columns: state.columns, data: state.rows },

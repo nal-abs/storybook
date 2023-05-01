@@ -2,8 +2,31 @@
 	background-color: #BC544B;
 }
 
-.vertical-tab{
+.vertical-tab {
 	display: flex;
 	flex-direction: row;
 }
 
+.resizer {
+	background: rgb(231, 231, 231);
+	width: 3%;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+	touch-action: none;
+
+	&.isResizing {
+		background: rgb(173, 173, 173);
+	}
+}
+
+.rowDrag {
+	cursor: move;
+	color: #686868;
+}
+
+.drag {
+	cursor: move;
+}

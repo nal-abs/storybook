@@ -29,7 +29,7 @@ const Cell = (context) => {
 
 	return <Box { ...{ sx: { ...style, display: 'flex' }, ...prop } }>
 		<Box { ...{ className: 'drag', ref: dropRef } }>
-			{column.render('Header')}
+			{column.render('title')}
 		</Box>
 		<Box>
 			<Sort { ...{ ...context } }/>
