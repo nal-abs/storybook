@@ -1,7 +1,6 @@
 import { React } from 'react';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
-import FieldInput from './FieldInput';
 
 const dataFormatter = {
 	enum: (props) => ({
@@ -17,11 +16,12 @@ const dataFormatter = {
 };
 
 const inputType = {
-	date: ({ data }) => ({
+	date: () => ({
 		minWidth: 200,
 		editable: false,
-		renderCell: (params) =>
-			<FieldInput { ...{ ...params, schema: data } }/>,
+	}),
+	boolean: () => ({
+		type: 'boolean',
 	}),
 	array: (props) => ({
 		minWidth: 200,
@@ -38,35 +38,25 @@ const inputType = {
 				/>);
 		},
 	}),
-	dateTime: ({ data }) => ({
+	dateTime: () => ({
 		minWidth: 200,
 		editable: false,
-		renderCell: (params) =>
-			<FieldInput { ...{ ...params, schema: data } }/>,
 	}),
-	time: ({ data }) => ({
+	time: () => ({
 		minWidth: 150,
 		editable: false,
-		renderCell: (params) =>
-			<FieldInput { ...{ ...params, schema: data } }/>,
 	}),
-	integer: ({ data }) => ({
+	integer: () => ({
 		editable: false,
-		renderCell: (params) =>
-			<FieldInput { ...{ ...params, schema: data } }/>,
 	}),
-	number: ({ data }) => ({
+	number: () => ({
 		width: 150,
 		editable: false,
-		renderCell: (params) =>
-			<FieldInput { ...{ ...params,	schema: data } }/>,
 	}),
-	phoneNo: ({ data }) => ({
+	phoneNo: () => ({
 		type: 'string',
 		width: 150,
 		editable: false,
-		renderCell: (params) =>
-			<FieldInput { ...{ ...params, schema: data } }/>,
 	}),
 };
 
