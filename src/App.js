@@ -1,9 +1,9 @@
 import { React } from 'react';
 import './App.scss';
-import DataGrid from './components/dataGrid';
+import ReactTable from './stories/common/reactTable';
 
 const App = (context) => <div className="App">
-	<DataGrid { ...context }/>
+	<ReactTable { ...context }/>
 </div>;
 
 export default App;

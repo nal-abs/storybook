@@ -1,9 +1,9 @@
 import { React, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { Box, TableCell } from '@mui/material';
-import ReactTableReorder from '../../helper/ReactTableReorder';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ReactTableReorder from '../../../helper/ReactTableReorder';
 
 const ReSizer = ({ data: { column }}) => {
 	const { isResizing, getResizerProps } = column;

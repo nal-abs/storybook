@@ -2,7 +2,7 @@ import { Box, TableCell, TableRow } from '@mui/material';
 import { React, Fragment, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
-import ReactTableReorder from '../../helper/ReactTableReorder';
+import ReactTableReorder from '../../../helper/ReactTableReorder';
 
 const Cell = ({ data: { row }, dragRef: ref }) =>
 	<Fragment>

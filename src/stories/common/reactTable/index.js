@@ -54,7 +54,7 @@ const Table = (context) => {
 	</MuiTable>;
 };
 
-const DataGrid = (args) => {
+const ReactTable = (args) => {
 	const { config: { columns, rows }} = args;
 	const [state, setState] = useState({ columns, rows });
 	const { resetResizing, ...props } = useTable(
@@ -76,4 +76,4 @@ const DataGrid = (args) => {
 	);
 };
 
-export default DataGrid;
+export default ReactTable;
