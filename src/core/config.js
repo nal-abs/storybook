@@ -72,10 +72,6 @@ const config = {
 					],
 				},
 			},
-			actions: {
-				type: 'actions',
-				title: 'Actions',
-			},
 		},
 	},
 	ledgers: {
@@ -129,10 +125,6 @@ const config = {
 				type: 'string',
 				format: 'phoneNo',
 				title: 'phoneNo',
-			},
-			actions: {
-				type: 'actions',
-				title: 'Actions',
 			},
 		},
 	},

@@ -1,9 +1,6 @@
 import { React } from 'react';
-import * as Icons from '@mui/icons-material';
-import { GridActionsCellItem } from '@mui/x-data-grid';
 import MultiSelect from './MultiSelect';
 import { pick } from '@laufire/utils/collection';
-import buildEvent from '../buildEvent';
 import FieldInput from './FieldInput';
 
 const dataFormatter = {
@@ -19,44 +16,12 @@ const dataFormatter = {
 	},
 };
 
-const Actions = {
-	editRow: (rows, value) =>
-		rows.map((row) => (row.id !== value.id
-			? row
-			: { ...row, ...value.row })),
-
-	deleteRow: (rows, value) => rows.filter((row) => row.id !== value.id),
-};
-
 const inputType = {
 	date: ({ data }) => ({
 		minWidth: 200,
 		editable: false,
 		renderCell: (params) =>
 			<FieldInput { ...{ ...params, schema: data } }/>,
-	}),
-	actions: (props) => ({
-		type: props.type,
-		editable: false,
-		getActions: (params) => {
-			const { columns: { actions = {}}, rows, setRows, onChange } = props;
-
-			return actions.map(({ icon, action }) => {
-				const Icon = Icons[icon];
-
-				return (
-					<GridActionsCellItem
-						key={ params.id }
-						icon={ <Icon/> }
-						label={ icon }
-						onClick={ () => {
-							setRows(Actions[action](rows, params));
-							onChange(buildEvent(params.row));
-						} }
-					/>);
-			});
-		},
-
 	}),
 	array: (props) => ({
 		minWidth: 200,
