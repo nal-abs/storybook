@@ -1,7 +1,6 @@
 import { React } from 'react';
 import './App.scss';
 import Tab from '../src/stories/common/Tab/index';
-import ReactTable from './stories/common/reactTable';
 
 const getTabProp = (context) => ({ ...context,
 	contents: {
@@ -21,7 +20,6 @@ const getTabProp = (context) => ({ ...context,
 
 const App = (context) => <div className="App">
 	<Tab { ...getTabProp(context) }/>
-	<ReactTable { ...{ ...context } }/>
 </div>;
 
 export default App;
