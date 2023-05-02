@@ -1,15 +1,11 @@
-import MultiSelect from './MultiSelect';
-import React from 'react';
 
 const inputType = {
 	date: () => ({
 		minWidth: 200,
 		editable: false,
 	}),
-	array: ({ data }) => ({
+	array: () => ({
 		minWidth: 200,
-		renderCell: (params) =>
-			<MultiSelect { ...{ ...params, schema: data } }/>,
 	}),
 	dateTime: () => ({
 		minWidth: 200,

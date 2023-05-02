@@ -2,7 +2,7 @@ import React from 'react';
 import { map, values } from '@laufire/utils/collection';
 import inputType from './inputType';
 import { nothing } from '@laufire/utils/fn';
-import FieldInput from './FieldInput';
+import SchemaInput from './SchemaInput';
 
 const singleSelect = (ele) => ele.enum && {
 	type: 'singleSelect',
@@ -32,7 +32,7 @@ const getColumns = (props) => {
 			width: width,
 			...singleSelect(ele),
 			renderCell: (params) =>
-				<FieldInput { ...{ ...params, schema: ele } }/>,
+				<SchemaInput { ...{ ...params, schema: ele } }/>,
 			...getColumnProps({ ...props,
 				type: component, data: ele, field: key }),
 		};
