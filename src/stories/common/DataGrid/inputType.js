@@ -1,42 +1,15 @@
-import { React } from 'react';
 import MultiSelect from './MultiSelect';
-import { pick } from '@laufire/utils/collection';
-
-const dataFormatter = {
-	enum: (props) => ({
-		enum: props.data.items.enum,
-	}),
-	oneOf: (props) => {
-		const array = props.data.items.oneOf;
-
-		return {
-			enum: pick(array, 'title'),
-		};
-	},
-};
+import React from 'react';
 
 const inputType = {
 	date: () => ({
 		minWidth: 200,
 		editable: false,
 	}),
-	boolean: () => ({
-		type: 'boolean',
-	}),
-	array: (props) => ({
+	array: ({ data }) => ({
 		minWidth: 200,
-		renderCell: (params) => {
-			const	{ data: { items }} = props;
-
-			const multiSelectType = items.enum ? 'enum' : 'oneOf';
-
-			return (
-				<MultiSelect { ...{
-					params: params,
-					data: dataFormatter[multiSelectType](props),
-				} }
-				/>);
-		},
+		renderCell: (params) =>
+			<MultiSelect { ...{ ...params, schema: data } }/>,
 	}),
 	dateTime: () => ({
 		minWidth: 200,

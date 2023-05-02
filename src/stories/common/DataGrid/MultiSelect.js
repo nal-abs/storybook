@@ -1,7 +1,21 @@
 import { useState, React } from 'react';
 import Select from '../Select';
+import { pick } from '@laufire/utils/collection';
 
-const MultiSelect = ({ params, data }) => {
+const dataFormatter = {
+	enum: (items) => ({
+		enum: items.enum,
+	}),
+	oneOf: (items) => {
+		const array = items.oneOf;
+
+		return {
+			enum: pick(array, 'title'),
+		};
+	},
+};
+
+const MuiSelect = ({ params, data }) => {
 	const [value, setValue] = useState([]);
 
 	return (
@@ -16,6 +30,19 @@ const MultiSelect = ({ params, data }) => {
 				return setValue(newValue);
 			},
 			value: value,
+		} }
+		/>);
+};
+
+const MultiSelect = (context) => {
+	const { schema: { items }, ...rest } = context;
+
+	const multiSelectType = items.enum ? 'enum' : 'oneOf';
+
+	return (
+		<MuiSelect { ...{
+			params: rest,
+			data: dataFormatter[multiSelectType](items),
 		} }
 		/>);
 };
