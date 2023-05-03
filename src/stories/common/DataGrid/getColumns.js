@@ -4,11 +4,6 @@ import inputType from './inputType';
 import { nothing } from '@laufire/utils/fn';
 import SchemaInput from './SchemaInput';
 
-const singleSelect = (ele) => ele.enum && {
-	type: 'singleSelect',
-	valueOptions: ele.enum,
-};
-
 const formatMap = {
 	'date-time': 'dateTime',
 	'date': 'date',
@@ -30,7 +25,6 @@ const getColumns = (props) => {
 			field: key,
 			editable: editable,
 			width: width,
-			...singleSelect(ele),
 			renderCell: (params) =>
 				<SchemaInput { ...{ ...params, schema: ele } }/>,
 			...getColumnProps({ ...props,
