@@ -1,7 +1,9 @@
 import { useState, React } from 'react';
 import Select from '../Select';
+import updateRow from './updateRow';
 
-const SingleSelect = ({ row, field, schema }) => {
+const SingleSelect = (context) => {
+	const { schema } = context;
 	const [value, setValue] = useState('');
 
 	return (
@@ -11,8 +13,8 @@ const SingleSelect = ({ row, field, schema }) => {
 			disableUnderline: true,
 			variant: 'standard',
 			onChange: ({ target: { value: newValue }}) => {
-				row[field] = newValue;
-				return setValue(newValue);
+				updateRow({ ...context, value: newValue });
+				setValue(newValue);
 			},
 			value: value,
 		} }

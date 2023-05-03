@@ -1,6 +1,7 @@
 import { useState, React } from 'react';
 import Select from '../Select';
 import { pick } from '@laufire/utils/collection';
+import updateRow from './updateRow';
 
 const dataFormatter = {
 	enum: (items) => ({
@@ -15,19 +16,20 @@ const dataFormatter = {
 	},
 };
 
-const MuiSelect = ({ params, data }) => {
+const MuiSelect = (context) => {
+	const { options } = context;
 	const [value, setValue] = useState([]);
 
 	return (
 		<Select { ...{
-			options: data.enum,
+			options: options.enum,
 			multiple: true,
 			sx: { width: '150px' },
 			disableUnderline: true,
 			variant: 'standard',
 			onChange: ({ target: { value: newValue }}) => {
-				params.row[params.field] = newValue;
-				return setValue(newValue);
+				updateRow({ ...context, value: newValue });
+				setValue(newValue);
 			},
 			value: value,
 		} }
@@ -35,14 +37,14 @@ const MuiSelect = ({ params, data }) => {
 };
 
 const MultiSelect = (context) => {
-	const { schema: { items }, ...rest } = context;
+	const { schema: { items }} = context;
 
 	const multiSelectType = items.enum ? 'enum' : 'oneOf';
 
 	return (
 		<MuiSelect { ...{
-			params: rest,
-			data: dataFormatter[multiSelectType](items),
+			...context,
+			options: dataFormatter[multiSelectType](items),
 		} }
 		/>);
 };

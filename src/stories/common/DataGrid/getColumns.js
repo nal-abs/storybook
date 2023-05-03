@@ -18,6 +18,7 @@ const getColumns = (props) => {
 		const { format, type } = ele;
 		const component = formatMap[format] || type;
 		const getColumnProps = inputType[component] || nothing;
+		const schemaProps = { props: props, schema: ele };
 
 		return {
 			...ele,
@@ -25,8 +26,8 @@ const getColumns = (props) => {
 			field: key,
 			editable: editable,
 			width: width,
-			renderCell: (params) =>
-				<SchemaInput { ...{ ...params, schema: ele } }/>,
+			renderCell: ({ row, ...rest }) =>
+				<SchemaInput { ...{ ...rest, data: row, ...schemaProps } }/>,
 			...getColumnProps({ ...props,
 				type: component, data: ele, field: key }),
 		};
