@@ -7,11 +7,10 @@ import {
 	Table as MuiTable,
 	TableBody,
 	TableContainer,
-	TableHead,
 	TableRow,
 	TableCell,
+	Paper,
 } from '@mui/material';
-import DragHandleIcon from '@mui/icons-material/DragHandle';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend as HTMLBackend } from 'react-dnd-html5-backend';
 import HeaderCell from './HeaderCell';
@@ -24,9 +23,8 @@ const Header = (context) => {
 	return headerGroups.map((headerGroup, key) =>
 		<TableRow
 			key={ key }
-			{ ...headerGroup.getHeaderGroupProps() }
 		>
-			<TableCell><DragHandleIcon style={ { opacity: 0 } }/></TableCell>
+			<TableCell/>
 			{headerGroup.headers.map((column, index) =>
 				<HeaderCell
 					key={ index }
@@ -38,22 +36,16 @@ const Header = (context) => {
 const Body = (context) => {
 	const { props: { rows, prepareRow }} = context;
 
-	return rows.map((row, index) => prepareRow(row)
-	|| <BodyRow key={ index } { ...{ ...context, data: { row, index }} }/>);
+	return rows.map((data, index) => prepareRow(data)
+	|| <BodyRow key={ index } { ...{ ...context, data } }/>);
 };
 
-const Table = (context) => {
-	const { props: { getTableProps, getTableBodyProps }} = context;
-
-	return <MuiTable { ...getTableProps() } stickyHeader={ true }>
-		<TableHead>
-			<Header { ...context }/>
-		</TableHead>
-		<TableBody { ...getTableBodyProps() }>
-			<Body { ...context }/>
-		</TableBody>
-	</MuiTable>;
-};
+const Table = (context) => <MuiTable stickyHeader={ true }>
+	<TableBody>
+		<Header { ...context }/>
+		<Body { ...context }/>
+	</TableBody>
+</MuiTable>;
 
 const DataGridVTwo = (args) => {
 	const { value: rows } = args;
@@ -71,7 +63,7 @@ const DataGridVTwo = (args) => {
 
 	return (
 		<DndProvider backend={ HTMLBackend }>
-			<TableContainer>
+			<TableContainer component={ Paper } sx={ { maxHeight: 440 } }>
 				<Table { ...{ ...context, props } }/>
 				<button onClick={ resetResizing }>Reset Resizing</button>
 			</TableContainer>

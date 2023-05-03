@@ -4,19 +4,18 @@ import { useDrag, useDrop } from 'react-dnd';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 import ReactTableReorder from '../../../helper/ReactTableReorder';
 
-const Cell = ({ data: { row }, dragRef: ref }) =>
+const Cell = ({ data, dragRef: ref }) =>
 	<Fragment>
 		<TableCell { ...{ ref } }>
 			<DragHandleIcon className="rowDrag"/>
 		</TableCell>
-		{row.cells.map((cell) =>
+		{data.cells.map((cell) =>
 			<TableCell key={ cell.getCellProps().key }>
 				<Box { ...cell.getCellProps() }>{cell.render('Cell')}</Box>
 			</TableCell>)}
 	</Fragment>;
 
 const BodyRow = (context) => {
-	const { data: { row: { getRowProps }}} = context;
 	const dropRef = useRef();
 	const dragRef = useRef();
 	const position = 'row';
@@ -33,7 +32,7 @@ const BodyRow = (context) => {
 
 	return (
 		<TableRow { ...{ ref: dropRef,
-			style: { opacity, ...getRowProps().style }} }
+			style: { opacity }} }
 		>
 			<Cell { ...{ ...context, dragRef } }/>
 		</TableRow>

@@ -11,7 +11,7 @@ const ReactTableReorder = {
 		|| (!isAboveMiddle && !isDragBeforeHover),
 
 	isMovePosition: (context) => {
-		const { data: { item, monitor, index }, ref } = context;
+		const { data: { index }, item, monitor, ref } = context;
 		const hoverBoundingRect = ref.current.getBoundingClientRect();
 		const hoverClientY = monitor.getClientOffset().y
 		- hoverBoundingRect.top;
@@ -39,7 +39,7 @@ const ReactTableReorder = {
 	},
 
 	getHover: (context) => {
-		const { data: { item, index }, ref, data } = context;
+		const { data: { index }, item, ref, data } = context;
 		const dragIndex = item.index;
 		const hoverIndex = index;
 
@@ -54,12 +54,12 @@ const ReactTableReorder = {
 	},
 
 	getDrop: (context) => {
-		const { data, position } = context;
+		const { position } = context;
 
 		return {
 			accept: itemTypes[position],
 			hover: (item, monitor) => ReactTableReorder.getHover({ ...context,
-				data: { ...data, item, monitor }}),
+				item, monitor }),
 		};
 	},
 
