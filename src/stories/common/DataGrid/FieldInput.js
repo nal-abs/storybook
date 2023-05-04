@@ -5,14 +5,15 @@ import updateValue from './updateValue';
 import updateRow from './updateRow';
 
 const FieldInput = (context) => {
-	const { value: initialValue,
-		schema: { format, type }} = context;
+	const {
+		value: initialValue,
+		schema: { format, type },
+	} = context;
 	const component = format || type;
 	const [value, setValue] = useState(initialValue);
+	const update = updateValue[component] || identity;
 
 	const onChange = ({ target: { value: newValue }}) => {
-		const update = updateValue[component] || identity;
-
 		updateRow({ ...context, value: update(newValue) });
 
 		setValue(newValue);

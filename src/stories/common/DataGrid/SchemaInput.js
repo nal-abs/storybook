@@ -1,26 +1,29 @@
+import SingleSelect from './SingleSelect';
+import MultiSelect from './MultiSelect';
 import FieldInput from './FieldInput';
 import React from 'react';
-import MultiSelect from './MultiSelect';
-import SingleSelect from './SingleSelect';
+import DefaultInput from './DefaultInput';
+import { find } from '@laufire/utils/collection';
 
-const formatMap = {
-	singleSelect: SingleSelect,
-	multiSelect: MultiSelect,
-	input: FieldInput,
-};
-const select = (value) => (value ? 'singleSelect' : 'input');
+const getformatComponent = (format) => format && FieldInput;
+const getTypeComponent = (type) => type && FieldInput;
 
-const getComponent = (schema) => {
-	const { uniqueItems, enum: Enum } = schema;
+const formatList = {};
+const typeList = {};
 
-	const component = uniqueItems ? 'multiSelect' : select(Enum);
-
-	return formatMap[component];
+const componentType = {
+	multiSelect: ({ uniqueItems }) => uniqueItems && MultiSelect,
+	singleSelect: ({ enum: Enum }) => Enum && SingleSelect,
+	format: ({ format }) => formatList[format] || getformatComponent(format),
+	type: ({ type }) => typeList[type] || getTypeComponent(type),
+	default: () => DefaultInput,
 };
 
 const SchemaInput = (props) => {
 	const { schema } = props;
-	const Component = getComponent(schema);
+
+	const Component = find(componentType, (component) =>
+		component(schema))(schema);
 
 	return <Component { ...props }/>;
 };
