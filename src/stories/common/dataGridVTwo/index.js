@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import {
 	useTable, useBlockLayout,
 	useResizeColumns, useSortBy,
@@ -16,6 +16,7 @@ import { HTML5Backend as HTMLBackend } from 'react-dnd-html5-backend';
 import HeaderCell from './HeaderCell';
 import BodyRow from './BodyRow';
 import dataTable from '../../../helper/dataTable';
+import Pagination from './Pagination';
 
 const Header = (context) => {
 	const { props: { headerGroups }} = context;
@@ -47,25 +48,46 @@ const Table = (context) => <MuiTable stickyHeader={ true }>
 	</TableBody>
 </MuiTable>;
 
+const updateRows = (setState, rows) => {
+	setState((preState) => ({
+		...preState,
+		rows: rowsPerPage > 0
+			? rows.slice(preState.page * preState.rowsPerPage,
+				preState.page * preState.rowsPerPage + preState.rowsPerPage)
+			: preState.rows,
+	}));
+};
+
+const useEnhancedTable = (state) => useTable(
+	{ columns: state.columns, data: state.rows },
+	useBlockLayout,
+	useResizeColumns,
+	useSortBy
+);
+
+const page = 0;
+// eslint-disable-next-line no-magic-numbers
+const rowsPerPageOptions = [5, 10, 25, { label: 'All', value: -1 }];
+const rowsPerPage = rowsPerPageOptions[0];
+
 const DataGridVTwo = (args) => {
 	const { value: rows } = args;
 	const columns = dataTable.getColumns(args);
+	const [state, setState] = useState({ columns, rows, page, rowsPerPage });
 
-	const [state, setState] = useState({ columns, rows });
-	const { resetResizing, ...props } = useTable(
-		{ columns: state.columns, data: state.rows },
-		useBlockLayout,
-		useResizeColumns,
-		useSortBy
-	);
+	useEffect(() => {
+		updateRows(setState, rows);
+	}, [state.page, state.rowsPerPage]);
 
-	const context = { ...args, state, setState };
+	const props = useEnhancedTable(state);
+
+	const context = { ...args, state, setState, props, rowsPerPageOptions };
 
 	return (
 		<DndProvider backend={ HTMLBackend }>
 			<TableContainer component={ Paper } sx={ { maxHeight: 440 } }>
-				<Table { ...{ ...context, props } }/>
-				<button onClick={ resetResizing }>Reset Resizing</button>
+				<Table { ...{ ...context } }/>
+				<Pagination { ...context }/>
 			</TableContainer>
 		</DndProvider>
 	);
