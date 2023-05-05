@@ -1,6 +1,5 @@
-import * as React from 'react';
 import ImageCarousel from './common/ImageCarousel';
-import Debugger from '../components/Debugger';
+import Debugger from './common/Debugger';
 
 const component = {
 	title: 'stories/imageCarousel',
@@ -9,8 +8,7 @@ const component = {
 
 export default component;
 
-const Template = ({ count, ...value }) =>
-	<Debugger { ...{ data: { count, value }} }/>;
+const Template = Debugger;
 
 export const imageCarousel = Template.bind({});
 
