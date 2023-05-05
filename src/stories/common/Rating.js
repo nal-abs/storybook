@@ -1,0 +1,34 @@
+import { React, useState } from 'react';
+import Rating from '@mui/material/Rating';
+import buildEvent from './buildEvent';
+import * as Icons from '@mui/icons-material';
+
+const getIcon = ({ emptyIcon, selectedIcon }) => {
+	const Icon = Icons[selectedIcon];
+	const EmptyIcon = Icons[emptyIcon];
+
+	return {
+		icon: Icon && <Icon/>,
+		emptyIcon: EmptyIcon && <EmptyIcon/>,
+	};
+};
+
+const MuiRating = (args) => {
+	const { value: initialValue, ...rest } = args;
+	const [value, setValue] = useState(initialValue);
+
+	return (
+		<Rating { ...{
+			value: value,
+			onChange: (dummy, newValue) => {
+				setValue(newValue);
+				buildEvent(newValue);
+			},
+			...rest,
+			...getIcon(rest),
+		} }
+
+		/>);
+};
+
+export default MuiRating;
