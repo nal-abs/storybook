@@ -10,9 +10,11 @@ import {
 	TableRow,
 	TableCell,
 	Paper,
+	TableHead,
 } from '@mui/material';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend as HTMLBackend } from 'react-dnd-html5-backend';
+import { FixedSizeList } from 'react-window';
 import HeaderCell from './HeaderCell';
 import BodyRow from './BodyRow';
 import dataTable from '../../../helper/dataTable';
@@ -21,32 +23,56 @@ import Pagination from './Pagination';
 const Header = (context) => {
 	const { props: { headerGroups }} = context;
 
-	return headerGroups.map((headerGroup, key) =>
-		<TableRow
-			key={ key }
-		>
-			<TableCell/>
-			{headerGroup.headers.map((column, index) =>
-				<HeaderCell
-					key={ index }
-					{ ...{ ...context, data: { column, index }} }
-				/>)}
-		</TableRow>);
+	return <TableHead>
+		{ headerGroups.map((headerGroup, key) =>
+			<TableRow
+				key={ key }
+			>
+				<TableCell/>
+				{headerGroup.headers.map((column, index) =>
+					<HeaderCell
+						key={ index }
+						{ ...{ ...context, data: { column, index }} }
+					/>)}
+			</TableRow>)}
+	</TableHead>;
 };
 
 const Body = (context) => {
-	const { props: { rows, prepareRow }} = context;
+	const {
+		props: { rows, prepareRow },
+		data: { index, isScrolling },
+	} = context;
 
-	return rows.map((data, index) => prepareRow(data)
-	|| <BodyRow key={ index } { ...{ ...context, data } }/>);
+	const data = rows[index];
+
+	return prepareRow(data)
+	|| (isScrolling
+		? 'Scrolling'
+		: <BodyRow key={ index } { ...{ ...context, data } }/>);
 };
 
-const Table = (context) => <MuiTable stickyHeader={ true }>
-	<TableBody>
+const Table = (context) => {
+	const { value } = context;
+
+	return <MuiTable stickyHeader={ true }>
 		<Header { ...context }/>
-		<Body { ...context }/>
-	</TableBody>
-</MuiTable>;
+		<TableBody>
+			<FixedSizeList
+				height={ 400 }
+				itemCount={ value.length }
+				itemSize={ 35 }
+				useIsScrolling={ true }
+			>
+				{({ index, isScrolling, style }) =>
+					<Body { ...{
+						...context, data: { index, isScrolling, style },
+					} }
+					/>}
+			</FixedSizeList>
+		</TableBody>
+	</MuiTable>;
+};
 
 const updateRows = (setState, rows) => {
 	setState((preState) => ({
