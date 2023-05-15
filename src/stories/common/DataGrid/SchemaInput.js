@@ -12,8 +12,8 @@ const formatList = {};
 const typeList = {};
 
 const componentType = {
-	multiSelect: ({ uniqueItems }) => uniqueItems && MultiSelect,
-	singleSelect: ({ enum: Enum }) => Enum && SingleSelect,
+	uniqueItems: ({ uniqueItems }) => uniqueItems && MultiSelect,
+	enum: ({ enum: Enum }) => Enum && SingleSelect,
 	format: ({ format }) => formatList[format] || getformatComponent(format),
 	type: ({ type }) => typeList[type] || getTypeComponent(type),
 	default: () => DefaultInput,
