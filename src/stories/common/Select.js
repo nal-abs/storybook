@@ -1,16 +1,22 @@
-/* eslint-disable max-lines-per-function */
 import { map, omit } from '@laufire/utils/collection';
 import { Checkbox, FormControl, FormHelperText, InputLabel,
 	ListItemText,
 	MenuItem, Select as MuiSelect } from '@mui/material';
 import { useState, React } from 'react';
 import validate from './DataGrid/Date/validate';
+import { nothing } from '@laufire/utils/fn';
 
-const getUpdate = (
-	evt, setState, onChange
-) => {
-	setState(evt.target.value);
-	onChange(evt);
+const getValidValue = (evt, props) => {
+	const { onChange, setState, state, validSchema } = props;
+
+	const updateValue = () => {
+		setState(evt.target.value);
+		onChange(evt);
+	};
+
+	return validate(evt.target.value, validSchema)
+		? updateValue()
+		: state;
 };
 
 const MenuList = ({	schema: { widget }, validSchema, options, state = [] }) =>
@@ -24,27 +30,28 @@ const MenuList = ({	schema: { widget }, validSchema, options, state = [] }) =>
 			<ListItemText>{option}</ListItemText></MenuItem>;
 	});
 
+const handleChange = (evt, props) => {
+	const { setState, multiple } = props;
+
+	return multiple
+		?	getValidValue(evt, props)
+		: setState(evt.target.value);
+};
+
 const DropDown = (context) => {
 	const {
-		options, onChange = (x) => x, multiple, value, schema = {}, ...rest
+		options, onChange = nothing, multiple, value, schema = {}, ...rest
 	} = context;
 	const [state, setState] = useState(value);
 	const validSchema = omit(schema, { something: 'widget' });
-
-	const handleChange = (evt) => (multiple
-		? validate(evt.target.value, validSchema)
-			? getUpdate(
-				evt, setState, onChange
-			)
-			: state
-		: setState(evt.target.value));
+	const props = { onChange, setState, state, validSchema, multiple };
 
 	return (
 		<MuiSelect
 			{ ...{
 				value: state,
 				multiple: multiple,
-				onChange: handleChange,
+				onChange: (evt) => handleChange(evt, props),
 				...multiple && { renderValue: (selectedValue) =>
 					selectedValue.join(', ') },
 				...rest,
