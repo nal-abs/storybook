@@ -1,3 +1,5 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable max-lines-per-function */
 import { useState, React } from 'react';
 import Select from '../Select';
 import { pick } from '@laufire/utils/collection';
@@ -17,7 +19,7 @@ const dataFormatter = {
 };
 
 const MuiSelect = (context) => {
-	const { options } = context;
+	const { options, widget } = context;
 	const [value, setValue] = useState([]);
 
 	return (
@@ -32,12 +34,13 @@ const MuiSelect = (context) => {
 				setValue(newValue);
 			},
 			value: value,
+			widget: widget,
 		} }
 		/>);
 };
 
 const MultiSelect = (context) => {
-	const { schema: { items }} = context;
+	const { schema: { items, widget }} = context;
 
 	const multiSelectType = items.enum ? 'enum' : 'oneOf';
 
@@ -45,6 +48,7 @@ const MultiSelect = (context) => {
 		<MuiSelect { ...{
 			...context,
 			options: dataFormatter[multiSelectType](items),
+			widget: widget,
 		} }
 		/>);
 };

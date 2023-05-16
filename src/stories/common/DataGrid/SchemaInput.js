@@ -10,8 +10,12 @@ const getTypeComponent = (type) => type && FieldInput;
 
 const formatList = {};
 const typeList = {};
+const widgetList = {
+	checkbox: MultiSelect,
+};
 
 const componentType = {
+	widget: ({ widget }) => widgetList[widget],
 	uniqueItems: ({ uniqueItems }) => uniqueItems && MultiSelect,
 	enum: ({ enum: Enum }) => Enum && SingleSelect,
 	format: ({ format }) => formatList[format] || getformatComponent(format),
@@ -21,7 +25,6 @@ const componentType = {
 
 const SchemaInput = (props) => {
 	const { schema } = props;
-
 	const Component = find(componentType, (component) =>
 		component(schema))(schema);
 

@@ -5,6 +5,7 @@ const inputType = {
 		editable: false,
 	}),
 	array: () => ({
+		type: 'string',
 		minWidth: 200,
 	}),
 	dateTime: () => ({

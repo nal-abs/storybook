@@ -48,6 +48,7 @@ const config = {
 			},
 			countries: { type: 'array',
 				uniqueItems: true,
+				widget: 'checkbox',
 				items: {
 					type: 'string',
 					enum: ['India', 'Africa', 'US'],
