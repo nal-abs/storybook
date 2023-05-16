@@ -19,7 +19,7 @@ const dataFormatter = {
 };
 
 const MuiSelect = (context) => {
-	const { options, widget } = context;
+	const { options, schema } = context;
 	const [value, setValue] = useState([]);
 
 	return (
@@ -34,7 +34,7 @@ const MuiSelect = (context) => {
 				setValue(newValue);
 			},
 			value: value,
-			widget: widget,
+			schema: schema,
 		} }
 		/>);
 };

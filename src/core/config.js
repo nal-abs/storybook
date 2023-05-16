@@ -52,7 +52,8 @@ const config = {
 				items: {
 					type: 'string',
 					enum: ['India', 'Africa', 'US'],
-				}},
+				},
+				maxItems: 1 },
 			oneOf: {
 				type: 'array',
 				uniqueItems: true,
@@ -67,11 +68,12 @@ const config = {
 							title: 'India',
 						},
 						{
-							const: 'china',
+							const: 'China',
 							title: 'China',
 						},
 					],
 				},
+				maxItems: 2,
 			},
 		},
 	},

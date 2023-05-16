@@ -17,6 +17,7 @@ const SingleSelect = (context) => {
 				setValue(newValue);
 			},
 			value: value,
+			schema: schema,
 		} }
 		/>);
 };
