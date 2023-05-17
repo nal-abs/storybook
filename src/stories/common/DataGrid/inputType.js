@@ -17,6 +17,7 @@ const inputType = {
 		editable: false,
 	}),
 	integer: () => ({
+		type: 'string',
 		editable: false,
 	}),
 	number: () => ({

@@ -19,14 +19,13 @@ const getValidValue = (evt, props) => {
 		: state;
 };
 
-const MenuList = ({	schema: { widget }, validSchema, options, state = [] }) =>
+const MenuList = ({	validSchema, options, state = [] }) =>
 	map(options, (option, index) => {
 		const checkedState = state.includes(option)
 	&& validate(state, validSchema);
 
 		return <MenuItem key={ index } value={ option }>
-			{widget === 'checkboxGroup'
-				&& <Checkbox checked={ checkedState }/>}
+			<Checkbox checked={ checkedState }/>
 			<ListItemText>{option}</ListItemText></MenuItem>;
 	});
 
@@ -52,8 +51,8 @@ const DropDown = (context) => {
 				value: state,
 				multiple: multiple,
 				onChange: (evt) => handleChange(evt, props),
-				...multiple && { renderValue: (selectedValue) =>
-					selectedValue.join(', ') },
+				renderValue: (selectedValue) =>
+					selectedValue.join(', '),
 				...rest,
 			} }
 		>{MenuList({ schema, validSchema, options, state })}</MuiSelect>);
