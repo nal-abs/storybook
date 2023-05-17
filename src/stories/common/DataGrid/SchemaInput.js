@@ -4,6 +4,7 @@ import FieldInput from './FieldInput';
 import React from 'react';
 import DefaultInput from './DefaultInput';
 import { find } from '@laufire/utils/collection';
+import RadioWidget from './RadioWidget';
 
 const getformatComponent = (format) => format && FieldInput;
 const getTypeComponent = (type) => type && FieldInput;
@@ -12,6 +13,7 @@ const formatList = {};
 const typeList = {};
 const widgetList = {
 	checkbox: MultiSelect,
+	radioGroup: RadioWidget,
 };
 
 const componentType = {

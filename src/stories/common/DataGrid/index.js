@@ -20,7 +20,7 @@ const DataGrid = ({ value, columns, style, onChange = (x) => x }) => {
 				columns={ [...getColumns({ ...props }),
 					...getAction({ ...props })] }
 				hideFooterPagination={ true }
-				rowHeight={ 80 }
+				rowHeight={ 120 }
 			/>
 		</Box>);
 };

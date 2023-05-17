@@ -45,6 +45,7 @@ const config = {
 			country: {
 				type: 'string',
 				enum: ['India', 'Africa', 'US'],
+				widget: 'radioGroup',
 			},
 			countries: { type: 'array',
 				uniqueItems: true,
