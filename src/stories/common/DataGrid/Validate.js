@@ -1,7 +1,7 @@
-import validateDate from './Date/validate';
-import validatePhoneNo from './PhoneNo/validate';
-import validateNumber from './Number/validate';
-import validateInteger from './Integer/validate';
+import validateDate from './validate/validate';
+import validatePhoneNo from './validate/validatePhoneNo';
+import validateNumber from './validate/validateNumber';
+import validateInteger from './validate/validateInteger';
 
 const validate = {
 	'date': validateDate,

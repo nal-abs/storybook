@@ -3,7 +3,7 @@ import { FormControl, FormHelperText, InputLabel,
 	ListItemText,
 	MenuItem, Select as MuiSelect } from '@mui/material';
 import { useState, React } from 'react';
-import validate from './DataGrid/Date/validate';
+import validate from './DataGrid/validate/validate';
 import { nothing } from '@laufire/utils/fn';
 
 const getValidValue = (evt, props) => {
