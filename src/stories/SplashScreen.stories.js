@@ -1,7 +1,7 @@
 import * as React from 'react';
-import SplashImage from '../stories/examples/SplashImage';
-import SplashText from '../stories/examples/SplashText';
-import SplashScreen from '../stories/common/SplashScreen';
+import SplashImage from '../stories/common/SplashScreen/SplashImage';
+import SplashText from '../stories/common/SplashScreen/SplashText';
+import SplashScreen from '../stories/common/SplashScreen/index';
 
 const component = {
 	title: 'stories/SplashScreen',

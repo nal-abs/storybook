@@ -1,5 +1,5 @@
 import { React } from 'react';
-import image from '../../assets/splash_icon/Splash_rotate.gif';
+import image from '../../../assets/splash_icon/Splash_rotate.gif';
 
 const SplashImage = () =>
 	<img
