@@ -1,22 +1,7 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable max-lines-per-function */
 import { useState, React } from 'react';
 import Select from '../Select';
-import { pick } from '@laufire/utils/collection';
+import dataFormatter from './dataFormatter';
 import updateRow from './updateRow';
-
-const dataFormatter = {
-	enum: (items) => ({
-		enum: items.enum,
-	}),
-	oneOf: (items) => {
-		const array = items.oneOf;
-
-		return {
-			enum: pick(array, 'title'),
-		};
-	},
-};
 
 const MuiSelect = (context) => {
 	const { options, schema } = context;

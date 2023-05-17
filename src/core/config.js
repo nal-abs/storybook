@@ -49,7 +49,7 @@ const config = {
 			},
 			countries: { type: 'array',
 				uniqueItems: true,
-				widget: 'checkbox',
+				widget: 'checkboxGroup',
 				items: {
 					type: 'string',
 					enum: ['India', 'Africa', 'US'],
@@ -103,7 +103,7 @@ const config = {
 			isActive: {
 				type: 'boolean',
 				title: 'IsActive',
-				widget: 'switch',
+				widget: 'checkbox',
 			},
 			dateTime: {
 				type: 'string',
