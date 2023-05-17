@@ -1,5 +1,5 @@
 import { map, omit } from '@laufire/utils/collection';
-import { Checkbox, FormControl, FormHelperText, InputLabel,
+import { FormControl, FormHelperText, InputLabel,
 	ListItemText,
 	MenuItem, Select as MuiSelect } from '@mui/material';
 import { useState, React } from 'react';
@@ -19,24 +19,10 @@ const getValidValue = (evt, props) => {
 		: state;
 };
 
-const MenuList = ({	schema: { widget }, validSchema, options, state = [] }) =>
-	map(options, (option, index) => {
-		const checkedState = state.includes(option)
-	&& validate(state, validSchema);
-
-		return <MenuItem key={ index } value={ option }>
-			{widget === 'checkbox'
-				&& <Checkbox checked={ checkedState }/>}
-			<ListItemText>{option}</ListItemText></MenuItem>;
-	});
-
-const handleChange = (evt, props) => {
-	const { setState, multiple } = props;
-
-	return multiple
-		?	getValidValue(evt, props)
-		: setState(evt.target.value);
-};
+const MenuList = (options) =>
+	map(options, (option, index) =>
+		<MenuItem key={ index } value={ option }>
+			<ListItemText>{option}</ListItemText></MenuItem>);
 
 const DropDown = (context) => {
 	const {
@@ -51,12 +37,12 @@ const DropDown = (context) => {
 			{ ...{
 				value: state,
 				multiple: multiple,
-				onChange: (evt) => handleChange(evt, props),
-				...multiple && { renderValue: (selectedValue) =>
-					selectedValue.join(', ') },
+				onChange: (evt) => (multiple
+					? getValidValue(evt, props)
+					: setState(evt.target.value)),
 				...rest,
 			} }
-		>{MenuList({ schema, validSchema, options, state })}</MuiSelect>);
+		>{MenuList(options)}</MuiSelect>);
 };
 
 const Select = (context) => {
