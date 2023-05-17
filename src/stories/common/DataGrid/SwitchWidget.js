@@ -1,14 +1,13 @@
 import { useState, React } from 'react';
-import RadioGroup from '../RadioGroup';
 import updateRow from './updateRow';
+import Switch from '../Switch';
 
-const RadioWidget = (context) => {
-	const { schema, value: initialValue } = context;
+const SwitchWidget = (context) => {
+	const { value: initialValue } = context;
 	const [value, setValue] = useState(initialValue);
 
 	return (
-		<RadioGroup { ...{
-			options: schema.enum,
+		<Switch { ...{
 			onChange: ({ target: { value: newValue }}) => {
 				updateRow({ ...context, value: newValue });
 				setValue(newValue);
@@ -18,4 +17,4 @@ const RadioWidget = (context) => {
 		/>);
 };
 
-export default RadioWidget;
+export default SwitchWidget;

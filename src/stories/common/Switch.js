@@ -1,13 +1,21 @@
 import PropTypes from 'prop-types';
 import { Switch as MuiSwitch } from '@mui/material';
-import * as React from 'react';
+import { React, useState } from 'react';
+import { nothing } from '@laufire/utils/fn';
+import buildEvent from './buildEvent';
 
 const Switch = (context) => {
-	const { ...args } = context;
+	const { value, onChange = nothing, ...args } = context;
+	const [state, setState] = useState(value);
 
 	return (
 		<MuiSwitch
-			{ ...{ ...args } }
+			checked={ state }
+			onChange={ (evt) => {
+				setState(evt.target.checked);
+				onChange(buildEvent(evt.target.checked));
+			} }
+			{ ...args }
 		/>);
 };
 

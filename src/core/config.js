@@ -103,6 +103,7 @@ const config = {
 			isActive: {
 				type: 'boolean',
 				title: 'IsActive',
+				widget: 'switch',
 			},
 			dateTime: {
 				type: 'string',
