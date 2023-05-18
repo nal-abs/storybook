@@ -124,7 +124,9 @@ const config = {
 				title: 'Integer',
 				maximum: 50,
 				minimum: -50,
-				multipleOf: 1,
+				multipleOf: 10,
+				widget: 'slider',
+
 			},
 			phoneNo: {
 				type: 'string',

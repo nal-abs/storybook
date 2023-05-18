@@ -8,6 +8,7 @@ import RadioGroup from './RadioWidget';
 import Switch from './SwitchWidget';
 import CheckBox from './CheckBoxWidget';
 import CheckboxGroup from './CheckboxGroup';
+import Slider from './SliderWidget';
 
 const getformatComponent = (format) => format && FieldInput;
 const getTypeComponent = (type) => type && FieldInput;
@@ -17,6 +18,7 @@ const typeList = {
 	boolean: CheckBox,
 };
 const widgetList = {
+	slider: Slider,
 	checkboxGroup: CheckboxGroup,
 	radioGroup: RadioGroup,
 	switch: Switch,
