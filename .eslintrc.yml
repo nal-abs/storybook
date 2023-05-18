@@ -343,7 +343,6 @@ rules:
   no-shadow-restricted-names: error
   no-unused-vars:
   - "error"
-  - varsIgnorePattern: "dummy"
   no-use-before-define: error
   no-undef: error
   no-undef-init: error
@@ -352,9 +351,9 @@ rules:
   unused-imports/no-unused-vars:
     - warn
     - vars: all
-      varsIgnorePattern: ^_
+      varsIgnorePattern: ^dummy
       args: after-used
-      argsIgnorePattern: ^_
+      argsIgnorePattern: ^dummy
   # require-unicode-regexp: error # Disabled due to san issue with babel. Refer: https://github.com/babel/babel/issues/8951
 
   # Comparisons
