@@ -19,6 +19,7 @@ const inputType = {
 	integer: () => ({
 		type: 'string',
 		editable: false,
+		width: 200,
 	}),
 	number: () => ({
 		width: 150,

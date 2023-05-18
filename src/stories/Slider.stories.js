@@ -15,10 +15,10 @@ export const Slider = Template.bind({});
 Slider.args = {
 	size: 'large',
 	color: 'success',
-	defaultValue: 20,
+	value: 20,
 	min: 0,
 	max: 100,
 	step: 10,
-	sx: { width: 200, alignItems: 'center' },
+	sx: { width: '30%' },
 	valueLabelDisplay: 'auto',
 };

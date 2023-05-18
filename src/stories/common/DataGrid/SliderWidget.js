@@ -5,11 +5,11 @@ import Slider from '../Slider';
 const sliderProps = (schema) => ({
 	size: 'large',
 	color: 'success',
-	sx: { width: 200, alignItems: 'center' },
 	valueLabelDisplay: 'auto',
 	min: schema.minimum,
 	max: schema.maximum,
 	step: schema.multipleOf,
+	sx: { width: '70%' },
 });
 
 const SliderWidget = (context) => {
