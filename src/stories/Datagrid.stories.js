@@ -14,7 +14,7 @@ DataGrid.args = {
 	value: [
 		{
 			id: 1,
-			date: 'Jul-22-2022',
+			date: '2021-05-05',
 			credit: 'Equity share capital',
 			debit: 'ABS HDFC',
 			amount: 50000,
@@ -26,7 +26,7 @@ DataGrid.args = {
 		},
 		{
 			id: 2,
-			date: 'Sep-24-2022',
+			date: '2022-09-04',
 			credit: 'ABS HDFC',
 			debit: 'uber',
 			amount: 249,
@@ -75,6 +75,7 @@ DataGrid.args = {
 				},
 				countries: { type: 'array',
 					uniqueItems: true,
+					widget: 'checkboxGroup',
 					items: {
 						type: 'string',
 						enum: ['India', 'Africa', 'US'],
@@ -93,15 +94,12 @@ DataGrid.args = {
 								title: 'India',
 							},
 							{
-								const: 'china',
+								const: 'China',
 								title: 'China',
 							},
 						],
 					},
-				},
-				actions: {
-					type: 'actions',
-					title: 'Actions',
+					maxItems: 1,
 				},
 			},
 		},

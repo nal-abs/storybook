@@ -8,7 +8,7 @@ const dataFormatter = {
 		const array = items.oneOf;
 
 		return {
-			enum: pick(array, 'title'),
+			enum: pick(array, 'const'),
 		};
 	},
 };
