@@ -6,17 +6,9 @@ import { useState, React } from 'react';
 import validate from './DataGrid/validate/validate';
 import { nothing } from '@laufire/utils/fn';
 
-const getValidValue = (evt, props) => {
-	const { onChange, setState, state, validSchema } = props;
-
-	const updateValue = () => {
-		setState(evt.target.value);
-		onChange(evt);
-	};
-
-	return validate(evt.target.value, validSchema)
-		? updateValue()
-		: state;
+const getValidValue = ({ onChange, setState, evt }) => {
+	setState(evt.target.value);
+	onChange(evt);
 };
 
 const MenuList = (options) =>
@@ -30,16 +22,16 @@ const DropDown = (context) => {
 	} = context;
 	const [state, setState] = useState(value);
 	const validSchema = omit(schema, { something: 'widget' });
-	const props = { onChange, setState, state, validSchema, multiple };
 
 	return (
 		<MuiSelect
 			{ ...{
 				value: state,
 				multiple: multiple,
-				onChange: (evt) => (multiple
-					? getValidValue(evt, props)
-					: setState(evt.target.value)),
+				onChange: (evt) => validate(evt.target.value, validSchema)
+					&& getValidValue({ onChange, setState, evt }),
+				...multiple
+				&& { renderValue: (selectedValue) => selectedValue.join(', ') },
 				...rest,
 			} }
 		>{MenuList(options)}</MuiSelect>);
