@@ -3,6 +3,19 @@ import TextFieldWrapper from './TextFieldWrapper.js';
 import { identity } from '@laufire/utils/fn';
 import updateValue from './updateValue';
 import updateRow from './updateRow';
+import CheckBox from './CheckBoxWrapper.js';
+
+const formatList = {};
+const typeList = {
+	boolean: CheckBox,
+};
+
+const getComponent = (schema) => {
+	const { format, type } = schema;
+	const Component = formatList[format] || typeList[type] || TextFieldWrapper;
+
+	return Component;
+};
 
 const formatMap = {
 	'date-time': 'datetime-local',
@@ -19,7 +32,7 @@ const typeMap = {
 const FieldInput = (context) => {
 	const {
 		value: initialValue,
-		schema: { format, type },
+		schema: { format, type }, schema,
 	} = context;
 	const component = format || type;
 	const schemaType = formatMap[format] || typeMap[type];
@@ -32,8 +45,9 @@ const FieldInput = (context) => {
 		setValue(newValue);
 	};
 	const props = { value, onChange, component, schemaType };
+	const Component = getComponent(schema);
 
-	return <TextFieldWrapper { ...{ ...props, ...context } }/>;
+	return <Component { ...{ ...props, ...context } }/>;
 };
 
 export default FieldInput;
