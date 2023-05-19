@@ -4,14 +4,14 @@ import MultiSelect from './MultiSelect';
 import FieldInput from './FieldInput';
 import DefaultInput from './DefaultInput';
 import { find } from '@laufire/utils/collection';
-import RadioGroup from './RadioWidget';
-import Switch from './SwitchWidget';
-import CheckboxGroup from './CheckboxGroup';
-import Slider from './SliderWidget';
+import RadioGroup from './RadioWrapper';
+import Switch from './SwitchWrapper';
+import CheckBoxGroup from './CheckboxGroupWrapper.js';
+import Slider from './SliderWrapper';
 
 const widgetList = {
 	slider: Slider,
-	checkboxGroup: CheckboxGroup,
+	checkboxGroup: CheckBoxGroup,
 	radioGroup: RadioGroup,
 	switch: Switch,
 	select: SingleSelect,

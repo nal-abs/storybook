@@ -2,7 +2,7 @@ import { useState, React } from 'react';
 import updateRow from './updateRow';
 import CheckBox from '../CheckBox';
 
-const CheckBoxWidget = (context) => {
+const CheckBoxWrapper = (context) => {
 	const { value: initialValue } = context;
 	const [value, setValue] = useState(initialValue);
 
@@ -17,4 +17,4 @@ const CheckBoxWidget = (context) => {
 		/>);
 };
 
-export default CheckBoxWidget;
+export default CheckBoxWrapper;

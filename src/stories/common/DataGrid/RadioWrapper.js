@@ -2,7 +2,7 @@ import { useState, React } from 'react';
 import RadioGroup from '../RadioGroup';
 import updateRow from './updateRow';
 
-const RadioWidget = (context) => {
+const RadioWrapper = (context) => {
 	const { schema, value: initialValue } = context;
 	const [value, setValue] = useState(initialValue);
 
@@ -18,4 +18,4 @@ const RadioWidget = (context) => {
 		/>);
 };
 
-export default RadioWidget;
+export default RadioWrapper;

@@ -2,7 +2,7 @@ import { useState, React } from 'react';
 import updateRow from './updateRow';
 import Switch from '../Switch';
 
-const SwitchWidget = (context) => {
+const SwitchWrapper = (context) => {
 	const { value: initialValue } = context;
 	const [value, setValue] = useState(initialValue);
 
@@ -17,4 +17,4 @@ const SwitchWidget = (context) => {
 		/>);
 };
 
-export default SwitchWidget;
+export default SwitchWrapper;

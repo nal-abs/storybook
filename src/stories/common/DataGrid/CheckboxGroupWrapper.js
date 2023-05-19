@@ -10,7 +10,7 @@ const selectProps = {
 	sx: { width: '150px' },
 };
 
-const CheckboxWidget = (context) => {
+const CheckBoxGroupWrapper = (context) => {
 	const { schema: { items, widget }, schema } = context;
 	const [value, setValue] = useState([]);
 	const multiSelectType = items.enum ? 'enum' : 'oneOf';
@@ -30,4 +30,4 @@ const CheckboxWidget = (context) => {
 		/>);
 };
 
-export default CheckboxWidget;
+export default CheckBoxGroupWrapper;

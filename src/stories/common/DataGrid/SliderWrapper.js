@@ -12,7 +12,7 @@ const sliderProps = (schema) => ({
 	sx: { width: '70%' },
 });
 
-const SliderWidget = (context) => {
+const SliderWrapper = (context) => {
 	const { value: initialValue, schema } = context;
 	const [value, setValue] = useState(initialValue);
 
@@ -28,4 +28,4 @@ const SliderWidget = (context) => {
 		/>);
 };
 
-export default SliderWidget;
+export default SliderWrapper;
