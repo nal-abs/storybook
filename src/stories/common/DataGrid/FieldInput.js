@@ -1,8 +1,20 @@
 import { React, useState } from 'react';
-import FormatInput from './FormatInput';
+import TextFieldWrapper from './TextFieldWrapper.js';
 import { identity } from '@laufire/utils/fn';
 import updateValue from './updateValue';
 import updateRow from './updateRow';
+
+const formatMap = {
+	'date-time': 'datetime-local',
+	'date': 'date',
+	'time': 'time',
+	'phoneNo': 'phoneNo',
+};
+
+const typeMap = {
+	number: 'string',
+	integer: 'string',
+};
 
 const FieldInput = (context) => {
 	const {
@@ -10,6 +22,7 @@ const FieldInput = (context) => {
 		schema: { format, type },
 	} = context;
 	const component = format || type;
+	const schemaType = formatMap[format] || typeMap[type];
 	const [value, setValue] = useState(initialValue);
 	const update = updateValue[component] || identity;
 
@@ -18,9 +31,9 @@ const FieldInput = (context) => {
 
 		setValue(newValue);
 	};
-	const props = { value, onChange, component };
+	const props = { value, onChange, component, schemaType };
 
-	return <FormatInput { ...{ ...props, ...context } }/>;
+	return <TextFieldWrapper { ...{ ...props, ...context } }/>;
 };
 
 export default FieldInput;

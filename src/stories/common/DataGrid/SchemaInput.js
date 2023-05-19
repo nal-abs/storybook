@@ -1,7 +1,7 @@
+import React from 'react';
 import SingleSelect from './SingleSelect';
 import MultiSelect from './MultiSelect';
 import FieldInput from './FieldInput';
-import React from 'react';
 import DefaultInput from './DefaultInput';
 import { find } from '@laufire/utils/collection';
 import RadioGroup from './RadioWidget';
@@ -9,9 +9,6 @@ import Switch from './SwitchWidget';
 import CheckBox from './CheckBoxWidget';
 import CheckboxGroup from './CheckboxGroup';
 import Slider from './SliderWidget';
-
-const getformatComponent = (format) => format && FieldInput;
-const getTypeComponent = (type) => type && FieldInput;
 
 const formatList = {};
 const typeList = {
@@ -28,8 +25,8 @@ const componentType = {
 	widget: ({ widget }) => widgetList[widget],
 	uniqueItems: ({ uniqueItems }) => uniqueItems && MultiSelect,
 	enum: ({ enum: Enum }) => Enum && SingleSelect,
-	format: ({ format }) => formatList[format] || getformatComponent(format),
-	type: ({ type }) => typeList[type] || getTypeComponent(type),
+	format: ({ format }) => formatList[format] || (format && FieldInput),
+	type: ({ type }) => typeList[type] || (type && FieldInput),
 	default: () => DefaultInput,
 };
 

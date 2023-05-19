@@ -7,15 +7,6 @@ import transformValue from './transformValue';
 import isInputValid from './isInputValid';
 import inputProps from './inputProps';
 
-const formatMap = {
-	'date-time': 'datetime-local',
-	'date': 'date',
-	'time': 'time',
-	'phoneNo': 'phoneNo',
-	'number': 'string',
-	'integer': 'string',
-};
-
 const handleValidInput = (props, newValue) => {
 	const { setUserInput, context: { schema, onChange = nothing },
 		transform, validate } = props;
@@ -46,8 +37,8 @@ const handleChange = (props) => ({ target: { value: newValue }}) => {
 			&& handleValidInput(props, newValue);
 };
 
-const FormatInput = (context) => {
-	const { value = '', component } = context;
+const TextFieldWrapper = (context) => {
+	const { value = '', component, schemaType } = context;
 	const [userInput, setUserInput] = useState(value);
 	const transform = transformValue[component] || identity;
 	const validate = validateType[component] || identity;
@@ -58,7 +49,7 @@ const FormatInput = (context) => {
 	return (
 		<TextField { ...{
 			...TextFieldProps,
-			type: formatMap[component],
+			type: schemaType,
 			className: getClassName(props),
 			value: userInput,
 			onChange: handleChange(props),
@@ -67,4 +58,4 @@ const FormatInput = (context) => {
 		/>);
 };
 
-export default FormatInput;
+export default TextFieldWrapper;
