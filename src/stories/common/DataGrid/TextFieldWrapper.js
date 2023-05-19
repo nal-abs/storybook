@@ -8,18 +8,18 @@ import isInputValid from './isInputValid';
 import inputProps from './inputProps';
 
 const handleValidInput = (props, newValue) => {
-	const { setUserInput, context: { schema, onChange = nothing },
+	const { setUserInput, context: { validSchema, onChange = nothing },
 		transform, validate } = props;
 
 	setUserInput(newValue);
-	validate(transform(newValue), schema)
+	validate(transform(newValue), validSchema)
 			&& onChange(buildEvent(transform(newValue)));
 };
 
 const getClassName = (props) => {
-	const { context: { schema }, userInput, transform, validate } = props;
+	const { userInput, transform, validate, context: { validSchema }} = props;
 
-	return validate(transform(userInput), schema)
+	return validate(transform(userInput), validSchema)
 		? ''
 		: 'error';
 };
@@ -29,13 +29,14 @@ const TextFieldProps = {
 	InputProps: { disableUnderline: true },
 };
 
-const handleChange = (props) => ({ target: { value: newValue }}) => {
-	const { context: { component }} = props;
-	const inputValid = isInputValid[component] || identity;
+const handleChange = (props) =>
+	({ target: { value: newValue }}) => {
+		const { context: { component }} = props;
+		const inputValid = isInputValid[component] || identity;
 
-	return inputValid(newValue)
+		return inputValid(newValue)
 			&& handleValidInput(props, newValue);
-};
+	};
 
 const TextFieldWrapper = (context) => {
 	const { value = '', component, schemaType } = context;

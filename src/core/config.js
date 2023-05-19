@@ -111,6 +111,7 @@ const config = {
 				title: 'DateTime',
 				formatMinimum: '2000-10-06T22:22:55',
 				formatMaximum: '2014-11-16T21:25:33',
+				widget: 'dateTimePicker',
 			},
 			time: {
 				type: 'string',

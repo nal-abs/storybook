@@ -4,6 +4,7 @@ import { identity } from '@laufire/utils/fn';
 import updateValue from './updateValue';
 import updateRow from './updateRow';
 import CheckBox from './CheckBoxWrapper.js';
+import { omit } from '@laufire/utils/collection.js';
 
 const formatList = {};
 const typeList = {
@@ -38,13 +39,13 @@ const FieldInput = (context) => {
 	const schemaType = formatMap[format] || typeMap[type];
 	const [value, setValue] = useState(initialValue);
 	const update = updateValue[component] || identity;
-
+	const validSchema = omit(schema, { something: 'widget' });
 	const onChange = ({ target: { value: newValue }}) => {
 		updateRow({ ...context, value: update(newValue) });
 
 		setValue(newValue);
 	};
-	const props = { value, onChange, component, schemaType };
+	const props = { value, onChange, component, schemaType, validSchema };
 	const Component = getComponent(schema);
 
 	return <Component { ...{ ...props, ...context } }/>;
