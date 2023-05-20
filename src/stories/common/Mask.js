@@ -1,11 +1,8 @@
 import React, { useRef, useEffect } from 'react';
-import buildEvent from './buildEvent';
 import color from '../../helper/color';
 import { identity } from '@laufire/utils/fn';
 
-const sliceLength = 3;
-
-const setCanvasImage = (canvasRef, imgRef) => {
+const setCanvasImage = ({ canvasRef, imgRef, src }) => {
 	const canvas = canvasRef.current;
 	const context = canvas.getContext('2d', { willReadFrequently: true });
 	const img = imgRef.current.firstChild;
@@ -20,12 +17,10 @@ const setCanvasImage = (canvasRef, imgRef) => {
 			image, 0, 0, img.width, img.height
 		);
 	};
-	image.src = 'http://localhost:6006/logo192.png';
+	image.src = src;
 };
 
-const setColor = (
-	evt, canvasRef, onChange
-) => {
+const getColor = (evt, canvasRef) => {
 	const canvas = canvasRef.current;
 	const context = canvas.getContext('2d', { willReadFrequently: true });
 	const rect = canvas.getBoundingClientRect();
@@ -35,28 +30,27 @@ const setColor = (
 		x, y, 1, 1
 	);
 
-	const hex = color.rgbToHex(data.slice(0, sliceLength));
-
-	onChange(buildEvent(hex));
+	return color.rgbToHex(data);
 };
 
-const Mask = ({ children, onChange = identity }) => {
+const Mask = (context) => {
+	const { children, onChange = identity, style = {}} = context;
 	const canvasRef = useRef(null);
 	const imgRef = useRef(null);
 
 	useEffect(() => {
-		setCanvasImage(canvasRef, imgRef);
+		setCanvasImage({ ...context, canvasRef, imgRef });
 	}, []);
 
 	return (
-		<div ref={ imgRef } className="parent">
+		<div ref={ imgRef } { ...{ style } } className="parent">
 			{ children }
 			<canvas
 				ref={ canvasRef }
 				className="mask"
-				onClick={ (evt) => setColor(
-					evt, canvasRef, onChange
-				) }
+				onClick={ (evt) => {
+					onChange(getColor(evt, canvasRef));
+				} }
 			/>
 		</div>
 	);
