@@ -1,5 +1,5 @@
 import React from 'react';
-import MuiDataGrid from '../stories/common/DataGrid/index';
+import MuiDataGrid from './common/DataGrid/index';
 
 const component = {
 	title: 'Display/DataGrid',

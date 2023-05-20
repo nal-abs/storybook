@@ -1,8 +1,8 @@
 import { React, useState } from 'react';
 import TextFieldWrapper from './TextFieldWrapper.js';
 import { identity } from '@laufire/utils/fn';
-import updateValue from './updateValue';
-import updateRow from './updateRow';
+import updateValue from './updateValue.js';
+import updateRow from './updateRow.js';
 import CheckBox from './CheckBoxWrapper.js';
 import { omit } from '@laufire/utils/collection.js';
 
