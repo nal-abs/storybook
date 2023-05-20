@@ -4,25 +4,27 @@ import { identity } from '@laufire/utils/fn';
 import updateValue from './updateValue';
 import updateRow from './updateRow';
 import CheckBox from './CheckBoxWrapper.js';
-import { omit } from '@laufire/utils/collection.js';
+import { find, omit } from '@laufire/utils/collection.js';
 
 const formatList = {};
 const typeList = {
 	boolean: CheckBox,
 };
 
-const getComponent = (schema) => {
-	const { format, type } = schema;
-	const Component = formatList[format] || typeList[type] || TextFieldWrapper;
-
-	return Component;
+const componentType = {
+	format: ({ format }) => formatList[format],
+	type: ({ type }) => typeList[type],
+	default: () => TextFieldWrapper,
 };
+
+const getComponent = (schema) => find(componentType, (component) =>
+	component(schema))(schema);
 
 const formatMap = {
 	'date-time': 'datetime-local',
 	'date': 'date',
 	'time': 'time',
-	'phoneNo': 'phoneNo',
+	'phoneNo': 'tel',
 };
 
 const typeMap = {

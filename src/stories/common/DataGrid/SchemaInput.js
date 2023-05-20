@@ -18,7 +18,8 @@ const widgetList = {
 	multiSelect: MultiSelect,
 	dateTimePicker: FieldInput,
 	timePicker: FieldInput,
-	dateTime: FieldInput,
+	datePicker: FieldInput,
+	input: FieldInput,
 };
 
 const componentType = {
