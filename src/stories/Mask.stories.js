@@ -1,21 +1,21 @@
 import { React } from 'react';
-import Mask from './common/Mask';
+import MaskComponent from './common/Mask';
 import child from './assets/child.png';
 import parent from './assets/mask.png';
 import { peek } from '@laufire/utils/debug';
 
 const component = {
 	title: 'components/Mask',
-	component: Mask,
+	component: MaskComponent,
 };
 
 export default component;
 
-const Template = (args) => <Mask { ...args }/>;
+const Template = (args) => <MaskComponent { ...args }/>;
 
-export const mask = Template.bind({});
+export const Mask = Template.bind({});
 
-mask.args = {
+Mask.args = {
 	children: <img className="child" src={ child } alt="img"/>,
 	onChange: peek,
 	src: parent,
