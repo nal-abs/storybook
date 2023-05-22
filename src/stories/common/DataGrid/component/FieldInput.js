@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { identity } from '@laufire/utils/fn';
 import { find, omit } from '@laufire/utils/collection.js';
-import CheckBox from '../CheckBoxWrapper';
+import CheckBox from './CheckBoxWrapper';
 import TextFieldWrapper from './TextFieldWrapper';
 import updateRow from '../updateRow';
 import updateValue from '../updateValue';

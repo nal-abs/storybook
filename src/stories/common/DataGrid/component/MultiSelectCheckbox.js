@@ -3,7 +3,7 @@ import { Checkbox, FormControl, FormHelperText, InputLabel,
 	ListItemText,
 	MenuItem, Select as MuiSelect } from '@mui/material';
 import { useState, React } from 'react';
-import validate from './validate/validate';
+import validate from '../validate';
 import { nothing } from '@laufire/utils/fn';
 
 const updateValue = ({ setState, onChange, evt }) => {

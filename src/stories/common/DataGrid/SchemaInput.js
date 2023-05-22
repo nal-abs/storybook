@@ -1,13 +1,13 @@
 import React from 'react';
 import DefaultInput from './DefaultInput';
 import { find } from '@laufire/utils/collection';
-import CheckBoxGroup from './CheckboxGroupWrapper.js';
-import SingleSelect from './component/SingleSelect';
-import MultiSelect from './component/MultiSelect';
-import FieldInput from './component/FieldInput';
-import Switch from './component/SwitchWrapper'
-import RadioGroup from './component/RadioWrapper'
-import Slider from './component/SliderWrapper'
+import CheckBoxGroup from './component/CheckboxGroupWrapper.js';
+import SingleSelect from './component/SingleSelect.js';
+import MultiSelect from './component/MultiSelect.js';
+import FieldInput from './component/FieldInput.js';
+import Switch from './component/SwitchWrapper.js';
+import RadioGroup from './component/RadioWrapper.js';
+import Slider from './component/SliderWrapper.js';
 
 const widgetList = {
 	slider: Slider,
