@@ -13,11 +13,11 @@ const changeRowsPerPage = (setState, preState) => (event) => {
 	});
 };
 
-const Pagination = ({ value, state, setState, rowsPerPageOptions }) =>
+const Pagination = ({ rows, state, setState, rowsPerPageOptions }) =>
 	<TablePagination
 		component="div"
 		rowsPerPageOptions={ rowsPerPageOptions }
-		count={ value.length }
+		count={ rows.length }
 		rowsPerPage={ state.rowsPerPage }
 		page={ state.page }
 		onPageChange={ changePage(setState, state) }

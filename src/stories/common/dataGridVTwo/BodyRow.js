@@ -1,24 +1,22 @@
 import { Box, TableCell, TableRow } from '@mui/material';
 import { React, Fragment, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import DragHandleIcon from '@mui/icons-material/DragHandle';
 import ReactTableReorder from '../../../helper/ReactTableReorder';
 
-const Cell = ({ data, dragRef: ref }) =>
+const Cell = ({ data }) =>
 	<Fragment>
-		<TableCell { ...{ ref } }>
-			<DragHandleIcon className="rowDrag"/>
-		</TableCell>
-		{data.cells.map((cell) =>
-			<TableCell key={ cell.getCellProps().key }>
+		{data.cells.map((cell, index) =>
+			<TableCell key={ `${ cell.row.original.id }${ index }` } component={ Box }>
 				<Box { ...cell.getCellProps() }>{cell.render('Cell')}</Box>
 			</TableCell>)}
 	</Fragment>;
 
+// eslint-disable-next-line max-lines-per-function
 const BodyRow = (context) => {
 	const dropRef = useRef();
 	const dragRef = useRef();
 	const position = 'row';
+	const { data: { style }, data } = context;
 
 	const [, drop] = useDrop(ReactTableReorder
 		.getDrop({ ...context, ref: dropRef, position: position }));
@@ -29,10 +27,13 @@ const BodyRow = (context) => {
 	const opacity = isDragging ? 0 : 1;
 
 	drag(drop(dropRef));
+	const { key: dummy, ...props } = data.getRowProps();
 
 	return (
-		<TableRow { ...{ ref: dropRef,
-			style: { opacity }} }
+		<TableRow
+			ref={ dropRef }
+			component={ Box }
+			{ ...{ ...{ style: { opacity, ...style, ...props.style }}} }
 		>
 			<Cell { ...{ ...context, dragRef } }/>
 		</TableRow>

@@ -51,7 +51,7 @@ const HeaderCell = (context) => {
 	drag(drop(dropRef));
 
 	return (
-		<TableCell { ...{ style: { opacity }} }>
+		<TableCell component={ Box } style={ { opacity } }>
 			<Cell { ...{ ...context, dropRef } }/>
 		</TableCell>
 	);
