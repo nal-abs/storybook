@@ -26,7 +26,6 @@ const getColumns = (props) => {
 			field: key,
 			editable: editable,
 			width: width,
-			// eslint-disable-next-line react/display-name
 			renderCell: ({ row, ...rest }) =>
 				<SchemaInput { ...{ ...rest, data: row, ...schemaProps } }/>,
 			...getColumnProps({ ...props,
