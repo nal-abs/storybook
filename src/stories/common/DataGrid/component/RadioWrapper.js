@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
-import RadioGroup from '../RadioGroup';
-import updateRow from './updateRow';
+import updateRow from '../updateRow';
+import RadioGroup from '../../RadioGroup';
 
 const RadioWrapper = (context) => {
 	const { schema, value: initialValue } = context;

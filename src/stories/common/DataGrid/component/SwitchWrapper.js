@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
-import updateRow from './updateRow';
-import Switch from '../Switch';
+import updateRow from '../updateRow';
+import Switch from '../../Switch';
 
 const SwitchWrapper = (context) => {
 	const { value: initialValue } = context;

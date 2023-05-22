@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
-import updateRow from './updateRow';
-import Slider from '../Slider';
+import updateRow from '../updateRow';
+import Slider from '../../Slider';
 
 const sliderProps = (schema) => ({
 	size: 'large',
