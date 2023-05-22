@@ -17,6 +17,7 @@ extends:
   - "react-app/jest"
   - "eslint:recommended"
   - "plugin:react/recommended"
+  - "plugin:storybook/recommended"
 plugins:
   - unused-imports
 rules:
