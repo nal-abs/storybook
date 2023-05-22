@@ -1,7 +1,7 @@
 import { useState, React } from 'react';
-import Select from '../Select';
-import dataFormatter from './dataFormatter';
-import updateRow from './updateRow';
+import Select from '../../Select';
+import updateRow from '../updateRow';
+import dataFormatter from '../dataFormatter';
 
 const MuiSelect = (context) => {
 	const { options, schema } = context;

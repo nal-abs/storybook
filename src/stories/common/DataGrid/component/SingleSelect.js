@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
-import Select from '../Select';
-import updateRow from './updateRow';
+import Select from '../../Select';
+import updateRow from '../updateRow';
 
 const SingleSelect = (context) => {
 	const { schema } = context;

@@ -1,10 +1,10 @@
 import { React, useState } from 'react';
-import TextFieldWrapper from './TextFieldWrapper.js';
 import { identity } from '@laufire/utils/fn';
-import updateValue from './updateValue.js';
-import updateRow from './updateRow.js';
-import CheckBox from './CheckBoxWrapper.js';
 import { find, omit } from '@laufire/utils/collection.js';
+import CheckBox from '../CheckBoxWrapper';
+import TextFieldWrapper from '../TextFieldWrapper';
+import updateRow from '../updateRow';
+import updateValue from '../updateValue';
 
 const formatList = {};
 const typeList = {
