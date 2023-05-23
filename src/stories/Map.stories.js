@@ -1,18 +1,17 @@
-/* eslint-disable no-magic-numbers */
 import { React } from 'react';
-import Maps from './common/Map/index';
+import LeafletMap from './common/Map/index';
 
 const component = {
-	title: 'stories/maps',
-	component: Maps,
+	title: 'Display/Map',
+	component: LeafletMap,
 };
 
 export default component;
 
-const Template = () => <Maps/>;
+const Template = () => <LeafletMap/>;
 
-export const maps = Template.bind({});
+export const Map = Template.bind({});
 
-maps.args = {
+Map.args = {
 
 };

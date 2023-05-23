@@ -1,11 +1,11 @@
 import * as React from 'react';
 import SplashImage from '../stories/common/SplashScreen/SplashImage';
 import SplashText from '../stories/common/SplashScreen/SplashText';
-import SplashScreen from '../stories/common/SplashScreen/index';
+import MuiSplashScreen from '../stories/common/SplashScreen/index';
 
 const component = {
-	title: 'stories/SplashScreen',
-	component: SplashScreen,
+	title: 'Components/SplashScreen',
+	component: MuiSplashScreen,
 	argTypes: {
 		child: {
 			control: {
@@ -26,14 +26,14 @@ const childComponents = {
 const Template = ({ child, text, ...rest }) => {
 	const SelectedChild = childComponents[child];
 
-	return <SplashScreen { ...rest }>
+	return <MuiSplashScreen { ...rest }>
 		<SelectedChild>{text}</SelectedChild>
-	</SplashScreen>;
+	</MuiSplashScreen>;
 };
 
-export const muiSplash = Template.bind({});
+export const SplashScreen = Template.bind({});
 
-muiSplash.args = {
+SplashScreen.args = {
 	textColor: 'white',
 	backgroundColor: 'black',
 	child: 'SplashImage',

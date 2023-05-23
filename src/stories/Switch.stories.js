@@ -1,18 +1,18 @@
 import * as React from 'react';
-import Switch from '../stories/common/Switch';
+import MuiSwitch from '../stories/common/Switch';
 
 const component = {
-	title: 'stories/Switch',
-	component: Switch,
+	title: 'Input/Switch',
+	component: MuiSwitch,
 };
 
 export default component;
 
-const Template = (args) => <Switch { ...args }/>;
+const Template = (args) => <MuiSwitch { ...args }/>;
 
-export const muiSwitch = Template.bind({});
+export const Switch = Template.bind({});
 
-muiSwitch.args = {
+Switch.args = {
 	size: 'large',
 	color: 'success',
 	checked: false,

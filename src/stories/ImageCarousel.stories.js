@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
-/* eslint-disable no-inline-comments */
-import ImageCarousel from './common/ImageCarousel';
+import ImageCarousel from './common/ImageCarousel/';
 import Debugger from './common/Debugger';
+import { peek } from '@laufire/utils/debug';
 
 const component = {
-	title: 'stories/imageCarousel',
+	title: 'Display/Image Carousel',
 	component: ImageCarousel,
 };
 
@@ -12,11 +11,11 @@ export default component;
 
 const Template = Debugger;
 
-export const imageCarousel = Template.bind({});
+export const ImgCarousel = Template.bind({});
 
-imageCarousel.args = {
+ImgCarousel.args = {
 	count: 4,
-	direction: 'horizontal', /* 'horizontal' | 'vertical' */
+	direction: 'horizontal',
 	loop: 'false',
 	modules: [],
 	watchOverflow: true,
@@ -24,7 +23,7 @@ imageCarousel.args = {
 		speed: 300,
 		followFinger: 'true',
 		grabCursor: 'true',
-		effect: 'slide', /* 'slide' | 'fade' | 'cube' | 'coverflow' | 'flip' | 'creative' | 'cards'*/
+		effect: 'slide',
 	},
 	spaceBetween: 10,
 	slidesPerView: 1,
@@ -54,7 +53,7 @@ imageCarousel.args = {
 		},
 	},
 	onAny: (eventName, ...args) => {
-		console.log('Event: ', eventName);
-		console.log('Event data: ', args);
+		peek('Event: ', eventName);
+		peek('Event data: ', args);
 	},
 };

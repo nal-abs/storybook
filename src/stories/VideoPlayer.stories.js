@@ -1,21 +1,21 @@
 import * as React from 'react';
-import VideoPlayer from '../stories/common/VideoPlayer';
+import ReactVideoPlayer from '../stories/common/VideoPlayer';
 import video from '../../src/assets/video.mp4';
 
 const url = video;
 const component = {
-	title: 'stories/videoPlayer',
-	component: VideoPlayer,
+	title: 'Display/Video Player',
+	component: ReactVideoPlayer,
 };
 
 export default component;
 
 const Template = ({ ...value }) =>
-	<VideoPlayer { ...{ value } }/>;
+	<ReactVideoPlayer { ...{ value } }/>;
 
-export const videoPlayer = Template.bind({});
+export const VideoPlayer = Template.bind({});
 
-videoPlayer.args = {
+VideoPlayer.args = {
 	url: url,
 	status: 'unknown',
 	mode: 'light',
