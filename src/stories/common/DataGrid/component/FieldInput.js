@@ -31,6 +31,12 @@ const typeMap = {
 	number: 'string',
 	integer: 'string',
 };
+const widgetMap = {
+	color: 'color',
+};
+
+const getType = ({ widget, format, type }) =>
+	widgetMap[widget] || formatMap[format] || typeMap[type];
 
 const FieldInput = (context) => {
 	const {
@@ -38,7 +44,7 @@ const FieldInput = (context) => {
 		schema: { format, type }, schema,
 	} = context;
 	const component = format || type;
-	const schemaType = formatMap[format] || typeMap[type];
+	const schemaType = getType(schema);
 	const [value, setValue] = useState(initialValue);
 	const update = updateValue[component] || identity;
 	const validSchema = omit(schema, { something: 'widget' });

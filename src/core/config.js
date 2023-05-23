@@ -41,6 +41,7 @@ const config = {
 			notes: {
 				type: 'string',
 				title: 'Notes',
+				widget: 'color',
 			},
 			country: {
 				type: 'string',

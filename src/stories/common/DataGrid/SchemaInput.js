@@ -20,6 +20,7 @@ const widgetList = {
 	timePicker: FieldInput,
 	datePicker: FieldInput,
 	input: FieldInput,
+	color: FieldInput,
 };
 
 const componentType = {

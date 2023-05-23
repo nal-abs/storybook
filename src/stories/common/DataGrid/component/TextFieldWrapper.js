@@ -27,6 +27,7 @@ const getClassName = (props) => {
 const TextFieldProps = {
 	variant: 'standard',
 	InputProps: { disableUnderline: true },
+	sx: { width: '200px' },
 };
 
 const handleChange = (props) =>
