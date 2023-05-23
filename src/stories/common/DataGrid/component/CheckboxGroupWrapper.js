@@ -17,7 +17,7 @@ const CheckBoxGroupWrapper = (context) => {
 
 	return (
 		<MuiSelect { ...{
-			options: dataFormatter[multiSelectType](items).enum,
+			options: dataFormatter[multiSelectType](items),
 			widget: widget,
 			onChange: ({ target: { value: newValue }}) => {
 				updateRow({ ...context, value: newValue });

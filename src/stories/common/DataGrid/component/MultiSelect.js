@@ -9,7 +9,7 @@ const MuiSelect = (context) => {
 
 	return (
 		<Select { ...{
-			options: options.enum,
+			options: options,
 			multiple: true,
 			sx: { width: '150px' },
 			disableUnderline: true,
