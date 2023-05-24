@@ -92,10 +92,12 @@ const config = {
 			accountType: {
 				type: 'string',
 				title: 'AccountType',
+				disabled: true,
 			},
 			balances: {
 				type: 'number',
 				title: 'Balances',
+				readOnly: true,
 			},
 			Password: {
 				type: 'string',

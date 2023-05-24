@@ -24,11 +24,12 @@ const getClassName = (props) => {
 		: 'error';
 };
 
-const TextFieldProps = {
+const TextFieldProps = ({ readOnly, disabled }) => ({
 	variant: 'standard',
-	InputProps: { disableUnderline: true },
+	InputProps: { disableUnderline: true, ...readOnly && { readOnly: true },
+		...disabled && { disabled: true }},
 	sx: { width: '200px' },
-};
+});
 
 const handleChange = (props) =>
 	({ target: { value: newValue }}) => {
@@ -40,7 +41,7 @@ const handleChange = (props) =>
 	};
 
 const TextFieldWrapper = (context) => {
-	const { value = '', component, schemaType } = context;
+	const { value = '', component, schemaType, schema } = context;
 	const [userInput, setUserInput] = useState(value);
 	const transform = transformValue[component] || identity;
 	const validate = validateType[component] || identity;
@@ -50,7 +51,7 @@ const TextFieldWrapper = (context) => {
 
 	return (
 		<TextField { ...{
-			...TextFieldProps,
+			...TextFieldProps(schema),
 			type: schemaType,
 			className: getClassName(props),
 			value: userInput,

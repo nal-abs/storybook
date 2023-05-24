@@ -48,7 +48,8 @@ const FieldInput = (context) => {
 	const schemaType = getType(schema);
 	const [value, setValue] = useState(initialValue);
 	const update = updateValue[component] || identity;
-	const validSchema = omit(schema, { something: 'widget' });
+	const validSchema = omit(schema, { something: 'widget',
+		disabled: 'disabled' });
 	const onChange = ({ target: { value: newValue }}) => {
 		updateRow({ ...context, value: update(newValue) });
 
