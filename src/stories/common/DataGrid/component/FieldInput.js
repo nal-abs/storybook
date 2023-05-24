@@ -33,6 +33,7 @@ const typeMap = {
 };
 const widgetMap = {
 	color: 'color',
+	password: 'password',
 };
 
 const getType = ({ widget, format, type }) =>

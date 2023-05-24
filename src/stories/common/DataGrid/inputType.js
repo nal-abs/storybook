@@ -12,6 +12,14 @@ const inputType = {
 		minWidth: 200,
 		editable: false,
 	}),
+	string: () => ({
+		type: 'string',
+		editable: false,
+	}),
+	password: () => ({
+		type: 'string',
+		editable: false,
+	}),
 	time: () => ({
 		minWidth: 150,
 		editable: false,

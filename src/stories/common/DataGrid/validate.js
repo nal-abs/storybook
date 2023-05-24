@@ -10,6 +10,8 @@ const validate = {
 	'phoneNo': validatePhoneNo,
 	'number': validateNumber,
 	'integer': validateInteger,
+	'string': validateDate,
+	'password': validateDate,
 };
 
 export default validate;

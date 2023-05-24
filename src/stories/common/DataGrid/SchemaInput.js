@@ -21,6 +21,7 @@ const widgetList = {
 	datePicker: FieldInput,
 	input: FieldInput,
 	color: FieldInput,
+	password: FieldInput,
 };
 
 const componentType = {

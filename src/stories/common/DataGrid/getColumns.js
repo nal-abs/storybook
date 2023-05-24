@@ -11,12 +11,16 @@ const formatMap = {
 	'phoneNo': 'phoneNo',
 };
 
+const widgetMap = {
+	password: 'password',
+};
+
 const getColumns = (props) => {
 	const { columns: { data, editable, width }} = props;
 
 	return values(map(data.properties, (ele, key) => {
-		const { format, type } = ele;
-		const component = formatMap[format] || type;
+		const { format, widget, type } = ele;
+		const component = widgetMap[widget] || formatMap[format] || type;
 		const getColumnProps = inputType[component] || nothing;
 		const schemaProps = { props: props, schema: ele };
 

@@ -97,6 +97,12 @@ const config = {
 				type: 'number',
 				title: 'Balances',
 			},
+			Password: {
+				type: 'string',
+				title: 'Password',
+				minLength: 2,
+				widget: 'password',
+			},
 			notes: {
 				type: 'string',
 				title: 'Notes',
