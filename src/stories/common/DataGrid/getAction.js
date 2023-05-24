@@ -13,9 +13,10 @@ const Actions = {
 };
 
 const getActionItems = (props, params) => {
-	// Todo: Correct Alignment
-	const { columns: { actions = [] }, rows,
-		setRows, onChange = nothing } = props;
+	const {
+		columns: { actions = [] }, rows,
+		setRows, onChange = nothing,
+	} = props;
 
 	return actions.map(({ icon, action }, key) => {
 		const Icon = Icons[icon];
@@ -33,10 +34,13 @@ const getActionItems = (props, params) => {
 	});
 };
 
-// Todo: Correct Alignment
-const getAction = (props) => [{ type: 'actions',
-	editable: false,
-	field: 'Action',
-	getActions: (params) => getActionItems(props, params) }];
+const getAction = (props) => [
+	{
+		type: 'actions',
+		editable: false,
+		field: 'Action',
+		getActions: (params) => getActionItems(props, params),
+	},
+];
 
 export default getAction;

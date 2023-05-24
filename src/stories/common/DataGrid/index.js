@@ -4,9 +4,9 @@ import { DataGrid as MuxDataGrid } from '@mui/x-data-grid';
 import getColumns from './getColumns';
 import { Box } from '@mui/material';
 import getAction from './getAction';
+import { nothing } from '@laufire/utils/fn';
 
-// Todo: Onchange default value should be identity.
-const DataGrid = ({ value, columns, style, onChange = (x) => x }) => {
+const DataGrid = ({ value, columns, style, onChange = nothing }) => {
 	const [rows, setRows] = useState(value);
 	const props = {
 		columns, rows, setRows, onChange,
@@ -18,9 +18,10 @@ const DataGrid = ({ value, columns, style, onChange = (x) => x }) => {
 		>
 			<MuxDataGrid
 				rows={ rows }
-				// Todo: Align properly.
-				columns={ [...getColumns({ ...props }),
-					...getAction({ ...props })] }
+				columns={ [
+					...getColumns({ ...props }),
+					...getAction({ ...props }),
+				] }
 				hideFooterPagination={ true }
 				rowHeight={ 120 }
 			/>

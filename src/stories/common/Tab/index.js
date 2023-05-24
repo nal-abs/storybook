@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import TabContext from './TabContext';
 import buildEvent from '../buildEvent';
+import { nothing } from '@laufire/utils/fn';
 
 const tabStyle = {
 	vertical: 'vertical-tab',
@@ -11,7 +12,7 @@ const tabStyle = {
 
 const Tab = (props) => {
 	const { orientation, dir,
-		value: initialValue, onChange = (x) => x } = props;
+		value: initialValue, onChange = nothing } = props;
 
 	const [value, selectValue] = useState(initialValue);
 	const onClick = (tabKey) => {

@@ -4,10 +4,13 @@ import { DesktopDatePicker as MuiDatePicker,
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import buildEvent from './buildEvent';
+import { nothing } from '@laufire/utils/fn';
 
 const DatePicker = (context) => {
-	const { value: initialDate, onChange = (x) => x,
-		data: { formatMaximum, formatMinimum }, ...rest }	= context;
+	const {
+		value: initialDate, onChange = nothing,
+		data: { formatMaximum, formatMinimum }, ...rest
+	}	= context;
 	const [date, setDate] = useState(initialDate);
 
 	return <LocalizationProvider dateAdapter={ AdapterDayjs }>
@@ -22,8 +25,7 @@ const DatePicker = (context) => {
 			} }
 			sx={ { '& fieldset': { border: 'none' }} }
 			{ ...rest }
-		/>
-	</LocalizationProvider>;
+		/></LocalizationProvider>;
 };
 
 export default DatePicker;

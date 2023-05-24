@@ -4,10 +4,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import { React, useState } from 'react';
 import buildEvent from './buildEvent';
+import { nothing } from '@laufire/utils/fn';
 
 const TimePicker = (context) => {
 	const { params: { value: initialValue }, variant, disableUnderline,
-		onChange = (x) => x }	= context;
+		onChange = nothing }	= context;
 	const initialTime = initialValue ? dayjs(`1/1/2022 ${ initialValue }`) : null;
 	const [time, setTime] = useState(initialTime);
 

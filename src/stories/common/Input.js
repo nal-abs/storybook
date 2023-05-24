@@ -2,6 +2,7 @@ import { InputAdornment as MuiAdornment, TextField } from '@mui/material';
 import * as React from 'react';
 import * as Icons from '@mui/icons-material';
 import { reduce } from '@laufire/utils/collection';
+import { nothing } from '@laufire/utils/fn';
 
 const InputAdornment = (cur, key) => {
 	const { text, icon } = cur;
@@ -24,7 +25,7 @@ const inputProps = (adornments) => reduce(
 );
 
 const Input = (context) => {
-	const { adornments = {}, multiline, onChange = (x) => x,
+	const { adornments = {}, multiline, onChange = nothing,
 		value: initialValue = '', ...args } = context;
 	const [state, setState] = React.useState(initialValue);
 	const MultilineProps = multiline && { ...multiline, multiline: true };
