@@ -1,4 +1,4 @@
-import ImageCarousel from './common/ImageCarousel/';
+import ImageCarousel from './common/ImageCarousel.js';
 import Debugger from './common/Debugger';
 import { peek } from '@laufire/utils/debug';
 
