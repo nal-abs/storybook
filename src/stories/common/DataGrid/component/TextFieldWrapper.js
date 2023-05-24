@@ -26,8 +26,11 @@ const getClassName = (props) => {
 
 const TextFieldProps = ({ readOnly, disabled }) => ({
 	variant: 'standard',
-	InputProps: { disableUnderline: true, ...readOnly && { readOnly: true },
-		...disabled && { disabled: true }},
+	InputProps: {
+		disableUnderline: true,
+		readOnly: readOnly,
+		disabled: disabled,
+	},
 	sx: { width: '200px' },
 });
 

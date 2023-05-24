@@ -1,19 +1,17 @@
 import { useState, React } from 'react';
 import Input from '../Input';
-import updateRow from './updateRow';
+import handleChange from '../handleChange';
 
 const DefaultInput = (context) => {
 	const [value, setValue] = useState('');
+	const props = { context, setValue };
 
 	return (
 		<Input { ...{
 			InputProps: { disableUnderline: true },
 			variant: 'standard',
-			// Todo: I have seen that the onChange function is the same in some components, make that a helper function.
-			onChange: ({ target: { value: newValue }}) => {
-				updateRow({ ...context, value: newValue });
-				setValue(newValue);
-			},
+			onChange: ({ target: { value: newValue }}) =>
+				handleChange(newValue, props),
 			value: value,
 		} }
 		/>);
