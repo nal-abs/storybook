@@ -36,7 +36,7 @@ const Location = () => {
 				radius={ 500 }
 			/>
 			<Marker position={ coordinates } { ...{ icon } }>
-				<Popup>You are here</Popup>
+				<Popup>Your Current Location</Popup>
 			</Marker>
 		</>
 		: null;
