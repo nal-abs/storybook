@@ -9,8 +9,10 @@ const DefaultInput = (context) => {
 		<Input { ...{
 			InputProps: { disableUnderline: true },
 			variant: 'standard',
+			// Todo: I have seen that the onChange function is the same in some components, make that a helper function.
 			onChange: ({ target: { value: newValue }}) => {
 				updateRow({ ...context, value: newValue });
+				// Todo: remove the return
 				return setValue(newValue);
 			},
 			value: value,

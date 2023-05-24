@@ -5,6 +5,7 @@ import getColumns from './getColumns';
 import { Box } from '@mui/material';
 import getAction from './getAction';
 
+// Todo: Onchange default value should be identity.
 const DataGrid = ({ value, columns, style, onChange = (x) => x }) => {
 	const [rows, setRows] = useState(value);
 	const props = {
@@ -17,6 +18,7 @@ const DataGrid = ({ value, columns, style, onChange = (x) => x }) => {
 		>
 			<MuxDataGrid
 				rows={ rows }
+				// Todo: Align properly.
 				columns={ [...getColumns({ ...props }),
 					...getAction({ ...props })] }
 				hideFooterPagination={ true }

@@ -13,6 +13,7 @@ const Actions = {
 };
 
 const getActionItems = (props, params) => {
+	// Todo: Correct Alignment
 	const { columns: { actions = [] }, rows,
 		setRows, onChange = nothing } = props;
 
@@ -32,6 +33,7 @@ const getActionItems = (props, params) => {
 	});
 };
 
+// Todo: Correct Alignment
 const getAction = (props) => [{ type: 'actions',
 	editable: false,
 	field: 'Action',
