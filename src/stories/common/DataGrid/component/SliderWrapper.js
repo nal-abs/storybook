@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
-import updateRow from '../updateRow';
 import Slider from '../../Slider';
+import handleChange from '../../handleChange';
 
 const sliderProps = (schema) => ({
 	size: 'large',
@@ -15,13 +15,12 @@ const sliderProps = (schema) => ({
 const SliderWrapper = (context) => {
 	const { value: initialValue, schema } = context;
 	const [value, setValue] = useState(initialValue);
+	const props = { context, setValue };
 
 	return (
 		<Slider { ...{
-			onChange: ({ target: { value: newValue }}) => {
-				updateRow({ ...context, value: newValue });
-				setValue(newValue);
-			},
+			onChange: ({ target: { value: newValue }}) =>
+				handleChange(newValue, props),
 			value: value,
 			...sliderProps(schema),
 		} }

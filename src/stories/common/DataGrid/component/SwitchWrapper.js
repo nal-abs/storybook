@@ -1,17 +1,16 @@
 import { useState, React } from 'react';
-import updateRow from '../updateRow';
 import Switch from '../../Switch';
+import handleChange from '../../handleChange';
 
 const SwitchWrapper = (context) => {
 	const { value: initialValue } = context;
 	const [value, setValue] = useState(initialValue);
+	const props = { context, setValue };
 
 	return (
 		<Switch { ...{
-			onChange: ({ target: { value: newValue }}) => {
-				updateRow({ ...context, value: newValue });
-				setValue(newValue);
-			},
+			onChange: ({ target: { value: newValue }}) =>
+				handleChange(newValue, props),
 			value: value,
 		} }
 		/>);

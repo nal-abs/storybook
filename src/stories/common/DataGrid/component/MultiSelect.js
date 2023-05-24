@@ -1,11 +1,12 @@
 import { useState, React } from 'react';
 import Select from '../../Select';
-import updateRow from '../updateRow';
 import dataFormatter from '../dataFormatter';
+import handleChange from '../../handleChange';
 
 const MuiSelect = (context) => {
 	const { options, schema } = context;
 	const [value, setValue] = useState([]);
+	const props = { context, setValue };
 
 	return (
 		<Select { ...{
@@ -14,10 +15,8 @@ const MuiSelect = (context) => {
 			sx: { width: '150px' },
 			disableUnderline: true,
 			variant: 'standard',
-			onChange: ({ target: { value: newValue }}) => {
-				updateRow({ ...context, value: newValue });
-				setValue(newValue);
-			},
+			onChange: ({ target: { value: newValue }}) =>
+				handleChange(newValue, props),
 			value: value,
 			schema: schema,
 		} }
