@@ -2,7 +2,7 @@ import * as React from 'react';
 import MuiSwitch from '../stories/common/Switch';
 
 const component = {
-	title: 'Input/Switch',
+	title: 'Inputs/Switch',
 	component: MuiSwitch,
 };
 
