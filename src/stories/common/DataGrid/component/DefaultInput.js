@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
-import Input from '../Input';
-import handleChange from '../handleChange';
+import Input from '../../Input';
+import handleChange from '../../handleChange';
 
 const DefaultInput = (context) => {
 	const [value, setValue] = useState('');

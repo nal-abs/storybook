@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultInput from './DefaultInput';
+import DefaultInput from './component/DefaultInput.js';
 import { find } from '@laufire/utils/collection';
 import CheckBoxGroup from './component/CheckboxGroupWrapper.js';
 import SingleSelect from './component/SingleSelect.js';
