@@ -47,7 +47,7 @@ const config = {
 				type: 'string',
 				enum: ['India', 'Africa', 'US'],
 				widget: 'radioGroup',
-				readOnly: true,
+				disabled: false,
 			},
 			countries: { type: 'array',
 				uniqueItems: true,

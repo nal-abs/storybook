@@ -6,10 +6,12 @@ import FormControl from '@mui/material/FormControl';
 import { map } from '@laufire/utils/collection';
 import { nothing } from '@laufire/utils/fn';
 
-const RadioGroup = ({ options, value, onChange = nothing }) => {
+const RadioGroup = (context) => {
+	const { options, value, onChange = nothing, schema } = context;
 	const [state, setState] = useState(value);
+	const { disabled } = schema;
 
-	return <FormControl>
+	return <FormControl disabled={ disabled }>
 		<MuiRadioGroup
 			value={ state }
 			onChange={ (evt) => {
@@ -23,8 +25,7 @@ const RadioGroup = ({ options, value, onChange = nothing }) => {
 					value={ option }
 					control={ <Radio/> }
 					label={ option }
-				/>)}
-		</MuiRadioGroup></FormControl>;
+				/>)}</MuiRadioGroup></FormControl>;
 };
 
 export default RadioGroup;
