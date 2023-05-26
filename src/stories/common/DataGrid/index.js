@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { DataGrid as MuxDataGrid } from '@mui/x-data-grid';
-import getColumns from './getColumns';
 import { Box } from '@mui/material';
-import getAction from './getAction';
 import { nothing } from '@laufire/utils/fn';
+import getAction from './helper/getAction';
+import getColumns from './helper/getColumns';
 
 const DataGrid = ({ value, columns, style, onChange = nothing }) => {
 	const [rows, setRows] = useState(value);

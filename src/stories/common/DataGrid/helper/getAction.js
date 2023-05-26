@@ -1,8 +1,8 @@
 import React from 'react';
 import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
-import buildEvent from '../buildEvent';
 import { nothing } from '@laufire/utils/fn';
+import buildEvent from '../../buildEvent';
 
 const Actions = {
 	editRow: (rows, value) => rows.map((row) => (row.id !== value.id

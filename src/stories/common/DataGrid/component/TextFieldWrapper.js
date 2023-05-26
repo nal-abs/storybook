@@ -1,11 +1,11 @@
 import { React, useState } from 'react';
 import { identity, nothing } from '@laufire/utils/fn';
 import buildEvent from '../../buildEvent';
-import transformValue from '../transformValue';
-import isInputValid from '../isInputValid';
-import inputProps from '../inputProps';
 import validateType from '../validate';
 import TextField from '../../Input';
+import inputProps from '../helper/inputProps';
+import transformValue from '../helper/transformValue';
+import isInputValid from '../helper/isInputValid';
 
 const handleValidInput = (props, newValue) => {
 	const { setUserInput, context: { validSchema, onChange = nothing },
