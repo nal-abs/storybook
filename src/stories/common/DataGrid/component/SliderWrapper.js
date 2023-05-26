@@ -10,6 +10,7 @@ const sliderProps = (schema) => ({
 	max: schema.maximum,
 	step: schema.multipleOf,
 	sx: { width: '70%' },
+	disabled: schema.disabled,
 });
 
 const SliderWrapper = (context) => {

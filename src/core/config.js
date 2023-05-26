@@ -139,7 +139,7 @@ const config = {
 				minimum: -50,
 				multipleOf: 10,
 				widget: 'slider',
-
+				disabled: true,
 			},
 			phoneNo: {
 				type: 'string',
