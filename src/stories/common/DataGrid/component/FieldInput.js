@@ -3,8 +3,8 @@ import { identity } from '@laufire/utils/fn';
 import { find, omit } from '@laufire/utils/collection.js';
 import CheckBox from './CheckBoxWrapper';
 import TextFieldWrapper from './TextFieldWrapper';
-import updateRow from '../updateRow';
-import updateValue from '../updateValue';
+import updateValue from '../helper/updateValue';
+import updateRow from '../../updateRow';
 
 const formatList = {};
 const typeList = {
