@@ -1,3 +1,7 @@
-//TODO: Introduce date range picker component
-// Material UI having dateRange picker but in pro version
-// Need to search for library for this.
+## TODO
+  Introduce date range picker component.
+
+
+## Note
+ * Material UI has dateRange picker but available in pro version.
+ * Need to search a library for this component.
