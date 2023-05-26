@@ -3,7 +3,7 @@ import RadioGroup from '../../RadioGroup';
 import handleChange from '../../handleChange';
 
 const RadioWrapper = (context) => {
-	const { schema, value: initialValue } = context;
+	const { schema, value: initialValue = '' } = context;
 	const [value, setValue] = useState(initialValue);
 	const props = { context, setValue };
 

@@ -3,8 +3,8 @@ import Select from '../../Select';
 import handleChange from '../../handleChange';
 
 const SingleSelect = (context) => {
-	const { schema } = context;
-	const [value, setValue] = useState('');
+	const { schema, value: initialValue = '' } = context;
+	const [value, setValue] = useState(initialValue);
 	const props = { context, setValue };
 
 	return (

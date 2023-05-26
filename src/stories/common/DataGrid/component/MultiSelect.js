@@ -4,8 +4,8 @@ import dataFormatter from '../dataFormatter';
 import handleChange from '../../handleChange';
 
 const MuiSelect = (context) => {
-	const { options, schema } = context;
-	const [value, setValue] = useState([]);
+	const { options, schema, value: initialValue = [] } = context;
+	const [value, setValue] = useState(initialValue);
 	const props = { context, setValue };
 
 	return (

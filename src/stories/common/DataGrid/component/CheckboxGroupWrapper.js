@@ -11,8 +11,11 @@ const selectProps = {
 };
 
 const CheckBoxGroupWrapper = (context) => {
-	const { schema: { items, widget }, schema } = context;
-	const [value, setValue] = useState([]);
+	const {
+		schema: { items, widget }, schema,
+		value: initialValue = [],
+	} = context;
+	const [value, setValue] = useState(initialValue);
 	const multiSelectType = items.enum ? 'enum' : 'oneOf';
 	const props = { context, setValue };
 

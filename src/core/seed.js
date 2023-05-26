@@ -18,7 +18,7 @@ const seed = {
 			document: '1',
 			notes: '#565656',
 			country: 'US',
-			oneOf: [],
+			oneOf: ['US'],
 			countries: [],
 		},
 		{
@@ -31,7 +31,7 @@ const seed = {
 			notes: '#ab5856',
 			country: 'India',
 			oneOf: [],
-			countries: [],
+			countries: ['India'],
 		},
 	],
 	ledgers: [
