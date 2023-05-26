@@ -3,6 +3,12 @@ import dataFormatter from '../dataFormatter';
 import MuiSelect from './MultiSelectCheckbox';
 import handleChange from '../../handleChange';
 
+const getInputProps = (schema) => {
+	const { readOnly, disabled } = schema;
+
+	return { inputProps: { readOnly, disabled }};
+};
+
 const selectProps = {
 	disableUnderline: true,
 	variant: 'standard',
@@ -12,8 +18,7 @@ const selectProps = {
 
 const CheckBoxGroupWrapper = (context) => {
 	const {
-		schema: { items, widget }, schema,
-		value: initialValue = [],
+		schema: { items, widget }, schema,	value: initialValue = [],
 	} = context;
 	const [value, setValue] = useState(initialValue);
 	const multiSelectType = items.enum ? 'enum' : 'oneOf';
@@ -28,6 +33,7 @@ const CheckBoxGroupWrapper = (context) => {
 			value: value,
 			schema: schema,
 			...selectProps,
+			...getInputProps(schema),
 		} }
 		/>);
 };

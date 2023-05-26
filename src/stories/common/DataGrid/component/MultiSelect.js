@@ -3,6 +3,12 @@ import Select from '../../Select';
 import dataFormatter from '../dataFormatter';
 import handleChange from '../../handleChange';
 
+const getInputProps = (schema) => {
+	const { readOnly, disabled } = schema;
+
+	return { inputProps: { readOnly, disabled }};
+};
+
 const MuiSelect = (context) => {
 	const { options, schema, value: initialValue = [] } = context;
 	const [value, setValue] = useState(initialValue);
@@ -19,6 +25,7 @@ const MuiSelect = (context) => {
 				handleChange(newValue, props),
 			value: value,
 			schema: schema,
+			...getInputProps(schema),
 		} }
 		/>);
 };

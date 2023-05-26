@@ -47,10 +47,12 @@ const config = {
 				type: 'string',
 				enum: ['India', 'Africa', 'US'],
 				widget: 'radioGroup',
+				readOnly: true,
 			},
 			countries: { type: 'array',
 				uniqueItems: true,
 				widget: 'checkboxGroup',
+				disabled: true,
 				items: {
 					type: 'string',
 					enum: ['India', 'Africa', 'US'],
@@ -59,6 +61,7 @@ const config = {
 			oneOf: {
 				type: 'array',
 				uniqueItems: true,
+				readOnly: true,
 				items: {
 					oneOf: [
 						{

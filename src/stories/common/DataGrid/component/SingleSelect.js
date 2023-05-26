@@ -2,6 +2,11 @@ import { useState, React } from 'react';
 import Select from '../../Select';
 import handleChange from '../../handleChange';
 
+const getInputProps = (schema) => {
+	const { readOnly, disabled } = schema;
+
+	return { inputProps: { readOnly, disabled }};
+};
 const SingleSelect = (context) => {
 	const { schema, value: initialValue = '' } = context;
 	const [value, setValue] = useState(initialValue);
@@ -17,6 +22,7 @@ const SingleSelect = (context) => {
 				handleChange(newValue, props),
 			value: value,
 			schema: schema,
+			...getInputProps(schema),
 		} }
 		/>);
 };
