@@ -20,6 +20,4 @@ const Button = ({ children = 'Button', ...rest }) =>
 
 export default Button;
 
-Button.propTypes = {
-	children: PropTypes.node.isRequired,
-};
+Button.propTypes = { children: PropTypes.node.isRequired };

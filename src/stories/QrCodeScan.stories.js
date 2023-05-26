@@ -18,6 +18,4 @@ const Template = ({ facingMode, ...args }) =>
 
 export const ScanQR = Template.bind({});
 
-ScanQR.args = {
-	onChange: peek,
-};
+ScanQR.args = { onChange: peek };

@@ -30,6 +30,4 @@ const Menu = (args) => {
 
 export default Menu;
 
-Menu.prototype = {
-	trigger: PropTypes.object,
-};
+Menu.prototype = { trigger: PropTypes.object };

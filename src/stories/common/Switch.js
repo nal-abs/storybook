@@ -21,6 +21,4 @@ const Switch = (context) => {
 
 export default Switch;
 
-Switch.propTypes = {
-	context: PropTypes.object,
-};
+Switch.propTypes = { context: PropTypes.object };

@@ -6,9 +6,15 @@ import { React, useState } from 'react';
 import buildEvent from './buildEvent';
 import { nothing } from '@laufire/utils/fn';
 
+const slotProps = ({ variant, disableUnderline }) => ({
+	textField: {
+		variant: variant,
+		InputProps: { disableUnderline },
+	},
+});
+
 const TimePicker = (context) => {
-	const { params: { value: initialValue }, variant, disableUnderline,
-		onChange = nothing }	= context;
+	const { params: { value: initialValue }, onChange = nothing }	= context;
 	const initialTime = initialValue ? dayjs(`1/1/2022 ${ initialValue }`) : null;
 	const [time, setTime] = useState(initialTime);
 
@@ -19,8 +25,7 @@ const TimePicker = (context) => {
 				setTime(value);
 				return onChange(buildEvent(value));
 			} }
-			slotProps={ { textField: { variant: variant,
-				InputProps: { disableUnderline }}} }
+			slotProps={ slotProps(context) }
 		/></LocalizationProvider>;
 };
 

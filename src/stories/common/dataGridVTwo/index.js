@@ -33,9 +33,7 @@ const updateRows = (setState, rows) => {
 };
 
 const MaterialTable = ({ columns, rows }) => {
-	const [state, setState] = useState({
-		columns, rows, page, rowsPerPage,
-	});
+	const [state, setState] = useState({ columns, rows, page, rowsPerPage });
 
 	useEffect(() => {
 		updateRows(setState, rows);

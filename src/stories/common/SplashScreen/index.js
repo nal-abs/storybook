@@ -26,6 +26,4 @@ const SplashScreen = (context) => {
 
 export default SplashScreen;
 
-SplashScreen.propTypes = {
-	context: PropTypes.object,
-};
+SplashScreen.propTypes = { context: PropTypes.object };

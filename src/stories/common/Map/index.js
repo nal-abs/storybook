@@ -16,9 +16,7 @@ const icon = new Leaflet.Icon({
 });
 
 // eslint-disable-next-line max-lines-per-function
-const Map = ({
-	value, currentLocation, ...args
-}) =>
+const Map = ({ value, currentLocation, ...args }) =>
 
 	<MapContainer
 		{ ...args }

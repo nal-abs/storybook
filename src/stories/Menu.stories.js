@@ -13,27 +13,21 @@ const Template = (args) => <MuiMenu { ...args }/>;
 export const Menu = Template.bind({});
 
 Menu.args = {
-	trigger: {
-		children: {
-			text: 'Click me!',
-		},
-	},
+	trigger: { children: { text: 'Click me!' }},
 	data: [
-		{ children: 'Inbox',
+		{
+			children: 'Inbox',
 			icon: 'Check',
-			typography: 5 },
+			typography: 5,
+		},
 		{ children: 'Drafts' },
 		{ children: 'Starred' },
 		{ children: 'Junk' },
 	],
 	sx: {
 		'width': '200px',
-		'&:active': {
-			color: 'primary.main',
-		},
-		'&:hover': {
-			backgroundColor: '#e3f2fd',
-		},
+		'&:active': { color: 'primary.main' },
+		'&:hover': { backgroundColor: '#e3f2fd' },
 	},
 	vertical: 'top',
 	horizontal: 'right',

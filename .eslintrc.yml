@@ -219,7 +219,7 @@ rules:
     - below
   object-curly-newline:
     - error
-    - consistent: true
+    - multiline: true
   object-curly-spacing:
     - error
     - always

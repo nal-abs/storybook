@@ -21,6 +21,4 @@ const CheckBox = (context) => {
 
 export default CheckBox;
 
-CheckBox.propTypes = {
-	context: PropTypes.object,
-};
+CheckBox.propTypes = { context: PropTypes.object };

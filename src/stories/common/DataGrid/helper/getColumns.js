@@ -11,9 +11,7 @@ const formatMap = {
 	'phoneNo': 'phoneNo',
 };
 
-const widgetMap = {
-	password: 'password',
-};
+const widgetMap = { password: 'password' };
 
 const getColumns = (props) => {
 	const { columns: { data, editable, width }} = props;
@@ -32,8 +30,7 @@ const getColumns = (props) => {
 			width: width,
 			renderCell: ({ row, ...rest }) =>
 				<SchemaInput { ...{ ...rest, data: row, ...schemaProps } }/>,
-			...getColumnProps({ ...props,
-				type: component, data: ele, field: key }),
+			...getColumnProps(),
 		};
 	}));
 };

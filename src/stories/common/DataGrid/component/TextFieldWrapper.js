@@ -8,8 +8,10 @@ import transformValue from '../helper/transformValue';
 import isInputValid from '../helper/isInputValid';
 
 const handleValidInput = (props, newValue) => {
-	const { setUserInput, context: { validSchema, onChange = nothing },
-		transform, validate } = props;
+	const {
+		setUserInput, context: { validSchema, onChange = nothing },
+		transform, validate,
+	} = props;
 
 	setUserInput(newValue);
 	validate(transform(newValue), validSchema)

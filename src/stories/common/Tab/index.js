@@ -11,8 +11,10 @@ const tabStyle = {
 };
 
 const Tab = (props) => {
-	const { orientation, dir,
-		value: initialValue, onChange = nothing } = props;
+	const {
+		orientation, dir,
+		value: initialValue, onChange = nothing,
+	} = props;
 
 	const [value, selectValue] = useState(initialValue);
 	const onClick = (tabKey) => {

@@ -6,19 +6,19 @@ import handleChange from '../../handleChange';
 const getInputProps = (schema) => {
 	const { readOnly, disabled } = schema;
 
-	return { inputProps: { readOnly, disabled }};
-};
-
-const selectProps = {
-	disableUnderline: true,
-	variant: 'standard',
-	multiple: true,
-	sx: { width: '150px' },
+	return {
+		disableUnderline: true,
+		variant: 'standard',
+		multiple: true,
+		sx: { width: '150px' },
+		inputProps: { readOnly, disabled },
+	};
 };
 
 const CheckBoxGroupWrapper = (context) => {
 	const {
-		schema: { items, widget }, schema,	value: initialValue = [],
+		schema: { items, widget },
+		schema,	value: initialValue = [],
 	} = context;
 	const [value, setValue] = useState(initialValue);
 	const multiSelectType = items.enum ? 'enum' : 'oneOf';
@@ -32,7 +32,6 @@ const CheckBoxGroupWrapper = (context) => {
 				handleChange(newValue, props),
 			value: value,
 			schema: schema,
-			...selectProps,
 			...getInputProps(schema),
 		} }
 		/>);

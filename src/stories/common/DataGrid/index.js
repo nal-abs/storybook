@@ -8,9 +8,7 @@ import getColumns from './helper/getColumns';
 
 const DataGrid = ({ value, columns, style, onChange = nothing }) => {
 	const [rows, setRows] = useState(value);
-	const props = {
-		columns, rows, setRows, onChange,
-	};
+	const props = { columns, rows, setRows, onChange };
 
 	return (
 		<Box

@@ -40,11 +40,7 @@ export const ActionSet = Template.bind({});
 
 ActionSet.args = {
 	type: 'menu',
-	trigger: {
-		children: {
-			text: 'Speed Dial Icon',
-		},
-	},
+	trigger: { children: { text: 'Speed Dial Icon' }},
 	data: [
 		{ icon: 'Save', children: 'Save' },
 		{ icon: 'Print', children: 'Print' },
@@ -52,16 +48,11 @@ ActionSet.args = {
 	],
 	sx: {
 		'width': '200px',
-		'&:active': {
-			color: 'primary.main',
-		},
-		'&:hover': {
-			backgroundColor: '#e3f2fd',
-		},
+		'&:active': { color: 'primary.main' },
+		'&:hover': { backgroundColor: '#e3f2fd' },
 	},
 	vertical: 'top',
 	horizontal: 'right',
 	transformVertical: 'top',
 	transformHorizontal: 'left',
-
 };

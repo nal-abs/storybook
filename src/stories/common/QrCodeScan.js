@@ -6,9 +6,7 @@ import { nothing } from '@laufire/utils/predicates';
 const ScanQRButton = ({ setState, state, onChange }) =>
 	<Button { ...{
 		onClick: () => {
-			const result = {
-				isScanning: !state.isScanning,
-			};
+			const result = { isScanning: !state.isScanning };
 
 			setState(result);
 			onChange({ target: { value: { ...state, ...result }}});

@@ -6,24 +6,12 @@ export default {
 	title: 'Components/QRCode',
 	component: QrCodeGenerator,
 	argTypes: {
-		value: {
-			type: 'string',
-		},
-		style: {
-			type: 'object',
-		},
-		size: {
-			type: 'number',
-		},
-		includeMargin: {
-			type: 'boolean',
-		},
-		bgColor: {
-			control: 'color',
-		},
-		fgColor: {
-			control: 'color',
-		},
+		value: { type: 'string' },
+		style: { type: 'object' },
+		size: { type: 'number' },
+		includeMargin: { type: 'boolean' },
+		bgColor: { control: 'color' },
+		fgColor: { control: 'color' },
 		level: {
 			type: 'select',
 			options: ['L', 'M', 'Q', 'H'],
@@ -32,9 +20,7 @@ export default {
 			type: 'select',
 			options: ['canvas', 'svg'],
 		},
-		imageSettings: {
-			type: 'object',
-		},
+		imageSettings: { type: 'object' },
 	},
 };
 

@@ -39,11 +39,7 @@ const Template = (args) => <MuiSpeedDial { ...args }/>;
 export const SpeedDial = Template.bind({});
 
 SpeedDial.args = {
-	trigger: {
-		children: {
-			text: 'SpeedDialIcon',
-		},
-	},
+	trigger: { children: { text: 'SpeedDialIcon' }},
 	data: [
 		{ icon: 'Save', children: 'Save' },
 		{ icon: 'Print', children: 'Print' },

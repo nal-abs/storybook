@@ -1,10 +1,12 @@
 import * as React from 'react';
 import * as Icons from '@mui/icons-material';
 import { map, values } from '@laufire/utils/collection';
-import { Box, List, ListItem, ListItemButton,
+import {
+	Box, List, ListItem, ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	Typography } from '@mui/material';
+	Typography,
+} from '@mui/material';
 
 const DrawerItemList = (lists) =>
 	values(map(lists, ({ icon, text, typography }) => {

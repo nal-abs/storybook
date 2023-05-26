@@ -1,7 +1,9 @@
 import { map, omit } from '@laufire/utils/collection';
-import { Checkbox, FormControl, FormHelperText, InputLabel,
+import {
+	Checkbox, FormControl, FormHelperText, InputLabel,
 	ListItemText,
-	MenuItem, Select as MuiSelect } from '@mui/material';
+	MenuItem, Select as MuiSelect,
+} from '@mui/material';
 import { useState, React } from 'react';
 import validate from '../validate/validate';
 import { nothing } from '@laufire/utils/fn';
@@ -22,7 +24,8 @@ const MenuList = ({	 options, state = [] }) =>
 
 const DropDown = (context) => {
 	const {
-		options, onChange = nothing, multiple, value, schema = {}, ...rest
+		options, onChange = nothing,
+		multiple, value, schema = {}, ...rest
 	} = context;
 	const [state, setState] = useState(value);
 	const validSchema = omit(schema, { something: 'widget' });

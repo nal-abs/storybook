@@ -1,7 +1,9 @@
 import { map, omit } from '@laufire/utils/collection';
-import { FormControl, FormHelperText, InputLabel,
+import {
+	FormControl, FormHelperText, InputLabel,
 	ListItemText,
-	MenuItem, Select as MuiSelect } from '@mui/material';
+	MenuItem, Select as MuiSelect,
+} from '@mui/material';
 import { useState, React } from 'react';
 import validate from './DataGrid/validate/validate';
 import { nothing } from '@laufire/utils/fn';
@@ -18,7 +20,8 @@ const MenuList = (options) =>
 
 const DropDown = (context) => {
 	const {
-		options, onChange = nothing, multiple, value, schema = {}, ...rest
+		options, onChange = nothing,
+		multiple, value, schema = {}, ...rest
 	} = context;
 	const [state, setState] = useState(value);
 	const validSchema = omit(schema, { something: 'widget' });

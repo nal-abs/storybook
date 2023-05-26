@@ -13,6 +13,4 @@ const Template = (args) =>
 
 export const DeBugger = Template.bind({});
 
-DeBugger.args = {
-	value: 'ABC',
-};
+DeBugger.args = { value: 'ABC' };

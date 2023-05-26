@@ -6,7 +6,8 @@ const validate = (value, schema) => {
 	const ajv = new Ajv();
 
 	ajv.addFormat('phoneNo', {
-		validate: (phoneNumber) => pattern.test(phoneNumber),
+		validate: (phoneNumber) =>
+			pattern.test(phoneNumber),
 	});
 
 	const valid = ajv.validate(schema, value);

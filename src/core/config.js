@@ -49,7 +49,8 @@ const config = {
 				widget: 'radioGroup',
 				disabled: false,
 			},
-			countries: { type: 'array',
+			countries: {
+				type: 'array',
 				uniqueItems: true,
 				widget: 'checkboxGroup',
 				disabled: true,
@@ -57,7 +58,8 @@ const config = {
 					type: 'string',
 					enum: ['India', 'Africa', 'US'],
 				},
-				maxItems: 1 },
+				maxItems: 1,
+			},
 			oneOf: {
 				type: 'array',
 				uniqueItems: true,

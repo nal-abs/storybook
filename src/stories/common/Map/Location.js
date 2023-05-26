@@ -17,9 +17,7 @@ const Location = () => {
 	});
 
 	useEffect(() => {
-		map.locate({
-			setView: true,
-		});
+		map.locate({ setView: true });
 		map.on('locationfound', (event) => {
 			setCoordinates(event.latlng);
 		});

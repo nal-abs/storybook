@@ -58,8 +58,10 @@ const ReactTableReorder = {
 
 		return {
 			accept: itemTypes[position],
-			hover: (item, monitor) => ReactTableReorder.getHover({ ...context,
-				item, monitor }),
+			hover: (item, monitor) => ReactTableReorder.getHover({
+				...context,
+				item, monitor,
+			}),
 		};
 	},
 
@@ -69,9 +71,7 @@ const ReactTableReorder = {
 		return {
 			type: itemTypes[position],
 			item: () => ({ id: index + 1, index: index }),
-			collect: (monitor) => ({
-				isDragging: monitor.isDragging(),
-			}),
+			collect: (monitor) => ({ isDragging: monitor.isDragging() }),
 		};
 	},
 };

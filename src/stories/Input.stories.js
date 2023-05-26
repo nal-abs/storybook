@@ -20,9 +20,7 @@ Input.args = {
 	type: 'password',
 	helperText: 'Some important message',
 	error: false,
-	multiline: {
-		rows: 5,
-	},
+	multiline: { rows: 5 },
 	focused: false,
 	placeholder: 'Enter some value',
 	fullWidth: false,

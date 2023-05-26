@@ -73,13 +73,15 @@ DataGrid.args = {
 					type: 'string',
 					enum: ['India', 'Africa', 'US'],
 				},
-				countries: { type: 'array',
+				countries: {
+					type: 'array',
 					uniqueItems: true,
 					widget: 'checkboxGroup',
 					items: {
 						type: 'string',
 						enum: ['India', 'Africa', 'US'],
-					}},
+					},
+				},
 				oneOf: {
 					type: 'array',
 					uniqueItems: true,

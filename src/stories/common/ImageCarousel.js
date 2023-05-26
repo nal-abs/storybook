@@ -3,7 +3,6 @@ import { nothing } from '@laufire/utils/fn';
 import { React, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import buildEvent from './buildEvent';
-import { peek } from '@laufire/utils/debug';
 
 const slideStyle = {
 	'width': '100vw',
@@ -15,13 +14,10 @@ const slideStyle = {
 const ImageCarousel = ({ onChange = nothing, count, value: initialValue }) => {
 	const [value, setValue] = useState(initialValue);
 
-	peek(count);
 	return (
 		<Swiper { ...{
 			...value,
-			style: {
-				...slideStyle,
-			},
+			style: { ...slideStyle },
 			onSlideChange: () => {
 				setValue(value);
 				onChange(buildEvent(value));

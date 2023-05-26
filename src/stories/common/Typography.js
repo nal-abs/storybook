@@ -10,6 +10,4 @@ const Typography = (context) => {
 
 export default Typography;
 
-Typography.propTypes = {
-	context: PropTypes.object,
-};
+Typography.propTypes = { context: PropTypes.object };

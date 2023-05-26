@@ -1,5 +1,3 @@
-const buildEvent = (value) => ({
-	target: { value },
-});
+const buildEvent = (value) => ({ target: { value }});
 
 export default buildEvent;

@@ -7,9 +7,7 @@ import updateValue from '../helper/updateValue';
 import updateRow from '../../updateRow';
 
 const formatList = {};
-const typeList = {
-	boolean: CheckBox,
-};
+const typeList = { boolean: CheckBox };
 
 const componentType = {
 	format: ({ format }) => formatList[format],
@@ -40,16 +38,15 @@ const getType = ({ widget, format, type }) =>
 	widgetMap[widget] || formatMap[format] || typeMap[type];
 
 const FieldInput = (context) => {
-	const {
-		value: initialValue,
-		schema: { format, type }, schema,
-	} = context;
+	const { value: initialValue, schema: { format, type }, schema } = context;
 	const component = format || type;
 	const schemaType = getType(schema);
 	const [value, setValue] = useState(initialValue);
 	const update = updateValue[component] || identity;
-	const validSchema = omit(schema, { something: 'widget',
-		disabled: 'disabled' });
+	const validSchema = omit(schema, {
+		something: 'widget',
+		disabled: 'disabled',
+	});
 	const onChange = ({ target: { value: newValue }}) => {
 		updateRow({ ...context, value: update(newValue) });
 
