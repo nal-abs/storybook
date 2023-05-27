@@ -24,12 +24,12 @@ const renderRow = (context) => ({ index, style }) => {
 			component={ Box }
 			{ ...{ ...{ style: { opacity, ...style, ...props.style }}} }
 		>
-			{row.cells.map((cell) =>
+			{ row.cells.map((cell) =>
 				<TableCell key={ cell.column.id } component={ Box }>
 					<Box { ...cell.getCellProps() }>
-						{cell.render('Cell')}
+						{ cell.render('Cell') }
 					</Box>
-				</TableCell>)}
+				</TableCell>) }
 		</TableRow>
 	);
 };

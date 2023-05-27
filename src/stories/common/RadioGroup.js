@@ -19,13 +19,13 @@ const RadioGroup = (context) => {
 				onChange(evt);
 			} }
 		>
-			{map(options, (option, index) =>
+			{ map(options, (option, index) =>
 				<FormControlLabel
 					key={ index }
 					value={ option }
 					control={ <Radio/> }
 					label={ option }
-				/>)}</MuiRadioGroup></FormControl>;
+				/>) }</MuiRadioGroup></FormControl>;
 };
 
 export default RadioGroup;

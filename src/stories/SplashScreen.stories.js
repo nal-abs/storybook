@@ -27,7 +27,7 @@ const Template = ({ child, text, ...rest }) => {
 	const SelectedChild = childComponents[child];
 
 	return <MuiSplashScreen { ...rest }>
-		<SelectedChild>{text}</SelectedChild>
+		<SelectedChild>{ text }</SelectedChild>
 	</MuiSplashScreen>;
 };
 

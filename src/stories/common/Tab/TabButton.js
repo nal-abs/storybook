@@ -38,7 +38,7 @@ const TabButtons = ({
 		textColor={ color }
 		indicatorColor={ color }
 	>
-		{values(map(contents, (content, tabKey) =>
+		{ values(map(contents, (content, tabKey) =>
 			<MuiTab
 				key={ tabKey }
 				{ ...getLabel(styles[style], content) }
@@ -46,7 +46,7 @@ const TabButtons = ({
 				value={ tabKey }
 				onClick={ () => onClick(tabKey) }
 
-			/>))}
+			/>)) }
 	</TabList>;
 
 export default TabButtons;

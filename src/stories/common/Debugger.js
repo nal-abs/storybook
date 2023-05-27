@@ -3,7 +3,7 @@ import * as React from 'react';
 
 const Debugger = (props) =>
 	<pre>
-		{pretty(props)}
+		{ pretty(props) }
 	</pre>;
 
 export default Debugger;

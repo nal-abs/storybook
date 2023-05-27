@@ -15,9 +15,9 @@ const DrawerItemList = (lists) =>
 
 		return <ListItem key={ text } sx={ { width: '200px' } }>
 			<ListItemButton>
-				<ListItemIcon>{itemIcon}</ListItemIcon>
+				<ListItemIcon>{ itemIcon }</ListItemIcon>
 				<ListItemText primary={ text }/>
-				<Typography>{typography}</Typography>
+				<Typography>{ typography }</Typography>
 			</ListItemButton>
 		</ListItem>;
 	}));

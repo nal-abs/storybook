@@ -27,7 +27,7 @@ const ImageCarousel = ({ onChange = nothing, count, value: initialValue }) => {
 				Array(count).fill(count)
 					.map((slide, index) =>
 						<SwiperSlide key={ index }>
-							Slide {index}
+							Slide { index }
 						</SwiperSlide>)
 			}
 		</Swiper>

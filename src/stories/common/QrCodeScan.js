@@ -13,7 +13,7 @@ const ScanQRButton = ({ setState, state, onChange }) =>
 		},
 	} }
 	>
-		{state.isScanning ? 'stop scan' : 'start scan'}
+		{ state.isScanning ? 'stop scan' : 'start scan' }
 	</Button>;
 
 const ScanQrReader = ({ setState, state, onChange, ...args }) => {
@@ -43,7 +43,7 @@ const QrCodeScan = ({ onChange = nothing, ...args }) => {
 	return (
 		<div>
 			<ScanQRButton { ...{ ...context } }/>
-			{ isScanning && <ScanQrReader { ...{ ...context } }/>}
+			{ isScanning && <ScanQrReader { ...{ ...context } }/> }
 		</div>);
 };
 

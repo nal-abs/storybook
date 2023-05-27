@@ -16,7 +16,7 @@ const getValidValue = ({ onChange, setState, evt }) => {
 const MenuList = (options) =>
 	map(options, (option, index) =>
 		<MenuItem key={ index } value={ option }>
-			<ListItemText>{option}</ListItemText></MenuItem>);
+			<ListItemText>{ option }</ListItemText></MenuItem>);
 
 const DropDown = (context) => {
 	const {
@@ -37,16 +37,16 @@ const DropDown = (context) => {
 				&& { renderValue: (selectedValue) => selectedValue.join(', ') },
 				...rest,
 			} }
-		>{MenuList(options)}</MuiSelect>);
+		>{ MenuList(options) }</MuiSelect>);
 };
 
 const Select = (context) => {
 	const { helperText, label, sx, variant, ...rest } = context;
 
 	return <FormControl sx={ sx } variant={ variant }>
-		<InputLabel>{label}</InputLabel>
+		<InputLabel>{ label }</InputLabel>
 		<DropDown { ...rest }/>
-		<FormHelperText>{helperText}</FormHelperText>
+		<FormHelperText>{ helperText }</FormHelperText>
 	</FormControl>;
 };
 

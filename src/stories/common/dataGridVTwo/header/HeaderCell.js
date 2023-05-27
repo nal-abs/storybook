@@ -14,7 +14,7 @@ const Sort = ({ data }) => <Box>
 		data.isSortedDesc
 			? <ArrowDownward/>
 			: <ArrowUpward/>
-	)}
+	) }
 </Box>;
 
 const position = 'column';

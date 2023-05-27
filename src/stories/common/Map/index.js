@@ -43,6 +43,6 @@ const Locator = ({ value, currentLocation }) =>
 		<Marker position={ value } { ...{ icon } }>
 			<Popup>Entered Location</Popup>
 		</Marker>
-		{currentLocation && <Location/>}
+		{ currentLocation && <Location/> }
 	</>
 	;

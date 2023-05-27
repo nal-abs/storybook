@@ -15,5 +15,5 @@ export const List = Template.bind({});
 
 List.args = {
 	value: ['1', '2', '3', '4'],
-	Component: ({ data }) => <Box>{data.original}</Box>,
+	Component: ({ data }) => <Box>{ data.original }</Box>,
 };

@@ -24,7 +24,7 @@ const Menu = (args) => {
 		} }
 		/>
 		<MuiMenu { ...{ args, handleClose, setContent, anchorEl } }/>
-		{content && <Content { ...{ content } }/>}
+		{ content && <Content { ...{ content } }/> }
 	</Box>;
 };
 

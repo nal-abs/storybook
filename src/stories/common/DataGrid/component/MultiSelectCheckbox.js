@@ -19,7 +19,7 @@ const MenuList = ({	 options, state = [] }) =>
 
 		return <MenuItem key={ index } value={ option }>
 			<Checkbox checked={ checkedState }/>
-			<ListItemText>{option}</ListItemText></MenuItem>;
+			<ListItemText>{ option }</ListItemText></MenuItem>;
 	});
 
 const DropDown = (context) => {
@@ -40,16 +40,16 @@ const DropDown = (context) => {
 				renderValue: (selectedValue) => selectedValue.join(', '),
 				...rest,
 			} }
-		>{MenuList({ options, state })}</MuiSelect>);
+		>{ MenuList({ options, state }) }</MuiSelect>);
 };
 
 const Select = (context) => {
 	const { helperText, label, sx, variant, ...rest } = context;
 
 	return <FormControl sx={ sx } variant={ variant }>
-		<InputLabel>{label}</InputLabel>
+		<InputLabel>{ label }</InputLabel>
 		<DropDown { ...rest }/>
-		<FormHelperText>{helperText}</FormHelperText>
+		<FormHelperText>{ helperText }</FormHelperText>
 	</FormControl>;
 };
 

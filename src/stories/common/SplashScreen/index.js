@@ -19,7 +19,7 @@ const SplashScreen = (context) => {
 				color: textColor,
 			} }
 		>
-			{children}
+			{ children }
 		</MuiContainer>
 	);
 };

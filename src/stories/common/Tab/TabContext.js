@@ -10,13 +10,13 @@ const TabContext = ({ props, onClick, value }) => {
 
 	return <MuiTabContext value={ value }>
 		<TabButtons { ...{ ...props, value, onClick } }/>
-		{values(map(contents, (content, key) => {
+		{ values(map(contents, (content, key) => {
 			const Child = Components[content.component];
 
 			return <TabPanel key={ key } value={ key }>
 				<Child { ...content.props }/>
 			</TabPanel>;
-		}))}
+		})) }
 	</MuiTabContext>;
 };
 

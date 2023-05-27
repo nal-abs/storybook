@@ -15,7 +15,7 @@ const Icon = ({ startIcon, endIcon }) => {
 
 const Button = ({ children = 'Button', ...rest }) =>
 	<MuiButton { ...{ ...rest, ...Icon(rest) } }>
-		{children}
+		{ children }
 	</MuiButton>;
 
 export default Button;

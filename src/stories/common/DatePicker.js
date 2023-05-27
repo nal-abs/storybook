@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
-import { DesktopDatePicker as MuiDatePicker,
-	LocalizationProvider } from '@mui/x-date-pickers';
+import {
+	DesktopDatePicker as MuiDatePicker,
+	LocalizationProvider,
+} from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import buildEvent from './buildEvent';

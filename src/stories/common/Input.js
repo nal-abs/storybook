@@ -10,7 +10,7 @@ const InputAdornment = (cur, key) => {
 
 	return (
 		<MuiAdornment position={ key }>
-			{Icon ? <Icon/> : text}
+			{ Icon ? <Icon/> : text }
 		</MuiAdornment>
 	);
 };

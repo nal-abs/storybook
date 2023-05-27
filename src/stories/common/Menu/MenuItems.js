@@ -14,8 +14,8 @@ const MenuItems = ({ data, sx, setContent }) =>
 					onClick={ () => setContent(children) }
 					sx={ sx }
 				><ListItemIcon><ItemIcon/></ListItemIcon>
-					<ListItemText>{children}</ListItemText>
-					<Typography>{typography}</Typography></MenuItem>
+					<ListItemText>{ children }</ListItemText>
+					<Typography>{ typography }</Typography></MenuItem>
 			</Box>);
 	});
 

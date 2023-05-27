@@ -40,9 +40,9 @@ const SpeedDial = (args) => {
 				direction={ direction }
 				icon={ <SpeedDialIcon { ...openIcon(icon) }/> }
 			>
-				{MuiSpeedDialAction({ setValue, data, ...rest })}
+				{ MuiSpeedDialAction({ setValue, data, ...rest }) }
 			</MuiSpeedDial>
-			<Box>{value}</Box>
+			<Box>{ value }</Box>
 		</Box>
 	);
 }

@@ -2,7 +2,8 @@ import { React } from 'react';
 import './App.scss';
 import Tab from '../src/stories/common/Tab/index';
 
-const getTabProp = (context) => ({ ...context,
+const getTabProp = (context) => ({
+	...context,
 	contents: {
 		Journal: {
 			label: 'Journal',
@@ -16,7 +17,8 @@ const getTabProp = (context) => ({ ...context,
 		},
 	},
 	value: 'Journal',
-	style: 'textOnly' });
+	style: 'textOnly',
+});
 
 const App = (context) => <div className="App">
 	<Tab { ...getTabProp(context) }/>

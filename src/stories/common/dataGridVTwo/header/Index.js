@@ -16,7 +16,7 @@ const Header = (context) => {
 					<HeaderCell
 						key={ index }
 						{ ...{ ...context, index, data } }
-					/>)}
+					/>) }
 			</TableRow>) }
 	</TableHead>;
 };

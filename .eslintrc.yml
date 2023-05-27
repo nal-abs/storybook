@@ -440,7 +440,8 @@ rules:
     - consistent
   react/jsx-curly-spacing:
     - error
-    - always
+    - when: always
+      children: true
   react/jsx-equals-spacing:
     - error
     - never
