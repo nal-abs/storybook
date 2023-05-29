@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import TabContext from './TabContext';
-import buildEvent from '../buildEvent';
+import buildEvent from '../helper/buildEvent';
 import { nothing } from '@laufire/utils/fn';
 
 const tabStyle = {

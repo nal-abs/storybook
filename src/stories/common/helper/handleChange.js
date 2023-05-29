@@ -1,4 +1,4 @@
-import updateRow from './updateRow';
+import updateRow from '../updateRow';
 
 const handleChange = (newValue, props) => {
 	const { context, setValue } = props;

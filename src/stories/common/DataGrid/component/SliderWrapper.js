@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
 import Slider from '../../Slider';
-import handleChange from '../../handleChange';
+import handleChange from '../../helper/handleChange';
 
 const sliderProps = (schema) => ({
 	size: 'large',

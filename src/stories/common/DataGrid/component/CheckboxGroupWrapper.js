@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import dataFormatter from '../dataFormatter';
 import MuiSelect from './MultiSelectCheckbox';
-import handleChange from '../../handleChange';
+import handleChange from '../../helper/buildEvent';
 
 const getInputProps = (schema) => {
 	const { readOnly, disabled } = schema;

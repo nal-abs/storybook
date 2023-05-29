@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import Rating from '@mui/material/Rating';
-import buildEvent from './buildEvent';
+import buildEvent from './helper/buildEvent';
 import * as Icons from '@mui/icons-material';
 
 const getIcon = ({ emptyIcon, selectedIcon }) => {

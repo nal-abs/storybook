@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { identity, nothing } from '@laufire/utils/fn';
-import buildEvent from '../../buildEvent';
+import buildEvent from '../../helper/buildEvent';
 import validateType from '../validate';
 import TextField from '../../Input';
 import inputProps from '../helper/inputProps';

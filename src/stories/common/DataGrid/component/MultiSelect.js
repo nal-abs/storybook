@@ -1,7 +1,7 @@
 import { useState, React } from 'react';
 import Select from '../../Select';
 import dataFormatter from '../dataFormatter';
-import handleChange from '../../handleChange';
+import handleChange from '../../helper/handleChange';
 
 const getInputProps = (schema) => {
 	const { readOnly, disabled } = schema;

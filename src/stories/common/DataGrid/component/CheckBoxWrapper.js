@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
 import CheckBox from '../../CheckBox';
-import handleChange from '../../handleChange';
+import handleChange from '../../helper/handleChange';
 
 const CheckBoxWrapper = (context) => {
 	const { value: initialValue } = context;

@@ -2,7 +2,7 @@
 import { nothing } from '@laufire/utils/fn';
 import { React, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import buildEvent from './buildEvent';
+import buildEvent from './helper/buildEvent';
 
 const slideStyle = {
 	'width': '100vw',

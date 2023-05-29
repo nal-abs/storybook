@@ -5,7 +5,7 @@ import {
 } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import buildEvent from './buildEvent';
+import buildEvent from './helper/buildEvent';
 import { nothing } from '@laufire/utils/fn';
 
 const DatePicker = (context) => {

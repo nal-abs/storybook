@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
 import Switch from '../../Switch';
-import handleChange from '../../handleChange';
+import handleChange from '../../helper/handleChange';
 
 const SwitchWrapper = (context) => {
 	const { value: initialValue } = context;
