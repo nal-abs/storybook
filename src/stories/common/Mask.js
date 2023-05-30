@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import color from '../../helper/color';
 import { identity } from '@laufire/utils/fn';
+import { Box } from '@mui/material';
 
 const setCanvasImage = ({ canvasRef, imgRef, src }) => {
 	const canvas = canvasRef.current;
@@ -43,16 +44,14 @@ const Mask = (context) => {
 	}, []);
 
 	return (
-		<div ref={ imgRef } { ...{ style } } className="parent">
+		<Box ref={ imgRef } className="mask-container" { ...{ sx: style } }>
 			{ children }
 			<canvas
 				ref={ canvasRef }
 				className="mask"
-				onClick={ (evt) => {
-					onChange(getColor(evt, canvasRef));
-				} }
+				onClick={ (evt) => { onChange(getColor(evt, canvasRef)); } }
 			/>
-		</div>
+		</Box>
 	);
 };
 

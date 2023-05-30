@@ -31,10 +31,9 @@
 	cursor: move;
 }
 
-.parent {
-	position: absolute;
-	top: 100px;
-	left: 100px;
+.mask-container {
+	position: relative;
+	display: inline-block;
 }
 
 .child {
