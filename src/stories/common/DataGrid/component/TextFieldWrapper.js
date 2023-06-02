@@ -1,27 +1,27 @@
 import { React, useState } from 'react';
 import { identity, nothing } from '@laufire/utils/fn';
 import buildEvent from '../../helper/buildEvent';
-import validateType from '../validate';
 import TextField from '../../Input';
 import inputProps from '../helper/inputProps';
 import transformValue from '../helper/transformValue';
 import isInputValid from '../helper/isInputValid';
+import validateSchema from '../validate/validateSchema';
 
 const handleValidInput = (props, newValue) => {
 	const {
 		setUserInput, context: { validSchema, onChange = nothing },
-		transform, validate,
+		transform,
 	} = props;
 
 	setUserInput(newValue);
-	validate(transform(newValue), validSchema)
+	validateSchema(transform(newValue), validSchema)
 			&& onChange(buildEvent(transform(newValue)));
 };
 
 const getClassName = (props) => {
-	const { userInput, transform, validate, context: { validSchema }} = props;
+	const { userInput, transform, context: { validSchema }} = props;
 
-	return validate(transform(userInput), validSchema)
+	return validateSchema(transform(userInput), validSchema)
 		? ''
 		: 'error';
 };
@@ -49,8 +49,7 @@ const TextFieldWrapper = (context) => {
 	const { value = '', component, schemaType, schema } = context;
 	const [userInput, setUserInput] = useState(value);
 	const transform = transformValue[component] || identity;
-	const validate = validateType[component] || identity;
-	const props = { setUserInput, userInput, transform, validate, context };
+	const props = { setUserInput, userInput, transform, context };
 	const buildInputProps = inputProps[component] || nothing;
 	const extendedProps = { inputProps: buildInputProps(context) };
 

@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import { React, useState } from 'react';
 import { identity } from '@laufire/utils/fn';
 import { find, omit } from '@laufire/utils/collection.js';

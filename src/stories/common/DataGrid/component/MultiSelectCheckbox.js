@@ -5,7 +5,7 @@ import {
 	MenuItem, Select as MuiSelect,
 } from '@mui/material';
 import { useState, React } from 'react';
-import validate from '../validate/validate';
+import validateSchema from '../validate/validateSchema';
 import { nothing } from '@laufire/utils/fn';
 
 const updateValue = ({ setState, onChange, evt }) => {
@@ -35,7 +35,7 @@ const DropDown = (context) => {
 			{ ...{
 				value: state,
 				multiple: multiple,
-				onChange: (evt) => validate(evt.target.value, validSchema)
+				onChange: (evt) => validateSchema(evt.target.value, validSchema)
 					&& updateValue({ setState, onChange, evt }),
 				renderValue: (selectedValue) => selectedValue.join(', '),
 				...rest,

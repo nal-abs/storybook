@@ -5,7 +5,7 @@ import {
 	MenuItem, Select as MuiSelect,
 } from '@mui/material';
 import { useState, React } from 'react';
-import validate from './DataGrid/validate/validate';
+import validateSchema from './DataGrid/validate/validateSchema';
 import { nothing } from '@laufire/utils/fn';
 
 const getValidValue = ({ onChange, setState, evt }) => {
@@ -31,7 +31,7 @@ const DropDown = (context) => {
 			{ ...{
 				value: state,
 				multiple: multiple,
-				onChange: (evt) => validate(evt.target.value, validSchema)
+				onChange: (evt) => validateSchema(evt.target.value, validSchema)
 					&& getValidValue({ onChange, setState, evt }),
 				...multiple
 				&& { renderValue: (selectedValue) => selectedValue.join(', ') },

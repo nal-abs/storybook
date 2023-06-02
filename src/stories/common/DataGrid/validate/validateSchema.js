@@ -1,6 +1,8 @@
+import addFormats from 'ajv-formats';
 import Ajv from 'ajv';
 
-const validator = new Ajv();
+const ajv = new Ajv();
+const phoneNoPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
 
 const ten = 10;
 const decimalLength = 2;
@@ -30,18 +32,30 @@ const hasReminder = (schemaNum, testNum) => {
 const isTypeNumber = (schemaNum, testNum) => schemaNum === 0
 || !(typeof testNum === 'number' && isFinite(testNum));
 
-const multipleValidator = (schemaNum, testNum) =>
+const validateMultipleOf = (schemaNum, testNum) =>
 	(isTypeNumber(schemaNum, testNum)
 		? false
 		: !hasReminder(schemaNum, testNum));
 
-validator.removeKeyword('multipleOf');
-validator.addKeyword({
+ajv.removeKeyword('multipleOf');
+
+ajv.addKeyword({
 	keyword: 'multipleOf',
 	type: 'number',
-	validate: multipleValidator,
+	validate: validateMultipleOf,
 });
 
-const validate = (value, schema) => validator.validate(schema, value);
+ajv.addFormat('phoneNo', {
+	validate: (phoneNumber) =>
+		phoneNoPattern.test(phoneNumber),
+});
 
-export default validate;
+addFormats(ajv);
+
+const validateSchema = (value, schema) => {
+	const valid = ajv.validate(schema, value);
+
+	return valid;
+};
+
+export default validateSchema;
