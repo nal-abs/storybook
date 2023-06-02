@@ -29,19 +29,16 @@ const Input = (context) => {
 		adornments = {}, multiline, onChange = nothing,
 		value: initialValue = '', ...args
 	} = context;
-	const [state, setState] = React.useState(initialValue);
 	const MultilineProps = multiline && { ...multiline, multiline: true };
 
 	return (
 		<TextField
 			{ ...{
 				InputProps: inputProps(adornments),
-				...MultilineProps, ...args,
-				value: state,
-				onChange: (evt) => {
-					onChange(evt);
-					setState(evt.target.value);
-				},
+				...MultilineProps,
+				...args,
+				value: initialValue,
+				onChange: (evt) => onChange(evt),
 			} }
 		/>);
 };
