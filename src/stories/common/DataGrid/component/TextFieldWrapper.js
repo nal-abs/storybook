@@ -5,23 +5,25 @@ import TextField from '../../Input';
 import inputProps from '../helper/inputProps';
 import transformValue from '../helper/transformValue';
 import isInputValid from '../helper/isInputValid';
-import validateSchema from '../validate/validateSchema';
 
 const handleValidInput = (props, newValue) => {
 	const {
-		setUserInput, context: { validSchema, onChange = nothing },
+		setUserInput, context: { validate, onChange = nothing },
 		transform,
 	} = props;
 
 	setUserInput(newValue);
-	validateSchema(transform(newValue), validSchema)
+	validate(transform(newValue))
 			&& onChange(buildEvent(transform(newValue)));
 };
 
 const getClassName = (props) => {
-	const { userInput, transform, context: { validSchema }} = props;
+	const {
+		userInput, transform,
+		context: { validate },
+	} = props;
 
-	return validateSchema(transform(userInput), validSchema)
+	return validate(transform(userInput))
 		? ''
 		: 'error';
 };

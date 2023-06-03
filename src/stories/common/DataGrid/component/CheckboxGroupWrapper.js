@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { React, useState } from 'react';
 import dataFormatter from '../dataFormatter';
 import MuiSelect from './MultiSelectCheckbox';
@@ -33,6 +34,7 @@ const CheckBoxGroupWrapper = (context) => {
 			value: value,
 			schema: schema,
 			...getInputProps(schema),
+			context: context,
 		} }
 		/>);
 };

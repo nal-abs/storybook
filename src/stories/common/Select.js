@@ -1,11 +1,10 @@
-import { map, omit } from '@laufire/utils/collection';
+import { map } from '@laufire/utils/collection';
 import {
 	FormControl, FormHelperText, InputLabel,
 	ListItemText,
 	MenuItem, Select as MuiSelect,
 } from '@mui/material';
 import { useState, React } from 'react';
-import validateSchema from './DataGrid/validate/validateSchema';
 import { nothing } from '@laufire/utils/fn';
 
 const getValidValue = ({ onChange, setState, evt }) => {
@@ -21,17 +20,16 @@ const MenuList = (options) =>
 const DropDown = (context) => {
 	const {
 		options, onChange = nothing,
-		multiple, value, schema = {}, ...rest
+		multiple, value, context: { validate }, ...rest
 	} = context;
 	const [state, setState] = useState(value);
-	const validSchema = omit(schema, { something: 'widget' });
 
 	return (
 		<MuiSelect
 			{ ...{
 				value: state,
 				multiple: multiple,
-				onChange: (evt) => validateSchema(evt.target.value, validSchema)
+				onChange: (evt) => validate(evt.target.value)
 					&& getValidValue({ onChange, setState, evt }),
 				...multiple
 				&& { renderValue: (selectedValue) => selectedValue.join(', ') },

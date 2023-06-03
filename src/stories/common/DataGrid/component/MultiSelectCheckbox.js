@@ -1,11 +1,10 @@
-import { map, omit } from '@laufire/utils/collection';
+import { map } from '@laufire/utils/collection';
 import {
 	Checkbox, FormControl, FormHelperText, InputLabel,
 	ListItemText,
 	MenuItem, Select as MuiSelect,
 } from '@mui/material';
 import { useState, React } from 'react';
-import validateSchema from '../validate/validateSchema';
 import { nothing } from '@laufire/utils/fn';
 
 const updateValue = ({ setState, onChange, evt }) => {
@@ -25,17 +24,16 @@ const MenuList = ({	 options, state = [] }) =>
 const DropDown = (context) => {
 	const {
 		options, onChange = nothing,
-		multiple, value, schema = {}, ...rest
+		multiple, value, context: { validate }, ...rest
 	} = context;
 	const [state, setState] = useState(value);
-	const validSchema = omit(schema, { something: 'widget' });
 
 	return (
 		<MuiSelect
 			{ ...{
 				value: state,
 				multiple: multiple,
-				onChange: (evt) => validateSchema(evt.target.value, validSchema)
+				onChange: (evt) => validate(evt.target.value)
 					&& updateValue({ setState, onChange, evt }),
 				renderValue: (selectedValue) => selectedValue.join(', '),
 				...rest,

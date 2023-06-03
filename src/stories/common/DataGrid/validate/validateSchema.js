@@ -4,6 +4,7 @@ import validateMultipleOf from './validateMultipleOf';
 
 const ajv = new Ajv();
 const phoneNoPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+const getValidator = (schema) => ajv.compile(schema);
 
 ajv.removeKeyword('multipleOf');
 
@@ -20,10 +21,6 @@ ajv.addFormat('phoneNo', {
 
 addFormats(ajv);
 
-const validateSchema = (value, schema) => {
-	const valid = ajv.validate(schema, value);
-
-	return valid;
-};
+const validateSchema = (schema) => getValidator(schema);
 
 export default validateSchema;

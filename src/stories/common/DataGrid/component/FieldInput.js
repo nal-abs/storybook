@@ -1,7 +1,7 @@
 /* eslint-disable max-statements */
 import { React, useState } from 'react';
 import { identity } from '@laufire/utils/fn';
-import { find, omit } from '@laufire/utils/collection.js';
+import { find } from '@laufire/utils/collection.js';
 import CheckBox from './CheckBoxWrapper';
 import TextFieldWrapper from './TextFieldWrapper';
 import updateValue from '../helper/updateValue';
@@ -44,16 +44,14 @@ const FieldInput = (context) => {
 	const schemaType = getType(schema);
 	const [value, setValue] = useState(initialValue);
 	const update = updateValue[component] || identity;
-	const validSchema = omit(schema, {
-		something: 'widget',
-		disabled: 'disabled',
-	});
+
 	const onChange = ({ target: { value: newValue }}) => {
 		updateRow({ ...context, value: update(newValue) });
 
 		setValue(newValue);
 	};
-	const props = { value, onChange, component, schemaType, validSchema };
+
+	const props = { value, onChange, component, schemaType };
 	const Component = getComponent(schema);
 
 	return <Component { ...{ ...props, ...context } }/>;

@@ -23,6 +23,7 @@ const SingleSelect = (context) => {
 			value: value,
 			schema: schema,
 			...getInputProps(schema),
+			context: context,
 		} }
 		/>);
 };
