@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import DefaultInput from './component/DefaultInput.js';
 import { find, omit } from '@laufire/utils/collection';
 import CheckBoxGroup from './component/CheckboxGroupWrapper.js';
@@ -8,7 +8,7 @@ import FieldInput from './component/FieldInput.js';
 import Switch from './component/SwitchWrapper.js';
 import RadioGroup from './component/RadioWrapper.js';
 import Slider from './component/SliderWrapper.js';
-import validateSchema from '../DataGrid/validate/validateSchema.js';
+import getValidator from './validate/getValidator.js';
 
 const widgetList = {
 	slider: Slider,
@@ -36,8 +36,8 @@ const componentType = {
 
 const SchemaInput = (props) => {
 	const { schema } = props;
-	const validSchema = omit(schema, ['widget', 'disabled']);
-	const validate = useCallback(validateSchema(validSchema), [validSchema]);
+	const validationSchema = omit(schema, ['widget', 'disabled']);
+	const validate = useMemo(() => getValidator(validationSchema), []);
 	const Component = find(componentType, (component) =>
 		component(schema))(schema);
 
