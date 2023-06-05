@@ -104,7 +104,7 @@ const config = {
 				title: 'Balances',
 				readOnly: true,
 			},
-			Password: {
+			password: {
 				type: 'string',
 				title: 'Password',
 				minLength: 2,
