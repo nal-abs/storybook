@@ -8,7 +8,7 @@ const getInputProps = (schema) => {
 	return { inputProps: { readOnly, disabled }};
 };
 const SingleSelect = (context) => {
-	const { schema, value: initialValue = '' } = context;
+	const { schema, value: initialValue = '', validate } = context;
 	const [value, setValue] = useState(initialValue);
 	const props = { context, setValue };
 
@@ -22,8 +22,9 @@ const SingleSelect = (context) => {
 				handleChange(newValue, props),
 			value: value,
 			schema: schema,
+			validate: validate,
 			...getInputProps(schema),
-			context: context,
+
 		} }
 		/>);
 };

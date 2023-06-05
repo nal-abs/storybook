@@ -19,7 +19,7 @@ const getInputProps = (schema) => {
 const CheckBoxGroupWrapper = (context) => {
 	const {
 		schema: { items, widget },
-		schema,	value: initialValue = [],
+		schema,	value: initialValue = [], validate,
 	} = context;
 	const [value, setValue] = useState(initialValue);
 	const multiSelectType = items.enum ? 'enum' : 'oneOf';
@@ -34,7 +34,7 @@ const CheckBoxGroupWrapper = (context) => {
 			value: value,
 			schema: schema,
 			...getInputProps(schema),
-			context: context,
+			validate: validate,
 		} }
 		/>);
 };

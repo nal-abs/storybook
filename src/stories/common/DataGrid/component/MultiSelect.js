@@ -10,7 +10,7 @@ const getInputProps = (schema) => {
 };
 
 const MuiSelect = (context) => {
-	const { options, schema, value: initialValue = [] } = context;
+	const { options, schema, value: initialValue = [], validate } = context;
 	const [value, setValue] = useState(initialValue);
 	const props = { context, setValue };
 
@@ -26,7 +26,7 @@ const MuiSelect = (context) => {
 			value: value,
 			schema: schema,
 			...getInputProps(schema),
-			context: context,
+			validate: validate,
 		} }
 		/>);
 };

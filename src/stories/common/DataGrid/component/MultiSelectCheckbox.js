@@ -24,7 +24,7 @@ const MenuList = ({	 options, state = [] }) =>
 const DropDown = (context) => {
 	const {
 		options, onChange = nothing,
-		multiple, value, context: { validate }, ...rest
+		multiple, value, validate, ...rest
 	} = context;
 	const [state, setState] = useState(value);
 
