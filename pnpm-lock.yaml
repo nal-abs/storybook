@@ -48,6 +48,7 @@ specifiers:
   react-leaflet: ^4.2.1
   react-player: ^2.12.0
   react-qr-reader: ^3.0.0-beta-1
+  react-resize-detector: ^9.1.0
   react-scripts: 5.0.1
   react-table: ^7.8.0
   react-virtualized: ^9.22.5
@@ -89,6 +90,7 @@ dependencies:
   react-leaflet: 4.2.1_afvzveac2ztd74q7nuw5hle7yu
   react-player: 2.12.0_react@17.0.2
   react-qr-reader: 3.0.0-beta-1_sfoxds7t5ydpegc3knd667wn6m
+  react-resize-detector: 9.1.0_sfoxds7t5ydpegc3knd667wn6m
   react-scripts: 5.0.1_ymv2kc4gnyogsdidlynholv3rq
   react-table: 7.8.0_react@17.0.2
   react-virtualized: 9.22.5_sfoxds7t5ydpegc3knd667wn6m
@@ -11047,6 +11049,17 @@ packages:
   /react-refresh/0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
+
+  /react-resize-detector/9.1.0_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-vGFbfkIZp4itJqR4yl+GhjrZHtdlQvou1r10ek0yZUMkizKbPdekKTpPb003IV3b8E5BJFThVG0oocjE3lNsug==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      lodash: 4.17.21
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
 
   /react-scripts/5.0.1_ymv2kc4gnyogsdidlynholv3rq:
     resolution: {integrity: sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==}
