@@ -1,21 +1,22 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import color from '../../helper/color';
-import { identity } from '@laufire/utils/fn';
 import { Box } from '@mui/material';
+import Container from './Container';
+import { identity } from '@laufire/utils/fn';
 
 const setCanvasImage = ({ canvasRef, imgRef, src }) => {
 	const canvas = canvasRef.current;
 	const context = canvas.getContext('2d', { willReadFrequently: true });
 	const img = imgRef.current.firstChild;
 
-	canvas.width = img.width;
-	canvas.height = img.height;
+	canvas.width = img.clientWidth;
+	canvas.height = img.clientHeight;
 
 	const image = new Image();
 
 	image.onload = () => {
 		context.drawImage(
-			image, 0, 0, img.width, img.height
+			image, 0, 0, img.clientWidth, img.clientHeight
 		);
 	};
 	image.src = src;
@@ -34,24 +35,51 @@ const getColor = (evt, canvasRef) => {
 	return color.rgbToHex(data);
 };
 
-const Mask = (context) => {
-	const { children, onChange = identity, style = {}} = context;
+const setValue = ({ canvasRef, setState, onChange }) => (evt) => {
+	const value = getColor(evt, canvasRef);
+
+	setState((preState) => {
+		onChange({ ...preState, value });
+
+		return { ...preState, value };
+	});
+};
+
+const MaskContainer = (props) => {
+	const { onChange = identity, state, setState, children, ...rest } = props;
 	const canvasRef = useRef(null);
 	const imgRef = useRef(null);
 
 	useEffect(() => {
-		setCanvasImage({ ...context, canvasRef, imgRef });
-	}, []);
+		setCanvasImage({ ...props, canvasRef, imgRef });
+
+		onChange({ ...state });
+	}, [state]);
+
+	return <Box ref={ imgRef } className="mask-container" { ...rest }>
+		{ children }
+		<canvas
+			ref={ canvasRef }
+			className="mask"
+			onClick={ setValue({ canvasRef, setState, onChange }) }
+		/>
+	</Box>;
+};
+
+const Mask = (props) => {
+	const [state, setState] = useState({ width: 0, height: 0 });
+
+	const enhancedProps = { ...props, state, setState };
+
+	const containerOnChange = (data) => setState((preState) => ({
+		...preState,
+		...data,
+	}));
 
 	return (
-		<Box ref={ imgRef } className="mask-container" { ...{ sx: style } }>
-			{ children }
-			<canvas
-				ref={ canvasRef }
-				className="mask"
-				onClick={ (evt) => { onChange(getColor(evt, canvasRef)); } }
-			/>
-		</Box>
+		<Container onChange={ containerOnChange }>
+			<MaskContainer { ...enhancedProps }/>
+		</Container>
 	);
 };
 

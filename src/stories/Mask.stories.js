@@ -1,9 +1,8 @@
 import { React } from 'react';
 import MaskComponent from './common/Mask';
-import child from './assets/child.png';
-import parent from './assets/mask.png';
+import parent from './assets/direction.svg';
+import child from './assets/colors.svg';
 import { peek } from '@laufire/utils/debug';
-
 const component = {
 	title: 'components/Mask',
 	component: MaskComponent,
