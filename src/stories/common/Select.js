@@ -4,13 +4,8 @@ import {
 	ListItemText,
 	MenuItem, Select as MuiSelect,
 } from '@mui/material';
-import { useState, React } from 'react';
+import { React } from 'react';
 import { nothing } from '@laufire/utils/fn';
-
-const getValidValue = ({ onChange, setState, evt }) => {
-	setState(evt.target.value);
-	onChange(evt);
-};
 
 const MenuList = (options) =>
 	map(options, (option, index) =>
@@ -20,17 +15,15 @@ const MenuList = (options) =>
 const DropDown = (context) => {
 	const {
 		options, onChange = nothing,
-		multiple, value, validate, ...rest
+		multiple, value, ...rest
 	} = context;
-	const [state, setState] = useState(value);
 
 	return (
 		<MuiSelect
 			{ ...{
-				value: state,
+				value: value,
 				multiple: multiple,
-				onChange: (evt) => validate(evt.target.value)
-					&& getValidValue({ onChange, setState, evt }),
+				onChange: (evt) => onChange(evt),
 				...multiple
 				&& { renderValue: (selectedValue) => selectedValue.join(', ') },
 				...rest,

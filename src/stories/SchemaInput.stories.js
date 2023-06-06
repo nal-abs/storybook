@@ -5,6 +5,21 @@ import { peek } from '@laufire/utils/debug';
 const component = {
 	title: 'Component/SchemaInput',
 	component: JsonInput,
+	argTypes: {
+		schemaType: {
+			type: 'select',
+			options: [
+				'singleSelect',
+				'radioGroup',
+				'checkBoxGroup',
+				'input',
+				'multiSelect',
+				'checkBox',
+				'slider',
+				'password',
+			],
+		},
+	},
 };
 
 export default component;
@@ -15,12 +30,27 @@ export const SchemaInput = Template.bind({});
 
 SchemaInput.args = {
 	schema: {
-		type: 'string',
-		format: 'date',
-		title: 'Date',
-		formatMinimum: '2013-11-17',
-		formatMaximum: '2023-06-06',
+		type: 'array',
+		uniqueItems: true,
+		readOnly: true,
+		items: {
+			oneOf: [
+				{
+					const: 'US',
+					title: 'US',
+				},
+				{
+					const: 'India',
+					title: 'India',
+				},
+				{
+					const: 'China',
+					title: 'China',
+				},
+			],
+		},
+		maxItems: 2,
 	},
-	value: '2022-05-05',
+	value: ['US'],
 	onChange: (evt) => peek(evt.target.value),
 };
