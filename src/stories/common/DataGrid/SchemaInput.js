@@ -9,6 +9,7 @@ import Switch from './component/SwitchWrapper.js';
 import RadioGroup from './component/RadioWrapper.js';
 import Slider from './component/IntegerRange.js';
 import getValidator from './validate/getValidator.js';
+import { nothing } from '@laufire/utils/fn.js';
 
 const widgetList = {
 	slider: Slider,
@@ -35,13 +36,13 @@ const componentType = {
 };
 
 const SchemaInput = (props) => {
-	const { schema } = props;
+	const { schema, onChange = nothing } = props;
 	const jsonSchema = omit(schema, ['widget', 'disabled']);
 	const validate = useMemo(() => getValidator(jsonSchema), []);
 	const Component = find(componentType, (component) =>
 		component(schema))(schema);
 
-	return <Component { ...{ ...props, validate } }/>;
+	return <Component { ...{ ...props, validate, onChange } }/>;
 };
 
 export default SchemaInput;

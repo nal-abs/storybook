@@ -1,9 +1,8 @@
 import * as React from 'react';
 import JsonInput from './common/DataGrid/SchemaInput';
-import { peek } from '@laufire/utils/debug';
 
 const component = {
-	title: 'Component/SchemaInput',
+	title: 'Components/SchemaInput',
 	component: JsonInput,
 	argTypes: {
 		schemaType: {
@@ -35,5 +34,4 @@ SchemaInput.args = {
 		widget: 'switch',
 	},
 	value: false,
-	onChange: (evt) => peek(evt.target.value),
 };
