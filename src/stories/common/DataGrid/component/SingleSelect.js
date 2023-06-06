@@ -1,32 +1,17 @@
 import { useState, React } from 'react';
-import Select from '../../Select';
 import handleChange from '../../helper/handleChange';
+import SingleSelectWrapper from './SingleSelectWrapper';
 
-const getInputProps = (schema) => {
-	const { readOnly, disabled } = schema;
-
-	return { inputProps: { readOnly, disabled }};
-};
 const SingleSelect = (context) => {
-	const { schema, value: initialValue = '', validate } = context;
+	const { schema, value: initialValue = '' } = context;
 	const [value, setValue] = useState(initialValue);
-	const props = { context, setValue };
+	const options = schema.enum;
+	const onChange = ({ target: { value: newValue }}) =>
+		handleChange(newValue, { context, setValue });
+	const props = { options, onChange, value };
 
 	return (
-		<Select { ...{
-			options: schema.enum,
-			sx: { width: '150px' },
-			disableUnderline: true,
-			variant: 'standard',
-			onChange: ({ target: { value: newValue }}) =>
-				handleChange(newValue, props),
-			value: value,
-			schema: schema,
-			validate: validate,
-			...getInputProps(schema),
-
-		} }
-		/>);
+		<SingleSelectWrapper { ...{ ...props, ...context } }/>);
 };
 
 export default SingleSelect;

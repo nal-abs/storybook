@@ -30,27 +30,10 @@ export const SchemaInput = Template.bind({});
 
 SchemaInput.args = {
 	schema: {
-		type: 'array',
-		uniqueItems: true,
-		readOnly: true,
-		items: {
-			oneOf: [
-				{
-					const: 'US',
-					title: 'US',
-				},
-				{
-					const: 'India',
-					title: 'India',
-				},
-				{
-					const: 'China',
-					title: 'China',
-				},
-			],
-		},
-		maxItems: 2,
+		type: 'string',
+		enum: ['India', 'Africa', 'US'],
+		disabled: false,
 	},
-	value: ['US'],
+	value: '',
 	onChange: (evt) => peek(evt.target.value),
 };

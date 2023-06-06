@@ -10,7 +10,7 @@ const MultiSelect = (context) => {
 	const options = dataFormatter[multiSelectType](items);
 	const onChange = ({ target: { value: newValue }}) =>
 		handleChange(newValue, { setValue, context });
-	const props = { value, onChange, options, context };
+	const props = { value, onChange, options };
 
 	return (
 		<MultiSelectWrapper { ...{ ...props, ...context } }/>);

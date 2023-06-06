@@ -6,16 +6,12 @@ const RadioWrapper = (context) => {
 	const { schema, value: initialValue = '' } = context;
 	const [value, setValue] = useState(initialValue);
 	const props = { context, setValue };
+	const options = schema.enum;
+	const onChange = ({ target: { value: newValue }}) =>
+		handleChange(newValue, props);
 
 	return (
-		<RadioGroup { ...{
-			options: schema.enum,
-			onChange: ({ target: { value: newValue }}) =>
-				handleChange(newValue, props),
-			value: value,
-			schema: schema,
-		} }
-		/>);
+		<RadioGroup { ...{ options, onChange, value, schema, ...context	} }/>);
 };
 
 export default RadioWrapper;
