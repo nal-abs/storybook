@@ -1,6 +1,19 @@
-import { useState, React } from 'react';
+import { React, useState } from 'react';
+import buildEvent from '../../helper/buildEvent';
+import { nothing } from '@laufire/utils/fn';
 import Slider from '../../Slider';
-import handleChange from '../../helper/handleChange';
+
+const updateValue = (value, { setUserInput, onChange = nothing }) => {
+	setUserInput(value);
+	onChange(buildEvent(value));
+};
+
+const handleValidInput = (props) =>
+	({ target: { value }}) => {
+		const { context: { validate }} = props;
+
+		validate(value) && updateValue(value, props);
+	};
 
 const sliderProps = (schema) => ({
 	size: 'large',
@@ -14,15 +27,15 @@ const sliderProps = (schema) => ({
 });
 
 const SliderWrapper = (context) => {
-	const { value: initialValue, schema } = context;
-	const [value, setValue] = useState(initialValue);
-	const props = { context, setValue };
+	const { schema, value } = context;
+	const [userInput, setUserInput] = useState(value);
+	const props = { setUserInput, context };
 
 	return (
 		<Slider { ...{
-			onChange: ({ target: { value: newValue }}) =>
-				handleChange(newValue, props),
-			value: value,
+			value: userInput,
+			schema: schema,
+			onChange: handleValidInput(props),
 			...sliderProps(schema),
 		} }
 		/>);

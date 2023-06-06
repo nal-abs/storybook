@@ -7,7 +7,7 @@ import MultiSelect from './component/MultiSelect.js';
 import FieldInput from './component/FieldInput.js';
 import Switch from './component/SwitchWrapper.js';
 import RadioGroup from './component/RadioWrapper.js';
-import Slider from './component/SliderWrapper.js';
+import Slider from './component/IntegerRange.js';
 import getValidator from './validate/getValidator.js';
 
 const widgetList = {
