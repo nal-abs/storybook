@@ -1,5 +1,5 @@
 import { InputAdornment as MuiAdornment, TextField } from '@mui/material';
-import * as React from 'react';
+import { React, useState } from 'react';
 import * as Icons from '@mui/icons-material';
 import { reduce } from '@laufire/utils/collection';
 import { nothing } from '@laufire/utils/fn';
@@ -30,15 +30,18 @@ const Input = (context) => {
 		value: initialValue = '', ...args
 	} = context;
 	const MultilineProps = multiline && { ...multiline, multiline: true };
+	const [state, setState] = useState(initialValue);
 
 	return (
 		<TextField
 			{ ...{
 				InputProps: inputProps(adornments),
-				...MultilineProps,
-				...args,
-				value: initialValue,
-				onChange: (evt) => onChange(evt),
+				...MultilineProps, ...args,
+				value: state,
+				onChange: (evt) => {
+					onChange(evt);
+					setState(evt.target.value);
+				},
 			} }
 		/>);
 };

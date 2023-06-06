@@ -5,8 +5,8 @@ import { nothing } from '@laufire/utils/fn';
 import buildEvent from './helper/buildEvent';
 
 const Switch = (context) => {
-	const { value, onChange = nothing, ...args } = context;
-	const [state, setState] = useState(value);
+	const { checked, onChange = nothing, ...args } = context;
+	const [state, setState] = useState(checked);
 
 	return (
 		<MuiSwitch

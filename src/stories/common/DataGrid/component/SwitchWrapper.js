@@ -1,6 +1,23 @@
 import { useState, React } from 'react';
-import Switch from '../../Switch';
+import MuiSwitch from '../../Switch';
 import handleChange from '../../helper/handleChange';
+import buildEvent from '../../helper/buildEvent';
+import { nothing } from '@laufire/utils/fn';
+
+const Switch = (context) => {
+	const { value, onChange = nothing } = context;
+	const [userInput, setUserInput] = useState(value);
+
+	return (
+		<MuiSwitch { ...{
+			checked: userInput,
+			onChange: ({ target: { value: newValue }}) => {
+				setUserInput(newValue);
+				onChange(buildEvent(newValue));
+			},
+		} }
+		/>);
+};
 
 const SwitchWrapper = (context) => {
 	const { value: initialValue } = context;
@@ -12,6 +29,7 @@ const SwitchWrapper = (context) => {
 			onChange: ({ target: { value: newValue }}) =>
 				handleChange(newValue, props),
 			value: value,
+			...context,
 		} }
 		/>);
 };

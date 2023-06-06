@@ -30,14 +30,10 @@ export const SchemaInput = Template.bind({});
 
 SchemaInput.args = {
 	schema: {
-		type: 'integer',
-		title: 'Integer',
-		maximum: 50,
-		minimum: -50,
-		multipleOf: 10,
-		widget: 'slider',
-		disabled: true,
+		type: 'boolean',
+		title: 'IsActive',
+		widget: 'switch',
 	},
-	value: 10,
+	value: false,
 	onChange: (evt) => peek(evt.target.value),
 };
