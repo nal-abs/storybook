@@ -27,12 +27,12 @@ const ReactTableReorder = {
 	},
 
 	reposition: ({ setState, data: { dragIndex, hoverIndex }, position }) => {
-		setState((prevCards) => ({
-			...prevCards,
-			[`${ position }s`]: update(prevCards[`${ position }s`], {
+		setState((prevState) => ({
+			...prevState,
+			[`${ position }s`]: update(prevState[`${ position }s`], {
 				$splice: [
 					[dragIndex, 1],
-					[hoverIndex, 0, prevCards[`${ position }s`][dragIndex]],
+					[hoverIndex, 0, prevState[`${ position }s`][dragIndex]],
 				],
 			}),
 		}));
