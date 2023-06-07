@@ -8,7 +8,17 @@ const component = {
 
 export default component;
 
-const Template = (args) => <MuiInput { ...args }/>;
+const Template = (args) => {
+	const [value, setValue] = React.useState(1);
+
+	return (
+		<MuiInput { ...{
+			onChange: (evt) => setValue(evt.target.value),
+			value: value,
+			...args,
+		} }
+		/>);
+};
 
 export const Input = Template.bind({});
 
@@ -20,7 +30,6 @@ Input.args = {
 	type: 'password',
 	helperText: 'Some important message',
 	error: false,
-	multiline: { rows: 5 },
 	focused: false,
 	placeholder: 'Enter some value',
 	fullWidth: false,
@@ -37,5 +46,4 @@ Input.args = {
 			icon: '',
 		},
 	},
-	value: 1,
 };

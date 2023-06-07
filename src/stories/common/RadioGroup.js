@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import Radio from '@mui/material/Radio';
 import { RadioGroup as MuiRadioGroup } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -8,14 +8,12 @@ import { nothing } from '@laufire/utils/fn';
 
 const RadioGroup = (context) => {
 	const { options, value, onChange = nothing, schema } = context;
-	const [state, setState] = useState(value);
 	const { disabled } = schema;
 
 	return <FormControl disabled={ disabled }>
 		<MuiRadioGroup
-			value={ state }
+			value={ value }
 			onChange={ (evt) => {
-				setState(evt.target.value);
 				onChange(evt);
 			} }
 		>

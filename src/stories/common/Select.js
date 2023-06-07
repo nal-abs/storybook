@@ -5,7 +5,7 @@ import {
 	ListItemText,
 	MenuItem, Select as MuiSelect,
 } from '@mui/material';
-import { React, useState } from 'react';
+import { React } from 'react';
 import { nothing } from '@laufire/utils/fn';
 
 const MenuList = (options) =>
@@ -18,15 +18,13 @@ const DropDown = (context) => {
 		options, onChange = nothing,
 		multiple, value, ...rest
 	} = context;
-	const [state, setState] = useState(value);
 
 	return (
 		<MuiSelect
 			{ ...{
-				value: state,
+				value: value,
 				multiple: multiple,
 				onChange: (evt) => {
-					setState(evt.target.value);
 					onChange(evt);
 				},
 				...multiple

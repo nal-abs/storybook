@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MuiSelect from '../stories/common/Select';
 
 const component = {
@@ -8,7 +8,17 @@ const component = {
 
 export default component;
 
-export const Select = (args) => <MuiSelect { ...args }/>;
+export const Select = (args) => {
+	const [value, setValue] = useState([]);
+
+	return (
+		<MuiSelect { ...{
+			onChange: (evt) => setValue(evt.target.value),
+			value: value,
+			...args,
+		} }
+		/>);
+};
 
 Select.args = {
 	options: ['Ten', 'Twenty', 'Thirty'],
@@ -24,5 +34,4 @@ Select.args = {
 	multiple: true,
 	sx: { width: 300 },
 	disableUnderline: false,
-	value: [],
 };
