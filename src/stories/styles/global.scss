@@ -47,3 +47,7 @@
 	width: 100%;
 	opacity: 0.5;
 }
+
+.container:focus-visible {
+outline: none;
+}
