@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import SchemaInputComponent from './common/DataGrid/SchemaInput';
 import schema from './schema';
@@ -54,6 +55,7 @@ const Template = (args) => {
 		<SchemaInputComponent { ...{
 			schema: jsonSchema,
 			value: value,
+			onChange: (evt) => console.log(evt),
 		} }
 		/>);
 };

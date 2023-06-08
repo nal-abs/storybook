@@ -1,8 +1,8 @@
-/* eslint-disable max-lines-per-function */
 import { React, useState } from 'react';
 import dataFormatter from '../dataFormatter';
 import MuiSelect from './MultiSelectCheckbox';
-import handleChange from '../../helper/buildEvent';
+import { nothing } from '@laufire/utils/fn';
+import buildEvent from '../../helper/buildEvent';
 
 const getInputProps = (schema) => {
 	const { readOnly, disabled } = schema;
@@ -16,25 +16,35 @@ const getInputProps = (schema) => {
 	};
 };
 
+const getValidValue = (newValue, {
+	setUserInput,
+	context: { onChange = nothing },
+}) => {
+	setUserInput(newValue);
+	onChange(buildEvent(newValue));
+};
+
+const handleValidInput = (props) =>
+	({ target: { value }}) => {
+		const { context: { validate }} = props;
+
+		return validate(value)
+		&& getValidValue(value, props);
+	};
+
 const CheckBoxGroupWrapper = (context) => {
-	const {
-		schema: { items, widget },
-		schema,	value: initialValue = [], validate,
-	} = context;
-	const [value, setValue] = useState(initialValue);
+	const { schema: { items }, schema,	value: initialValue } = context;
+	const [userInput, setUserInput] = useState(initialValue);
 	const multiSelectType = items.enum ? 'enum' : 'oneOf';
-	const props = { context, setValue };
+	const props = { context, setUserInput };
 
 	return (
 		<MuiSelect { ...{
 			options: dataFormatter[multiSelectType](items),
-			widget: widget,
-			onChange: ({ target: { value: newValue }}) =>
-				handleChange(newValue, props),
-			value: value,
+			onChange: handleValidInput(props),
+			value: userInput,
 			schema: schema,
 			...getInputProps(schema),
-			validate: validate,
 		} }
 		/>);
 };
