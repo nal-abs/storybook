@@ -20,6 +20,7 @@
     "dayjs": "^1.11.7",
     "immutability-helper": "^3.1.1",
     "leaflet": "^1.9.3",
+    "mousetrap": "^1.6.5",
     "qr-scanner": "^1.4.2",
     "qrcode": "^1.5.1",
     "qrcode.react": "^3.1.0",
