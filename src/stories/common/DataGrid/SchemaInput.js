@@ -7,7 +7,7 @@ import MultiSelect from './component/MultiSelect.js';
 import FieldInput from './component/FieldInput.js';
 import Switch from './component/SwitchWrapper.js';
 import RadioGroup from './component/RadioWrapper.js';
-import Slider from './component/IntegerRange.js';
+import Slider from './component/SliderWrapper.js';
 import getValidator from './validate/getValidator.js';
 import { nothing } from '@laufire/utils/fn.js';
 
@@ -24,6 +24,7 @@ const widgetList = {
 	input: FieldInput,
 	color: FieldInput,
 	password: FieldInput,
+	checkbox: FieldInput,
 };
 
 const componentType = {
@@ -38,7 +39,7 @@ const componentType = {
 const SchemaInput = (props) => {
 	const { schema, onChange = nothing } = props;
 	const jsonSchema = omit(schema, ['widget', 'disabled']);
-	const validate = useMemo(() => getValidator(jsonSchema), []);
+	const validate = useMemo(() => getValidator(jsonSchema), [jsonSchema]);
 	const Component = find(componentType, (component) =>
 		component(schema))(schema);
 

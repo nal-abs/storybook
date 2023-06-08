@@ -49,7 +49,7 @@ const handleChange = (props) =>
 	};
 
 const TextFieldWrapper = (context) => {
-	const { value = '', component, schemaType, schema } = context;
+	const { value, component, schemaType, schema } = context;
 	const [userInput, setUserInput] = useState(value);
 	const transform = transformValue[component] || identity;
 	const props = { setUserInput, userInput, transform, context };

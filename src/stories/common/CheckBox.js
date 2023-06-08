@@ -1,19 +1,17 @@
 import { nothing } from '@laufire/utils/fn';
-import { Checkbox } from '@mui/material';
+import { Checkbox as MuiCheckBox } from '@mui/material';
 import PropTypes from 'prop-types';
 import { React } from 'react';
 import buildEvent from './helper/buildEvent';
 
 const CheckBox = (context) => {
-	const { value, onChange = nothing, ...args } = context;
+	const { value, onChange = nothing } = context;
 
 	return (
-		<Checkbox
+		<MuiCheckBox
 			checked={ value }
-			onChange={ (evt) => {
-				onChange(buildEvent(evt.target.checked));
-			} }
-			{ ...args }
+			onChange={ (evt) =>
+				onChange(buildEvent(evt.target.checked)) }
 		/>);
 };
 

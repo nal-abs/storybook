@@ -1,19 +1,15 @@
 import { nothing } from '@laufire/utils/fn';
 import { Slider as MuiSlider } from '@mui/material';
-import { React, useState } from 'react';
+import { React } from 'react';
 
 const Slider = (context) => {
-	const { sx, value: initialValue, onChange = nothing, ...args } = context;
-	const [value, setValue] = useState(initialValue);
+	const { sx, value, onChange = nothing, ...args } = context;
 
 	return (
 		<MuiSlider { ...{
 			sx: sx,
 			value: value,
-			onChange: (evt) => {
-				setValue(evt.target.value);
-				onChange(evt);
-			},
+			onChange: (evt) => onChange(evt),
 			...args,
 		} }
 		/>);

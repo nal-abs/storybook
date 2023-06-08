@@ -3,7 +3,6 @@ import { React } from 'react';
 import * as Icons from '@mui/icons-material';
 import { reduce } from '@laufire/utils/collection';
 import { nothing } from '@laufire/utils/fn';
-import { peek } from '@laufire/utils/debug';
 
 const InputAdornment = (cur, key) => {
 	const { text, icon } = cur;
@@ -32,7 +31,6 @@ const Input = (context) => {
 	} = context;
 	const MultilineProps = multiline && { ...multiline, multiline: true };
 
-	peek('Hi', initialValue);
 	return (
 		<TextField
 			{ ...{

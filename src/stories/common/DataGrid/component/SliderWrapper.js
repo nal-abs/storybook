@@ -10,7 +10,7 @@ const updateValue = (value, { setUserInput, onChange = nothing }) => {
 
 const handleValidInput = (props) =>
 	({ target: { value }}) => {
-		const { context: { validate }} = props;
+		const { validate } = props;
 
 		validate(value) && updateValue(value, props);
 	};
@@ -27,9 +27,9 @@ const sliderProps = (schema) => ({
 });
 
 const SliderWrapper = (context) => {
-	const { schema, value } = context;
+	const { schema, value, validate } = context;
 	const [userInput, setUserInput] = useState(value);
-	const props = { setUserInput, context };
+	const props = { setUserInput, validate };
 
 	return (
 		<Slider { ...{

@@ -38,9 +38,9 @@ const config = {
 				type: 'string',
 				title: 'Document',
 			},
-			notes: {
+			color: {
 				type: 'string',
-				title: 'Notes',
+				title: 'Color',
 				widget: 'color',
 			},
 			country: {

@@ -1,11 +1,8 @@
-/* eslint-disable max-statements */
-import { React, useState } from 'react';
-import { identity } from '@laufire/utils/fn';
+import { React } from 'react';
 import { find } from '@laufire/utils/collection.js';
 import CheckBox from './CheckBoxWrapper';
 import TextFieldWrapper from './TextFieldWrapper';
-import updateValue from '../helper/updateValue';
-import updateRow from '../../updateRow';
+import { nothing } from '@laufire/utils/fn';
 
 const formatList = {};
 const typeList = { boolean: CheckBox };
@@ -39,22 +36,18 @@ const getType = ({ widget, format, type }) =>
 	widgetMap[widget] || formatMap[format] || typeMap[type];
 
 const FieldInput = (context) => {
-	const { value: initialValue, schema: { format, type }, schema } = context;
+	const {
+		value, schema: { format, type },
+		schema, validate, onChange = nothing,
+	} = context;
+
 	const component = format || type;
 	const schemaType = getType(schema);
-	const [value, setValue] = useState(initialValue);
-	const update = updateValue[component] || identity;
 
-	const onChange = ({ target: { value: newValue }}) => {
-		updateRow({ ...context, value: update(newValue) });
-
-		setValue(newValue);
-	};
-
-	const props = { value, onChange, component, schemaType };
+	const props = { value, onChange, component, validate, schemaType, schema };
 	const Component = getComponent(schema);
 
-	return <Component { ...{ ...props, ...context } }/>;
+	return <Component { ...props }/>;
 };
 
 export default FieldInput;
