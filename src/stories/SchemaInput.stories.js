@@ -3,7 +3,6 @@ import SchemaInputComponent from './common/DataGrid/SchemaInput';
 import schema from './schema';
 
 const defaultValue = {
-	input: '2014-11-16T21:25:33',
 	singleSelect: 'US',
 	radioGroup: 'India',
 	checkBoxGroup: ['US'],
@@ -11,6 +10,7 @@ const defaultValue = {
 	checkBox: false,
 	slider: 10,
 	password: 'hai',
+	input: '2018-06-12T19:30:55',
 };
 
 const component = {
@@ -28,15 +28,16 @@ const component = {
 				'checkBox',
 				'slider',
 				'password',
+				'custom',
 			],
 		},
 		schema: {
-			control: { type: 'object', value: schema.singleSelect },
-			if: { arg: 'schemaType', eq: 'singleSelect' },
+			control: { type: 'object', value: {}},
+			if: { arg: 'schemaType', eq: 'custom' },
 		},
 		value: {
-			control: { type: 'object', value: defaultValue.singleSelect },
-			if: { arg: 'schemaType', eq: 'singleSelect' },
+			control: { type: 'object', value: {}},
+			if: { arg: 'schemaType', eq: 'custom' },
 		},
 	},
 };
@@ -45,8 +46,8 @@ export default component;
 
 const Template = (args) => {
 	const { schemaType = 'input' } = args;
-	const jsonSchema = schema[schemaType];
-	const value = defaultValue[schemaType];
+	const jsonSchema = schema[schemaType] || {};
+	const value = defaultValue[schemaType] || {};
 
 	return (
 		<SchemaInputComponent { ...{

@@ -13,9 +13,7 @@ const RadioGroup = (context) => {
 	return <FormControl disabled={ disabled }>
 		<MuiRadioGroup
 			value={ value }
-			onChange={ (evt) => {
-				onChange(evt);
-			} }
+			onChange={ (evt) => onChange(evt) }
 		>
 			{ map(options, (option, index) =>
 				<FormControlLabel

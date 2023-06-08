@@ -4,7 +4,8 @@ import buildEvent from '../../helper/buildEvent';
 import TextField from '../../Input';
 import inputProps from '../helper/inputProps';
 import transformValue from '../helper/transformValue';
-import isInputValid from '../helper/isInputValid';
+import checkInput from '../helper/checkInput';
+import { everything } from '@laufire/utils/predicates';
 
 const handleValidInput = (props, newValue) => {
 	const {
@@ -41,9 +42,9 @@ const TextFieldProps = ({ readOnly, disabled }) => ({
 const handleChange = (props) =>
 	({ target: { value: newValue }}) => {
 		const { context: { component }} = props;
-		const inputValid = isInputValid[component] || identity;
+		const getValidInput = checkInput[component] || everything;
 
-		return inputValid(newValue)
+		return getValidInput(newValue)
 			&& handleValidInput(props, newValue);
 	};
 
