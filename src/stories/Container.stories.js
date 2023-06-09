@@ -19,4 +19,5 @@ Container.args = {
 	style: {},
 	shortcuts: { escape: () => peek('escape'), d: () => peek('d') },
 	onChange: peek,
+	resize: { refreshRate: 250 },
 };

@@ -6,11 +6,11 @@ import { identity } from '@laufire/utils/fn';
 import { map } from '@laufire/utils/collection';
 
 const Container = ({
-	onChange = identity,
-	children, shortcuts = [], ...args
+	onChange = identity, children,
+	shortcuts = [], resize, ...args
 }) => {
 	const ref = useRef();
-	const { width, height } = useResizeDetector({ targetRef: ref });
+	const { width, height } = useResizeDetector({ targetRef: ref, ...resize });
 
 	useEffect(() => {
 		const orientation = width > height ? 'portrait' : 'landscape';
