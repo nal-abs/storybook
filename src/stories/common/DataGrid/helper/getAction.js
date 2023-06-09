@@ -1,22 +1,23 @@
 import React from 'react';
 import * as Icons from '@mui/icons-material';
 import { GridActionsCellItem } from '@mui/x-data-grid';
-import { nothing } from '@laufire/utils/fn';
 import buildEvent from '../../helper/buildEvent';
+import { nothing } from '@laufire/utils/fn';
 
 const Actions = {
 	editRow: (rows, value) => rows.map((row) => (row.id !== value.id
 		? row
-		: { ...row, ...value.row })),
+		: { ...row, ...value })),
 
 	deleteRow: (rows, value) => rows.filter((row) => row.id !== value.id),
 };
 
-const getActionItems = (props, params) => {
+const getActionItems = (props) => {
 	const {
 		columns: { actions = [] }, rows,
-		setRows, onChange = nothing,
+		userInput, onChange = nothing,
 	} = props;
+	const { target: { value }} = userInput;
 
 	return actions.map(({ icon, action }, key) => {
 		const Icon = Icons[icon];
@@ -27,8 +28,7 @@ const getActionItems = (props, params) => {
 				icon={ <Icon/> }
 				label={ icon }
 				onClick={ () => {
-					setRows(Actions[action](rows, params));
-					onChange(buildEvent(params.row));
+					onChange(buildEvent(Actions[action](rows, value)));
 				} }
 			/>);
 	});

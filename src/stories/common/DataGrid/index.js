@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-console */
 import * as React from 'react';
 import { useState } from 'react';
 import { DataGrid as MuxDataGrid } from '@mui/x-data-grid';
@@ -6,9 +8,9 @@ import { nothing } from '@laufire/utils/fn';
 import getAction from './helper/getAction';
 import getColumns from './helper/getColumns';
 
-const DataGrid = ({ value, columns, style, onChange = nothing }) => {
-	const [rows, setRows] = useState(value);
-	const props = { columns, rows, setRows, onChange };
+const DataGrid = ({ value: rows, columns, style, onChange = nothing }) => {
+	const [userInput, setUserInput] = useState({ target: { value: '' }});
+	const props = { columns, rows, onChange };
 
 	return (
 		<Box
@@ -17,8 +19,8 @@ const DataGrid = ({ value, columns, style, onChange = nothing }) => {
 			<MuxDataGrid
 				rows={ rows }
 				columns={ [
-					...getColumns({ ...props }),
-					...getAction({ ...props }),
+					...getColumns({ ...props, onChange: (evt) => setUserInput(evt) }),
+					...getAction({ ...props, userInput }),
 				] }
 				hideFooterPagination={ true }
 				rowHeight={ 120 }

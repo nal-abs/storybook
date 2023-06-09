@@ -55,7 +55,6 @@ const Template = (args) => {
 		<SchemaInputComponent { ...{
 			schema: jsonSchema,
 			value: value,
-			onChange: (evt) => console.log(evt),
 		} }
 		/>);
 };
