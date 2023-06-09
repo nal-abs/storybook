@@ -39,7 +39,16 @@ const component = {
 				'date',
 				'number',
 				'switch',
+				'custom',
 			],
+		},
+		schema: {
+			control: { type: 'object', value: {}},
+			if: { arg: 'schemaType', eq: 'custom' },
+		},
+		value: {
+			control: { type: 'object', value: '' },
+			if: { arg: 'schemaType', eq: 'custom' },
 		},
 	},
 };
@@ -47,9 +56,12 @@ const component = {
 export default component;
 
 const Template = (args) => {
-	const { schemaType = 'date' } = args;
-	const jsonSchema = schema[schemaType];
-	const value = defaultValue[schemaType];
+	const {
+		schemaType = 'date',
+		schema: updatedSchema, value: newValue,
+	} = args;
+	const jsonSchema = schema[schemaType] || updatedSchema;
+	const value = defaultValue[schemaType] || newValue;
 
 	return (
 		<SchemaInputComponent { ...{
