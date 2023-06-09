@@ -1,22 +1,18 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, Fragment } from 'react';
 import color from '../../helper/color';
-import { Box } from '@mui/material';
 import Container from './Container';
 import { identity } from '@laufire/utils/fn';
 
-const setCanvasImage = ({ canvasRef, imgRef, src }) => {
+const setCanvasImage = ({ canvasRef, src, image, state }) => {
 	const canvas = canvasRef.current;
 	const context = canvas.getContext('2d', { willReadFrequently: true });
-	const img = imgRef.current.firstChild;
 
-	canvas.width = img.clientWidth;
-	canvas.height = img.clientHeight;
-
-	const image = new Image();
+	canvas.width = state.width;
+	canvas.height = state.height;
 
 	image.onload = () => {
 		context.drawImage(
-			image, 0, 0, img.clientWidth, img.clientHeight
+			image, 0, 0, state.width, state.width
 		);
 	};
 	image.src = src;
@@ -46,30 +42,28 @@ const setValue = ({ canvasRef, setState, onChange }) => (evt) => {
 };
 
 const MaskContainer = (props) => {
-	const { onChange = identity, state, setState, children, ...rest } = props;
+	const { onChange = identity, state, setState, children } = props;
 	const canvasRef = useRef(null);
-	const imgRef = useRef(null);
 
 	useEffect(() => {
-		setCanvasImage({ ...props, canvasRef, imgRef });
-
-		onChange({ ...state });
+		setCanvasImage({ ...props, canvasRef });
 	}, [state]);
 
-	return <Box ref={ imgRef } className="mask-container" { ...rest }>
+	return <Fragment>
 		{ children }
 		<canvas
 			ref={ canvasRef }
 			className="mask"
 			onClick={ setValue({ canvasRef, setState, onChange }) }
 		/>
-	</Box>;
+	</Fragment>;
 };
 
 const Mask = (props) => {
+	const image = new Image();
 	const [state, setState] = useState({ width: 0, height: 0 });
 
-	const enhancedProps = { ...props, state, setState };
+	const enhancedProps = { ...props, state, setState, image };
 
 	const containerOnChange = (data) => setState((preState) => ({
 		...preState,
@@ -77,7 +71,11 @@ const Mask = (props) => {
 	}));
 
 	return (
-		<Container onChange={ containerOnChange }>
+		<Container { ...{
+			className: 'mask-container',
+			onChange: containerOnChange,
+		} }
+		>
 			<MaskContainer { ...enhancedProps }/>
 		</Container>
 	);
