@@ -42,12 +42,15 @@ const setValue = ({ canvasRef, setState, onChange }) => (evt) => {
 };
 
 const MaskContainer = (props) => {
-	const { onChange = identity, state, setState, children } = props;
+	const {
+		onChange = identity,
+		state: { width, height }, setState, children,
+	} = props;
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
 		setCanvasImage({ ...props, canvasRef });
-	}, [state]);
+	}, [width, height]);
 
 	return <Fragment>
 		{ children }
@@ -58,6 +61,8 @@ const MaskContainer = (props) => {
 		/>
 	</Fragment>;
 };
+
+const resize = { refreshRate: 250 };
 
 const Mask = (props) => {
 	const image = new Image();
@@ -74,6 +79,7 @@ const Mask = (props) => {
 		<Container { ...{
 			className: 'mask-container',
 			onChange: containerOnChange,
+			resize: resize,
 		} }
 		>
 			<MaskContainer { ...enhancedProps }/>
