@@ -1,32 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import QrManager from '../../services/QrManager';
 import { Box } from '@mui/material';
 import Input from './Input';
 import { identity } from '@laufire/utils/fn';
 
-const setImageData = async (context) => {
-	const { setState, onChange = identity } = context;
-	const result = await QrManager.getImageData(context);
+const setImageData = async (props) => {
+	const { onChange = identity } = props;
+	const value = await QrManager.getImageData(props);
 
-	setState((preState) => {
-		const value = {
-			...preState,
-			...result,
-		};
-
-		onChange({ target: { value }});
-		return value;
-	});
+	onChange({ target: { value }});
 };
 
-const QrCodeUpload = (context) => {
-	const [state, setState] = useState({ file: '', data: '', error: '' });
-
-	useEffect(() => {
-		setImageData({ ...context, setState, state });
-	}, [state.file]);
-
-	const { value } = context;
+const QrCodeUpload = (props) => {
+	const { value } = props;
 
 	return (
 		<Box>
@@ -35,7 +21,7 @@ const QrCodeUpload = (context) => {
 					type: 'file',
 					...value,
 					onChange: (evt) => {
-						setState({ ...state, file: evt.target.files[0] });
+						setImageData({ ...props, data: evt.target.files[0] });
 					},
 				} }
 			/>
