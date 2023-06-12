@@ -15,7 +15,7 @@ const Actions = {
 const getActionItems = (props) => {
 	const {
 		columns: { actions = [] }, rows,
-		userInput, onChange = nothing,
+		userInput, onChange = nothing, setRows,
 	} = props;
 	const { target: { value }} = userInput;
 
@@ -28,6 +28,7 @@ const getActionItems = (props) => {
 				icon={ <Icon/> }
 				label={ icon }
 				onClick={ () => {
+					setRows(Actions[action](rows, value));
 					onChange(buildEvent(Actions[action](rows, value)));
 				} }
 			/>);

@@ -8,8 +8,9 @@ import { nothing } from '@laufire/utils/fn';
 import getAction from './helper/getAction';
 import getColumns from './helper/getColumns';
 
-const DataGrid = ({ value: rows, columns, style, onChange = nothing }) => {
+const DataGrid = ({ value, columns, style, onChange = nothing }) => {
 	const [userInput, setUserInput] = useState({ target: { value: '' }});
+	const [rows, setRows] = useState(value);
 	const props = { columns, rows, onChange };
 
 	return (
@@ -20,7 +21,7 @@ const DataGrid = ({ value: rows, columns, style, onChange = nothing }) => {
 				rows={ rows }
 				columns={ [
 					...getColumns({ ...props, onChange: (evt) => setUserInput(evt) }),
-					...getAction({ ...props, userInput }),
+					...getAction({ ...props, userInput, setRows }),
 				] }
 				hideFooterPagination={ true }
 				rowHeight={ 120 }
