@@ -22,7 +22,7 @@ const MuiRating = (args) => {
 			value: value,
 			onChange: (dummy, newValue) => {
 				setValue(newValue);
-				buildEvent(newValue);
+				buildEvent({ newValue });
 			},
 			...rest,
 			...getIcon(rest),
